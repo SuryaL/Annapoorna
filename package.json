@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/SuryaL/Annapoorna#readme",
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "express-graphql": "^0.6.12",
+    "graphql": "^0.13.1"
   }
 }
