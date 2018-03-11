@@ -5,11 +5,7 @@ import controller from './home.controller';
 import template from './home.html';
 import './home.scss';
 
-//
-import roomServe from '../../common/services/room';
-import colorPicker from '../../common/components/colpick/colpick';
-
-const module = angular.module( 'home', [uirouter,roomServe,colorPicker] )
+const module = angular.module( 'home', [uirouter] )
 module.config( function( $stateProvider ) {
     'ngInject';
 
