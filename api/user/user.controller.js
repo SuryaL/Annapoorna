@@ -1,18 +1,38 @@
 const service = require('./user.service');
 const client = require('../../boundaries/cassandra').client;
 const faker = require('./../../faker.js');
-const executeQuery = require('../utils').execQuery;
+const UserService = require('./user.service');
+const _ = require('underscore');
 
 const create = async function(req, res, next) {
-
-    
-
-
+    try {
+        const body = _.clone(req.body);
+        const user = await UserService.createUser(body);
+        res.json(user);
+        next();
+    } catch (err) {
+        res.send(500, new Error(err));
+    }
 }
 
-function createFakeData () {
+const find = async function(req, res, next) {
+    try {
+        const query = JSON.parse(JSON.stringify(req.query));
+        const result = await UserService.getUsers(query);
+        res.json(result);
+        next();
+    } catch (err) {
+        res.send(500, new Error(err));
+    }
+}
 
-    console.log(faker.getUser());
+const update = async function(req, res, next) {
+}
+
+const remove = async function(req, res, next) {
+};
+
+function createFakeData() {
     let user = faker.getUser();
     const columns = [];
     const params = [];
@@ -25,25 +45,7 @@ function createFakeData () {
 
     // const query = 'INSERT INTO user (' + columns.join() + ') VALUES (' + questions.join() + ')';
     // let result = yield executeQuery(query, params)
-
-
 }
-
-const find = async function(req, res, next) {
-    let query = 'SELECT * FROM user';
-    let result = await executeQuery(query, []);
-    res.status(200).send(result.rows);
-}
-
-const update = async function(req, res, next) {
-
-}
-
-const remove = async function(req, res, next) {
-
-};
-
-
 
 module.exports = {
     create,
