@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS user (
   image           text,
   accessed_portal text, -- date.toISOString();
   accessed_mobile text, -- date.toISOString();
+  deleted         boolean,
   PRIMARY KEY (id)
 );
 CREATE INDEX ON user (email);
@@ -29,9 +30,11 @@ CREATE TABLE IF NOT EXISTS menu (
   vegetarian      boolean,
   price           text,
   image           text,
+  deleted         boolean,
   PRIMARY KEY (id, created)
 ) WITH CLUSTERING ORDER BY (created DESC);
 CREATE INDEX ON menu (vegetarian);
+CREATE INDEX ON menu (deleted);
 
 CREATE TABLE IF NOT EXISTS voting (
   week            text,
@@ -48,7 +51,11 @@ CREATE TABLE IF NOT EXISTS orders (
   dish            uuid,
   created         text,
   modified        text,
-  quantity        int,  
+  quantity        int,
+  price           text,
+  dish_name       text,
+  feedback        text,
+  rating          text, 
   PRIMARY KEY (week, user, dish)
 );
 
@@ -59,6 +66,17 @@ CREATE TABLE IF NOT EXISTS status (
   voting_status   boolean,
   order_status    boolean,
   active          boolean,
+  voting_email_sent  boolean,
+  order_email_sent   boolean,
   PRIMARY KEY (week)
 );
 CREATE INDEX ON status (voting_status);
+
+CREATE TABLE IF NOT EXISTS payments (
+  week            text,
+  user            uuid,
+  amount_paid     text,
+  created         text,
+  status          text,
+  PRIMARY KEY (week, user)
+);
