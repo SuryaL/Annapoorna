@@ -33,7 +33,6 @@ let OauthFactory = function($http, $q, $window, $interval, $timeout) {
                 var url;
                 var openPopup;
                 url = [defaults.authorizationEndpoint, self.buildQueryString()].join('?');
-                console.log(url);
                 openPopup = self.popupHandle(url, defaults.name, defaults.popupOptions, defaults.redirectUri)
 
                 openPopup
@@ -42,7 +41,6 @@ let OauthFactory = function($http, $q, $window, $interval, $timeout) {
                         // This is for a scenario when someone wishes to opt out from
                         // auth's magic by doing authorization code exchange and
                         // saving a token manually.
-                        console.log(54, oauthData);
                         if (defaults.responseType === 'token' || !defaults.url) {
                             return resolve(oauthData);
                         }
@@ -123,7 +121,6 @@ let OauthFactory = function($http, $q, $window, $interval, $timeout) {
     };
 
     self.popupHandle = function(url, name, options) {
-        console.log(url, name, options);
         return $q(function(resolve, reject) {
             var redirectUriParser = document.createElement('a');
             redirectUriParser.href = 'http://localhost:8080/';
@@ -131,7 +128,6 @@ let OauthFactory = function($http, $q, $window, $interval, $timeout) {
 
             var window_test = $window.open(url, '_blank', "width=950,height=780");
             $window.popup = window_test;
-            console.log(redirectUriPath);
             var polling = $interval(function() {
                 if (!window_test || window_test.closed || window_test.closed == undefined) {
                     $interval.cancel(polling);
