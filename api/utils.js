@@ -1,5 +1,5 @@
 const client = require('../boundaries/cassandra').client;
-
+// console.log(cassandra);
 
 // execute cassandra queries
 const execQuery = async function(query, params, options) {
