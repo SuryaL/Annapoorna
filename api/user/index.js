@@ -1,7 +1,6 @@
 const controller = require('./user.controller')
 const endpoint_name = "/user"
 
-
 module.exports = app =>  {
     app.post(endpoint_name, controller.create)
     app.get(endpoint_name, controller.find)
