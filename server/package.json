@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/SuryaL/Annapoorna#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "cassandra-driver": "^3.4.1",
@@ -31,6 +32,7 @@
     "express-graphql": "^0.6.12",
     "faker": "^4.1.0",
     "graphql": "^0.13.1",
+    "jwt-simple": "^0.5.1",
     "node-uuid": "^1.4.8",
     "underscore": "^1.8.3"
   }
