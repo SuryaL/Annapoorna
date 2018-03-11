@@ -8,9 +8,13 @@ const graphqlHTTP = require('express-graphql');
 // static folder
 app.use(express.static('public'));
 
+<<<<<<< HEAD
 //test push Sumeet
 
 // examples//
+=======
+// Examples ////
+>>>>>>> 02f8fae9997b45cf06f76f4d50e04211684fe1fd
 /**
  * https://codesandbox.io/s/jvlrl98xw3
  * https://github.com/codediger/graphql-mutation-example
