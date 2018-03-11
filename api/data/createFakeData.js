@@ -1,4 +1,3 @@
-const client = require('../../boundaries/cassandra').client;
 const faker = require('../../faker.js');
 const executeQuery = require('../utils').execQuery;
 
@@ -12,8 +11,8 @@ function createFakeData(table) {
     else if (table == 'menu') data = faker.getMenu();
     else if (table == 'voting') data = faker.getVotings();
     else if (table == 'orders') data = faker.getOrder();
-    // else if (table == 'status') data = faker.getStatus();
-    // else if (table == 'payment') data = faker.getPayment();
+    else if (table == 'status') data = faker.getStatus();
+    else if (table == 'payment') data = faker.getPayment();
     else return;
 
     let tableName = table;
@@ -25,8 +24,9 @@ function createFakeData(table) {
         params.push(data[key]);
         questions.push('?');
     })
-    const query = 'INSERT INTO table (' + columns.join() + ') VALUES (' + questions.join() + ')';
-    // executeQuery(query, params)
+    const query = 'INSERT INTO '+ table +' (' + columns.join() + ') VALUES (' + questions.join() + ')';
+    // console.log(query,params)
+    executeQuery(query, params)
 
 }
 
@@ -36,8 +36,7 @@ function GenerateData(count) {
     if (!!count && count >0){
         for (let i = 1; i <= count; i++) {
             // createFakeData('user');
-            createFakeData();
-            
+            // createFakeData();
             // createFakeData('voting')
             // createFakeData('menu')
             // createFakeData('order')
@@ -53,4 +52,4 @@ function GenerateData(count) {
 //     GenerateData();
 
 // }
-// GenerateData(1);
+GenerateData(10);

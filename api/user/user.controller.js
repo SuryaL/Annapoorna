@@ -1,6 +1,6 @@
 const service = require('./user.service');
 const client = require('../../boundaries/cassandra').client;
-const faker = require('./../../faker.js');
+const executeQuery = require('../utils').execQuery;
 const UserService = require('./user.service');
 const _ = require('underscore');
 
