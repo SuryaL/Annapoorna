@@ -1,16 +1,42 @@
 {
-  "name": "annapoorna",
+  "name": "annapoorna-server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Home food order manager",
+  "main": "app.js",
   "scripts": {
-    "build": "webpack-dev-server",
+    "server": "nodemon app.js",
+    "portal": "webpack-dev-server",
     "build:prod": "webpack -p"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SuryaL/Annapoorna.git"
+  },
+  "keywords": [
+    "home",
+    "food",
+    "order",
+    "hungry"
+  ],
+  "author": "Surya",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SuryaL/Annapoorna/issues"
+  },
+  "homepage": "https://github.com/SuryaL/Annapoorna#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "cassandra-driver": "^3.4.1",
+    "cassandra-prom": "0.0.2",
+    "express": "^4.16.2",
+    "express-graphql": "^0.6.12",
+    "faker": "^4.1.0",
+    "graphql": "^0.13.1",
+    "jwt-simple": "^0.5.1",
+    "node-uuid": "^1.4.8",
+    "underscore": "^1.8.3",
     "angular": "^1.6.4",
     "angular-animate": "^1.5.11",
     "angular-aria": "^1.5.11",
@@ -19,8 +45,7 @@
     "bcrypt": "^1.0.3",
     "composable-middleware": "^0.3.0",
     "cors": "^2.8.4",
-    "crypto-js": "^3.1.9-1",
-    "jwt-simple": "^0.5.1"
+    "crypto-js": "^3.1.9-1"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",

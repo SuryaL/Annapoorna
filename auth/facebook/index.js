@@ -4,7 +4,7 @@ const config = require('../../config');
 const jwt = require('jwt-simple');
 const auth = require('../auth.controller');
 const request = require('request');
-const uuid = require('uuid');
+const uuid = require('node-uuid');
 const client = require('../../boundaries/cassandra').client;
 const Promise = require('bluebird');
 

@@ -1,9 +1,9 @@
-@import 'assets/stylesheets/common';
-@import 'assets/stylesheets/flex';
-@import 'assets/stylesheets/variables';
+@import '~assets/stylesheets/common';
+@import '~assets/stylesheets/flex';
+@import '~assets/stylesheets/variables';
 
 html,body{
-    background-color: #DFE6EB;
+    background-color: $primary-blue;
     width:100%;
     height:100%;
     .container {

@@ -5,6 +5,8 @@ import controller from './app.controller';
 import template from './app.html';
 import './app.scss';
 
+import colpick from 'common/components/colpick/colpick';
+
 // modules
 import home from './home/home'
 const app = angular.module('annapoorna', [uirouter, home])
