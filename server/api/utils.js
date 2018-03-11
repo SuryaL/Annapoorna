@@ -19,6 +19,19 @@ const execQuery = async function(query, params, options) {
     }
   };
 
+
+  const handleReq = fun => async function (req, res, next) {
+    try {
+      res.send(200, await fun(req));
+      next && next();
+    } catch (err) {
+      console.log('err ---------------------- ');
+      // console.error(err.stack, err.blocksStack);
+      console.error(err.blocksStack);
+      res.status(500).send(err)
+    }
+  };
   module.exports = {
-    execQuery
+    execQuery,
+    handleReq
   }

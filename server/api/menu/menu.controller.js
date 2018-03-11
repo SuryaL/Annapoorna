@@ -3,41 +3,29 @@ const executeQuery = require('../utils').execQuery;
 const MenuService = require('./menu.service');
 const _ = require('underscore');
 
-const create = async function(req, res, next) {
-    try {
-        const body = _.clone(req.body);
-        const menu = await MenuService.createMenu(body);
-        res.json(menu);
-        next();
-    } catch (err) {
-        res.send(500, new Error(err));
-    }
+const create = async function (req) {
+
+    const body = _.clone(req.body);
+    const menu = await MenuService.createMenu(body);
+    return menu;
 }
 
 
-const find = async function(req, res, next) {
-    try {
-        const query = _.clone(req.query);
-        const result = await MenuService.getMenu(query);
-        res.json(result);
-        next();
-    } catch (err) {
-        res.send(500, new Error(err));
-    }
+const find = async function (req) {
+
+    const query = _.clone(req.query);
+    const result = await MenuService.getMenu(query);
+    return result;
 }
 
-const update = async function(req, res, next) {
-	try {
-	    const body = _.clone(req.body);
-	    const menu = await MenuService.updateMenu(body);
-	    res.json(menu);
-	    next();
-	} catch (err) {
-	    res.send(500, new Error(err));
-	}
+const update = async function (req) {
+
+    const body = _.clone(req.body);
+    const menu = await MenuService.updateMenu(body);
+    return menu;
 }
 
-const remove = async function(req, res, next) {
+const remove = async function (req) {
 };
 
 module.exports = {
