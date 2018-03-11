@@ -17,7 +17,7 @@ const create = async function(req, res, next) {
 
 const find = async function(req, res, next) {
     try {
-        const query = JSON.parse(JSON.stringify(req.query));
+        const query = _.clone(req.query);
         const result = await UserService.getUsers(query);
         res.json(result);
         next();
