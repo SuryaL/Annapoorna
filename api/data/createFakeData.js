@@ -26,7 +26,7 @@ function createFakeData(table) {
     })
     const query = 'INSERT INTO '+ table +' (' + columns.join() + ') VALUES (' + questions.join() + ')';
     // console.log(query,params)
-    // executeQuery(query, params)
+    executeQuery(query, params)
 
 }
 
@@ -52,4 +52,4 @@ function GenerateData(count) {
 //     GenerateData();
 
 // }
-// GenerateData(10);
+GenerateData(10);
