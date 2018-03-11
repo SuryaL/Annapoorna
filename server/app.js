@@ -9,7 +9,7 @@ const cassandra   = require ('./boundaries/cassandra');
 cassandra.init(config.cassandra).then(function () {
   try {
 	// Routes setup
-  require('./api/routes')(app);
+  require('./routes')(app);
   const fakeData = require('./api/data/createFakeData.js');  
   } catch (e) {
     console.log ('\033[31m' + e.stack + '\033[0m');
