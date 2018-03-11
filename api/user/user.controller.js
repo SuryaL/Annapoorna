@@ -26,20 +26,6 @@ const update = async function (req) {
 const remove = async function (req) {
 };
 
-function createFakeData() {
-    let user = faker.getUser();
-    const columns = [];
-    const params = [];
-    const questions = [];
-    Object.keys(user).forEach(key => {
-        columns.push(key);
-        params.push(user[key]);
-        questions.push('?');
-    })
-
-    // const query = 'INSERT INTO user (' + columns.join() + ') VALUES (' + questions.join() + ')';
-    // let result = yield executeQuery(query, params)
-}
 
 module.exports = {
     create,

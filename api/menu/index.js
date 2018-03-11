@@ -1,5 +1,5 @@
 const controller = require('./menu.controller')
-const handleReq = require('../utils').handleReq;
+const {handleReq} = require('../../helpers/utils/communication_utils');
 const endpoint_name = "/menu"
 
 

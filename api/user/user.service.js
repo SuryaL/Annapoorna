@@ -1,4 +1,4 @@
-const executeQuery = require('../utils').execQuery;
+const {executeQuery} =  require('../../helpers/utils/db_utils');
 
 function createNewUserData(){
     const body = {};
