@@ -8,6 +8,8 @@ const graphqlHTTP = require('express-graphql');
 // static folder
 app.use(express.static('public'));
 
+//test push Sumeet
+
 // examples//
 /**
  * https://codesandbox.io/s/jvlrl98xw3
