@@ -3,7 +3,7 @@ const app = express();
 const config = require('./config');
 const { buildSchema } = require('graphql');
 const graphqlHTTP = require('express-graphql');
-const user = require('./api/user')
+const user = require('./api/user');
 
 
 // static folder
@@ -13,3 +13,5 @@ app.use(express.static('public'));
 require('./api/routes')(app);
 
 app.listen(config.port, _ => console.log(`Listening on ${config.port}`))
+
+
