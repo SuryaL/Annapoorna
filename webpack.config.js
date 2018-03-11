@@ -3,24 +3,64 @@ let ExtractTextWebpackPlugin = require( 'extract-text-webpack-plugin' );
 let CleanWebpackPlugin = require( 'clean-webpack-plugin' );
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let webpack = require('webpack')
-let extractPlugin = new ExtractTextWebpackPlugin({
+const extractSass = new ExtractTextWebpackPlugin({
     filename: 'main.css'
-})
+});
 module.exports = {
-    entry: './src/app/app.js',
+    entry: './frontend/src/app/app.js',
     output: {
-        path: path.resolve( __dirname, 'server/dist' ),
+        path: path.resolve( __dirname, 'dist' ),
         filename: 'app.bundle.js'
         // publicPath: 'dist'
     },
+    resolve:{
+        alias : {
+            'common': path.join(__dirname, 'frontend/src/common'),
+            'assets': path.join(__dirname, 'frontend/assets')
+          },
+          modules:[
+            path.resolve (__dirname, 'frontend/src'),
+            path.resolve (__dirname, 'node_modules'), 
+            'node_modules'
+          ]
+    },
     module: {
-        rules: [ {
-            test: /\.(scss|css)$/,
-            use:extractPlugin.extract({
-                use:['css-loader','sass-loader']
-            })
-            // use: [ 'style-loader', 'css-loader', 'sass-loader' ]
-        }, {
+        rules: [ 
+        //     {
+        //     test: /\.(scss|css)$/,
+        //     use:extractPlugin.extract({
+        //         use:['css-loader',{
+        //             options: {
+        //                 includePaths : [ path.resolve(__dirname, 'frontend/src/assets/stylesheets') ],
+        //                 sourceMap: true
+        //               },
+        //            loader: 'sass-loader'
+        //         }
+        //         ]
+        //     })
+        //     // use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+        // }
+        {
+            test: /\.scss$/,
+            use: [
+              { loader : 'style-loader' },
+              { loader : 'css-loader' },
+              {
+                loader : 'sass-loader',
+                options: {
+                  includePaths : [ path.resolve(__dirname, 'frontend/src/common/stylesheets') ],
+                  sourceMap: true
+                }
+              }
+            ]
+          },
+          {
+            test: /\.css$/,
+            use: [
+              { loader : 'style-loader' },
+              { loader : 'css-loader' },
+            ]
+          }, {
             test: /\.js$/,
             exclude: /node_modules/,
             use: [ 'ng-annotate-loader', {
@@ -41,16 +81,23 @@ module.exports = {
             } ]
         },
         {
-            test:/\.html$/,
-            use: 'html-loader'
-        }
+            test: /\.html$/,
+            use : [
+              {
+                loader : 'html-loader',
+                options : {
+                  attrs : ['img:src', 'img:ng-src', 'img:fallback-src']
+                }
+              }
+            ]
+          },
          ]
     },
     plugins: [
-        extractPlugin,
+        extractSass,
         new CleanWebpackPlugin( [ 'dist' ] ),
         new HtmlWebpackPlugin( {
-            template:'./index.html'
+            template:'./frontend/index.html'
         } ),
         new webpack.ProvidePlugin({
             qrcode: 'qrcode-generator',
