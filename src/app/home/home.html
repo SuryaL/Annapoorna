@@ -1,4 +1,13 @@
-<div >
-  Welcome
+<div>
+    <form ng-submit="self.submit()">
+        <div class="email-input">
+            <input type="email" name="email" placeholder="Email" ng-model="self.user.email">
+        </div>
+        <div class="password-input">
+            <input type="password" name="password" placeholder="Password" ng-model="self.user.password">
+        </div>
+        <div class="submit-btn">
+        	<input type="submit" name="submit">
+        </div>
+    </form>
 </div>
-
