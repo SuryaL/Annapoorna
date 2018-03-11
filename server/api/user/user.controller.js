@@ -1,4 +1,3 @@
-const service = require('./user.service');
 const client = require('../../boundaries/cassandra').client;
 const executeQuery = require('../utils').execQuery;
 const UserService = require('./user.service');
