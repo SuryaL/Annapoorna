@@ -3,10 +3,6 @@ class homeCtrl {
         'ngInject';
         this.$state = $state;
     }
-
-    roomSelected(room){
-        // selected room 
-    }
 }
 
 export default homeCtrl;
