@@ -7,8 +7,6 @@ async function createMenu(body){
 
     //TODO : verify all params body
         
-    Object.assign(body, createNewUserData());
-
     const 
         columns = [],
         params = [];
@@ -22,7 +20,6 @@ async function createMenu(body){
 
     await executeQuery(query, params);
 
-    delete body.password;
     return body;
 }
 
@@ -49,7 +46,35 @@ async function getMenu(queryParams) {
     return (await executeQuery(query, params, options)).rows;
 }
 
+async function updateMenu(body) {
+
+    const id = body.id;
+    const created = body.created;
+    if (!id || !created) return 'Update params are missing';
+
+    delete body.id;
+    delete body.created;
+
+    const 
+        columns = [],
+        params = [];
+    
+    for (let key in body) {
+        columns.push(key);
+        params.push(body[key]);
+    }
+
+    params.push(id);
+    params.push(created);
+
+    const query = 'UPDATE menu SET ' + columns.join('=?,') + ' WHERE ' + ["id", "created"].join('=? AND');
+
+    await executeQuery(query, params);
+    return body;
+}
+
 module.exports = {
     createMenu,
-    getMenu
+    getMenu,
+    updateMenu
 }

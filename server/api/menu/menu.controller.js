@@ -27,6 +27,14 @@ const find = async function(req, res, next) {
 }
 
 const update = async function(req, res, next) {
+	try {
+	    const body = _.clone(req.body);
+	    const menu = await MenuService.updateMenu(body);
+	    res.json(menu);
+	    next();
+	} catch (err) {
+	    res.send(500, new Error(err));
+	}
 }
 
 const remove = async function(req, res, next) {
