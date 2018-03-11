@@ -20,7 +20,7 @@ module.exports = function(api) {
             client_secret: config.FACEBOOK_SECRET,
             redirect_uri: req.body.redirectUri
         };
-
+        console.log(params);
         // Step 1. Exchange authorization code for access token.
         request.get({ url: accessTokenUrl, qs: params, json: true }, function(err, response, accessToken) {
             if (response.statusCode !== 200) {

@@ -1,12 +1,17 @@
 class homeCtrl {
-    constructor($state) {
+    constructor($state, oauthService) {
         'ngInject';
-        this.$state = $state;
+        Object.assign(this, { $state, oauthService });
         this.user = {};
     }
 
     submit() {
     	console.log(this.user);
+    	this.oauthService.open()
+    		.then(resp => {
+    			console.log("fb resp", resp);
+    		})
+    		.catch(err => console.log("fb err", err));
     }
 }
 

@@ -1,29 +1,49 @@
-let OauthFactory = function($http, $q, $window, $interval) {
+let OauthFactory = function($http, $q, $window, $interval, $timeout) {
     'ngInject';
 
-    var self = this;
-    let facebook = {
+    let self = this;
+    // let defaults = {
+    //   defaultUrlParams: ['response_type', 'client_id', 'redirect_uri'],
+    //   responseType: 'code',
+    //   responseParams: {
+    //     code: 'code',
+    //     clientId: 'clientId',
+    //     redirectUri: 'redirectUri'
+    //   }
+    // };
+    let defaults = {
         name: 'facebook',
         url: '/auth/facebook',
         authorizationEndpoint: 'https://www.facebook.com/v2.12/dialog/oauth',
         redirectUri: window.location.origin + '/',
         requiredUrlParams: ['display', 'scope'],
-        scope: ['email'],
+        scope: ['email', 'public_profile', 'user_about_me'],
         scopeDelimiter: ',',
         display: 'popup',
         oauthType: '2.0',
-        popupOptions: { width: 580, height: 400 }
-    }
+        popupOptions: { width: 580, height: 400 },
+        defaultUrlParams: ['response_type', 'client_id', 'redirect_uri'],
+        clientId: '1653283634989097',
+        responseType: 'code',
+        responseParams: {
+            code: 'code',
+            clientId: 'clientId',
+            redirectUri: 'redirectUri'
+        }
+    };
+
+
     self.open = function(options, userData, customOptions) {
-        defaults = OauthUtils.merge(options, defaults);
-        defaults = OauthUtils.merge(customOptions, defaults);
+        // defaults = OauthUtils.merge(options, defaults);
+        // defaults = OauthUtils.merge(customOptions, defaults);
         return $q(function(resolve, reject) {
 
             $timeout(function() {
                 var url;
                 var openPopup;
                 url = [defaults.authorizationEndpoint, self.buildQueryString()].join('?');
-                openPopup = popupHandle(url, defaults.name, defaults.popupOptions, defaults.redirectUri)
+                console.log(url);
+                openPopup = self.popupHandle(url, defaults.name, defaults.popupOptions, defaults.redirectUri)
 
                 openPopup
                     .then(function(oauthData) {
@@ -31,6 +51,7 @@ let OauthFactory = function($http, $q, $window, $interval) {
                         // This is for a scenario when someone wishes to opt out from
                         // auth's magic by doing authorization code exchange and
                         // saving a token manually.
+                        console.log(54, oauthData);
                         if (defaults.responseType === 'token' || !defaults.url) {
                             return resolve(oauthData);
                         }
@@ -42,7 +63,32 @@ let OauthFactory = function($http, $q, $window, $interval) {
                             );
                         }
 
-                        resolve(oauthData);
+                        // resolve(oauthData);
+                        var data = angular.extend({}, userData);
+
+                        angular.forEach(defaults.responseParams, function(value, key) {
+                            switch (key) {
+                                case 'code':
+                                    data[value] = oauthData.code;
+                                    break;
+                                case 'clientId':
+                                    data[value] = defaults.clientId;
+                                    break;
+                                case 'redirectUri':
+                                    data[value] = defaults.redirectUri;
+                                    break;
+                                default:
+                                    data[value] = oauthData[key];
+                            }
+                        });
+
+                        if (oauthData.state) {
+                            data.state = oauthData.state;
+                        }
+                        let exchangeForTokenUrl = 'http://localhost:4001' + defaults.url;
+                        return $http.post(exchangeForTokenUrl, data)
+                            .then(resolve)
+                            .catch(reject)
                     }, function(err) {
                         reject(err);
                     });
@@ -56,7 +102,7 @@ let OauthFactory = function($http, $q, $window, $interval) {
 
         angular.forEach(urlParamsCategories, function(paramsCategory) {
             angular.forEach(defaults[paramsCategory], function(paramName) {
-                var camelizedName = OauthUtils.camelCase(paramName);
+                var camelizedName = self.camelCase(paramName);
                 var paramValue = angular.isFunction(defaults[paramName]) ? defaults[paramName]() : defaults[camelizedName];
 
                 if (paramName === 'redirect_uri' && !paramValue) {
@@ -85,14 +131,14 @@ let OauthFactory = function($http, $q, $window, $interval) {
         }).join('&');
     };
 
-    self.popupHandle = function() {
+    self.popupHandle = function(url, name, options) {
+        console.log(url, name, options);
         return $q(function(resolve, reject) {
-            var response = response.data;
             var redirectUriParser = document.createElement('a');
-            redirectUriParser.href = 'http://54.205.177.2/';
+            redirectUriParser.href = 'http://localhost:8080/';
             var redirectUriPath = self.getFullUrlPath(redirectUriParser);
 
-            var window_test = $window.open(response.links[1].href, '_blank', "width=950,height=780");
+            var window_test = $window.open(url, '_blank', "width=950,height=780");
             $window.popup = window_test;
             console.log(redirectUriPath);
             var polling = $interval(function() {
@@ -114,10 +160,10 @@ let OauthFactory = function($http, $q, $window, $interval) {
                             angular.extend(qs, hash);
 
                             if (qs.error) {
-                                console.log("create payment popup error:", qs);
+                                console.log("FB popup error:", qs);
 
                             } else {
-                                console.log("create payment popup response:", qs);
+                                console.log(qs);
                             }
                         } else {
                             // Does not contain query/hash parameters, can't do anything at this point.
@@ -160,6 +206,12 @@ let OauthFactory = function($http, $q, $window, $interval) {
             }
         });
         return obj;
+    };
+
+    self.camelCase = function(name) {
+        return name.replace(/([\:\-\_]+(.))/g, function(_, separator, letter, offset) {
+            return offset ? letter.toUpperCase() : letter;
+        });
     };
 
     return self;
