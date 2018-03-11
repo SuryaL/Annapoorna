@@ -69,7 +69,7 @@ async function getUsers(queryParams) {
         query += ' WHERE ' + columns.join('=? AND ') + '=? ALLOW FILTERING';
     }
 
-    return await executeQuery(query, params, options);
+    return (await executeQuery(query, params, options)).rows;
 }
 
 module.exports = {
