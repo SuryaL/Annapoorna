@@ -48,7 +48,7 @@ async function createUser(body){
         params.push(body[key]);
     }
 
-    const query = 'INSERT INTO <%= name %> (' + columns.join() + ') VALUES (' + Array(params.length).join('?,') + '?)';
+    const query = 'INSERT INTO user (' + columns.join() + ') VALUES (' + Array(params.length).join('?,') + '?)';
 
     await executeQuery(query, params);
 
