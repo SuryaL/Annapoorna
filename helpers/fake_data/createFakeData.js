@@ -1,5 +1,5 @@
-const faker = require('../../faker.js');
-const executeQuery = require('../utils').execQuery;
+const faker = require('./faker.js');
+const {executeQuery} =  require('../../helpers/utils/db_utils');
 
 function createFakeData(table) {
     // console.log(faker.getUser());

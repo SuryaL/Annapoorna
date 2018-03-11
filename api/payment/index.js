@@ -1,5 +1,5 @@
 const controller = require('./payment.controller')
-const handleReq = require('../utils').handleReq;
+const {handleReq} =  require('../../helpers/utils/communication_utils');
 const endpoint_name = "/payment"
 
 module.exports = app =>  {

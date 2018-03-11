@@ -1,5 +1,6 @@
-const executeQuery = require('../utils').execQuery;
+const {executeQuery} =  require('../../helpers/utils/db_utils');
 const uuid = require('node-uuid');
+
 function createNewMenuData(){
     const body = {};
     
@@ -12,6 +13,7 @@ function createNewMenuData(){
     // body.modified_by = req.user.id.toString();
     return body
 }
+
 async function createMenu(body){
     //TODO : verify all params body
         
