@@ -31,14 +31,6 @@ function createNewUserData(){
     }
  */
 async function createUser(body){
-    if (body.id != null) {
-        delete body.id;
-    }
-
-    //TODO : verify all params body
-        
-    Object.assign(body, createNewUserData());
-
     const 
         columns = [],
         params = [];

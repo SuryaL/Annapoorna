@@ -3,6 +3,12 @@ const _ = require('underscore');
 
 const create = async function (req) {
     const body = _.clone(req.body);
+    if (body.id != null) {
+        delete body.id;
+    }
+    console.log(UserService.createNewUserData());
+    //TODO : verify all params body
+    Object.assign(body, UserService.createNewUserData());
     const user = await UserService.createUser(body);
     return user;
 }

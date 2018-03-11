@@ -27,7 +27,7 @@ const execQuery = async function(query, params, options) {
     } catch (err) {
       console.log('err ---------------------- ');
       // console.error(err.stack, err.blocksStack);
-      console.error(err.blocksStack);
+      console.error(err);
       res.status(500).send(err)
     }
   };

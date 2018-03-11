@@ -1,10 +1,18 @@
 const executeQuery = require('../utils').execQuery;
+const uuid = require('node-uuid');
+function createNewMenuData(){
+    const body = {};
+    
+    body.id = uuid.v4();
+    body.deleted = false;
+    body.created = new Date().toISOString();
+    body.modified = new Date().toISOString();
 
+    //FIXME: need authentication middleware added
+    // body.modified_by = req.user.id.toString();
+    return body
+}
 async function createMenu(body){
-    if (body.id != null) {
-        delete body.id;
-    }
-
     //TODO : verify all params body
         
     const 
@@ -30,8 +38,9 @@ async function getMenu(queryParams) {
         delete queryParams.options;
     }
 
-    const columns = [];
-    const params = [];
+    // FIXME: not deleted only service
+    const columns = ['deleted'];
+    const params = [false];
 
     for (let key in queryParams) {
         columns.push(key);
@@ -43,14 +52,14 @@ async function getMenu(queryParams) {
         query += ' WHERE ' + columns.join('=? AND ') + '=? ALLOW FILTERING';
     }
 
-    return (await executeQuery(query, params, options)).rows;
+    return (await executeQuery(query, params, options));
 }
 
 async function updateMenu(body) {
 
     const id = body.id;
     const created = body.created;
-    if (!id || !created) return 'Update params are missing';
+    if (!id || !created) throw new Error('Update params are missing');
 
     delete body.id;
     delete body.created;
@@ -67,14 +76,35 @@ async function updateMenu(body) {
     params.push(id);
     params.push(created);
 
-    const query = 'UPDATE menu SET ' + columns.join('=?,') + ' WHERE ' + ["id", "created"].join('=? AND');
+    const query = 'UPDATE menu SET ' + columns.join('=?,') + ' WHERE id = ? AND created = ?';
 
     await executeQuery(query, params);
     return body;
 }
 
+
+async function removeMenu(id) {
+    if (!id) throw new Error('id is missing');
+
+    const {rows} = await getMenu({id});
+    const found = rows[0];
+    if(!found || !found.created) throw new Error('Delete params are missing');
+    const created = found.created;
+
+    const 
+        params = [true];
+    
+    params.push(id);
+    params.push(created);
+
+    const query = 'UPDATE menu SET  deleted = ?  WHERE id = ? AND created = ?';
+
+    await executeQuery(query, params);
+}
 module.exports = {
+    createNewMenuData,
     createMenu,
     getMenu,
-    updateMenu
+    updateMenu,
+    removeMenu
 }

@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
 const config = require('./config');
+const bodyParser = require('body-parser');
 
 const cassandra   = require ('./boundaries/cassandra');
+app.use(bodyParser.json());
+
 // Cassandra setup
 cassandra.init(config.cassandra).then(function () {
   try {
@@ -13,6 +16,7 @@ cassandra.init(config.cassandra).then(function () {
     console.log ('\033[31m' + e.stack + '\033[0m');
   }
 });
+
 
 // static folder
 app.use(express.static('dist'));
