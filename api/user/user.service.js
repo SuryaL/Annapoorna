@@ -17,7 +17,7 @@ function createNewUserData(){
         "accessed_portal": "2018-03-11T03:55:55.426Z",
         "active": true,
         "created": "2018-03-10T22:54:27.619Z",
-        "deleted": true,
+        "deleted": false,
         "email": "Cassidy4@yahoo.com",
         "first_name": "Zion",
         "image": "http://lorempixel.com/640/480/abstract",
@@ -31,14 +31,7 @@ function createNewUserData(){
     }
  */
 async function createUser(body){
-    if (body.id != null) {
-        delete body.id;
-    }
-
-    //TODO : verify all params body
-        
-    Object.assign(body, createNewUserData());
-
+   
     const 
         columns = [],
         params = [];
@@ -81,5 +74,6 @@ async function getUsers(queryParams) {
 
 module.exports = {
     createUser,
-    getUsers
+    getUsers,
+    createNewUserData
 }

@@ -4,32 +4,34 @@ const faker = require('./../../faker.js');
 const UserService = require('./user.service');
 const _ = require('underscore');
 
-const create = async function(req, res, next) {
-    try {
+const create = async function(req) {
+
         const body = _.clone(req.body);
+        if (body.id != null) {
+            delete body.id;
+        }
+    
+        //TODO : verify all params body
+            
+        Object.assign(body, UserService.createNewUserData());
+    
         const user = await UserService.createUser(body);
-        res.json(user);
-        next();
-    } catch (err) {
-        res.send(500, new Error(err));
-    }
+        return user
+        console.log(err);        
 }
 
-const find = async function(req, res, next) {
-    try {
+const find = async function(req) {
         const query = _.clone(req.query);
         const result = await UserService.getUsers(query);
-        res.json(result);
-        next();
-    } catch (err) {
-        res.send(500, new Error(err));
-    }
+        return result
+        console.log(err);
+        
 }
 
-const update = async function(req, res, next) {
+const update = async function(req) {
 }
 
-const remove = async function(req, res, next) {
+const remove = async function(req) {
 };
 
 function createFakeData() {
