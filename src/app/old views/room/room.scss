@@ -1,0 +1,54 @@
+.room-container {
+    text-align: center;
+    .input-wrapper {
+        padding-top: 20px;
+        input,
+        button {
+            display: inline-block;
+            width: 80%;
+        }
+        background: red;
+    }
+    .chat-container {
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+        margin-top: 280px;
+        position: relative;
+        .chat-item {
+            width: 95%;
+            display: inline-block;
+                    border:1px dashed #FFF;
+            margin-top: 20px;
+            padding: 20px;
+            .chat-item-name {
+                text-align: left;
+                display: inline-block;
+                width: 100%;
+                color: white;
+                .name-only {
+                    font-size: 20px;
+                }
+                .date-only {
+                    position: absolute;
+                    right:10px;
+                    bottom:10px;
+                    border:1px solid #222;
+                    margin-left: 20px;
+                    font-size: 12px;
+                    font-weight: 500;
+                    padding:2px;
+                    color: #222;
+                }
+            }
+            .chat-item-message {
+                font-size: 18px;
+                margin-left: 10px;
+                text-align: left;
+                display: inline-block;
+                width: 100%;
+            }
+        }
+    }
+}
+

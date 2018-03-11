@@ -1,0 +1,343 @@
+@import './animate.scss';
+
+/////
+//// Animation for animating hide and show.
+/// put it on any thing you want to hide or display.. 
+//// WORKS on IOS8 !!!!!! (use ng-hide-add only)
+// EXAMPLE USAGE
+  // on dom enter 
+  //   @include animation-name(bounceInUp);
+  //   @include animation-duration(0.8s);
+  //   @include animation-timing-function(ease-in-out);
+  //   @include animation-delay(0s);
+  //   @include animation-fill-mode(both);
+
+  // OR ON SHOW
+  //  &.ng-hide-remove {
+  //   @include animation-name(bounceInUp);
+  //   @include animation-duration(0.8s);
+  //   @include animation-timing-function(ease-in-out);
+  //   @include animation-delay(0s);
+  //   @include animation-fill-mode(both);
+  //   }
+
+  // ON hIDE
+  //   &.ng-hide-add {
+  //       @include animation-name(bounceOutDown);
+  //       @include animation-duration(0.8s);
+  //       @include animation-timing-function(ease-in-out);
+  //       @include animation-delay(0s);
+  //       @include animation-fill-mode(both);
+  //   }
+// Animation Mixins
+// --------------------------------------------------
+@mixin animation($animation) {
+    -webkit-animation: $animation !important;
+    animation: $animation !important;
+}
+
+@mixin animation-delay($delay) {
+    -webkit-animation-delay: $delay !important;
+    animation-delay: $delay !important;
+}
+
+@mixin animation-duration($duration) {
+    -webkit-animation-duration: $duration !important;
+    animation-duration: $duration !important;
+}
+
+@mixin animation-direction($direction) {
+    -webkit-animation-direction: $direction !important;
+    animation-direction: $direction !important;
+}
+
+@mixin animation-timing-function($animation-timing) {
+    -webkit-animation-timing-function: $animation-timing !important;
+    animation-timing-function: $animation-timing !important;
+}
+
+@mixin animation-fill-mode($fill-mode) {
+    -webkit-animation-fill-mode: $fill-mode !important;
+    animation-fill-mode: $fill-mode !important;
+}
+
+@mixin animation-name($name...) {
+    -webkit-animation-name: $name !important;
+    animation-name: $name !important;
+}
+
+@mixin animation-iteration-count($count) {
+    -webkit-animation-iteration-count: $count !important;
+    animation-iteration-count: $count !important;
+}
+
+
+// not working on ios 8 and older devices // use animation mixins comined with animate.scss instead
+@mixin customSlideAnimation($animation:ease-in-out, $duration:0.25s, $delay:0s) {
+    transition: $duration $animation transform, $duration $animation -webkit-transform, $duration $animation opacity;
+    &.ng-hide-add {
+        transform: translate3d(0, 0%, 0);
+        -webkit-transform: translate3d(0, 0%, 0);
+        opacity: 1;
+    }
+    &.ng-hide-add-active {
+        transition: $duration $animation transform, $duration $animation -webkit-transform, $duration $animation opacity;
+        opacity: 0;
+        -webkit-transition-delay: $delay;
+        transition-delay: $delay;
+        transform: translate3d(0, 100%, 0);
+        -webkit-transform: translate3d(0, 100%, 0);
+    }
+    &.ng-hide-remove {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+        -webkit-transform: translate3d(0, 100%, 0);
+    }
+    &.ng-hide-remove-active {
+        transition: $duration $animation transform, $duration $animation -webkit-transform, $duration $animation opacity;
+        opacity: 1;
+        transform: translate3d(0, 0%, 0);
+        -webkit-transition-delay: $delay;
+        transition-delay: $delay;
+        -webkit-transform: translate3d(0, 0%, 0);
+    }
+}
+
+
+//keyframes custom
+// 2 second wait time
+@keyframes tada_custom {
+  0% { transform: scale(1); ;-webkit-transform: scale(1); }
+  5.55556% { transform:scale(.9) rotate(-8deg) ;-webkit-transform:scale(.9) rotate(-8deg) }
+  11.11111% { transform:scale(.9) rotate(-8deg) ;-webkit-transform:scale(.9) rotate(-8deg) }
+  16.66667% { transform:scale(1.15) rotate(8deg) ;-webkit-transform:scale(1.15) rotate(8deg) }
+  22.22222% { transform:scale(1.15) rotate(-8deg) ;-webkit-transform:scale(1.15) rotate(-8deg) }
+  27.77778% { transform:scale(1.15) rotate(8deg) ;-webkit-transform:scale(1.15) rotate(8deg) }
+  33.33333% { transform:scale(1.15) rotate(-8deg) ;-webkit-transform:scale(1.15) rotate(-8deg) }
+  38.88889% { transform:scale(1.15) rotate(8deg) ;-webkit-transform:scale(1.15) rotate(8deg) }
+  44.44444% { transform:scale(1) rotate(0) ;-webkit-transform:scale(1) rotate(0) }
+  100% { transform:scale(1) rotate(0); -webkit-transform:scale(1) rotate(0) }
+}
+
+
+//
+@-webkit-keyframes slideInLeftLittle {
+  from {
+    -webkit-transform: translate3d(-7px, 0, 0);
+    transform: translate3d(-7px, 0, 0);
+    // visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+//
+@-webkit-keyframes slideInRightLittle {
+  from {
+    -webkit-transform: translate3d(7px, 0, 0);
+    transform: translate3d(7px, 0, 0);
+    // visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+//
+@-webkit-keyframes slideFadeInRightLittle {
+  from {
+    -webkit-transform: translate3d(0.05em, 0, 0);
+    transform: translate3d(0.05em, 0, 0);
+    opacity: 0;
+    // visibility: visible;
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@-webkit-keyframes slideOutLeftLittle {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    // visibility: hidden;
+    -webkit-transform: translate3d(-7px, 0, 0);
+    transform: translate3d(-7px, 0, 0);
+  }
+}
+
+@-webkit-keyframes slideOutRightLittle {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    // visibility: hidden;
+    -webkit-transform: translate3d(7px, 0, 0);
+    transform: translate3d(7px, 0, 0);
+  }
+}
+
+
+
+@-webkit-keyframes zoomInLittle {
+  0% {
+    opacity:0;
+    -webkit-transform: scale(0.98);
+    transform: scale(0.98);
+  }
+  50%{
+    opacity:1;
+  }
+  100% {
+    opacity:1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+}
+@keyframes zoomInLittle {
+   0% {
+    opacity:0;
+    -webkit-transform: scale(0.98);
+    transform: scale(0.98);
+  }
+  50%{
+    opacity:1;
+  }
+  100% {
+    opacity:1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+
+
+
+@-webkit-keyframes zoomOutLittle {
+    0% {
+    opacity:1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  50%{
+    opacity:0;
+  }
+  100% {
+    opacity:0;
+    -webkit-transform: scale(0.98);
+    transform: scale(0.98);
+  }
+
+}
+@keyframes zoomOutLittle {
+    0% {
+    opacity:1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  100% {
+    opacity:0;
+    -webkit-transform: scale(0.98);
+    transform: scale(0.98);
+  }
+
+}
+
+
+@-webkit-keyframes custom-modal-in {
+  0% {
+    opacity: 0.7;
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,100%,0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+  }
+
+}
+@keyframes custom-modal-in {
+  0% {
+    opacity: 0.7;
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,100%,0);
+
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+  }
+
+}
+@-webkit-keyframes custom-modal-out {
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+
+  }
+  100% {
+    opacity: 0.4;
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,100%,0);
+  }
+
+}
+@keyframes custom-modal-out {
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+
+  }
+  100% {
+    opacity: 0.4;
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,100%,0);
+  }
+}
+
+
+/////////// input placeholder /////
+@-webkit-keyframes slideUpInputPlaceholder {
+  from {
+    -webkit-transform: translate3d(1em, 0, 0);
+    transform: translate3d(1em, 0, 0);
+  }
+
+  to {
+    // visibility: hidden;
+    -webkit-transform: translate3d(-0.5em, -0.5em, 0);
+    transform: translate3d(-0.5em, -0.5em, 0);
+  }
+}
+
+@-webkit-keyframes slideDownInputPlaceholder {
+  to {
+    -webkit-transform: translate3d(1em, 0, 0);
+    transform: translate3d(1em, 0, 0);
+  }
+
+  from {
+    // visibility: hidden;
+    -webkit-transform: translate3d(-0.5em, -0.5em, 0);
+    transform: translate3d(-0.5em, -0.5em, 0);
+  }
+}

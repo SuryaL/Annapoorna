@@ -1,0 +1,35 @@
+<div class="room-container">
+    <form ng-submit="self.submitMessage()" name="myform" class="row navbar-fixed-top">
+    <div class="btn btn-warning" ui-sref="app.home">BACK TO HOME</div>
+        <div class=" input-wrapper row">
+            {{(self.roomService.findRoom(self.room_id)).name}}
+        </div>
+        <div class="row">
+            <div class="input-wrapper col col-sm-12">
+                <div> NAME : </div>
+                <input  autocomplete="off" ng-model="self.name" required type="text" name="myname" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-wrapper col col-sm-12">
+                <div> Message : </div>
+                <input  autocomplete="off" ng-model="self.message" required type="textarea" name="mymessage" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-wrapper col col-sm-12">
+                <button type="submit" class=" btn btn-primary" ng-disabled="!self.name || !self.message">Send</button>
+            </div>
+        </div>
+    </form>
+    <div class="chat-container col">
+        <div class="chat-item row" ng-repeat="chat in self.roomService.currentChatInfo.chat">
+            <div class="col col-sm-12 chat-item-name"><span class="name-only">{{chat.name}}</span>      <span class="date-only">{{self.showDate(chat.date)}}</span></div>
+            <div class="col col-sm-12 chat-item-message">{{chat.message}}</div>
+        </div>
+
+        <div class="chat-item row" ng-if="self.roomService.currentChatInfo.chat.length == 0"> NO MESSAGES YET!
+        </div>
+    </div>
+</div>
+

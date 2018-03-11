@@ -1,0 +1,107 @@
+@import 'assets/stylesheets/common';
+@import 'assets/stylesheets/flex';
+@import 'assets/stylesheets/variables';
+
+.transition-prefix {
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+conversation {
+  @include flexbox();
+  @include flex-direction(column);
+  height: 100%;
+  width: 100%;
+  .conversation-wrap {
+    height: 100%;
+    @include flexbox();
+    @include flex-direction(column);
+    @include justify-content(space-around);
+    @include align-items(center);
+    padding: 2vw;
+    .logo-wrap{
+      @include flexbox();
+      @include flex-direction(column);
+      @include justify-content(center);
+      @include flex-basis(5%);
+      width: 100%;
+      .logo {
+        @include align-self(center);
+        background: {
+          repeat: no-repeat;
+          position: center;
+          size: contain;
+        }
+      }
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    .message-wrapper {
+      @include flexbox();
+      @include flex-direction(column);
+      // @include justify-content(center);
+      @include flex-basis(80%);
+      width: 100%;
+      overflow-y: scroll; 
+      .left {
+        @include flex-direction(row);
+      }
+      .right {
+        @include flex-direction(row-reverse);
+      }
+      .message-wrap {
+        @include flexbox();
+        min-height: 40px;
+        width: 100%;
+        padding: 5px 0;
+        .profile-pic {
+          @include border-radius(50%);
+          height: auto;
+          width: 40px;
+          background: grey;
+        }
+        .right-padd {
+          padding-right: 10px; 
+        }
+        .message {
+          line-height: 40px;
+          padding-left: 10px; 
+        }
+      }
+    }
+    .input-wrapper {
+      @include flexbox();
+      @include flex-direction(row);
+      @include justify-content(space-between);
+      // @include flex-basis(5%);
+      height:50px;
+      @include border-radius(50px);
+      background: #DFE6EB;
+      width: 100%;
+      .input-text {
+        @include flex-basis(90%);
+        border: none;
+        background: transparent;
+        padding: 0 0 0 20px;
+        outline:none;
+        font-size: 1.1em;
+      }
+      .input-icon {
+        // @include flex-basis(5%);
+        background: blue;
+      height:50px;
+      width: 50px;
+        // height:100%;
+        @include align-self(right);
+        @include border-radius(50%);
+      }
+    }
+  }
+}

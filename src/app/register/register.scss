@@ -1,0 +1,29 @@
+@import 'assets/stylesheets/common';
+@import 'assets/stylesheets/flex';
+@import 'assets/stylesheets/variables';
+
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+}
+
+.transition-prefix {
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+register {
+  @include flexbox();
+  @include flex-direction(column);
+  height: 100%;
+  width: 100%;
+  .subview {
+    @include flexbox();
+    @include flex-direction(column);
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -1,0 +1,15 @@
+<div class="conversation-wrap">
+    <div class="logo-wrap" style="min-height:50px;">
+        <img width="auto" style="margin:auto" src="{{self.bgLogo}}" alt="">
+    </div>
+    <div class="message-wrapper">
+        <div class="message-wrap" ng-class="{'left': {{message.id == 2}}, 'right': {{message.id == 1}}}" ng-repeat="message in self.messages">
+            <div class="profile-pic"></div>
+            <div class="message" ng-class="{'right-padd': {{message.id == 1}}}">{{message.message}}</div>
+        </div>
+    </div>
+    <div class="input-wrapper">
+        <input class="input-text" type="text" ng-model="self.userText" placeholder="message...">
+        <img class="input-icon" src="{{self.send}}" alt="" ng-click="self.sendMessage()">
+    </div>
+</div>

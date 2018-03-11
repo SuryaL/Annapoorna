@@ -1,0 +1,114 @@
+@import 'mixins.scss';
+@import 'animation.scss';
+@import 'functions.scss';
+
+/**
+ * Variables - These are the common variables across the app
+ */
+
+// Primary Colors
+$primary-blue : #003870;
+$primary-blue-disabled : tint($primary-blue, 30%);
+$primary-blue-border : shade($primary-blue, 30%);
+$primary-red : #b11a1a;
+$primary-red-disabled : tint($primary-red, 30%);
+$primary-red-border : shade($primary-red, 30%);
+$primary-green : #00b04d;
+$primary-green-disabled: tint($primary-green, 30%);
+$primary-green-border : shade($primary-green, 30%);
+$check-green : shade($primary-green, 30%);
+$primary-teal : #379593;
+$primary-teal-disabled : tint($primary-teal, 30%);
+$primary-teal-border : shade($primary-teal, 30%);
+$primary-grey : #94979b;
+$primary-grey-disabled : tint($primary-grey, 30%);
+$primary-grey-border : shade($primary-grey, 30%);
+$primary-yellow : #feffc5;
+$primary-yellow-disabled :tint($primary-yellow, 30%);
+$primary-yellow-border : shade($primary-yellow, 30%);
+$primary-white : #fbfbfb;
+$primary-white-disabled: tint($primary-white, 10%);
+$primary-white-border : shade($primary-white, 10%);
+$primary-black : #111111;
+$primary-black-disabled: tint($primary-black, 10%);
+$primary-black-border : shade($primary-black, 10%);
+
+// Secondary Colors
+$secondary-teal : #005c59;
+$secondary-teal-disabled: tint($secondary-teal, 30%);
+$secondary-teal-border : shade($secondary-teal, 30%);
+$secondary-grey : #c7d1db;
+$secondary-grey-disabled: tint($secondary-grey, 30%);
+$secondary-grey-border : shade($secondary-grey, 30%);
+$secondary-red : #FF1a1a;
+$secondary-red-disabled : tint($secondary-red, 30%);
+$secondary-red-border : shade($secondary-red, 30%);
+// The primary, secondary colors used across the application
+$primary-color: #b80f0a;
+$primary-color-disabled : tint($primary-color, 30%);
+$primary-color-border : shade($primary-color, 30%);
+$text-grey: #fa9f9c;
+$info-text: #6a7c80;
+
+$secondary-color: #b80f0a;
+$secondary-color-disabled : tint($secondary-color, 30%);
+$secondary-color-border : shade($secondary-color, 30%);
+
+// Special
+$divider : #c7d1db;
+
+/* SASS / Social Media Brand Colors */
+
+$twitter: #00aced;
+$facebook: #3b5998;
+$googleplus: #dd4b39;
+$pinterest: #cb2027;
+$linkedin: #007bb6;
+$youtube: #bb0000;
+$vimeo: #aad450;
+$tumblr: #32506d;
+$instagram: #517fa4;
+$flickr: #ff0084;
+$dribbble: #ea4c89;
+$quora: #a82400;
+$foursquare: #0072b1;
+$forrst: #5B9A68;
+$vk: #45668e;
+$wordpress: #21759b;
+$stumbleupon: #EB4823;
+$yahoo: #7B0099;
+$blogger: #fb8f3d;
+$soundcloud: #ff3a00;
+
+$services-color: $primary-color;
+$jobs-color: #3c444b;
+$profile-color: #4b4d46;
+
+// mymodal
+$mymodal-blue:#48A1DA;
+$mymodal-body-background:#F3F7FA;
+$mymodal-header-active-blue:#63C5FA;
+$mymodal-header-height1: 14vw;
+$mymodal-header-height2: 14vw;
+$mymodal-header-height3: 10vw;
+$mymodal-header-height4: 9vw;
+
+$next-button-height: 15vw;
+$next-button-color: #948e88;
+//custom colors
+$placeholder-label: #777f8c;
+$placeholder-divider: #d4dbe6;
+$price-input-color: #898397;
+
+$radio-border-size: 1.4rem; //dont change this value
+$radio-dot-size: $radio-border-size * 0.65;//dont change this value
+
+$supporting-text: #898e97;
+
+
+// Iphone X constants
+
+$bottom-constant : calc(2*constant(safe-area-inset-bottom));
+$bottom-env : calc(2*env(safe-area-inset-bottom));
+
+

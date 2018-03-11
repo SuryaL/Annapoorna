@@ -1,0 +1,28 @@
+<div class="signup-wrap">
+    <div class="logo-wrap" style="min-height:170px">
+        <img width="100px" style="margin:auto" src="{{self.bgLogo}}" alt="">
+    </div>
+    <form class="form-signup">
+        <h3>User Registration</h3>
+        <div class="input-wrapper">
+            <label for="">Email</label>
+            <input class="input-txt" type="email" placeholder="Email" ng-model="self.user.email">
+        </div>
+        <div class="input-wrapper">
+            <label for="">Password</label>
+            <input class="input-txt" type="password" placeholder="*******" ng-model="self.user.password" />
+        </div>
+        <div class="input-wrapper">
+            <label for="">Name</label>
+            <input class="input-txt" type="text" placeholder="Name" ng-model="self.user.name">
+        </div>
+        <div class="btn-wrap">
+            <button type="submit" ng-click="self.signup()">Sign Up</button>
+        </div>
+        <div class="user-signup">
+            <label for="">Already a user? </label>
+            <div ui-sref="register.login">Sign In</div>
+        </div>
+        <div ui-view></div>
+    </form>
+</div>
