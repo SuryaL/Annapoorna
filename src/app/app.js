@@ -7,7 +7,7 @@ import './app.scss';
 
 // modules
 import home from './home/home'
-const app = angular.module('letschat', [uirouter, home])
+const app = angular.module('annapoorna', [uirouter, home])
 
 app.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
     'ngInject';
