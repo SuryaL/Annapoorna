@@ -1,3 +1,6 @@
+
+const client = require('../../boundaries/cassandra');
+
 const create = async function(req, res, next){
 
 
