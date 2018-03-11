@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS user (
   created         text,
   modified        text,
   modified_by     uuid,
-  type            list<text>, -- [user, cook]
+  type            list<text>, -- [user, cook, admin]
   super           boolean, -- admin-true, default-false
   phone           text,
   image           text,
