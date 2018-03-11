@@ -17,9 +17,11 @@ CREATE TABLE IF NOT EXISTS user (
   accessed_portal text, -- date.toISOString();
   accessed_mobile text, -- date.toISOString();
   deleted         boolean,
+  facebook        text,
   PRIMARY KEY (id)
 );
 CREATE INDEX ON user (email);
+create index on user (facebook);
 
 CREATE TABLE IF NOT EXISTS menu (
   id              uuid,

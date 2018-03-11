@@ -20,7 +20,6 @@ module.exports = function(api) {
             client_secret: config.FACEBOOK_SECRET,
             redirect_uri: req.body.redirectUri
         };
-        console.log(params);
         // Step 1. Exchange authorization code for access token.
         request.get({ url: accessTokenUrl, qs: params, json: true }, function(err, response, accessToken) {
             if (response.statusCode !== 200) {
@@ -43,74 +42,58 @@ module.exports = function(api) {
                 return res.send(500, profile.error);
             }
             // console.log(JSON.stringify(profile, null, 2));
-            if (req.header('Authorization')) {
-                let token = req.header('Authorization').split(' ')[1];
-                let payload = jwt.decode(token, config.TOKEN_SECRET, 'HS512');
-                client.execute('SELECT * FROM user where facebook = ? allow FILTERING', [profile.id], { prepare: true })
-                    .then(function(results) {
+            let user = {};
+            user.id = uuid.v4();
+            user.facebook = profile.id;
+            user.image = 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
+            user.email = profile.email;
+            // user.gender = (profile.gender) ? profile.gender : null;
+            user.accessed_portal = new Date().toISOString();
+            user.created = new Date().toISOString();
 
-                        client.execute('SELECT * FROM user where id=? ALLOW FILTERING', [payload.user.id], { prepare: true })
-                            .then(function(results) {
-                                if (results.rows.length === 0) {
-                                    return res.send(400, new Error('User not found'));
-                                }
-                                let user = results.rows[0];
-                                user.facebook = profile.id;
-                                user.picture = user.picture || 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
-                                user.name = user.name || profile.name;
-                                user.email = user.email || profile.email;
-                                user.accessed_portal = new Date();
-                                user.first_name = profile.first_name;
-                                user.last_name = profile.last_name;
+            user.first_name = profile.first_name;
+            user.last_name = profile.last_name;
+            console.log('Email: ', profile.email);
+            client.execute('SELECT * FROM user where email = ? allow FILTERING', [profile.email], { prepare: true })
+                .then(function(results) {
+                    console.log("select results", results.rows);
+                    if (results.rows.length <= 0) {
+                        user.type = ['user'];
+                        user.super = false;
+                        user.deleted = false;
+                        let query = 'INSERT INTO user JSON ?'
+                        let params = JSON.stringify(user);
+                        return client.execute(query, [params], { prepare: true });
+                    } else {
+                        user = results.rows[0];
+                        user.facebook = profile.id;
+                        user.image = user.image || 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
+                        user.email = user.email || profile.email;
+                        user.accessed_portal = new Date().toISOString();
+                        user.first_name = profile.first_name;
+                        user.last_name = profile.last_name;
+                        if (user.deleted == null) user.deleted = false;
+                        if (user.super == null) user.super = false;
+                        if (user.type == null) user.type = ['user'];
 
-                                let query = 'UPDATE user SET facebook=?, accessed_portal=?, email=?, gender=?, picture=?, name=?, first_name=?, last_name=? WHERE id=?';
-                                let params = [user.facebook, user.accessed_portal, user.email, profile.gender, profile.picture, profile.name, profile.first_name, profile.last_name, payload.user.id];
-                                client.execute(query, params, { prepare: true })
-                                    .then(function(results) {
-                                        res.send({ token: auth.createJWT(user) });
-                                    })
-                            });
-                    });
-            } else {
-                // Create new user with email and id.
+                        let query = 'UPDATE user SET facebook=?, accessed_portal=?, email=?, image=?, first_name=?, last_name=?, deleted=?, super=?, type=? WHERE id=?';
+                        let params = [user.facebook, user.accessed_portal, user.email, user.image, user.first_name, user.last_name, user.deleted, user.super, user.type, user.id];
+                        return client.execute(query, params, { prepare: true })
+                    }
+                })
+                .then(resp => {
+                    console.log(99, resp);
+                    let query = 'SELECT * FROM user where id=?';
+                    return client.execute(query, [user.id], { prepare: true });
+                })
+                .then((result) => {
+                    req.user = result.rows[0];
+                    res.send({ token: auth.createJWT(req.user) });
+                })
+                .catch(err => {
+                    res.send(500, err);
+                })
 
-                let user = {};
-                user.id = uuid.v4();
-                user.facebook = profile.id;
-                user.picture = 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
-                user.name = profile.name;
-                user.email = profile.email;
-                user.gender = (profile.gender) ? profile.gender : null;
-                user.accessed = new Date();
-                user.created = new Date();
-                console.log('Email: ', profile.email);
-                client.execute('SELECT * FROM user where facebook = ? allow FILTERING', [profile.id], { prepare: true })
-                    .then(function(results) {
-                        if (results.rows.length > 0) {
-                            let result = results.rows[0];
-                            user.id = result.id;
-                            // user.accessed = result.accessed;
-                            user.created = result.created;
-                        }
-                        let promises = [];
-
-                        let query = 'INSERT into user (id,facebook,picture,name,first_name, last_name, accessed,created, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-                        let params = [user.id, user.facebook, user.picture, user.name, profile.first_name, profile.last_name, user.accessed, user.created, user.email];
-                        promises.push(client.execute(query, params, { prepare: true }));
-                        return Promise.all(promises);
-                    })
-                    .then(resp => {
-                        let query = 'SELECT * FROM user where id=?';
-                        return client.execute(query, [user.id], { prepare: true });
-                    })
-                    .then((result) => {
-                        req.user = result.rows[0];
-                        res.send({ token: auth.createJWT(req.user) });
-                    })
-                    .catch(err => {
-                        res.send(500, err);
-                    })
-            }
         });
     }
 

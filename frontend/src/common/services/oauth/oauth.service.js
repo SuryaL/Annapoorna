@@ -2,15 +2,6 @@ let OauthFactory = function($http, $q, $window, $interval, $timeout) {
     'ngInject';
 
     let self = this;
-    // let defaults = {
-    //   defaultUrlParams: ['response_type', 'client_id', 'redirect_uri'],
-    //   responseType: 'code',
-    //   responseParams: {
-    //     code: 'code',
-    //     clientId: 'clientId',
-    //     redirectUri: 'redirectUri'
-    //   }
-    // };
     let defaults = {
         name: 'facebook',
         url: '/auth/facebook',
