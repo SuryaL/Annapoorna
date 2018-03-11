@@ -3,7 +3,6 @@ const app = express();
 const config = require('./config');
 const { buildSchema } = require('graphql');
 const graphqlHTTP = require('express-graphql');
-const user = require('./api/user')
 const cassandra   = require ('./boundaries/cassandra');
 cassandra.init(config.cassandra).then(function () {
   try {
