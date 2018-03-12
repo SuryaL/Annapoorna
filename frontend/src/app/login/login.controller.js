@@ -3,6 +3,7 @@ class loginCtrl {
         'ngInject';
         Object.assign(this, { $state, oauthService, $auth });
         this.user = {};
+        this.$state = $state;
     }
 
     submit() {
