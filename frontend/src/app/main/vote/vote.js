@@ -14,7 +14,7 @@ const module = angular.module('vote', [
         $stateProvider.state('app.main.vote', {
             url: 'vote',
             template: '<vote></vote>',
-            authenticated: 'none'
+            authenticated: 'authenticated'
         })
     })
     .component('vote', component)
