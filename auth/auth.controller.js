@@ -39,17 +39,7 @@ exports.isAuthenticated = function (req, res, next) {
         return res.send (401, new Error ('Invalid token.'));
       } else {
         req.user = result.rows[0];
-        if (!!payload.user.center_id) {
-          req.user.center_id = payload.user.center_id;
-          next();
-        } else {
-          mysqlClient.queryAsync('SELECT * from user where id=?', [req.user.facebook])
-          .then(resp => {
-            // req.user.center_id = exports.encrypt(req.user.facebook, resp[0].center_key);
-            req.user.center_id = resp[0].center_id;
-            next();
-          });
-        }
+        next();
       }
     });
   });
@@ -81,7 +71,7 @@ exports.hasRole = function (roleRequired, subRoleRequired) {
   return compose()
     .use ( exports.isAuthenticated() )
     .use ( function ( req, res, next ) {
-       if (config.userRoles.indexOf (req.user.role) >= config.userRoles.indexOf (roleRequired) ) {
+       if (config.userRoles.indexOf (req.user.type) >= config.userRoles.indexOf (roleRequired) ) {
            if ( subRoleRequired != null && config.subRoles.indexOf (req.user.subrole) >= config.subRoles.indexOf(subRoleRequired)) {
             next();
            } else if (subRoleRequired == null) {
