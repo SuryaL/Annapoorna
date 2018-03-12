@@ -3,11 +3,13 @@ import uirouter from 'angular-ui-router';
 import component from './vote.component';
 import OauthService from 'common/services/oauth';
 import voteItem from 'common/components/vote_item/vote_item';
+import simpleHeader from 'common/components/simpleHeader/simpleHeader';
 
 const module = angular.module('vote', [
         uirouter,
         OauthService,
-        voteItem
+        voteItem,
+        simpleHeader
     ])
 
     .config(function($stateProvider) {
