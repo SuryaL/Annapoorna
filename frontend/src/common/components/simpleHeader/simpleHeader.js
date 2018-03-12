@@ -1,11 +1,9 @@
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
-import component from './order_item.component';
-import OauthService from 'common/services/oauth';
+import component from './simpleHeader.component';
 
-const module = angular.module('orderItem', [
+const module = angular.module('simpleHeader', [
         uirouter,
-        OauthService
     ])
 
     .config(function($stateProvider) {
@@ -17,5 +15,5 @@ const module = angular.module('orderItem', [
         //     authenticated: 'none'
         // })
     })
-    .component('orderItem', component)
+    .component('simpleHeader', component)
 export default module.name

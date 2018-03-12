@@ -7,4 +7,3 @@ class mainController {
 }
 
 export default mainController;
-

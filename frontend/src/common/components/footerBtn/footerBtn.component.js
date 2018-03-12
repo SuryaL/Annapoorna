@@ -1,15 +1,18 @@
 import angular from 'angular';
 
-import controller from './order_item.controller';
-import template from './order_item.html';
-import './order_item.scss';
+import controller from './footerBtn.controller';
+import template from './footerBtn.html';
+import './footerBtn.scss';
 
-let orderItemComponent = {
+let footerBtnComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    "footText": "@",
+    "action": "&"
+  },
   template,
   controller,
   controllerAs: 'self'
 };
 
-export default orderItemComponent;
+export default footerBtnComponent;
