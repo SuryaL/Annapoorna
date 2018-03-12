@@ -1,42 +1,23 @@
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
-// app
+
+// app //
 import controller from './app.controller';
 import template from './app.html';
+import appConfig from './app.config';
+import appRun from './app.run';
 import './app.scss';
 
-import colpick from 'common/components/colpick/colpick';
+// common //
+// import colpick from 'common/components/colpick/colpick';
 
-// modules
-import home from './home/home'
-const app = angular.module('annapoorna', [uirouter, home])
 
-app.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
-    'ngInject';
+// modules //
+import home from './home/home';
+import main from './main/main';
 
-    $urlRouterProvider.otherwise('/home');
-    $locationProvider.hashPrefix('');
-
-    $stateProvider.state('app', {
-        url: '/',
-        abstract: true,
-        template,
-        controller,
-        controllerAs: 'self'
-    })
-})
-
-app.run(function($state, $rootScope, $window) {
-    'ngInject';
-    // $state.go( 'app.home' )
-    $rootScope.setUser = function(userInfo) {
-        $window.localStorage.setItem('user', JSON.stringify(userInfo));
-    };
-    $rootScope.getUser = function() {
-        let user = $window.localStorage.getItem('user') || '{}';
-        return $rootScope.user = JSON.parse(user);
-    }
-    $rootScope.getUser();
-})
+const app = angular.module('annapoorna', [uirouter, home, main])
+app.config(appConfig)
+app.run(appConfig)
 
 export default app.name;
