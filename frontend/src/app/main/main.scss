@@ -3,5 +3,8 @@
 @import '~assets/stylesheets/variables';
 
 main {
-   
+   .main-wrap{
+       @include flexbox;
+       max-width: 800px;
+   }
 }

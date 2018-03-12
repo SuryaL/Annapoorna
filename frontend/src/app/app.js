@@ -1,7 +1,9 @@
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
 
+
 // app //
+
 import appConfig from './app.config';
 import appRun from './app.run';
 
@@ -11,9 +13,11 @@ import AuthService from 'common/services/auth';
 
 // modules //
 import home from './home/home';
-// import main from './main/main';
+import main from './main/main';
+import login from './login/login';
 
-const app = angular.module('annapoorna', [uirouter, home, AuthService])
+
+const app = angular.module('annapoorna', [uirouter, home, main,login, AuthService])
 app.config(appConfig)
 app.run(appRun)
 
