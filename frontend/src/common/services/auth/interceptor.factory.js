@@ -27,7 +27,7 @@ let OauthInterceptor = function($location, $q, $window, $rootScope) {
     self.responseError = function(response) {
 
         if (response.status === 401 && $location.path().indexOf('login') === -1) {
-            $rootScope.$broadcast('oauth.prelogout');
+            $rootScope.$broadcast('oauth.errlogout');
             $location.path('#/login').search('returnTo', $location.path());
         }
 
