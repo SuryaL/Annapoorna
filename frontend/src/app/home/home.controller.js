@@ -12,6 +12,7 @@ class homeCtrl {
     			console.log("fb resp", resp.data);
                 this.$auth.setToken(resp.data.token);
                 this.user = this.$auth.getUser();
+                this.$state.go('app.main.vote');
     		})
     		.catch(err => console.log("fb err", err));
     }
