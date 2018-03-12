@@ -9,12 +9,16 @@ import colpick from 'common/components/colpick/colpick';
 
 // modules
 import home from './home/home'
-const app = angular.module('annapoorna', [uirouter, home])
+import login from './login/login'
+
+const app = angular.module('annapoorna', [uirouter, home,login])
 
 app.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
     'ngInject';
 
-    $urlRouterProvider.otherwise('/home');
+    // $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/login');
+    
     $locationProvider.hashPrefix('');
 
     $stateProvider.state('app', {
