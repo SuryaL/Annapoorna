@@ -1,15 +1,18 @@
 import angular from 'angular';
 
-import controller from './order_item.controller';
-import template from './order_item.html';
-import './order_item.scss';
+import controller from './simpleHeader.controller';
+import template from './simpleHeader.html';
+import './simpleHeader.scss';
 
-let orderItemComponent = {
+let simpleHeaderComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    headTitle:'=',
+    subheadTitle:'='
+  },
   template,
   controller,
   controllerAs: 'self'
 };
 
-export default orderItemComponent;
+export default simpleHeaderComponent;

@@ -1,11 +1,9 @@
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
 import component from './footerBtn.component';
-import OauthService from 'common/services/oauth';
 
 const module = angular.module('footerBtn', [
         uirouter,
-        OauthService
     ])
 
     .config(function($stateProvider) {

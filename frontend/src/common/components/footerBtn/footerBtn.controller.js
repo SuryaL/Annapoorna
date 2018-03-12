@@ -1,5 +1,5 @@
 class footerBtnCtrl {
-    constructor($state, oauthService) {
+    constructor($state) {
         'ngInject';
         this.user = {};
         console.log(this.footerText);

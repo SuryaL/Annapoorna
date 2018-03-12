@@ -2,6 +2,24 @@
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
 
-vote {
- 
+simple-header {
+
+ .simple-header-wrap{
+     @include flexbox;
+     @include align-items(flex-start);
+     @include justify-content(flex-end);
+     @include flex-direction(column);
+     padding-top:3em;
+     padding-bottom:0.2em;
+     border-bottom: 1px solid $main-grey-light;
+    .simple-head{
+        @include flexbox;
+        color: $main-grey;
+        margin-bottom: 0.25em;
+    } 
+    .simple-subhead{
+         @include flexbox;
+         color: $main-pink;
+    }
+ }
 }
