@@ -1,3 +1,11 @@
-<div>
-    vote
+<div class="vote-view-container">
+    <div class="vote-view-header">
+        
+    </div>
+    <div class="vote-items-wrapper" ng-repeat="voteItem in self.voteItems">
+        <vote-item></vote-item>
+    </div>
+    <div class="vote-view-footer">
+        <footer-btn></footer-btn>
+    </div>
 </div>
