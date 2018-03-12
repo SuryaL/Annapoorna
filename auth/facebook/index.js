@@ -56,7 +56,6 @@ module.exports = function(api) {
             console.log('Email: ', profile.email);
             client.execute('SELECT * FROM user where email = ? allow FILTERING', [profile.email], { prepare: true })
                 .then(function(results) {
-                    console.log("select results", results.rows);
                     if (results.rows.length <= 0) {
                         user.type = ['user'];
                         user.super = false;
@@ -82,13 +81,18 @@ module.exports = function(api) {
                     }
                 })
                 .then(resp => {
-                    console.log(99, resp);
                     let query = 'SELECT * FROM user where id=?';
                     return client.execute(query, [user.id], { prepare: true });
                 })
                 .then((result) => {
                     req.user = result.rows[0];
-                    res.send({ token: auth.createJWT(req.user) });
+                    delete req.user.password;
+                    res.send({
+                        token: {
+                            access_token: auth.createJWT(req.user),
+                            user: req.user
+                        }
+                    });
                 })
                 .catch(err => {
                     res.send(500, err);
