@@ -2,17 +2,19 @@
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
 
-html,body{
+html,
+body {
     background-color: $primary-blue;
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
     .container {
         height: 100%;
         width: 100%;
     }
 }
 
-*{
- cursor: default !important; 
- outline:none;
+* {
+    cursor: default !important;
+    outline: none;
+    box-sizing: border-box;
 }
