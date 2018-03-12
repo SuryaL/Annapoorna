@@ -26,7 +26,7 @@ module.exports = function(api) {
                 console.log(err, accessToken.error);
                 return res.send(500, accessToken.error);
             }
-            console.log('Access Token: ', accessToken);
+            // console.log('Access Token: ', accessToken);
 
             // Step 2. Retrieve profile information about the current user. Linking an account
             getFbData(accessToken, req, res, next);

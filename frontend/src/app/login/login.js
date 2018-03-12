@@ -2,10 +2,12 @@ import angular from 'angular';
 import uirouter from 'angular-ui-router';
 import component from './login.component';
 import OauthService from '../../common/services/oauth';
+import AuthService from '../../common/services/auth';
 
 const module = angular.module('login', [
         uirouter,
-        OauthService
+        OauthService,
+        AuthService
     ])
 
     .config(function($stateProvider) {
