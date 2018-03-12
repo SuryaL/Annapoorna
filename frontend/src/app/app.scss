@@ -2,11 +2,13 @@
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
 
+$app-background : white;
 html,
 body {
-    background-color: $primary-blue;
+    background-color: $app-background;
     width: 100%;
     height: 100%;
+    margin:0;
     .container {
         height: 100%;
         width: 100%;

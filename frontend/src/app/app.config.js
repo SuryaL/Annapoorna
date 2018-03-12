@@ -5,7 +5,8 @@ import template from './app.html';
 export default function($stateProvider, $locationProvider, $urlRouterProvider) {
     'ngInject';
 
-    $urlRouterProvider.otherwise('/login');
+    // $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/vote');
     $locationProvider.hashPrefix('');
 
     $stateProvider.state('app', {

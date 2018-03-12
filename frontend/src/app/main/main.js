@@ -15,7 +15,8 @@ const module = angular.module('main', [
         'ngInject';
 
         $stateProvider.state('app.main', {
-            url: 'main',
+            // url: 'main',
+            abstract:true,
             template: '<main></main>',
             authenticated: 'none'
         })
