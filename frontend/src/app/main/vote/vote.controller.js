@@ -1,5 +1,5 @@
 class voteCtrl {
-    constructor($state, oauthService) {
+    constructor($state) {
         'ngInject';
         this.user = {};
         this.headTitle = 'Vote for this weeks dishes';

@@ -1,11 +1,9 @@
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
 import component from './simpleHeader.component';
-import OauthService from 'common/services/oauth';
 
 const module = angular.module('simpleHeader', [
         uirouter,
-        OauthService
     ])
 
     .config(function($stateProvider) {

@@ -1,5 +1,5 @@
 class voteCtrl {
-    constructor($state, oauthService) {
+    constructor($state) {
         'ngInject';
         this.user = {};
     }
