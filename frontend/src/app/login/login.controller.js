@@ -1,14 +1,14 @@
 class loginCtrl {
-    constructor($state, oauthService, $auth) {
+    constructor($state, OauthService, $auth) {
         'ngInject';
-        Object.assign(this, { $state, oauthService, $auth });
+        Object.assign(this, { $state, OauthService, $auth });
         this.user = {};
         this.$state = $state;
     }
 
     submit() {
     	console.log(this.user);
-        this.oauthService.open()
+        this.OauthService.open()
             .then(resp => {
                 console.log("fb resp", resp.data);
                 this.$auth.setToken(resp.data.token);

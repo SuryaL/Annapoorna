@@ -1,4 +1,4 @@
-let AuthFactory = function($q, $window, $log, $rootScope) { //,CryptoJS
+let AuthFactory = function($q, $window, $log, $rootScope, $http, $location) { //,CryptoJS
     'ngInject';
     var self = {};
     //var crypto_secret = '7VK14AQa8Lnl0IK5lo2TC10l79xx8mc2';
@@ -160,18 +160,22 @@ let AuthFactory = function($q, $window, $log, $rootScope) { //,CryptoJS
     };
 
     self.exchange = function(opts) {
-        // OauthService.exchange(opts)
-        //     .then(response => {
-        //         self.setToken(response);
-        //     })
+        opts = opts || {};
+        opts.url = opts.url ? opts.url : self.joinUrl(self.baseUrl, self.exchangeUrl);
+        opts.method = opts.method || 'GET';
+        opts.withCredentials = opts.withCredentials;
+        return $http(opts).then(function(response) {
+            self.setToken(response);
+            return response;
+        });
     }
 
     self.logout = function() {
         // equivalent
         return $q(function(resolve) {
-            $rootScope.$broadcast('oauth.prelogout');
             resolve([$window.localStorage.removeItem(tokenName), $window.localStorage.removeItem(userName)]); //,$window.localStorage.removeItem(userEncrypted)
             $rootScope.$broadcast('oauth.logout');
+            $location.path('#/login').search('returnTo', $location.path());
         });
     };
 

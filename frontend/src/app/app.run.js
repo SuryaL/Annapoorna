@@ -11,7 +11,7 @@ export default function($state, $rootScope, $window, $auth) {
             $auth.logout();
             $state.go('app.login');
         } else if (authenticated) {
-            // $auth.exchange();
+            $auth.exchange();
             if (toState.authenticated === 'none') {
                 event.preventDefault();
                 $state.go('app.main.vote');
@@ -19,7 +19,9 @@ export default function($state, $rootScope, $window, $auth) {
         }
     }
     $rootScope.$on('$stateChangeStart', States);
-
+    $rootScope.$on('oauth.prelogout', function(e) {
+        $auth.logout();
+    })
     // Trigger states function on page load
     angular.element(document).ready(function () {
       States ({}, $state.current, $state.params, {}, {});

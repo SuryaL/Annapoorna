@@ -1,19 +1,10 @@
-class homeCtrl {
-    constructor($state, oauthService) {
+class mainController {
+    constructor($state, $auth) {
         'ngInject';
-        Object.assign(this, { $state, oauthService });
-        this.user = {};
-    }
-
-    submit() {
-    	console.log(this.user);
-    	this.oauthService.open()
-    		.then(resp => {
-    			console.log("fb resp", resp);
-    		})
-    		.catch(err => console.log("fb err", err));
+        Object.assign(this, { $state, $auth });
+        this.user = this.$auth.getUser();
     }
 }
 
-export default homeCtrl;
+export default mainController;
 
