@@ -12,9 +12,12 @@ let OauthInterceptor = function($location, $q, $window, $rootScope) {
         if (request.skipAuthorization) {
             return request;
         }
-        var token = $window.localStorage.getItem('annapoorna_token');
-        token = 'Bearer' + ' ' + token;
-        request.headers['Authorization'] = token;
+        let token = $window.localStorage.getItem('annapoorna_token');
+
+        if (!!token) {
+            token = 'Bearer' + ' ' + token;
+            request.headers['Authorization'] = token;
+        }
 
         return request;
     };

@@ -10,14 +10,13 @@ const module = angular.module('main', [
         vote
     ])
 
-    .config(function($stateProvider, $httpProvider) {
+    .config(function($stateProvider) {
         'ngInject';
-        $httpProvider.interceptors.push('OauthInterceptor');
         $stateProvider.state('app.main', {
             // url: 'main',
             abstract:true,
             template: '<main></main>',
-            authenticated: 'none'
+            authenticated: 'authenticated'
         })
     })
     .component('main', component)
