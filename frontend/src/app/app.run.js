@@ -1,12 +1,27 @@
-export default function($state, $rootScope, $window) {
+import angular from 'angular';
+
+export default function($state, $rootScope, $window, $auth) {
     'ngInject';
-    // $state.go( 'app.home' )
-    $rootScope.setUser = function(userInfo) {
-        $window.localStorage.setItem('user', JSON.stringify(userInfo));
-    };
-    $rootScope.getUser = function() {
-        let user = $window.localStorage.getItem('user') || '{}';
-        return $rootScope.user = JSON.parse(user);
+
+    // 'none', 'both', 'authenticated'
+    function States(event, toState, toParams, fromState, fromParams) {
+        var authenticated = $auth.isAuthenticated();
+        if (!authenticated && toState.authenticated === 'authenticated') {
+            event.preventDefault();
+            $auth.logout();
+            $state.go('app.login');
+        } else if (authenticated) {
+            // $auth.exchange();
+            if (toState.authenticated === 'none') {
+                event.preventDefault();
+                $state.go('app.main.vote');
+            }
+        }
     }
-    $rootScope.getUser();
+    $rootScope.$on('$stateChangeStart', States);
+
+    // Trigger states function on page load
+    angular.element(document).ready(function () {
+      States ({}, $state.current, $state.params, {}, {});
+    });
 }

@@ -23,7 +23,6 @@ let OauthFactory = function($http, $q, $window, $interval, $timeout) {
         }
     };
 
-
     self.open = function(options, userData, customOptions) {
         // defaults = OauthUtils.merge(options, defaults);
         // defaults = OauthUtils.merge(customOptions, defaults);
