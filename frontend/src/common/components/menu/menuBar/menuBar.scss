@@ -3,5 +3,9 @@
 @import '~assets/stylesheets/variables';
 
 menu-bar {
-  
+  display: inline-block;
+  .menu-bar-wrapper{
+    @include flexbox;
+
+  }
 }

@@ -13,8 +13,24 @@ main {
         padding: 5em;
         .menu-header {
             @include flex(0, 0, 8vw);
-            height: 10vw;
+            @include flex-direction(row);
+        @include justify-content(center);
+        @include align-items(center);
+        height: 10vw;
             min-height: 90px;
+            menu-icon{
+                height:100%;
+                @include flex(0, 0, 8vw);
+            }
+            menu-bar{
+                height:100%;
+                @include flex(1, 0, 0);
+            }
+            user-balance{
+                height:100%;
+                @include flex(0, 0, 8vw);
+                
+            }
         }
         .main-view {
             @include flex(1, 0, 0); // height:10vw;

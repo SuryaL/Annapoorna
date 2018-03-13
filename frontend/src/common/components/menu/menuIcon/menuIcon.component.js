@@ -1,10 +1,10 @@
 import angular from 'angular';
 
-import controller from './footerBtn.controller';
-import template from './footerBtn.html';
-import './footerBtn.scss';
+import controller from './menuIcon.controller';
+import template from './menuIcon.html';
+import './menuIcon.scss';
 
-let footerBtnComponent = {
+let menuIconComponent = {
   restrict: 'E',
   bindings: {
   },
@@ -13,4 +13,4 @@ let footerBtnComponent = {
   controllerAs: 'self'
 };
 
-export default footerBtnComponent;
+export default menuIconComponent;

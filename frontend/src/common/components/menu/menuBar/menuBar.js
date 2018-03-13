@@ -1,8 +1,8 @@
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
-import component from './menuIcon.component';
+import component from './menuBar.component';
 
-const module = angular.module('menuIcon', [
+const module = angular.module('menuBar', [
         uirouter,
     ])
 
@@ -15,5 +15,5 @@ const module = angular.module('menuIcon', [
         //     authenticated: 'none'
         // })
     })
-    .component('menuIcon', component)
+    .component('menuBar', component)
 export default module.name

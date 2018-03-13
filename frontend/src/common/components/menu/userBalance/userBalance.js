@@ -1,8 +1,8 @@
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
-import component from './footerBtn.component';
+import component from './userBalance.component';
 
-const module = angular.module('footerBtn', [
+const module = angular.module('userBalance', [
         uirouter,
     ])
 
@@ -15,5 +15,5 @@ const module = angular.module('footerBtn', [
         //     authenticated: 'none'
         // })
     })
-    .component('footerBtn', component)
+    .component('userBalance', component)
 export default module.name

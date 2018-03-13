@@ -3,5 +3,15 @@
 @import '~assets/stylesheets/variables';
 
 menu-icon {
-  
+    height:100%;
+    display: inline-block;
+    
+  .menu-icon-wrap{
+    height:100%;
+    display: inline-block;
+    img{
+    height:100%;
+        
+    }    
+  }
 }
