@@ -18,6 +18,17 @@ app.use(cors({
     "preflightContinue": true,
 }));
 
+app.use(function(req, res, next) {
+    //intercepts OPTIONS method
+    if ('OPTIONS' === req.method) {
+        //respond with 200
+        res.send(200);
+    } else {
+        //move on
+        next();
+    }
+})
+
 
 // Cassandra setup
 cassandra.init(config.cassandra).then(function() {

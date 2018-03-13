@@ -1,4 +1,4 @@
-const {executeQuery} =  require('../../helpers/utils/db_utils');
+const {execQuery} =  require('../../helpers/utils/db_utils');
 
 function createNewUserData(){
     const body = {};
@@ -42,7 +42,7 @@ async function createUser(body){
 
     const query = 'INSERT INTO user (' + columns.join() + ') VALUES (' + Array(params.length).join('?,') + '?)';
 
-    await executeQuery(query, params);
+    await execQuery(query, params);
 
     delete body.password;
     return body;
@@ -68,7 +68,7 @@ async function getUsers(queryParams) {
         query += ' WHERE ' + columns.join('=? AND ') + '=? ALLOW FILTERING';
     }
 
-    return (await executeQuery(query, params, options)).rows;
+    return (await execQuery(query, params, options)).rows;
 }
 
 module.exports = {
