@@ -5,7 +5,7 @@
 * {
     cursor: default !important;
     outline: none;
-    box-sizing: border-box;
+    box-sizing: border-box !important;
 }
 
 $app-back-img : url('~assets/images/bg-food-min.png');
