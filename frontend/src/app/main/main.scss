@@ -8,24 +8,23 @@ main {
         @include flexbox;
         @include flex-direction(column);
         @include justify-content(center);
+        height: 100%;
         background-color: transparent;
         padding: 5em;
-        .menu-header{
+        .menu-header {
             @include flex(0, 0, 8vw);
-            height:10vw;
-            min-height:90px;
+            height: 10vw;
+            min-height: 90px;
         }
-        .main-view{
-            @include flex(1, 0, 0);
-            // height:10vw;
+        .main-view {
+            @include flex(1, 0, 0); // height:10vw;
         }
-    }
-      //phone media query
-      @media (min-width: 320px) and (max-width: 480px) {
-        .main-wrap{
+    } //phone media query
+    @media (max-width: 600px) {
+        .main-wrap {
             padding: 0;
         }
-      }
+    }
 }
 
 // main {
