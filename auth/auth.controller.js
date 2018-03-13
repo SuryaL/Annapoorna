@@ -71,7 +71,14 @@ exports.hasRole = function(roleRequired, subRoleRequired) {
     return compose()
         .use(exports.isAuthenticated())
         .use(function(req, res, next) {
-            if (config.userRoles.indexOf(req.user.type) >= config.userRoles.indexOf(roleRequired)) {
+            let check = false;
+            for (let i = 0; i < req.user.type.length; i++) {
+                if (config.roles.indexOf(req.user.type[i]) >= config.roles.indexOf(roleRequired)) {
+                    check = true;
+                    break;
+                }
+            }
+            if (!!check) {
                 if (subRoleRequired != null && config.subRoles.indexOf(req.user.subrole) >= config.subRoles.indexOf(subRoleRequired)) {
                     next();
                 } else if (subRoleRequired == null) {

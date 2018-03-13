@@ -1,4 +1,4 @@
-const {executeQuery} =  require('../../helpers/utils/db_utils');
+const {execQuery} =  require('../../helpers/utils/db_utils');
 const uuid = require('node-uuid');
 
 function createNewMenuData(){
@@ -28,7 +28,7 @@ async function createMenu(body){
 
     const query = 'INSERT INTO menu (' + columns.join() + ') VALUES (' + Array(params.length).join('?,') + '?)';
 
-    await executeQuery(query, params);
+    await execQuery(query, params);
 
     return body;
 }
@@ -54,7 +54,7 @@ async function getMenu(queryParams) {
         query += ' WHERE ' + columns.join('=? AND ') + '=? ALLOW FILTERING';
     }
 
-    return (await executeQuery(query, params, options));
+    return (await execQuery(query, params, options));
 }
 
 async function updateMenu(body) {
@@ -80,7 +80,7 @@ async function updateMenu(body) {
 
     const query = 'UPDATE menu SET ' + columns.join('=?,') + ' WHERE id = ? AND created = ?';
 
-    await executeQuery(query, params);
+    await execQuery(query, params);
     return body;
 }
 
@@ -101,7 +101,7 @@ async function removeMenu(id) {
 
     const query = 'UPDATE menu SET  deleted = ?  WHERE id = ? AND created = ?';
 
-    await executeQuery(query, params);
+    await execQuery(query, params);
 }
 module.exports = {
     createNewMenuData,
