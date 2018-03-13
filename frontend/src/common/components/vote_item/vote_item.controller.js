@@ -1,13 +1,12 @@
 class voteCtrl {
-    constructor($state, $auth) {
+    constructor($state) {
         'ngInject';
         this.user = {};
     }
 
-    submit() {
-    	console.log(this.user);
-    	
+    $onInit() {
     }
+
 }
 
 export default voteCtrl;

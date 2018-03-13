@@ -6,7 +6,9 @@ import './checkbox.scss';
 
 let checkboxComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    toggleVar: "="
+  },
   template,
   controller,
   controllerAs: 'self'

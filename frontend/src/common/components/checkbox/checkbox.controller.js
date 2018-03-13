@@ -1,12 +1,13 @@
 class checkboxCtrl {
     constructor($state) {
         'ngInject';
-        this.isChecked = false;
+    }
+    
+    $onInit () {
     }
 
     toggle() {
-        console.log(this.user);
-        this.isChecked = !this.isChecked
+        this.toggleVar = !this.toggleVar
     }
 }
 

@@ -7,7 +7,7 @@ import './vote_item.scss';
 let voteItemComponent = {
   restrict: 'E',
   bindings: {
-    itemName : "@",
+    item : "=",
   },
   template,
   controller,
