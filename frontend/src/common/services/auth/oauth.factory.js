@@ -134,7 +134,7 @@ let OauthFactory = function($http, $q, $window, $interval, $timeout) {
                 }
                 try {
                     var popupWindowPath = self.getFullUrlPath(window_test.location);
-                    console.log(redirectUriPath, popupWindowPath);
+                    // console.log(redirectUriPath, popupWindowPath);
                     if (popupWindowPath === redirectUriPath) {
                         // Contains query/hash parameters as expected.
                         if (window_test.location.search || window_test.location.hash) {

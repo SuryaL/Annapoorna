@@ -1,10 +1,9 @@
-class mainCtrl {
-    constructor($state) {
+class mainController {
+    constructor($state, $auth) {
         'ngInject';
-        Object.assign(this, { $state });
-        this.user = {};
+        Object.assign(this, { $state, $auth });
+        this.user = this.$auth.getUser();
     }
 }
 
-export default mainCtrl;
-
+export default mainController;

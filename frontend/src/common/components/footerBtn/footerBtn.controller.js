@@ -1,14 +1,16 @@
-class voteCtrl {
-    constructor($state, oauthService) {
+class footerBtnCtrl {
+    constructor($state) {
         'ngInject';
         this.user = {};
+        console.log(this.footerText);
     }
 
     submit() {
-    	console.log(this.user);
+        // console.log(this.user);
+        this.action();
     	
     }
 }
 
-export default voteCtrl;
+export default footerBtnCtrl;
 
