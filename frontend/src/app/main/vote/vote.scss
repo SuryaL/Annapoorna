@@ -8,7 +8,7 @@ vote {
     .view-content {
       .vote-view-header {}
       .votes-container {
-          background-color: white;
+        background-color: white;
         .vote-items-wrapper {
           vote-item {}
         }
@@ -18,9 +18,10 @@ vote {
       footer-btn {}
     }
     .logout {
-        display: inline-block;
-        color: red;
-        background-color: white;
-        padding: 5px;
+      display: inline-block;
+      color: red;
+      background-color: white;
+      padding: 5px;
     }
+  }
 }
