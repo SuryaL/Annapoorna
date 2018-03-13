@@ -5,9 +5,16 @@ class voteCtrl {
         this.headTitle = 'Vote for this weeks dishes';
         this.subheadTitle = '8.8.88';
         this.voteItems=[
-            1,2,3,4,5
+            'Key lime pie',
+            'Tater tots',
+            'San Francisco sourdough bread',
+            'Cobb salad',
+            'Pot roast',
+            'Banana split',
+            'Chicken fried steak'
         ]
         this.footerText = "Vote";
+        
     }
 
     submit() {

@@ -1,7 +1,24 @@
 @import '~assets/stylesheets/common';
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
-
 vote {
- 
+  .vote-item-container {
+    padding: 10px;
+    @include flexbox();
+    @include justify-content(space-between);
+    height: 9vh;
+    .info-left {
+      @include flexbox();
+      checkbox {
+        margin-right: 2vw;
+      }
+      .item-title {
+        font-size: 20px;
+      }
+    }
+    .info-right {
+      padding-right: 20px;
+       font-size: 20px;
+    }
+  }
 }

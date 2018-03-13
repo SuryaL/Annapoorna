@@ -20,6 +20,12 @@ main {
             height:10vw;
         }
     }
+      //phone media query
+      @media (min-width: 320px) and (max-width: 480px) {
+        .main-wrap{
+            padding: 0;
+        }
+      }
 }
 
 // main {
