@@ -1,6 +1,7 @@
 class voteCtrl {
-    constructor($state) {
+    constructor($state, $auth) {
         'ngInject';
+        Object.assign(this, { $state, $auth });
         this.user = {};
         this.headTitle = 'Vote for this weeks dishes';
         this.subheadTitle = '8.8.88';
@@ -12,7 +13,10 @@ class voteCtrl {
 
     submit() {
     	console.log(this.user);
-    	
+    }
+
+    logout() {
+        this.$auth.logout();
     }
 }
 

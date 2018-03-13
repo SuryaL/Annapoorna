@@ -4,12 +4,14 @@ import component from './vote.component';
 import voteItem from 'common/components/vote_item/vote_item';
 import footerBtn from 'common/components/footerBtn/footerBtn';
 import simpleHeader from 'common/components/simpleHeader/simpleHeader';
+import AuthService from 'common/services/auth';
 
 const module = angular.module('vote', [
         uirouter,
         voteItem,
         simpleHeader,
-        footerBtn
+        footerBtn,
+        AuthService
     ])
 
     .config(function($stateProvider) {
