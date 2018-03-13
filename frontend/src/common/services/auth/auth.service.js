@@ -165,7 +165,11 @@ let AuthFactory = function($q, $window, $log, $rootScope, $http, $location) { //
         opts.method = opts.method || 'GET';
         opts.withCredentials = opts.withCredentials;
         return $http(opts).then(function(response) {
-            self.setToken(response);
+            let obj = {
+                access_token: response.data.token,
+                user: response.data.user
+            }
+            self.setToken(obj);
             return response;
         });
     }
