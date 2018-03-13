@@ -161,7 +161,9 @@ let OauthFactory = function($http, $q, $window, $interval, $timeout) {
                         }
 
                         $interval.cancel(polling);
-                        window_test.close();
+                        $timeout(() => {
+                            window_test.close();
+                        }, 500);
                         resolve(qs);
                     }
 

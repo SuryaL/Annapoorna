@@ -1,4 +1,4 @@
-let AuthFactory = function($q, $window, $log, $rootScope, $http, $location) { //,CryptoJS
+let AuthFactory = function($q, $window, $log, $rootScope, $http, $state) { //,CryptoJS
     'ngInject';
     var self = {};
     //var crypto_secret = '7VK14AQa8Lnl0IK5lo2TC10l79xx8mc2';
@@ -165,11 +165,11 @@ let AuthFactory = function($q, $window, $log, $rootScope, $http, $location) { //
         opts.method = opts.method || 'GET';
         opts.withCredentials = opts.withCredentials;
         return $http(opts).then(function(response) {
-            let obj = {
+            let token = {
                 access_token: response.data.token,
                 user: response.data.user
             }
-            self.setToken(obj);
+            self.setToken(token);
             return response;
         });
     }
@@ -177,9 +177,11 @@ let AuthFactory = function($q, $window, $log, $rootScope, $http, $location) { //
     self.logout = function() {
         // equivalent
         return $q(function(resolve) {
-            resolve([$window.localStorage.removeItem(tokenName), $window.localStorage.removeItem(userName)]); //,$window.localStorage.removeItem(userEncrypted)
+            $window.localStorage.removeItem(tokenName);
+            $window.localStorage.removeItem(userName)
+            resolve(true);
             $rootScope.$broadcast('oauth.logout');
-            $location.path('#/login').search('returnTo', $location.path());
+            $state.go('app.login');
         });
     };
 
