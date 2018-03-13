@@ -11,10 +11,8 @@ login {
         @include flexbox();
         @include justify-content(center);
         @include align-items(center);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-image: url('~assets/images/backgroundimage.jpg');
+
+        // background-image: url('~assets/images/backgroundimage.jpg');
         .login-card {
             width: 35%;
             height: 35%; // min-width: 300px;
