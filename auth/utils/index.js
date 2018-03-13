@@ -47,7 +47,7 @@ exports.createJWT = function (secret, user, exp) {
   if (user.id == null) throw new Error ('User object must have an id field.');
   var now = Date.now();
   var exp = exp || now + 14 * 24 * 60 * 60 * 1000; // Get set expiration or just set to 14 days in the future
-  var user = { id : user.id };
+  // var user = { id : user.id };
   var payload = {
     user: user,
     iat: now,
