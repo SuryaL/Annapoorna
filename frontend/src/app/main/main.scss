@@ -1,45 +1,64 @@
 @import '~assets/stylesheets/common';
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
-
- 
 main {
     width: 100%;
     height: 100%;
-    @include flexbox;
-    @include justify-content(center);
-    background: blanchedalmond;
     .main-wrap {
         @include flexbox;
-        @include flex(1, 0, 0);
-        max-width: 1000px;
-        height: 100%;
-        .sidebar-view {
-            @include flex(0, 0, $sidebar-width);
-            height: 100%;
-            background:  $main-dark-color;
-            width:$sidebar-width;
-            // transition:0.2s all ;
-            @media (max-width:620px){
-                display: inline-block;
-                position: absolute;
-                // transition:0.2s;
-                // @include flex-basis(1px);
-                transform: translate3d(-100%,0,0);
-                -webkit-transform: translate3d(-100%,0,0);
-            }
-            .show-sidebar{
-                display: inline-block;
-                position: absolute;
-                // transition:0.2s;
-                transform: translate3d(0%,0,0);
-                -webkit-transform: translate3d(0%,0,0);
-            }
+        @include flex-direction(column);
+        @include justify-content(center);
+        background-color: transparent;
+        padding: 5em;
+        .menu-header{
+            @include flex(0, 0, 8vw);
+            height:10vw;
+            min-height:90px;
         }
-        .main-view {
+        .main-view{
             @include flex(1, 0, 0);
-            height: 100%;
-            background: white;
+            height:10vw;
         }
     }
 }
+
+// main {
+//     width: 100%;
+//     height: 100%;
+//     @include flexbox;
+//     @include justify-content(center);
+//     background: blanchedalmond;
+//     .main-wrap {
+//         @include flexbox;
+//         @include flex(1, 0, 0);
+//         max-width: 1000px;
+//         height: 100%;
+//         .sidebar-view {
+//             @include flex(0, 0, $sidebar-width);
+//             height: 100%;
+//             background:  $main-dark-color;
+//             width:$sidebar-width;
+//             // transition:0.2s all ;
+//             @media (max-width:620px){
+//                 display: inline-block;
+//                 position: absolute;
+//                 // transition:0.2s;
+//                 // @include flex-basis(1px);
+//                 transform: translate3d(-100%,0,0);
+//                 -webkit-transform: translate3d(-100%,0,0);
+//             }
+//             .show-sidebar{
+//                 display: inline-block;
+//                 position: absolute;
+//                 // transition:0.2s;
+//                 transform: translate3d(0%,0,0);
+//                 -webkit-transform: translate3d(0%,0,0);
+//             }
+//         }
+//         .main-view {
+//             @include flex(1, 0, 0);
+//             height: 100%;
+//             background: white;
+//         }
+//     }
+// }
