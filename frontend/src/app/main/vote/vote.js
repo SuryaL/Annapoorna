@@ -8,6 +8,7 @@ import menuBar from 'common/components/menu/menuBar/menuBar';
 import menuIcon from 'common/components/menu/menuIcon/menuIcon';
 import userBalance from 'common/components/menu/userBalance/userBalance';
 import AuthService from 'common/services/auth';
+import menuService from 'common/services/menu';
 
 const module = angular.module('vote', [
     menuBar,
@@ -17,7 +18,8 @@ const module = angular.module('vote', [
         voteItem,
         simpleHeader,
         footerBtn,
-        AuthService
+        AuthService,
+        menuService
     ])
 
     .config(function($stateProvider) {

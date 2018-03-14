@@ -54,7 +54,7 @@ async function getMenu(queryParams) {
         query += ' WHERE ' + columns.join('=? AND ') + '=? ALLOW FILTERING';
     }
 
-    return (await execQuery(query, params, options));
+    return (await execQuery(query, params, options)).rows;
 }
 
 async function updateMenu(body) {

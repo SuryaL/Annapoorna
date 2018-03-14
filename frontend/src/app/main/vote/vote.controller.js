@@ -1,7 +1,7 @@
 class voteCtrl {
-    constructor($state, $auth) {
+    constructor($state, $auth, MenuService) {
         'ngInject';
-        Object.assign(this, { $state, $auth });
+        Object.assign(this, { $state, $auth, MenuService });
         this.user = {};
         this.headTitle = 'Vote for this weeks dishes';
         this.subheadTitle = '8.8.88';
@@ -26,6 +26,10 @@ class voteCtrl {
 
     vote() {
         console.log(this.voteItems);
+        this.MenuService.find()
+            .then(resp => {
+                console.log(resp);
+            })
     }
 
     submit() {
