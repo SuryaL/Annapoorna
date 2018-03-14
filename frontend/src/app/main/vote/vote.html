@@ -1,16 +1,15 @@
-<div class="vote-view-container">
-    <div class="view-content">
-        <div class="vote-view-header" ng-click="self.vote()">
-            <simple-header head-title="self.headTitle" subhead-title="self.subheadTitle"></simple-header>
-        </div>
-        <div class="votes-container">
-            <div class="vote-items-wrapper" ng-repeat="vItem in self.voteItems">
-                <vote-item  item="vItem"></vote-item>
-            </div>
+    <div class="vote-view-header" ng-click="self.vote()">
+        <simple-header head-title="self.headTitle" subhead-title="self.subheadTitle"></simple-header>
+    </div>
+    <div class="votes-container">
+        <div class="vote-items-wrapper" ng-repeat="vItem in self.voteItems">
+            <vote-item  item="vItem"></vote-item>
         </div>
     </div>
-    <div class="vote-view-footer">
-        <footer-btn foot-text={{self.footerText}} action="self.callback"></footer-btn>
-    </div>
-    <!-- <div class="button logout" ng-click="self.logout()">LOGOUT</div> -->
-</div>
+<!-- <div class="vote-view-footer">
+    <footer-btn foot-text={{self.footerText}} action="self.callback"></footer-btn>
+</div> -->
+
+
+
+<!-- <div class="button logout" ng-click="self.logout()">LOGOUT</div> -->
