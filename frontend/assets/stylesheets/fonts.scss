@@ -1,9 +1,11 @@
 @import '~assets/stylesheets/mixins';
 // Lato //
+// example use -  
+// font-family: 'Lato-BlackItalic';
 $lato-base: 'Lato';
 $lato-separator:'-';
 $lato-fonts-end : 'BlackItalic' 'BoldItalic' 'Hairline' 'HairlineItalic' 'Heavy' 'HeavyItalic' 'Italic' 'LightItalic' 'Medium' 'MediumItalic' 'Semibold' 'SemiboldItalic' 'Thin' 'ThinItalic';
 @each $font-end in $lato-fonts-end {
   $lato-name: $lato-base + $lato-separator + $font-end;
-  @include font-face($name: $lato-name, $path:'~assets/fonts/Lato/', $ext:ttf);
+  @include font-face($name: $lato-name, $path:'~assets/fonts/Lato/', $ext:'ttf');
 }

@@ -294,13 +294,13 @@ $color) {
 $path,
 $weight: null,
 $style: null,
-$ext: ttf) {
+$ext: 'ttf') {
   $src: null;
-  $formats: ( otf: "opentype", ttf: "truetype");
+  $formats: ( 'otf': "opentype", 'ttf': "truetype");
   @font-face {
     font-family: $name;
     font-style: $style;
     font-weight: $weight;
-    src: url($path + $name + '.' + $ext) format($formats($ext));
+    src: url($path + $name + '.' + $ext);
   }
 }

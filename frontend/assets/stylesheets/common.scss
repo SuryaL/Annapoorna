@@ -1,4 +1,16 @@
+@import '~assets/stylesheets/fonts';
 $main-color : #F00;
+
+// Used font-configs
+.main-heavy-font {
+    font-family: 'Lato-Heavy';
+}
+.main-medium-font {
+    font-family: 'Lato-Medium';
+}
+.main-italic-font {
+    font-family: 'Lato-Italic';
+}
 
 /*---------------------------------------
    Media Queries
