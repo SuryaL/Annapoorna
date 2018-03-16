@@ -7,259 +7,300 @@
     
     * For desktops, IE10 and IE11 have partial support and are catching up.
       ======*/
-      @import "flex.scss";
 
-
-      /*---------------------------------------
+@import "flex.scss";
+/*---------------------------------------
          Mixins
       -----------------------------------------*/
-      
-      @mixin butn($w, $h) {
-          display: inline-block;
-          width: $w;
-          height: $h;
-          padding: 10px 20px;
-          margin: 5px;
-      }
-      
-      @mixin border-radius($radius) {
-          -webkit-border-radius: $radius !important;
-          -moz-border-radius: $radius !important;
-          -ms-border-radius: $radius !important;
-          border-radius: $radius !important;
-      }
-      
-      @mixin link($color) {
-          color: $color;
-          cursor: pointer;
-          display: inline-block;
-          padding: 5px 10px;
-          outline: none !important;
-          &:hover {
-              color: darken($color, 20%);
-          }
-      }
-      
-      @mixin boxshadow($top, $left, $blur, $color) {
-          -webkit-box-shadow: $top $left $blur $color;
-          -moz-box-shadow: $top $left $blur $color;
-          box-shadow: $top $left $blur $color;
-      }
-      
-      @mixin aspect-ratio($width, $height) {
-          position: relative;
-          &:before {
-              display: block;
-              content: "";
-              width: 100%;
-              padding-top: ($height / $width) * 100%;
-          }
-          > .content {
-              position: absolute;
-              top: 0;
-              left: 0;
-              right: 0;
-              bottom: 0;
-          }
-      }
-      
-      @mixin placeholder-color($color: grey) {
-          &::-webkit-input-placeholder {
-              /* Chrome/Opera/Safari */
-              color: $color;
-          }
-          &::-moz-placeholder {
-              /* Firefox 19+ */
-              color: $color;
-          }
-          &:-ms-input-placeholder {
-              /* IE 10+ */
-              color: $color;
-          }
-          &:-moz-placeholder {
-              /* Firefox 18- */
-              color: $color;
-          }
-      }
-      
-      @mixin apply-custom-scroll($bk-active: #878787,$bk-inactive:#EBEEF4, $wd:3px, $thumb-shadow:#C8C8C8,$track-shadow:rgba(0, 0, 0, 0), $thumb-radius:10px){
-          &::-webkit-scrollbar {
-              display: inherit;
-              width: $wd;
-          }
-          &::-webkit-scrollbar-track {
-              -webkit-box-shadow: inset 0 0 6px transparentize($track-shadow,0.35);
-              -webkit-border-radius: $thumb-radius;
-              border-radius: $thumb-radius;
-          }
-          /* Handle */
-          &::-webkit-scrollbar-thumb {
-              -webkit-border-radius: $thumb-radius;
-              border-radius: $thumb-radius;
-              background: transparentize($bk-active,0.35);
-              -webkit-box-shadow: inset 0 0px 6px transparentize($thumb-shadow,0.35);
-          }
-          &::-webkit-scrollbar-thumb:window-inactive {
-              background: transparentize($bk-inactive,0.35);
-          }
-      }
-      
-      @mixin vertical-align($position: relative) {
-          position: $position;
-          top: 50%;
-          -webkit-transform: perspective(1px) translateY(-50%);
-          -ms-transform: perspective(1px) translateY(-50%);
-          transform: perspective(1px) translateY(-50%);
-      }
-      
-      @mixin icon-image ($name) {
-          .icon-#{$name} {
-            background: url('~common/assets/images/#{$name}.png') no-repeat center center;
-            padding : 1.2em;
-            margin : 0.5em;
-            background-size: 28px 28px;
-          }
-      }
-      
-      @mixin icon-image-on-off ($name) {
-        .icon-#{$name} {
-          background: url('~common/assets/images/#{$name}-off.png') no-repeat center center;
-          padding : 1.2em;
-          margin : 0.5em;
-          background-size: 28px 28px;
-          transition: all 0.5s;
-        }
-      
-        &.active {
-          .icon-#{$name} {
-            background: url('~common/assets/images/#{$name}-on.png') no-repeat center center;
-            background-size: 28px 28px;
-          }
-        }
-      }
-      
-      @mixin icon-image-action ($name) {
-        .icon-#{$name} {
-          background: url('~common/assets/images/#{$name}-off.png') no-repeat center center;
-          padding : 3px 14px 3px 14px;
-          margin : 0;
-          background-size: 28px 28px;
-          transition: all 0.5s;
-        }
-        &:hover,&:active {
-          .icon-#{$name} {
-            background: url('~common/assets/images/#{$name}-on.png') no-repeat center center;
-            background-size: 28px 28px;
-          }
-        }
-      }
-      
-      @mixin gradient-left-right ($start, $end) {
-        background: $start; /* For browsers that do not support gradients */
-        background: -webkit-linear-gradient(left, $start , $end); /* For Safari 5.1 to 6.0 */
-        background: -o-linear-gradient(right, $start, $end); /* For Opera 11.1 to 12.0 */
-        background: -moz-linear-gradient(right, $start, $end); /* For Firefox 3.6 to 15 */
-        background: linear-gradient(to right, $start, $end); /* Standard syntax */
-      }
-      
-      @mixin set-actions ($color, $background, $shadow) {
-        &:hover,&:focus,&.activated,&:active {
-          color: $color;
-          background-color: $background;
-          -webkit-box-shadow: $shadow;
-          -moz-box-shadow: $shadow;
-          box-shadow: $shadow;
-        }
-      }
-      
-      @mixin set-active-hover ($color, $background, $shadow) {
-        &.activated,&:hover,&:active{
-          color: $color;
-          background-color: $background;
-          -webkit-box-shadow: $shadow;
-          -moz-box-shadow: $shadow;
-          box-shadow: $shadow;
-        }
-      }
-      
-      @mixin set-active ($color, $background, $shadow) {
-        &.activated, &:active {
-          color: $color;
-          background-color: $background;
-          -webkit-box-shadow: $shadow;
-          -moz-box-shadow: $shadow;
-          box-shadow: $shadow;
-        }
-      }
-      
-      @mixin box-shadows ($h-shadow, $v-shadow, $blur, $spread, $color) {
-        -moz-box-shadow: $h-shadow $v-shadow $blur $spread $color;
-          -webkit-box-shadow: $h-shadow $v-shadow $blur $spread $color;
-          box-shadow: $h-shadow $v-shadow $blur $spread $color;
-      }
-      
-      @mixin button-embossed () {
-        -webkit-box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15);
-        box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15);
-        &.activated, &:active {
-          -webkit-box-shadow: none;
-          box-shadow: none;
-        }
-      }
-      
-      @mixin set-main-background ($url, $pos: center) {
-         background: url($url) no-repeat;
-          background-size: cover;
-          -webkit-background-size: cover;
-          background-position: center $pos;
-          background-attachment: scroll;
-          -webkit-background-attachment: scroll;
-      }
-      
-      @mixin placeholder {
-        &::-webkit-input-placeholder {
-            @content;
-        }
-      
-        &:-moz-placeholder { /* Firefox 18- */
-            @content;
-        }
-      
-        &::-moz-placeholder {  /* Firefox 19+ */
-            @content;
-        }
-      
-        &:-ms-input-placeholder {
-            @content;
-        }
-      }
-      
-      @mixin submit-button ($name, $color) {
-        .#{$name}-button {
-          width: 100%;
-          position: relative;
-          height: 3em !important;
-          border-radius: 0px !important;
-          font-size: 1.1em !important;
-          letter-spacing: .1em !important;
-          font-weight: 300;
-          margin: 0.25em 0 !important;
-          border: none;
-          transition: all 0.5s;
-          @include button-embossed();
-          background-color : $color;
-          color: white !important;
-          @include set-active (white, shade($color, 30%), 0);
-          &[disabled=disabled] {
-            cursor: default;
-            background-color: tint($color, 30%);
-          }
-          &:before {
-            position: absolute;
-            left: 0.65em;
-            top: 50%;
-            font-size: 2em;
-            transform: translate(-50%, -50%);
-          }
-        }
-      }
+
+@mixin butn($w, $h) {
+  display: inline-block;
+  width: $w;
+  height: $h;
+  padding: 10px 20px;
+  margin: 5px;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius !important;
+  -moz-border-radius: $radius !important;
+  -ms-border-radius: $radius !important;
+  border-radius: $radius !important;
+}
+
+@mixin link($color) {
+  color: $color;
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px 10px;
+  outline: none !important;
+  &:hover {
+    color: darken($color, 20%);
+  }
+}
+
+@mixin boxshadow($top, $left, $blur, $color) {
+  -webkit-box-shadow: $top $left $blur $color;
+  -moz-box-shadow: $top $left $blur $color;
+  box-shadow: $top $left $blur $color;
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  >.content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+@mixin placeholder-color($color: grey) {
+  &::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: $color;
+  }
+  &::-moz-placeholder {
+    /* Firefox 19+ */
+    color: $color;
+  }
+  &:-ms-input-placeholder {
+    /* IE 10+ */
+    color: $color;
+  }
+  &:-moz-placeholder {
+    /* Firefox 18- */
+    color: $color;
+  }
+}
+
+@mixin apply-custom-scroll($bk-active: #878787, $bk-inactive:#EBEEF4, $wd:3px, $thumb-shadow:#C8C8C8, $track-shadow:rgba(0, 0, 0, 0), $thumb-radius:10px) {
+  &::-webkit-scrollbar {
+    display: inherit;
+    width: $wd;
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px transparentize($track-shadow, 0.35);
+    -webkit-border-radius: $thumb-radius;
+    border-radius: $thumb-radius;
+  }
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    -webkit-border-radius: $thumb-radius;
+    border-radius: $thumb-radius;
+    background: transparentize($bk-active, 0.35);
+    -webkit-box-shadow: inset 0 0px 6px transparentize($thumb-shadow, 0.35);
+  }
+  &::-webkit-scrollbar-thumb:window-inactive {
+    background: transparentize($bk-inactive, 0.35);
+  }
+}
+
+@mixin vertical-align($position: relative) {
+  position: $position;
+  top: 50%;
+  -webkit-transform: perspective(1px) translateY(-50%);
+  -ms-transform: perspective(1px) translateY(-50%);
+  transform: perspective(1px) translateY(-50%);
+}
+
+@mixin icon-image ($name) {
+  .icon-#{$name} {
+    background: url('~common/assets/images/#{$name}.png') no-repeat center center;
+    padding: 1.2em;
+    margin: 0.5em;
+    background-size: 28px 28px;
+  }
+}
+
+@mixin icon-image-on-off ($name) {
+  .icon-#{$name} {
+    background: url('~common/assets/images/#{$name}-off.png') no-repeat center center;
+    padding: 1.2em;
+    margin: 0.5em;
+    background-size: 28px 28px;
+    transition: all 0.5s;
+  }
+  &.active {
+    .icon-#{$name} {
+      background: url('~common/assets/images/#{$name}-on.png') no-repeat center center;
+      background-size: 28px 28px;
+    }
+  }
+}
+
+@mixin icon-image-action ($name) {
+  .icon-#{$name} {
+    background: url('~common/assets/images/#{$name}-off.png') no-repeat center center;
+    padding: 3px 14px 3px 14px;
+    margin: 0;
+    background-size: 28px 28px;
+    transition: all 0.5s;
+  }
+  &:hover,
+  &:active {
+    .icon-#{$name} {
+      background: url('~common/assets/images/#{$name}-on.png') no-repeat center center;
+      background-size: 28px 28px;
+    }
+  }
+}
+
+@mixin gradient-left-right ($start,
+$end) {
+  background: $start;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, $start, $end);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, $start, $end);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, $start, $end);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, $start, $end);
+  /* Standard syntax */
+}
+
+@mixin set-actions ($color,
+$background,
+$shadow) {
+  &:hover,
+  &:focus,
+  &.activated,
+  &:active {
+    color: $color;
+    background-color: $background;
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    box-shadow: $shadow;
+  }
+}
+
+@mixin set-active-hover ($color,
+$background,
+$shadow) {
+  &.activated,
+  &:hover,
+  &:active {
+    color: $color;
+    background-color: $background;
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    box-shadow: $shadow;
+  }
+}
+
+@mixin set-active ($color,
+$background,
+$shadow) {
+  &.activated,
+  &:active {
+    color: $color;
+    background-color: $background;
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    box-shadow: $shadow;
+  }
+}
+
+@mixin box-shadows ($h-shadow,
+$v-shadow,
+$blur,
+$spread,
+$color) {
+  -moz-box-shadow: $h-shadow $v-shadow $blur $spread $color;
+  -webkit-box-shadow: $h-shadow $v-shadow $blur $spread $color;
+  box-shadow: $h-shadow $v-shadow $blur $spread $color;
+}
+
+@mixin button-embossed () {
+  -webkit-box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.15);
+  &.activated,
+  &:active {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+}
+
+@mixin set-main-background ($url,
+$pos: center) {
+  background: url($url) no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  background-position: center $pos;
+  background-attachment: scroll;
+  -webkit-background-attachment: scroll;
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    /* Firefox 18- */
+    @content;
+  }
+  &::-moz-placeholder {
+    /* Firefox 19+ */
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+}
+
+@mixin submit-button ($name,
+$color) {
+  .#{$name}-button {
+    width: 100%;
+    position: relative;
+    height: 3em !important;
+    border-radius: 0px !important;
+    font-size: 1.1em !important;
+    letter-spacing: .1em !important;
+    font-weight: 300;
+    margin: 0.25em 0 !important;
+    border: none;
+    transition: all 0.5s;
+    @include button-embossed();
+    background-color: $color;
+    color: white !important;
+    @include set-active (white,
+    shade($color,
+    30%),
+    0);
+    &[disabled=disabled] {
+      cursor: default;
+      background-color: tint($color, 30%);
+    }
+    &:before {
+      position: absolute;
+      left: 0.65em;
+      top: 50%;
+      font-size: 2em;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+@mixin font-face($name,
+$path,
+$weight: null,
+$style: null,
+$ext: ttf) {
+  $src: null;
+  $formats: ( otf: "opentype", ttf: "truetype");
+  @font-face {
+    font-family: $name;
+    font-style: $style;
+    font-weight: $weight;
+    src: url($path + $name + '.' + $ext) format($formats($ext));
+  }
+}
