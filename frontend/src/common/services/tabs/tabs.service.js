@@ -2,46 +2,35 @@ let TabsFactory = function($http, $state) {
     'ngInject';
 
     let self = this;
-    this.currentTab = 1;
-    this.tabs = [{
+    self.all_tabs = [{
         id: 1,
         name: 'Vote',
-        param: 'vote',
-        visibleToUser :true
+        state: 'app.main.vote',
+        visibility :['user','cook','admin']
     }, {
         id: 2,
         name: 'Order',
-        param: 'order',
-        visibleToUser :true
+        state: 'app.main.order',
+        visibility :['user','cook','admin']
     }, {
         id: 3,
         name: 'History',
-        param: 'history',
-        visibleToUser :true
+        state: 'app.main.history',
+        visibility :['user','cook','admin']
     }, {
         id: 4,
         name: 'User',
-        param: 'user',
-        visibleToUser :true
+        state: 'app.main.user',
+        visibility :['user','cook','admin']
     }, {
         id: 5,
         name: 'Profile',
-        param: 'profile',
-        visibleToUser :true
+        state: 'app.main.profile',
+        visibility :['user','cook','admin']
     }]
 
-    self.setCurrentTab = function(id){
-        this.currentTab = id;
-    }
-
-    self.getCurrentTab = function(){
-        // console.log(this.currentTab);
-        return this.currentTab;
-    }
-
-    self.getTabsList = function(){
-        return this.tabs;
-    }
+    self.fetchTabsForType = (user_type) => self.all_tabs.filter(tab => tab.visibility.indexOf(user_type) != -1);
+    
     return self;
 };
 

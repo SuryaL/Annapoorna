@@ -1,9 +1,8 @@
 <div class="main-wrap">
     <div class="menu-header">
-        <menu-icon></menu-icon>
-        <menu-bar></menu-bar>
+        <menu-icon ng-click="self.fun()"></menu-icon>
+        <menu-bar ng-if="self.tabs" tabs="self.tabs"></menu-bar>
         <user-balance></user-balance> 
     </div>
-    <!-- <div class="main-view" ui-view></div> -->
-    <vote> </vote>
+    <div class="main-view" ui-view></div>
 </div>

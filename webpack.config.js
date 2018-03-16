@@ -65,9 +65,7 @@ module.exports = {
                 exclude: /node_modules/,
                 use: ['ng-annotate-loader', {
                     loader: 'babel-loader',
-                    options: {
-                        presets: ['es2015']
-                    }
+                   
                 }]
             }, {
                 test: /\.(eot|woff|woff2|otf|ttf|svg|ico|png|jpe?g|gif)(\?\S*)?$/,

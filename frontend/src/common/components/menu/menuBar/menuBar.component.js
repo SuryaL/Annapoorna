@@ -7,6 +7,7 @@ import './menuBar.scss';
 let menuBarComponent = {
   restrict: 'E',
   bindings: {
+    tabs:'='
   },
   template,
   controller,
