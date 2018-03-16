@@ -3,11 +3,14 @@ import uirouter from 'angular-ui-router';
 import component from './main.component';
 import AuthService from 'common/services/auth';
 import vote from './vote/vote';
+import TabsService from 'common/services/tabs';
+
 
 const module = angular.module('main', [
         uirouter,
         AuthService,
-        vote
+        vote,
+        TabsService
     ])
 
     .config(function($stateProvider) {
