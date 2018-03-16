@@ -5,6 +5,11 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const cassandra = require('./boundaries/cassandra');
 
+
+process.on('unhandledRejection',(reason,p)=>{
+    console.log('Unhandled Rejection at:', p, 'reason:', reason);
+})
+
 /**
  * https://invis.io/86GAMP74JVA#/284548671_Login
  * https://invis.io/DRGAMJ7W3BJ#/284547007_Splash
