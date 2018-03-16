@@ -6,7 +6,6 @@ class voteCtrl {
 
     $onInit() {
     }
-
 }
 
 export default voteCtrl;

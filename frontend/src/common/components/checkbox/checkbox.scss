@@ -1,14 +1,9 @@
 @import '~assets/stylesheets/common';
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
-
 checkbox {
- .item-check {
-   position: relative;
-   width: 10%;
-   .check-icon,
-   .check-icon-off {
-     width: 30px;
-   }
- }
+  .check-icon,
+  .check-icon-off {
+    max-width: 100%;
+  }
 }

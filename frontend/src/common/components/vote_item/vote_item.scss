@@ -3,23 +3,47 @@
 @import '~assets/stylesheets/variables';
 vote {
   .vote-item-container {
-    padding: 10px;
-    @include flexbox();
-    @include justify-content(space-between);
-    height: 9vh;
-    min-height: 50px;
-    .info-left {
-      @include flexbox();
-      checkbox {
-        margin-right: 2vw;
-      }
-      .item-title {
-        font-size: 20px;
-      }
+    cursor: pointer !important;
+    * {
+      cursor: pointer !important;
     }
-    .info-right {
-      padding-right: 20px;
-       font-size: 20px;
+    @include flexbox();
+    @include justify-content(flex-start);
+    @include align-items(flex-start);
+    min-height: 50px;
+    checkbox {
+      margin: 2vw;
+      margin-right: 0;
+      @include flex;
+      // @include align-self(center);
+      @include flex(0, 0, 3vw);
+      min-width: 25px; //
+      // no need for events on this.
+      // enitire div is clickable in this case
+      pointer-events: none;
+    }
+    .item-title-wrap {
+      padding: 2vw;
+      padding-left: 1.5vw;
+      @include flexbox();
+      @include flex(1, 0, 0);
+      @include justify-content(flex-start);
+      // @include align-items(center);
+      // @include align-self(center);
+    }
+    .item-title,
+    .item-price {
+      @extend .main-lightitalic-font;
+      line-height:1.5em !important;
+      color: $chase-grey;
+    }
+    .item-title {
+      max-width: 20em;
+    }
+    .item-price {
+      padding: 2vw;
+      margin: 0 1vw 0 auto;
+      // @include align-self(center);
     }
   }
 }

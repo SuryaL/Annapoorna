@@ -5,7 +5,7 @@ class voteCtrl {
         this.user = {};
         this.headTitle = 'Vote for this weeks dishes';
         this.subheadTitle = '8.8.88';
-        this.voteItems = [{ "itemName": "Runolfsson, Bergnaum and Jacobs", "isSelected": false },
+        this.voteItems = [{ "itemName": "Runolfsson, Bergnaum and Jacobs asd kalsjldk jaslkjd lkasjd lkjasldk jaslkd jaskld jas", "isSelected": false },
             { "itemName": "Barton-Goldner", "isSelected": false },
             { "itemName": "Luettgen-Strosin", "isSelected": false },
             { "itemName": "Koepp, Crooks and Stiedemann", "isSelected": false },
