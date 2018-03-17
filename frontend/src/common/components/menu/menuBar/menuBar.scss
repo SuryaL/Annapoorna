@@ -14,7 +14,8 @@ menu-bar {
       @extend .main-medium-font;
       font-size:0.9em;
       margin: 0.3em;
-      &.active{
+        cursor: pointer !important;
+        &.active{
         color: $chase-green;
       }
     }
