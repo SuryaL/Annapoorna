@@ -1,4 +1,6 @@
-@import "variables.scss";
+@import '~assets/stylesheets/common';
+@import '~assets/stylesheets/flex';
+@import '~assets/stylesheets/variables';
 
 <%=tagName %> {
     color: red;
