@@ -11,5 +11,6 @@ Sever:
     ☐ rewrite using async await for fb and other stax imported code
 
 Portal:
+    ☐ submit button for mobile and desktop
     ☐ fix simple header scss and reuse for other views
     ☐ cleanup
