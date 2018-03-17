@@ -3,5 +3,5 @@
 @import '~assets/stylesheets/variables';
 
 order {
-    color: red;
+  @extend .sub-main-view;
 }

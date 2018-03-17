@@ -3,5 +3,5 @@
 @import '~assets/stylesheets/variables';
 
 history {
-    color: red;
+  @extend .sub-main-view;
 }

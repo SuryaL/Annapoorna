@@ -14,8 +14,8 @@ main {
         height: 100%;
         background-color: transparent;
         .menu-header {
-        @include flexbox;
-        @include flex(0, 0, 6vw);
+            @include flexbox;
+            @include flex(0, 0, 6vw);
             @include flex-direction(row);
             @include justify-content(center);
             @include align-items(center); // height: 10vw;
@@ -24,11 +24,11 @@ main {
                 height: 100%;
                 @include flex(0, 0, 6vw);
                 min-width: 60px;
-        }
+            }
             menu-bar {
                 height: 100%;
                 @include flex(1, 0, 0);
-    }
+            }
             user-balance {
                 height: 100%;
                 @include flex(0, 0, 6vw);

@@ -1,30 +1,48 @@
 @import '~assets/stylesheets/fonts';
-$main-color : #F00;
+
+.sub-main-view {
+    @include flex(1, 0, 0);
+    @include flexbox;
+    @include flex-direction(column);
+    &-header {
+        @include flex(0, 0, 10vw);
+    }
+    &-container {
+        @include flex(1, 0, 0);
+        background-color: white;
+        overflow-y: scroll;
+    }
+}
 
 // Used font-configs
 .main-heavy-font {
     font-family: 'Lato-Heavy';
 }
+
 .main-medium-font {
     font-family: 'Lato-Medium';
 }
-.main-italic-font {
-    font-family: 'Lato-Italic';
-}
+
 .main-italic-font {
     font-family: 'Lato-Italic';
 }
 
-.main-lightitalic-font{
+.main-italic-font {
+    font-family: 'Lato-Italic';
+}
+
+.main-lightitalic-font {
     font-family: 'Lato-LightItalic';
 }
 
 /*---------------------------------------
    Media Queries
 -----------------------------------------*/
-.my-text-capitalize{
+
+.my-text-capitalize {
     text-transform: capitalize;
 }
+
 .dynamic-header {
     @media (min-width: 200px) {
         height: 70px !important;
@@ -235,7 +253,4 @@ $main-color : #F00;
     }
 }
 
-
 //////////////////////////////////////
-
-
