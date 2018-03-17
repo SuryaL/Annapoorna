@@ -7,20 +7,6 @@
     // fixes blue highlight on tap
 }
 
-.sub-main-view {
-    @include flex(1, 0, 0);
-    @include flexbox;
-    @include flex-direction(column);
-    &-header {
-        @include flex(0, 0, 10vw);
-    }
-    &-container {
-        @include flex(1, 0, 0);
-        background-color: $main-app-color;
-        overflow-y: scroll;
-    }
-}
-
 // Used font-configs
 .main-heavy-font {
     font-family: 'Lato-Heavy';
@@ -37,6 +23,81 @@
 .main-lightitalic-font {
     font-family: 'Lato-LightItalic';
 }
+
+@mixin add-hover($col:$main-grey-light){
+    &:hover{
+        background-color: $col;
+      }
+}
+
+// Common view scss
+.sub-main-view {
+    @include flex(1, 0, 0);
+    @include flexbox;
+    @include flex-direction(column);
+    &-header {
+        @include flex(0, 0, 10vw);
+    }
+    &-container {
+        @include flex(1, 0, 0);
+        background-color: $main-app-color;
+        overflow-y: scroll;
+    }
+}
+
+
+.view-item-container {
+    //
+    // mobile override
+    //
+    @media (max-width: 600px) {
+      padding: 1em 0.1em;
+      .view-left-item {
+        margin-left: 0.5em !important;
+      }
+      .view-middle-item-content,
+      .view-right-item {
+        padding-top: 0.1em;
+      }
+    }
+    padding: 1em 0; 
+    
+    @include flexbox();
+    @include justify-content(flex-start);
+    @include align-items(flex-start);
+    min-height: 50px;
+    .view-left-item {
+      margin-left: 1em;
+      @include flex;
+      @include flex(0, 0, 2em);
+      min-width: 20px; //
+      // no need for events on this.
+      // enitire div is clickable in this case
+      pointer-events: none;
+    }
+    .view-middle-item {
+      padding-left: 1em;
+      @include flexbox();
+      @include flex(1, 0, 0);
+      @include justify-content(flex-start);
+    }
+    .view-middle-item-content,
+    .view-right-item {
+      @extend .main-italic-font;
+      line-height: 1.5em !important;
+      color: $chase-grey;
+    }
+    .view-middle-item-content {
+      max-width: 20em;
+    }
+    .view-right-item {
+      padding-left: 1em;
+      margin: 0 1em 0 auto;
+    }
+  }
+
+
+
 
 /*---------------------------------------
    Media Queries

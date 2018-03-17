@@ -2,56 +2,62 @@
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
 vote {
-  .vote-item-container {
-    //
-    // mobile override
-    //
-    @media (max-width: 600px) {
-      padding: 1em 0.1em;
-      checkbox {
-        margin-left: 0.5em !important;
-      }
-      .item-title,
-      .item-price {
-        padding-top: 0.1em;
-      }
-    }
-    padding: 1em 0; 
+  cursor: pointer !important;
+  * {
     cursor: pointer !important;
-    * {
-      cursor: pointer !important;
-    }
-    @include flexbox();
-    @include justify-content(flex-start);
-    @include align-items(flex-start);
-    min-height: 50px;
-    checkbox {
-      margin-left: 1em;
-      @include flex;
-      @include flex(0, 0, 2em);
-      min-width: 20px; //
-      // no need for events on this.
-      // enitire div is clickable in this case
-      pointer-events: none;
-    }
-    .item-title-wrap {
-      padding-left: 1em;
-      @include flexbox();
-      @include flex(1, 0, 0);
-      @include justify-content(flex-start);
-    }
-    .item-title,
-    .item-price {
-      @extend .main-italic-font;
-      line-height: 1.5em !important;
-      color: $chase-grey;
-    }
-    .item-title {
-      max-width: 20em;
-    }
-    .item-price {
-      padding-left: 1em;
-      margin: 0 1em 0 auto;
-    }
   }
+  .vote-item-container {
+    @include add-hover();
+  } //   .vote-item-container {
+  //     //
+  //     // mobile override
+  //     //
+  //     @media (max-width: 600px) {
+  //       padding: 1em 0.1em;
+  //       checkbox {
+  //         margin-left: 0.5em !important;
+  //       }
+  //       .item-title,
+  //       .item-price {
+  //         padding-top: 0.1em;
+  //       }
+  //     }
+  //     padding: 1em 0; 
+  //     cursor: pointer !important;
+  //     * {
+  //       cursor: pointer !important;
+  //     }
+  //     @include flexbox();
+  //     @include justify-content(flex-start);
+  //     @include align-items(flex-start);
+  //     min-height: 50px;
+  //     checkbox {
+  //       margin-left: 1em;
+  //       @include flex;
+  //       @include flex(0, 0, 2em);
+  //       min-width: 20px; //
+  //       // no need for events on this.
+  //       // enitire div is clickable in this case
+  //       pointer-events: none;
+  //     }
+  //     .item-title-wrap {
+  //       padding-left: 1em;
+  //       @include flexbox();
+  //       @include flex(1, 0, 0);
+  //       @include justify-content(flex-start);
+  //     }
+  //     .item-title,
+  //     .item-price {
+  //       @extend .main-italic-font;
+  //       line-height: 1.5em !important;
+  //       color: $chase-grey;
+  //     }
+  //     .item-title {
+  //       max-width: 20em;
+  //     }
+  //     .item-price {
+  //       padding-left: 1em;
+  //       margin: 0 1em 0 auto;
+  //     }
+  //   }
 }

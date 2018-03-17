@@ -1,3 +1,8 @@
-<div class="sub-main-view-header">
+  <div class="order-view-header sub-main-view-header">
+      <simple-header head-title="self.headTitle" subhead-title="self.subheadTitle"></simple-header>
   </div>
-  <div class="sub-main-view-container"></div>
+  <div class="orders-container sub-main-view-container">
+      <div class="order-items-wrapper" ng-repeat="vItem in self.orderItems">
+          <order-item item="vItem"></order-item>
+      </div>
+  </div>

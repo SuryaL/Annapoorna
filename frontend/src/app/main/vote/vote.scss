@@ -11,7 +11,10 @@ vote {
     // background-color: white;
     // overflow-y: scroll;
     .vote-items-wrapper {
-      vote-item {}
+      vote-item {
+        .vote-item-container{
+        }
+      }
     }
   }
 }

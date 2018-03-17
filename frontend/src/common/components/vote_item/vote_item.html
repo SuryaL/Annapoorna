@@ -1,7 +1,7 @@
-<div ng-click="self.item.isSelected = !self.item.isSelected" class="vote-item-container">
-    <checkbox toggle-var="self.item.isSelected"></checkbox>
-    <div  class="item-title-wrap">
-       <div class="item-title dynamic-text-m"> {{self.item.itemName}} </div>
+<div ng-click="self.item.isSelected = !self.item.isSelected" class="view-item-container vote-item-container">
+    <checkbox class="view-left-item" toggle-var="self.item.isSelected"></checkbox>
+    <div class="view-middle-item item-title-wrap">
+       <div class="view-middle-item-content item-title dynamic-text-m"> {{self.item.itemName}} </div>
     </div>
-    <div class="item-price dynamic-text-m">{{9.99 | currency}}</div>
+    <div class="view-right-item item-price dynamic-text-m">{{9.99 | currency}}</div>
 </div>

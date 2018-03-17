@@ -4,4 +4,10 @@
 
 profile {
   @extend .sub-main-view;
+  .logout{
+    color:$chase-grey;
+    padding:1em;
+    cursor: pointer !important;
+    @include add-hover();
+  }
 }

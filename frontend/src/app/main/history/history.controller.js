@@ -1,8 +1,16 @@
 class HistoryController {
-    constructor() {
+    constructor($state, $auth, MenuService) {
         'ngInject';
-        this.name = 'History';
+        Object.assign(this, { $state, $auth, MenuService });
+        this.user = {};
+        this.headTitle = 'History';
+        this.subheadTitle = '-';
+       
+        this.footerText = "history";
+
     }
+
+    
 }
 
 export default HistoryController;

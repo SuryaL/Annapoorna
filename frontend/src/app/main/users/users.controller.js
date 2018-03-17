@@ -1,8 +1,16 @@
 class UsersController {
-    constructor() {
+    constructor($state, $auth, MenuService) {
         'ngInject';
-        this.name = 'Users';
+        Object.assign(this, { $state, $auth, MenuService });
+        this.user = {};
+        this.headTitle = 'Users List';
+        this.subheadTitle = '8 users';
+       
+        this.footerText = "users";
+
     }
+
+    
 }
 
 export default UsersController;

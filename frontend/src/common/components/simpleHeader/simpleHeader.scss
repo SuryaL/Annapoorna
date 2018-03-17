@@ -18,6 +18,9 @@ simple-header {
             padding-left: 0em;
             margin-left: 1em;
             border-bottom: none;
+            .simple-head {
+                color: white !important;
+            }            
         }
         border-bottom: 1px solid $main-grey-light;
         padding-bottom:0.2em;

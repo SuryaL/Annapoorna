@@ -3,7 +3,7 @@ class voteCtrl {
         'ngInject';
         Object.assign(this, { $state, $auth, MenuService });
         this.user = {};
-        this.headTitle = 'Vote for this weeks dishes';
+        this.headTitle = 'Vote for this week\'s dishes';
         this.subheadTitle = '8.8.88';
         this.voteItems = [{ "itemName": "Runolfsson, Bergnaum and Jacobs asd kalsjldk jaslkjd lkasjd lkjasldk jaslkd jaskld jas", "isSelected": false },
             { "itemName": "Barton-Goldner", "isSelected": false },

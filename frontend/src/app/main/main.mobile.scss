@@ -34,20 +34,12 @@
                     border: 1px solid $main-grey-light;
                     border-left: none;
                     border-right: none;
+                    @include flex(1, 0, 0);
                     .menu-bar-wrapper {
                         height: 100%;
                         justify-content: flex-start;
                         padding-left: 0.2em;
-                        .menu-item {
-                            height: 100%;
-                            margin-bottom: 0;
-                            @include flexbox;
-                            display: flex;
-                            @include align-items(center);
-                            margin-top: 0;
-                        }
                     }
-                    @include flex(1, 0, 0);
                 }
                 user-balance {
                     position: absolute;
