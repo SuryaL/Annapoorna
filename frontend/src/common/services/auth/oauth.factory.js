@@ -73,7 +73,7 @@ let OauthFactory = function($http, $q, $window, $interval, $timeout) {
                         if (oauthData.state) {
                             data.state = oauthData.state;
                         }
-                        let exchangeForTokenUrl = 'http://localhost:4001' + defaults.url;
+                        let exchangeForTokenUrl = ENV.API_URL + defaults.url;
                         return $http.post(exchangeForTokenUrl, data)
                             .then(resolve)
                             .catch(reject)

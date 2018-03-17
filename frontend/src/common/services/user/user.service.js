@@ -1,8 +1,8 @@
-let UserFactory = function($http, $state) {
+const UserFactory = function($http, $state) {
     'ngInject';
 
-    let self = this;
-    let API = BASEURL.url;
+    const self = this;
+    const API = ENV.API_URL;
     self.PATH = '/user';
 
     // self.update = function(obj) {

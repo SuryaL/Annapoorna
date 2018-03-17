@@ -7,7 +7,7 @@ let AuthFactory = function($q, $window, $log, $rootScope, $http, $state) { //,Cr
 
     self.tokenName = tokenName;
     self.userName = userName;
-    self.baseUrl = BASEURL.url;
+    self.baseUrl = ENV.API_URL;
     self.authHeader = 'Authorization';
     self.authToken = 'Bearer';
     self.loginUrl = '/auth/login';

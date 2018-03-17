@@ -2,7 +2,7 @@ let <%= upCaseName %>Factory = function ($http,$httpParamSerializer) {
   'ngInject';
 
   var self = this;
-  let API = BASEURL.url + '/api';
+  let API = ENV.API_URL;
   self.PATH = API+'/<%= name %>';
 
   self.create = function (data) {

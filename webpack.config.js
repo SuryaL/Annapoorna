@@ -26,20 +26,6 @@ module.exports = {
     },
     module: {
         rules: [
-            //     {
-            //     test: /\.(scss|css)$/,
-            //     use:extractPlugin.extract({
-            //         use:['css-loader',{
-            //             options: {
-            //                 includePaths : [ path.resolve(__dirname, 'frontend/src/assets/stylesheets') ],
-            //                 sourceMap: true
-            //               },
-            //            loader: 'sass-loader'
-            //         }
-            //         ]
-            //     })
-            //     // use: [ 'style-loader', 'css-loader', 'sass-loader' ]
-            // }
             {
                 test: /\.scss$/,
                 use: [
@@ -95,10 +81,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './frontend/index.html'
         }),
-        new webpack.ProvidePlugin({
-            qrcode: 'qrcode-generator',
-        }),
-        new webpack.DefinePlugin({ 'BASEURL' : JSON.stringify({ 'url': 'http://localhost:4001' }) }),
-
+        // new webpack.ProvidePlugin({
+        //     qrcode: 'qrcode-generator',
+        // }),
+        new webpack.DefinePlugin({ 'ENV' : JSON.stringify({ 'url': 'http://localhost:4001' , API_URL: 'http://localhost:4001/api' }) }),
     ]
 }

@@ -1,8 +1,8 @@
-let MenuFactory = function($http, $state) {
+const MenuFactory = function($http, $state) {
     'ngInject';
 
-    let self = this;
-    let API = BASEURL.url;
+    const self = this;
+    const API = ENV.API_URL;
     self.PATH = '/menu';
 
     self.update = function(obj) {
