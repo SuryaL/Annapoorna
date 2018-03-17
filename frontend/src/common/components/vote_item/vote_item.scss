@@ -38,7 +38,7 @@ vote {
     }
     .item-title,
     .item-price {
-      @extend .main-lightitalic-font;
+      @extend .main-italic-font;
       line-height: 1.5em !important;
       color: $chase-grey;
     }

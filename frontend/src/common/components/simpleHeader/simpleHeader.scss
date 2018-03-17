@@ -1,25 +1,30 @@
 @import '~assets/stylesheets/common';
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
-
 simple-header {
-
- .simple-header-wrap{
-     @include flexbox;
-     @include align-items(flex-start);
-     @include justify-content(flex-end);
-     @include flex-direction(column);
-     padding-top:3em;
-     padding-bottom:0.2em;
-     border-bottom: 1px solid $main-grey-light;
-    .simple-head{
+    .simple-header-wrap {
         @include flexbox;
-        color: $main-grey;
-        margin-bottom: 0.25em;
-    } 
-    .simple-subhead{
-         @include flexbox;
-         color: $main-pink;
+        @include align-items(flex-start);
+        @include justify-content(flex-end);
+        @include flex-direction(column);
+        padding-top: 1.4em;
+        @media (min-width: 600px) {
+            padding-top:3em;
+        }
+        padding-bottom:0.2em;
+        border-bottom: 1px solid $main-grey-light;
+        .simple-head {
+            @include flexbox;
+            color: $chase-grey;
+      @extend .main-medium-font;
+            
+            margin-bottom: 0.25em;
+        }
+        .simple-subhead {
+            @include flexbox;
+      @extend .main-medium-font;
+            
+            color: $chase-red;
+        }
     }
- }
 }

@@ -15,7 +15,7 @@
             @include justify-content(center);
             @include align-items(space-around);
             height: 100%;
-            background-color: white;
+            background-color: $main-app-color;
             .menu-header {
                 position: relative;
                 @include flexbox;
@@ -32,7 +32,7 @@
                 }
                 menu-bar {
                     width: 100%;
-                    border: 1px solid #EEE;
+                    border: 1px solid $main-grey-light;
                     border-left:none;
                     border-right:none;
                     .menu-bar-wrapper {
