@@ -4,6 +4,9 @@ const config = require('./config');
 const requestify = require('./helpers/utils/requestify');
 const cassandra = require('./boundaries/cassandra');
 
+//https://invis.io/86GAMP74JVA#/284548671_Login
+//https://invis.io/DRGAMJ7W3BJ#/284547007_Splash
+
 /**
  * request related middlewares
  */

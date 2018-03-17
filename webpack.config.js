@@ -2,10 +2,30 @@ let path = require('path');
 let ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 let CleanWebpackPlugin = require('clean-webpack-plugin');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
-let webpack = require('webpack')
-const extractSass = new ExtractTextWebpackPlugin({
-    filename: 'main.css'
-});
+let webpack = require('webpack');
+let yargs = require('yargs');
+var argv = yargs
+    .boolean("disableclean")
+    .argv;
+
+let plugins = [
+    new ExtractTextWebpackPlugin({
+        filename: 'main.css'
+    }),
+    new HtmlWebpackPlugin({
+        template: './frontend/index.html'
+    }),
+    new webpack.DefinePlugin({
+        'ENV': JSON.stringify({
+            'url': 'http://localhost:4001',
+            API_URL: 'http://localhost:4001/api'
+        })
+    })
+]
+if (argv.disableclean) {
+    plugins.unshift(new CleanWebpackPlugin(['dist']))
+}
+
 module.exports = {
     entry: './frontend/src/app/app.js',
     output: {
@@ -25,12 +45,14 @@ module.exports = {
         ]
     },
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.scss$/,
-                use: [
-                    { loader: 'style-loader' },
-                    { loader: 'css-loader' },
+                use: [{
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'css-loader'
+                    },
                     {
                         loader: 'sass-loader',
                         options: {
@@ -42,16 +64,19 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: [
-                    { loader: 'style-loader' },
-                    { loader: 'css-loader' },
+                use: [{
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'css-loader'
+                    },
                 ]
             }, {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: ['ng-annotate-loader', {
                     loader: 'babel-loader',
-                   
+
                 }]
             }, {
                 test: /\.(eot|woff|woff2|otf|ttf|svg|ico|png|jpe?g|gif)(\?\S*)?$/,
@@ -75,15 +100,5 @@ module.exports = {
             },
         ]
     },
-    plugins: [
-        extractSass,
-        new CleanWebpackPlugin(['dist']),
-        new HtmlWebpackPlugin({
-            template: './frontend/index.html'
-        }),
-        // new webpack.ProvidePlugin({
-        //     qrcode: 'qrcode-generator',
-        // }),
-        new webpack.DefinePlugin({ 'ENV' : JSON.stringify({ 'url': 'http://localhost:4001' , API_URL: 'http://localhost:4001/api' }) }),
-    ]
+    plugins,
 }
