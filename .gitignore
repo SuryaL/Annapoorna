@@ -1,5 +1,6 @@
 server/node_modules
 server/node_modules/*
+dist
 
 *.DS_Store
 # Logs
