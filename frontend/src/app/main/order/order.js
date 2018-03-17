@@ -10,7 +10,7 @@ let orderModule = angular.module('order', [
 
   $stateProvider
   .state ('app.main.order', {
-    url : '/order',
+    url : 'order',
     template : '<order></order>',
     authenticated : 'authenticated'
   });

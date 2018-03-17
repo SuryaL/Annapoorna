@@ -10,7 +10,7 @@ let profileModule = angular.module('profile', [
 
   $stateProvider
   .state ('app.main.profile', {
-    url : '/profile',
+    url : 'profile',
     template : '<profile></profile>',
     authenticated: 'authenticated'
   });

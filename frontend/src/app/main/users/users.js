@@ -10,7 +10,7 @@ let usersModule = angular.module('users', [
 
   $stateProvider
   .state ('app.main.users', {
-    url : '/users',
+    url : 'users',
     template : '<users></users>',
     authenticated: 'authenticated'
   });

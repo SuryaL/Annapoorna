@@ -10,7 +10,7 @@ let historyModule = angular.module('history', [
 
   $stateProvider
   .state ('app.main.history', {
-    url : '/history',
+    url : 'history',
     template : '<history></history>',
     authenticated : 'authenticated'
   });

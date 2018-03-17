@@ -10,7 +10,7 @@ let <%= camelCaseName %>Module = angular.module('<%= camelCaseName %>', [
 
   $stateProvider
   .state ('<%= camelCaseName %>', {
-    url : '/<%= name %>',
+    url : '<%= name %>',
     template : '<<%= tagName %>></<%= tagName %>>',
     authenticated : 'none'
   });
