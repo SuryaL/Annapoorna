@@ -1,7 +1,6 @@
 @import '~assets/stylesheets/common';
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
-
 // Mobile //
 @media (max-width: 600px) {
     main {
@@ -28,16 +27,25 @@
                     @include flex(0, 0, 6vw);
                     min-width: initial;
                     height: 70px;
-                    padding:5px;
+                    padding: 5px;
                 }
                 menu-bar {
                     width: 100%;
                     border: 1px solid $main-grey-light;
-                    border-left:none;
-                    border-right:none;
+                    border-left: none;
+                    border-right: none;
                     .menu-bar-wrapper {
                         height: 100%;
                         justify-content: flex-start;
+                        padding-left: 0.2em;
+                        .menu-item {
+                            height: 100%;
+                            margin-bottom: 0;
+                            @include flexbox;
+                            display: flex;
+                            @include align-items(center);
+                            margin-top: 0;
+                        }
                     }
                     @include flex(1, 0, 0);
                 }

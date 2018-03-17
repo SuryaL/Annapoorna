@@ -17,6 +17,8 @@
             height: 100%;
             background-color: transparent;
             .menu-header {
+            margin-left:1em;
+                
                 @include flexbox;
                 @include flex(0, 0, 6vw);
                 @include flex-direction(row);

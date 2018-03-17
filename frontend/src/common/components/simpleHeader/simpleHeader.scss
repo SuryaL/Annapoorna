@@ -8,22 +8,28 @@ simple-header {
         @include justify-content(flex-end);
         @include flex-direction(column);
         padding-top: 1.4em;
+        padding-left: 0.5em; 
+        
+        //
+        // mobile override
+        //
         @media (min-width: 600px) {
             padding-top:3em;
+            padding-left: 0em;
+            margin-left: 1em;
+            border-bottom: none;
         }
-        padding-bottom:0.2em;
         border-bottom: 1px solid $main-grey-light;
+        padding-bottom:0.2em;
         .simple-head {
             @include flexbox;
             color: $chase-grey;
-      @extend .main-medium-font;
-            
+            @extend .main-medium-font;
             margin-bottom: 0.25em;
         }
         .simple-subhead {
             @include flexbox;
-      @extend .main-medium-font;
-            
+            @extend .main-medium-font;
             color: $chase-red;
         }
     }

@@ -3,16 +3,20 @@
 @import '~assets/stylesheets/variables';
 vote {
   .vote-item-container {
-    padding: 1em;
-    @media (max-width:600px){
-      padding: 1em 0.5em;
-      checkbox{
-        margin-left: 1vw;
+    //
+    // mobile override
+    //
+    @media (max-width: 600px) {
+      padding: 1em 0.1em;
+      checkbox {
+        margin-left: 0.5em !important;
       }
-      .item-title, .item-price{
-        padding-top: 0.3em;
+      .item-title,
+      .item-price {
+        padding-top: 0.1em;
       }
     }
+    padding: 1em 0; 
     cursor: pointer !important;
     * {
       cursor: pointer !important;

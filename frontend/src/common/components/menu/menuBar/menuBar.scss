@@ -12,11 +12,27 @@ menu-bar {
     color: $chase-grey;
     .menu-item {
       @extend .main-medium-font;
-      font-size:0.9em;
+      font-size: 0.9em;
       margin: 0.3em;
-        cursor: pointer !important;
-        &.active{
+      cursor: pointer !important;
+      position: relative;
+      &.active {
         color: $chase-green;
+      }
+
+      //
+      // mobile override
+      //
+      @media (max-width:600px) {
+        &.active:after {
+          content:'';
+          position: absolute;
+          width: 100%;
+          height:3px;
+          bottom: 0;
+          left:0;
+          border-bottom: 3px solid $chase-green;
+        }
       }
     }
   }
