@@ -5,9 +5,9 @@
 profile {
   @extend .sub-main-view;
   .logout{
-    color:$chase-grey;
     padding:1em;
     cursor: pointer !important;
+    color: $chase-red;
     @include add-hover();
   }
 }

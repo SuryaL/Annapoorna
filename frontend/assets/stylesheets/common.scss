@@ -24,6 +24,14 @@
     font-family: 'Lato-LightItalic';
 }
 
+.main-heavy-font{
+    font-family: 'Lato-Heavy';
+}
+
+.main-heavy-italic-font{
+    font-family: 'Lato-HeavyItalic';
+}
+
 @mixin add-hover($col:$main-grey-light){
     &:hover{
         background-color: $col;
