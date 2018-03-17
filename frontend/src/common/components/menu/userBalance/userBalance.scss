@@ -1,12 +1,19 @@
 @import '~assets/stylesheets/common';
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
-
 user-balance {
-    @include flexbox;
-     @include align-items(center);
-     @include justify-content(center);
-     @include flex-direction(column);
+  @include flexbox;
+  @include align-items(flex-end);
+  @include justify-content(center);
+  @include flex-direction(column);
   color: $chase-grey;
-     
+  @extend .main-medium-font;
+  margin-right:0.5em;
+  .user-balance-text{
+    font-size:0.8em;
+  }
+  .user-balance-text{
+
+  }
+
 }

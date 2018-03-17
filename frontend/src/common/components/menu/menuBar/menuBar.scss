@@ -1,19 +1,22 @@
 @import '~assets/stylesheets/common';
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
-
 menu-bar {
   @include flexbox;
-        .menu-bar-wrapper{
-            @include flex-direction(row);
-            @include flexbox;
-  @include flex(1,0,0);
-  @include justify-content(flex-start);
-  @include align-items(center); 
-  color: $chase-grey;
-  .menu-item{
-    margin:0.3em;
-
+  .menu-bar-wrapper {
+    @include flex-direction(row);
+    @include flexbox;
+    @include flex(1, 0, 0);
+    @include justify-content(flex-start);
+    @include align-items(center);
+    color: $chase-grey;
+    .menu-item {
+      @extend .main-medium-font;
+      font-size:0.9em;
+      margin: 0.3em;
+      &.active{
+        color: $chase-green;
+      }
     }
   }
 }

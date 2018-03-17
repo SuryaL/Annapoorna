@@ -1,7 +1,14 @@
 class ProfileController {
-    constructor() {
+    constructor($auth) {
         'ngInject';
         this.name = 'Profile';
+        Object.assign(this,{
+            $auth
+        })
+    }
+
+    logout() {
+        this.$auth.logout();
     }
 }
 

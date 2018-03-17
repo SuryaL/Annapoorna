@@ -36,9 +36,7 @@ class voteCtrl {
         console.log(this.user);
     }
 
-    logout() {
-        this.$auth.logout();
-    }
+
 }
 
 export default voteCtrl;

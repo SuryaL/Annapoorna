@@ -11,4 +11,5 @@ Sever:
     ☐ rewrite using async await for fb and other stax imported code
 
 Portal:
+    ☐ fix simple header scss and reuse for other views
     ☐ cleanup
