@@ -1,0 +1,49 @@
+@import '~assets/stylesheets/common';
+@import '~assets/stylesheets/flex';
+@import '~assets/stylesheets/variables';
+
+// Desktop //
+@media (min-width: 600px) {
+    main {
+        width: 100%;
+        height: 100%;
+        padding: 2vw 5vw;
+        .main-wrap {
+            position: relative;
+            @include flexbox;
+            @include flex-direction(column);
+            @include justify-content(center);
+            @include align-items(space-around);
+            height: 100%;
+            background-color: transparent;
+            .menu-header {
+                @include flexbox;
+                @include flex(0, 0, 6vw);
+                @include flex-direction(row);
+                @include justify-content(center);
+                @include align-items(center); // height: 10vw;
+                min-height: 60px;
+                menu-icon {
+                    height: 100%;
+                    @include flex(0, 0, 6vw);
+                    min-width: 60px;
+                }
+                menu-bar {
+                    height: 100%;
+                    @include flex(1, 0, 0);
+                }
+                user-balance {
+                    height: 100%;
+                    @include flex(0, 0, 6vw);
+                    min-width: 60px;
+                }
+            }
+            .main-view {
+                @include flexbox;
+                @include flex-direction(column);
+                @include flex(1, 0, 0); // height:10vw;
+            }
+        }
+    }
+}
+

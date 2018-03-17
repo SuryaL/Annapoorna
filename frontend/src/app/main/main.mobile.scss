@@ -1,0 +1,60 @@
+@import '~assets/stylesheets/common';
+@import '~assets/stylesheets/flex';
+@import '~assets/stylesheets/variables';
+
+// Mobile //
+@media (max-width: 600px) {
+    main {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        .main-wrap {
+            position: relative;
+            @include flexbox;
+            @include flex-direction(column);
+            @include justify-content(center);
+            @include align-items(space-around);
+            height: 100%;
+            background-color: white;
+            .menu-header {
+                position: relative;
+                @include flexbox;
+                @include flex(0, 0, 6vw);
+                @include flex-direction(column);
+                @include justify-content(center);
+                @include align-items(center); // height: 10vw;
+                min-height: 120px;
+                menu-icon {
+                    @include flex(0, 0, 6vw);
+                    min-width: initial;
+                    height: 70px;
+                    padding:5px;
+                }
+                menu-bar {
+                    width: 100%;
+                    border: 1px solid #EEE;
+                    border-left:none;
+                    border-right:none;
+                    .menu-bar-wrapper {
+                        height: 100%;
+                        justify-content: flex-start;
+                    }
+                    @include flex(1, 0, 0);
+                }
+                user-balance {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    height: 70px;
+                    @include flex(0, 0, 6vw);
+                    min-width: 70px;
+                }
+            }
+            .main-view {
+                @include flexbox;
+                @include flex-direction(column);
+                @include flex(1, 0, 0); // height:10vw;
+            }
+        }
+    }
+}
