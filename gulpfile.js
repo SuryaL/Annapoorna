@@ -38,7 +38,7 @@ gulp.task('component', () => {
   let parent = yargs.argv.parent;
   let parentArray = (parent || '').split('/');
   let app = yargs.argv.app;
-  let basePath = app == !!app && app == 'app' ? appPath : commonComponentsPath;
+  let basePath = !!app && app == 'app' ? appPath : commonComponentsPath;
   let destPath = path.join(basePath, ...parentArray, name);
 
   return gulp.src(blankComponentPath)
