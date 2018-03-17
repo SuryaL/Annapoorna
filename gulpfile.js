@@ -9,7 +9,7 @@ const cap = (name) => {
   array = name.toLowerCase().split('_');
   let modified_name = "";
   array.forEach((item) => {
-      modified_name += item.charAt(0).toUpperCase() + item.slice(1);
+    modified_name += item.charAt(0).toUpperCase() + item.slice(1);
   })
   return modified_name;
 };
@@ -22,20 +22,24 @@ const tag = (val) => {
 };
 
 const blankComponentPath = path.join(__dirname, 'generator', '/component/**/*.**');
+const blankServicePath = path.join(__dirname, 'generator', '/service/**/*.**');
 
-let srcPath = path.join(__dirname,'frontend','src');
-let commonPath = path.join(__dirname,'frontend','src','common');
-let commonComponentsPath =  path.join(commonPath,'components')
-let appPath = path.join(__dirname,'frontend','src','app');
+
+let srcPath = path.join(__dirname, 'frontend', 'src');
+let commonPath = path.join(__dirname, 'frontend', 'src', 'common');
+let commonComponentsPath = path.join(commonPath, 'components');
+let commonServicesPath = path.join(commonPath, 'services');
+
+let appPath = path.join(__dirname, 'frontend', 'src', 'app');
 
 
 gulp.task('component', () => {
   let name = yargs.argv.name;
   let parent = yargs.argv.parent;
-  let parentArray = (parent||'').split('/');
+  let parentArray = (parent || '').split('/');
   let app = yargs.argv.app;
-  let basePath = app == !!app && app=='app' ? appPath : commonComponentsPath;
-  let destPath = path.join(basePath,...parentArray, name);
+  let basePath = app == !!app && app == 'app' ? appPath : commonComponentsPath;
+  let destPath = path.join(basePath, ...parentArray, name);
 
   return gulp.src(blankComponentPath)
     .pipe(template({
@@ -44,9 +48,27 @@ gulp.task('component', () => {
       camelCaseName: camel(name),
       tagName: tag(name)
     }))
-    .pipe(rename((p)=>{
-      p.basename = p.basename.replace('temp',name);
+    .pipe(rename((p) => {
+      p.basename = p.basename.replace('temp', name);
     }))
     .pipe(gulp.dest(destPath))
 
+})
+
+gulp.task('service', () => {
+
+  let name = yargs.argv.name;
+  let destPath = path.join(commonServicesPath, name);
+
+  return gulp.src(blankServicePath)
+    .pipe(template({
+      name: name,
+      upCaseName: cap(name),
+      camelCaseName: camel(name),
+      tagName: tag(name)
+    }))
+    .pipe(rename((p) => {
+      p.basename = p.basename.replace('temp', name);
+    }))
+    .pipe(gulp.dest(destPath))
 })

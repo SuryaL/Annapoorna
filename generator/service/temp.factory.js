@@ -1,28 +1,28 @@
-
-let <%= upCaseName %>Factory = function (Storage, $http) {
+let <%= upCaseName %>Factory = function ($http,$httpParamSerializer) {
   'ngInject';
 
   var self = this;
-  self.PATH = '/v/1/<%= name %>';
+  let API = BASEURL.url + '/api';
+  self.PATH = API+'/<%= name %>';
 
   self.create = function (data) {
-    return Storage.create (self.PATH, data);
+    return $http.post(self.PATH, data);
   };
 
   self.find = function (query) {
-    return Storage.query (self.PATH, query);
+    return $http.get(self.PATH, $httpParamSerializer(query));
   };
 
   self.findOne = function (id) {
-    return Storage.findOne(self.PATH, id);
+    return $http.get(self.PATH + '/' + id);
   };
 
   self.update = function (id, data) {
-    return Storage.update (self.PATH, id, data);
+    return $http.put(self.PATH + '/' + id, data);
   };
 
   self.destroy = function (id) {
-    return Storage.destroy (self.PATH, id);
+    return $http.delete(self.PATH + '/' + id);
   };
 
   return self;
