@@ -1,5 +1,11 @@
 @import '~assets/stylesheets/fonts';
 
+* {
+    outline: none !important;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
+    // fixes blue highlight on tap
+}
+
 .sub-main-view {
     @include flex(1, 0, 0);
     @include flexbox;
