@@ -56,6 +56,17 @@
     @include flex-direction(column);
     &-header {
         @include flex(0, 0, 10vw);
+        position: relative;
+        .align-head-right{
+            position: absolute;
+            top:0;
+            right:0;
+            @include flexbox;
+            height:100%;
+            @include align-items(center);
+            padding-top: 3em;
+            // @include justify-content(center);
+        }
     }
     &-container {
         @include flex(1, 0, 0);

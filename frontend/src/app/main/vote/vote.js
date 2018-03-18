@@ -4,6 +4,7 @@ import component from './vote.component';
 import voteItem from 'common/components/vote_item/vote_item';
 import footerBtn from 'common/components/footerBtn/footerBtn';
 import simpleHeader from 'common/components/simpleHeader/simpleHeader';
+import headerBtn from 'common/components/header_btn/header_btn';
 
 import AuthService from 'common/services/auth';
 import menuService from 'common/services/menu';
@@ -12,6 +13,7 @@ const module = angular.module('vote', [
         uirouter,
         voteItem,
         simpleHeader,
+        headerBtn,
         footerBtn,
         AuthService,
         menuService

@@ -89,9 +89,10 @@ class UsersController {
         this.subheadTitle = `${this.usersList.length} users`;
         
         this.footerText = "users";
+        this.btnText = "Add";
     }
 
-    addUser() {
+    btnClicked() {
         console.log("add user", this.newEmail);
         let obj = {
             email: this.newEmail
@@ -103,7 +104,6 @@ class UsersController {
             })
             .catch(err => console.log(err));
     }
-
 
 }
 
