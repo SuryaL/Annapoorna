@@ -4,13 +4,15 @@ let CleanWebpackPlugin = require('clean-webpack-plugin');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let webpack = require('webpack');
 let yargs = require('yargs');
-var argv = yargs
+// let importer = require("node-sass-importer");
+
+let argv = yargs
     .boolean("disableclean")
     .argv;
 
 let plugins = [
     new ExtractTextWebpackPlugin({
-        filename: 'main.css'
+        filename: '[name].[contenthash].css'
     }),
     new HtmlWebpackPlugin({
         template: './frontend/index.html'
@@ -57,8 +59,8 @@ module.exports = {
                         loader: 'sass-loader',
                         options: {
                             includePaths: [path.resolve(__dirname, 'frontend/src/common/stylesheets')],
-                            sourceMap: true
-                        }
+                            sourceMap: true,
+                    }
                     }
                 ]
             },

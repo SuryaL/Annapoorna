@@ -1,9 +1,11 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import userItemComponent from './user_item.component';
+import customFormat from 'common/directives/format';
 
 let userItemModule = angular.module('userItem', [
-  uiRouter
+  uiRouter,
+  customFormat
 ])
 .config(($stateProvider) => {
   'ngInject';

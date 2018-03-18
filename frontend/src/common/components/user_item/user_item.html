@@ -1,3 +1,21 @@
-<div>
-  <h1>{{ self.name }}</h1>
+<div class="view-item-container user-item-container">
+    <div class="view-middle-item">
+       <div class="view-middle-item-content"> 
+         <div class="user-item-header">
+            <div class="user-item-name dynamic-text-l">{{self.item.first_name}} </div>
+            <div ng-if="self.status(self.item)" class="user-item-status dynamic-text-xs">{{self.status(self.item)}}</div>
+         </div>
+         <div class="user-item-payments">
+           <div class="user-item-payment" ng-repeat="payment in self.item.payment_history | limitTo:self.limit">
+              <div class="user-item-payment-date dynamic-text-s">{{payment.date}}</div>
+              <div class="user-item-payment-amount dynamic-text-s">{{payment.amount | currency}}</div>
+           </div>
+           <div class="user-payment-show-more" ng-click="self.showMoreClicked()" ng-if="self.shouldShowMore(self.item.payment_history, self.limit)">show more</div>
+         </div>
+        </div>
+    </div>
+    <div class="view-right-item user-item-owe-wrap">
+        <div class="user-item-owes dynamic-text-xs">owes {{self.item.owes | currency}}</div>
+        <input class="user-item-pay dynamic-text-xs" custom-format="currency" ng-model="self.pay_amount"/>
+    </div>  
 </div>

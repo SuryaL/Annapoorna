@@ -11,6 +11,7 @@ Sever:
     ☐ rewrite using async await for fb and other stax imported code
 
 Portal:
+    ☐ need to make the pay input only dollar
     ☐ submit button for mobile and desktop
     ☐ fix simple header scss and reuse for other views
     ☐ cleanup

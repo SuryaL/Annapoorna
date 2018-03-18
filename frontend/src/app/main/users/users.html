@@ -1,8 +1,8 @@
 <div class="users-view-header sub-main-view-header" >
         <simple-header head-title="self.headTitle" subhead-title="self.subheadTitle"></simple-header>
     </div>
-    <div class="userss-container sub-main-view-container">
-        <!-- <div class="users-items-wrapper" ng-repeat="vItem in self.usersItems">
-            <users-item  item="vItem"></users-item>
-        </div> -->
+    <div class="users-container sub-main-view-container">
+        <div class="users-items-wrapper" ng-repeat="user in self.usersList">
+            <user-item item="user"></user-item>
+        </div>
     </div>

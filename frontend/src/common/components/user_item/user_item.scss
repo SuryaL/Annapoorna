@@ -1,7 +1,80 @@
 @import '~assets/stylesheets/common';
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
-
 user-item {
-    color: red;
+    .user-item-container {
+        @include add-hover();
+        .user-item-header {
+            @include flexbox;
+            @include justify-content(flex-start);
+            @include align-items(center);
+            .user-item-name {}
+            .user-item-status {
+                margin-left: 0.5em;
+                color: $chase-blue;
+            }
+        }
+        .user-item-payments {
+            @include flexbox;
+            @include align-items(center);
+            @include justify-content(center);
+            @include flex-direction(column);
+            margin: 0.7em 2em 0 2em;
+            .user-item-payment {
+                @include flexbox;
+                @include align-items(center);
+                @include justify-content(center);
+                @include flex-direction(row);
+                &-date {
+                    @extend .main-semibold-font;
+                }
+                &-amount {
+                    margin-left: 0.3em;
+                }
+            }
+            .user-payment-show-more {
+                color: $chase-blue;
+                cursor: pointer !important;
+                text-decoration: underline;
+                &:hover {
+                    color: $chase-green;
+                    // color: lighten($chase-blue, 10);
+                }
+            }
+        }
+        .user-item-owe-wrap {
+            @include flexbox;
+            @include align-items(center);
+            @include justify-content(center);
+            @include flex-direction(row);
+            height: 3em;
+            @media(max-width: 600px) {
+                height:2em;
+            }
+            .user-item-owes {
+                margin-right: 0.5em;
+            }
+            .user-item-pay {
+                margin: 0;
+                @include flex(0, 0, 8em);
+                max-width: 5em;
+                border: 2px solid $main-grey;
+                @include border-radius(0.3em);
+                @include flexbox;
+                @include align-items(center);
+                @include justify-content(center);
+                @include flex-direction(row);
+                padding: 0.5em 0;
+                text-align: center;
+                color: $chase-green;
+                cursor: pointer !important;
+                &:hover {
+                    border-color: $chase-blue;
+                }
+                &:active, &:focus {
+                    border-color: $chase-green;
+                }
+            }
+        }
+    }
 }

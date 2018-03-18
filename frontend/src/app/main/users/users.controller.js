@@ -1,16 +1,98 @@
 class UsersController {
     constructor($state, $auth, MenuService) {
         'ngInject';
-        Object.assign(this, { $state, $auth, MenuService });
+        Object.assign(this, {
+            $state,
+            $auth,
+            MenuService
+        });
         this.user = {};
         this.headTitle = 'Users List';
-        this.subheadTitle = '8 users';
-       
+
+        // NOTE:
+        // active(not deleted) and admin added users only
+        this.usersList = [{
+                id: 1,
+                first_name: 'Surya',
+                last_name:'L',
+                week_voted: true,
+                week_ordered: true,
+                owes: 100.00,
+                payment_history: [{
+                    date: 'Feb 20',
+                    amount: 40.99,
+                    type: 'paid'
+                }, {
+                    date: 'Feb 20',
+                    amount: 40.99,
+                    type: 'paid'
+                }, {
+                    date: 'Feb 20',
+                    amount: 40.99,
+                    type: 'paid'
+                }, {
+                    date: 'Feb 21',
+                    amount: 40.99,
+                    type: 'paid'
+                }, {
+                    date: 'Feb 16',
+                    amount: 40.99,
+                    type: 'paid'
+                }]
+            }, {
+                id: 2,
+                first_name: 'Sravanthi',
+                last_name:'L',
+                week_voted: true,
+                week_ordered: false,
+                owes: 100.00,
+                payment_history: [{
+                    date: 'Feb 20',
+                    amount: 40.99,
+                    type: 'paid'
+                }, {
+                    date: 'Feb 20',
+                    amount: 40.99,
+                    type: 'paid'
+                }, {
+                    date: 'Feb 20',
+                    amount: 40.99,
+                    type: 'paid'
+                }, {
+                    date: 'Feb 21',
+                    amount: 40.99,
+                    type: 'paid'
+                }, {
+                    date: 'Feb 16',
+                    amount: 40.99,
+                    type: 'paid'
+                }]
+            },
+            {
+                id: 3,
+                first_name: 'Yashwanth',
+                last_name:'L',
+                week_voted: false,
+                week_ordered: false,
+                owes: 10.00,
+                payment_history: [{
+                    date: 'Feb 20',
+                    amount: 40.99,
+                    type: 'paid'
+                }, {
+                    date: 'Feb 20',
+                    amount: 40.99,
+                    type: 'paid'
+                }]
+            }
+        ]
+        this.subheadTitle = `${this.usersList.length} users`;
+        
         this.footerText = "users";
 
     }
 
-    
+
 }
 
 export default UsersController;

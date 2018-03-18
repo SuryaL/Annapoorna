@@ -4,7 +4,9 @@ import './user_item.scss';
 
 let userItemComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    item:'='
+  },
   template,
   controller,
   controllerAs: 'self'
