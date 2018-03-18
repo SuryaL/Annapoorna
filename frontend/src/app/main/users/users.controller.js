@@ -1,9 +1,10 @@
 class UsersController {
-    constructor($state, $auth, UserService) {
+    constructor($state, $auth, $popup, UserService) {
         'ngInject';
         Object.assign(this, {
             $state,
             $auth,
+            $popup,
             UserService
         });
         this.user = {};
@@ -101,7 +102,7 @@ class UsersController {
             this.UserService.create(obj)
                 .then(resp => {
                     console.log(resp);
-                    this.newEmail = '';
+                    this.newEmail = null;
                 })
                 .catch(err => console.log(err));
         }
