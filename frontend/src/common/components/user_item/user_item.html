@@ -16,6 +16,6 @@
     </div>
     <div class="view-right-item user-item-owe-wrap">
         <div class="user-item-owes dynamic-text-xs">owes {{self.item.owes | currency}}</div>
-        <input class="user-item-pay dynamic-text-xs" custom-format="currency" ng-model="self.pay_amount"/>
+        <input ng-class="{'deducting':self.pay_amount<0}" class="user-item-pay dynamic-text-xs" currency-format ng-model="self.pay_amount"/>
     </div>  
 </div>

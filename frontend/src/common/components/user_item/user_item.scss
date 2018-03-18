@@ -68,6 +68,10 @@ user-item {
                 text-align: center;
                 color: $chase-green;
                 cursor: pointer !important;
+                &.deducting{
+                    color: $chase-red !important;
+                    border-color: $chase-red !important;
+                }
                 &:hover {
                     border-color: $chase-blue;
                 }
