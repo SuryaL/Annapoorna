@@ -1,6 +1,7 @@
 <div class="vote-view-header sub-main-view-header">
     <simple-header head-title="self.headTitle" subhead-title="self.subheadTitle"></simple-header>
    <div class="align-head-right">
+       <time-remaining deadline="self.vote_deadline"></time-remaining>
         <header-btn class="" head-text="{{self.btnText}}" callback="self.voteClicked" ></header-btn>
    </div>
 </div>

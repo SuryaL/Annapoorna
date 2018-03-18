@@ -4,7 +4,6 @@ class voteCtrl {
         Object.assign(this, { $state, $auth, MenuService });
         this.user = {};
         this.headTitle = 'Vote for this week\'s dishes';
-        this.subheadTitle = '8.8.88';
         this.voteItems = [{ "itemName": "Runolfsson, Bergnaum and Jacobs asd kalsjldk jaslkjd lkasjd lkjasldk jaslkd jaskld jas", "isSelected": false },
             { "itemName": "Barton-Goldner", "isSelected": false },
             { "itemName": "Luettgen-Strosin", "isSelected": false },
@@ -21,8 +20,13 @@ class voteCtrl {
             { "itemName": "Gutkowski-Bahringer", "isSelected": false },
             { "itemName": "Baumbach Inc", "isSelected": false }]
         this.btnText = "Vote";
-    }
 
+
+        this.vote_deadline = '03-19-2018';
+    }
+    get subheadTitle(){
+        return 'Deadline : ' + this.vote_deadline.replace(/-/g,'.')
+    }
     voteClicked = () => {
         console.log('vote');
         // this.MenuService.find()

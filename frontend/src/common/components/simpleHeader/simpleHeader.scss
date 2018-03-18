@@ -2,13 +2,19 @@
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
 simple-header {
+    @include flexbox;
+        @include align-items(center);
+        @include justify-content(flex-start);
+        @include flex-direction(row);
+        height:100%;
     .simple-header-wrap {
         @include flexbox;
         @include align-items(flex-start);
-        @include justify-content(flex-end);
+        @include justify-content(center);
         @include flex-direction(column);
         padding-top: 1.4em;
         padding-left: 0.5em; 
+        height:100%;
         
         //
         // mobile override
@@ -20,7 +26,8 @@ simple-header {
             border-bottom: none;
             .simple-head {
                 color: white !important;
-            }            
+            }
+                        
         }
         border-bottom: 1px solid $main-grey-light;
         padding-bottom:0.2em;
