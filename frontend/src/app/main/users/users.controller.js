@@ -1,10 +1,10 @@
 class UsersController {
-    constructor($state, $auth, MenuService) {
+    constructor($state, $auth, UserService) {
         'ngInject';
         Object.assign(this, {
             $state,
             $auth,
-            MenuService
+            UserService
         });
         this.user = {};
         this.headTitle = 'Users List';
@@ -88,11 +88,21 @@ class UsersController {
         ]
         this.subheadTitle = `${this.usersList.length} users`;
         
+        this.footerText = "users";
         this.btnText = "Add";
-
     }
-    btnClicked = () =>{
-        console.log('btn clicked');
+
+    btnClicked() {
+        console.log("add user", this.newEmail);
+        let obj = {
+            email: this.newEmail
+        }
+        this.UserService.create(obj)
+            .then(resp => {
+                console.log(resp);
+                this.newEmail = '';
+            })
+            .catch(err => console.log(err));
     }
 
 }

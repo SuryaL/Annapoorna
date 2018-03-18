@@ -7,7 +7,7 @@ import footerBtn from 'common/components/footerBtn/footerBtn';
 import headerBtn from 'common/components/header_btn/header_btn';
 
 import AuthService from 'common/services/auth';
-import menuService from 'common/services/menu';
+import userService from 'common/services/user';
 let usersModule = angular.module('users', [
     uiRouter,
     userItem,
@@ -15,7 +15,7 @@ let usersModule = angular.module('users', [
     footerBtn,
     simpleHeader,
     AuthService,
-    menuService
+    userService
   ])
   .config(($stateProvider) => {
     'ngInject';

@@ -5,6 +5,21 @@ const UserFactory = function($http, $state) {
     const API = ENV.API_URL;
     self.PATH = '/user';
 
+    self.create = function(obj) {
+        return $http({
+                method: 'POST',
+                url: API + self.PATH,
+                data: obj
+            })
+            .then(response => {
+                return response.data;
+            })
+            .catch(err => {
+                console.log("user create err", err.data);
+                return err.data;
+            })
+    }
+
     // self.update = function(obj) {
     //     return $http({
     //             method: 'PUT',
@@ -12,11 +27,11 @@ const UserFactory = function($http, $state) {
     //             data: obj
     //         })
     //         .then((response) => {
-    //             console.log("menu update resp:", response.data);
+    //             console.log("user update resp:", response.data);
     //             return response.data;
     //         })
     //         .catch((err) => {
-    //             console.log("menu update err", err.data);
+    //             console.log("user update err", err.data);
     //             return err.data;
     //         })
     // }
@@ -30,7 +45,7 @@ const UserFactory = function($http, $state) {
                 return resp.data;
             })
             .catch(err => {
-                console.log("menu find err:", err.data);
+                console.log("user find err:", err.data);
                 return err.data;
             })
     }

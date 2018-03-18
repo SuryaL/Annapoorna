@@ -1,4 +1,5 @@
 const {execQuery} =  require('../../helpers/utils/db_utils');
+const uuid = require('uuid');
 
 function createNewUserData(){
     const body = {};
@@ -7,7 +8,8 @@ function createNewUserData(){
     body.deleted = false;
     body.created = new Date().toISOString();
     body.modified = new Date().toISOString();
-    body.modified_by = req.user.id.toString();
+    body.super = false;
+    body.type = ['user'];
     return body
 }
 /**
@@ -73,5 +75,6 @@ async function getUsers(queryParams) {
 
 module.exports = {
     createUser,
-    getUsers
+    getUsers,
+    createNewUserData
 }
