@@ -5,6 +5,7 @@ import orderItem from 'common/components/order_item/order_item';
 import simpleHeader from 'common/components/simpleHeader/simpleHeader';
 import footerBtn from 'common/components/footerBtn/footerBtn';
 import headerBtn from 'common/components/header_btn/header_btn';
+import timeRemaining from 'common/components/time_remaining/time_remaining';
 
 import AuthService from 'common/services/auth';
 import VoteService from 'common/services/vote';
@@ -14,6 +15,7 @@ let orderModule = angular.module('order', [
     orderItem,
     headerBtn,
     footerBtn,
+    timeRemaining,
     simpleHeader,
     AuthService,
     VoteService,

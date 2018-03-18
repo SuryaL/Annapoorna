@@ -4,7 +4,6 @@ class OrderController {
         Object.assign(this, { $state, $auth, VoteService });
         this.user = {};
         this.headTitle = 'Order this week\'s dishes';
-        this.subheadTitle = '8.8.88';
 
         this.orderItems = [{ "itemName": "Runolfsson, Bergnaum and Jacobs asd kalsjldk jaslkjd lkasjd lkjasldk jaslkd jaskld jas", "isSelected": false },
             { "itemName": "Barton-Goldner", "isSelected": false },
@@ -23,7 +22,11 @@ class OrderController {
             { "itemName": "Baumbach Inc", "isSelected": false }]
         this.btnText = "order";
         this.getVotedItems();
+        this.order_deadline = '03-20-2018';
+    }
 
+    get subheadTitle(){
+        return 'Deadline : ' + this.order_deadline.replace(/-/g,'.')
     }
 
     orderClicked = () => {
