@@ -13,6 +13,10 @@ vote {
     // @include flex(1, 0, 0);
     // background-color: white;
     // overflow-y: scroll;
+    .type-title{
+     padding: 1em;
+     text-transform: capitalize;
+    }
     .vote-items-wrapper {
       vote-item {
         .vote-item-container{

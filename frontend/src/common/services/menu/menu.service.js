@@ -28,6 +28,7 @@ const MenuFactory = function($http, $state) {
             })
             .then(resp => {
                 return resp.data;
+                
             })
             .catch(err => {
                 console.log("menu find err:", err.data);
