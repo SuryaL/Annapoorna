@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS menu (
   price           text,
   image           text,
   deleted         boolean,
+  type            text,
   PRIMARY KEY (id, created)
 ) WITH CLUSTERING ORDER BY (created DESC);
 CREATE INDEX ON menu (vegetarian);

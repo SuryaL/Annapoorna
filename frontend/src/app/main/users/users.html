@@ -1,8 +1,15 @@
-<div class="users-view-header sub-main-view-header" >
-        <simple-header head-title="self.headTitle" subhead-title="self.subheadTitle"></simple-header>
-    </div>
-    <div class="users-container sub-main-view-container">
-        <div class="users-items-wrapper" ng-repeat="user in self.usersList">
-            <user-item item="user"></user-item>
+<div class="users-view-header sub-main-view-header">
+    <simple-header head-title="self.headTitle" subhead-title="self.subheadTitle"></simple-header>
+    <div class="simple-btns">
+        <input type="email" name="email" ng-model="self.newEmail" placeholder="Email">
+        <div class="btn-container">
+        	<div class="simple-btn simple-add" ng-click="self.addUser()">Add</div>
+        	<div class="simple-btn simple-paid">Paid</div>
         </div>
     </div>
+</div>
+<div class="users-container sub-main-view-container">
+    <div class="users-items-wrapper" ng-repeat="user in self.usersList">
+        <user-item item="user"></user-item>
+    </div>
+</div>

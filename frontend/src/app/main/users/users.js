@@ -5,13 +5,13 @@ import userItem from 'common/components/user_item/user_item';
 import simpleHeader from 'common/components/simpleHeader/simpleHeader';
 
 import AuthService from 'common/services/auth';
-import menuService from 'common/services/menu';
+import userService from 'common/services/user';
 let usersModule = angular.module('users', [
     uiRouter,
     userItem,
     simpleHeader,
     AuthService,
-    menuService
+    userService
   ])
   .config(($stateProvider) => {
     'ngInject';

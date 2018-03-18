@@ -3,5 +3,34 @@
 @import '~assets/stylesheets/variables';
 
 users {
-  @extend .sub-main-view;
+    @extend .sub-main-view;
+    .simple-btns {
+        float: right;
+        padding-bottom: 5px;
+        @include flexbox;
+        @include justify-content(space-between);
+        @include flex-direction(row);
+        // width: 50%;
+        @media(max-width: 600px) {
+            float: left;
+            width: 100%;
+        }
+        input {
+            font-size: 1em;
+            text-align: left;
+            width: 15em;
+        }
+        .btn-container {
+            float: right;
+            @include flexbox;
+        }
+        .simple-btn {
+            display: flex;
+            padding: 0.5em 1em; // font-size: 1.5em;
+            color: white;
+            @extend .main-medium-font;
+            border-radius: 5em;
+            background-color: $chase-green;
+        }
+    }
 }
