@@ -1,9 +1,12 @@
 <div class="vote-view-header sub-main-view-header">
     <simple-header head-title="self.headTitle" subhead-title="self.subheadTitle"></simple-header>
+   <div class="align-head-right">
+        <header-btn class="" head-text="{{self.btnText}}" callback="self.voteClicked" ></header-btn>
+   </div>
 </div>
 <div class="votes-container sub-main-view-container">
     <div class="vote-items-wrapper" ng-repeat="vItem in self.voteItems">
         <vote-item  item="vItem"></vote-item>
     </div>
 </div>
-<footer-btn foot-text={{self.footerText}} callback="self.callback"></footer-btn>
+<footer-btn foot-text={{self.btnText}} callback="self.voteClicked"></footer-btn>

@@ -7,7 +7,7 @@ class UserItemController {
         this.pay_amount = '0.00';
     }
     status(item){
-        console.log(item);
+        // console.log(item);
         if(!item || (!item.week_voted && !item.week_ordered)){
             return false;
         }

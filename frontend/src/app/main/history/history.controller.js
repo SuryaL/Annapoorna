@@ -10,7 +10,7 @@ class HistoryController {
         this.headTitle = 'History';
         this.subheadTitle = '-';
 
-        this.footerText = "history";
+        this.btnText = "history";
         this.historyItems = [{
                 weekTitle: "Feb 23",
                 ordersList: [{

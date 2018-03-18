@@ -1,0 +1,33 @@
+@import '~assets/stylesheets/common';
+@import '~assets/stylesheets/flex';
+@import '~assets/stylesheets/variables';
+header-btn {
+    @media(max-width: 601px) {
+        display: none;
+    }    
+    @extend .main-heavy-font;
+
+    @media(min-width: 600px) {
+        @include flexbox();
+        @include justify-content(center);
+        @include align-items(center);
+        .head-btn-wrap {
+        
+        padding:0.4em 1.1em;
+        font-size: 1.5em;
+        min-width:6em;
+        background: $chase-green;
+        color: white;
+        @include border-radius(1.1em);
+        @include flexbox();
+        @include justify-content(center);
+        @include align-items(center);
+        .head-btn-text {
+            cursor: pointer;
+            text-align: center;
+        }
+        cursor: pointer;
+        @include add-hover(lighten($chase-green,5));
+    }
+}
+}

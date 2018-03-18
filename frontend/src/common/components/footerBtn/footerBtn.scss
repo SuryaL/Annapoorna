@@ -3,17 +3,28 @@
 @import '~assets/stylesheets/variables';
 footer-btn {
     @extend .main-heavy-font;
+    @media(min-width: 600px) {
+        display: none;
+    }
     @media(max-width: 600px) {
-        padding:1em 0.1em;
-        width: 100%;
-        font-size: 1.3em;
-        background: $main-dark-color;
-        color: white;
         @include flexbox();
         @include justify-content(center);
         @include align-items(center);
-        .footer-text {
-            text-align: center;
+        .foot-btn-wrap {
+            padding: 1em 0.1em;
+            width: 100%;
+            font-size: 1.3em;
+            background: $main-dark-color;
+            color: white;
+            @include flexbox();
+            @include justify-content(center);
+            @include align-items(center);
+            .footer-text {
+                text-align: center;
+                cursor: pointer;
+            }
+            cursor: pointer;
+            @include add-hover(darken($main-dark-color, 15));
         }
     }
 }

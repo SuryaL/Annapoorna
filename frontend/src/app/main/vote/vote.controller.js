@@ -20,10 +20,10 @@ class voteCtrl {
             { "itemName": "Wolff-Reichel", "isSelected": false },
             { "itemName": "Gutkowski-Bahringer", "isSelected": false },
             { "itemName": "Baumbach Inc", "isSelected": false }]
-        this.footerText = "Vote";
+        this.btnText = "Vote";
     }
 
-    vote() {
+    voteClicked = () => {
         console.log('vote');
         // this.MenuService.find()
         //     .then(resp => {

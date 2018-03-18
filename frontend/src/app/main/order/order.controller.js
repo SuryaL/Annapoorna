@@ -20,12 +20,12 @@ class OrderController {
             { "itemName": "Wolff-Reichel", "isSelected": false },
             { "itemName": "Gutkowski-Bahringer", "isSelected": false },
             { "itemName": "Baumbach Inc", "isSelected": false }]
-        this.footerText = "order";
+        this.btnText = "order";
 
     }
 
-    order() {
-        console.log(this.orderItems);
+    orderClicked = () => {
+        console.log('order');
         // this.MenuService.find()
         //     .then(resp => {
         //         console.log(resp);

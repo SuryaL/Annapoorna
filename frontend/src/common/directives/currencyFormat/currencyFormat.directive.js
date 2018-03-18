@@ -12,9 +12,7 @@ let currencyFormatDirective = function($filter, $parse) {
             });
 
             elem.bind('blur', function(event) {
-                console.log(elem.val());
                 if(elem.val() == null || elem.val() == undefined || elem.val() == '') {
-                    console.log('h');
                 var modelGetter = $parse(attrs['ngModel']);
                 var modelSetter = modelGetter.assign;
                      modelSetter(scope,"0");
@@ -22,7 +20,6 @@ let currencyFormatDirective = function($filter, $parse) {
                      scope.$apply();
                      return;
                 }
-                console.log('object');
                 var plainNumber = elem.val().replace(/[^\d|\-+|\.+]/g, '') || 0;
                 var modelGetter = $parse(attrs['ngModel']);
                 var modelSetter = modelGetter.assign;

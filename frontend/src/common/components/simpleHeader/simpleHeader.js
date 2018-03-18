@@ -4,6 +4,7 @@ import component from './simpleHeader.component';
 
 const module = angular.module('simpleHeader', [
         uirouter,
+        
     ])
 
     .config(function($stateProvider) {
