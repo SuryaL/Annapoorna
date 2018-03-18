@@ -8,12 +8,12 @@ let historyItemModule = angular.module('historyItem', [
 .config(($stateProvider) => {
   'ngInject';
 
-  $stateProvider
-  .state ('historyItem', {
-    url : 'history_item',
-    template : '<history-item></history-item>',
-    authenticated : 'none'
-  });
+  // $stateProvider
+  // .state ('historyItem', {
+  //   url : 'history_item',
+  //   template : '<history-item></history-item>',
+  //   authenticated : 'none'
+  // });
 })
 .component('historyItem', historyItemComponent);
 

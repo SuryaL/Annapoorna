@@ -1,0 +1,43 @@
+@import '~assets/stylesheets/common';
+@import '~assets/stylesheets/flex';
+@import '~assets/stylesheets/variables';
+quantity-picker {
+    @include flexbox;
+    height:1.5em;
+    @include align-items(center);
+    @include justify-content(center);
+    .order-minus,
+    .order-plus {
+        cursor: pointer !important;
+        @include flex(1,0,0);
+        height:100%;
+        border: 2px solid $main-grey;
+        @include border-radius(0.2em);
+        margin:0.5em;
+        @include flexbox;
+        @include align-items(center);
+        @include justify-content(center);
+        position: relative;
+        img{
+        cursor: pointer !important;
+            height:100%;
+        }
+    }
+    .order-quantity {
+        @include flex(1,0,0);
+        @include flexbox;
+        @include align-items(center);
+        @include justify-content(center);
+    }
+    .order-plus {
+        &:hover{
+            border-color:lighten($chase-green, 5);
+        }
+    }
+    .order-minus {
+        &:hover{
+            border-color:$chase-red;
+        }
+    }
+    
+}

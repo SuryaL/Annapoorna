@@ -8,12 +8,12 @@ let userItemModule = angular.module('userItem', [
 .config(($stateProvider) => {
   'ngInject';
 
-  $stateProvider
-  .state ('userItem', {
-    url : 'user_item',
-    template : '<user-item></user-item>',
-    authenticated : 'none'
-  });
+  // $stateProvider
+  // .state ('userItem', {
+  //   url : 'user_item',
+  //   template : '<user-item></user-item>',
+  //   authenticated : 'none'
+  // });
 })
 .component('userItem', userItemComponent);
 
