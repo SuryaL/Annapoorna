@@ -35,7 +35,8 @@ function getMenu() {
             max: 10
         }).toString(),
         image: faker.random.image(),
-        deleted: faker.random.boolean()
+        deleted: faker.random.boolean(),
+        type :faker.random.arrayElement(["special","regular"])
     }
     console.log(menu);
     return menu;

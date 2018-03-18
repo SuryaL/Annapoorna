@@ -5,13 +5,14 @@ import orderItem from 'common/components/order_item/order_item';
 import simpleHeader from 'common/components/simpleHeader/simpleHeader';
 
 import AuthService from 'common/services/auth';
-import menuService from 'common/services/menu';
+import VoteService from 'common/services/vote';
+
 let orderModule = angular.module('order', [
     uiRouter,
     orderItem,
     simpleHeader,
     AuthService,
-    menuService,
+    VoteService,
   ])
   .config(($stateProvider) => {
     'ngInject';
