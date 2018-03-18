@@ -14,7 +14,7 @@ class UsersController {
         this.usersList = [{
                 id: 1,
                 first_name: 'Surya',
-                last_name:'L',
+                last_name: 'L',
                 week_voted: true,
                 week_ordered: true,
                 owes: 100.00,
@@ -42,7 +42,7 @@ class UsersController {
             }, {
                 id: 2,
                 first_name: 'Sravanthi',
-                last_name:'L',
+                last_name: 'L',
                 week_voted: true,
                 week_ordered: false,
                 owes: 100.00,
@@ -71,7 +71,7 @@ class UsersController {
             {
                 id: 3,
                 first_name: 'Yashwanth',
-                last_name:'L',
+                last_name: 'L',
                 week_voted: false,
                 week_ordered: false,
                 owes: 10.00,
@@ -87,22 +87,24 @@ class UsersController {
             }
         ]
         this.subheadTitle = `${this.usersList.length} users`;
-        
+
         this.footerText = "users";
         this.btnText = "Add";
     }
 
     btnClicked() {
         console.log("add user", this.newEmail);
-        let obj = {
-            email: this.newEmail
+        if (!!this.newEmail) {
+            let obj = {
+                email: this.newEmail
+            }
+            this.UserService.create(obj)
+                .then(resp => {
+                    console.log(resp);
+                    this.newEmail = '';
+                })
+                .catch(err => console.log(err));
         }
-        this.UserService.create(obj)
-            .then(resp => {
-                console.log(resp);
-                this.newEmail = '';
-            })
-            .catch(err => console.log(err));
     }
 
 }
