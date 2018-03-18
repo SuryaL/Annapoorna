@@ -7,6 +7,60 @@ class HistoryController {
         this.subheadTitle = '-';
        
         this.footerText = "history";
+        this.historyItems = [{weekTitle : "feb 23", ordersList :[{
+            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+            "quantity" :2,
+            price: 7.99
+        },
+        {
+            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+            "quantity" :2,
+            price: 7.99
+        },{
+            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+            "quantity" :2,
+            price: 7.99
+        },{
+            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+            "quantity" :2,
+            price: 7.99
+        }],totalPrice :23 },{weekTitle : "feb 23", ordersList :[{
+            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+            "quantity" :2,
+            price: 7.99
+        },
+        {
+            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+            "quantity" :2,
+            price: 7.99
+        },{
+            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+            "quantity" :2,
+            price: 7.99
+        },{
+            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+            "quantity" :2,
+            price: 7.99
+        }],totalPrice :23 },
+        {weekTitle : "feb 23", ordersList :[{
+            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+            "quantity" :2,
+            price: 7.99
+        },
+        {
+            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+            "quantity" :2,
+            price: 7.99
+        },{
+            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+            "quantity" :2,
+            price: 7.99
+        },{
+            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+            "quantity" :2,
+            price: 7.99
+        }],totalPrice :23 }
+            ]
 
     }
 

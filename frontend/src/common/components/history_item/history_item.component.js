@@ -4,7 +4,9 @@ import './history_item.scss';
 
 let historyItemComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    "item" : "="
+  },
   template,
   controller,
   controllerAs: 'self'

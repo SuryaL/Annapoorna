@@ -1,7 +1,45 @@
 @import '~assets/stylesheets/common';
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
-
 history-item {
     color: red;
+    .history-item-container {
+        .view-middle-item{
+            .view-middle-item-content {
+                max-width: 50em;
+                .history-week-name {
+                    font-size: 1.1em !important;
+                    @media(min-width: 600px) {
+                        font-size: 1.4em !important;
+                    }
+                    padding:0.1em;
+                }
+                .order-history-items {
+                    width: 100%;
+                    .order-quantity,
+                    .order-price {
+                        font-size: 1.1em !important;
+                        @media(min-width: 600px) {
+                            font-size: 1em !important;
+                        }
+                        padding:0.1em;
+                    }
+                    .order-item {
+                        font-size: 1em !important;
+                        @media(min-width: 600px) {
+                            font-size: 0.9em !important;
+                        }
+                    }
+                }
+                
+            }
+        }
+        
+        .item-price{
+            font-size: 1.0em !important;
+            @media(min-width: 600px) {
+                font-size: 1.2em !important;
+            }
+        }
+    }
 }
