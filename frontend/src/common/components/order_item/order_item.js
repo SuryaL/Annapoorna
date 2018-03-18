@@ -1,21 +1,22 @@
 import angular from 'angular';
-import uirouter from 'angular-ui-router';
-import component from './order_item.component';
-import OauthService from 'common/services/oauth';
+import uiRouter from 'angular-ui-router';
+import orderItemComponent from './order_item.component';
+import AuthService from 'common/services/auth';
 
-const module = angular.module('orderItem', [
-        uirouter,
-        OauthService
-    ])
+let orderItemModule = angular.module('orderItem', [
+  uiRouter,
+  AuthService
+])
+.config(($stateProvider) => {
+  'ngInject';
 
-    .config(function($stateProvider) {
-        'ngInject';
+  $stateProvider
+  .state ('orderItem', {
+    url : 'order_item',
+    template : '<order-item></order-item>',
+    authenticated : 'none'
+  });
+})
+.component('orderItem', orderItemComponent);
 
-        // $stateProvider.state('app.main.vote', {
-        //     url: 'vote',
-        //     template: '<vote></vote>',
-        //     authenticated: 'none'
-        // })
-    })
-    .component('orderItem', component)
-export default module.name
+export default orderItemModule.name;

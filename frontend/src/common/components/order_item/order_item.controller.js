@@ -1,14 +1,8 @@
-class voteCtrl {
-    constructor($state, oauthService) {
+class OrderItemController {
+    constructor() {
         'ngInject';
-        this.user = {};
-    }
-
-    submit() {
-    	console.log(this.user);
-    	
+        this.name = 'OrderItem';
     }
 }
 
-export default voteCtrl;
-
+export default OrderItemController;
