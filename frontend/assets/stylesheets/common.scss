@@ -59,6 +59,7 @@
     @include flex-direction(column);
     &-header {
         @include flex(0, 0, 10vw);
+        max-height:120px;
         position: relative;
         .align-head-right{
             position: absolute;
@@ -67,7 +68,13 @@
             @include flexbox;
             height:100%;
             @include align-items(center);
-            padding-top: 3em;
+
+            @media(min-width:600px){
+                padding-top: 1.2em;
+            }
+            @media (max-width:600px){
+                padding-top: 1em;
+            }
             // @include justify-content(center);
         }
     }
