@@ -8,13 +8,17 @@ class voteCtrl {
         });
         this.user = {};
         this.headTitle = 'Vote for this week\'s dishes';
-        this.subheadTitle = '8.8.88';
-        this.footerText = "Vote";
+       
         this.getMenuItems();
         this.menuTypes = ['special', 'regular'];
         this.btnText = "Vote";
-    }
 
+
+        this.vote_deadline = '03-19-2018';
+    }
+    get subheadTitle(){
+        return 'Deadline : ' + this.vote_deadline.replace(/-/g,'.')
+    }
     voteClicked = () => {
         console.log('vote');
         // this.MenuService.find()
