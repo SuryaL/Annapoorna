@@ -1,70 +1,89 @@
 class HistoryController {
     constructor($state, $auth, MenuService) {
         'ngInject';
-        Object.assign(this, { $state, $auth, MenuService });
+        Object.assign(this, {
+            $state,
+            $auth,
+            MenuService
+        });
         this.user = {};
         this.headTitle = 'History';
         this.subheadTitle = '-';
-       
+
         this.footerText = "history";
-        this.historyItems = [{weekTitle : "feb 23", ordersList :[{
-            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
-            "quantity" :2,
-            price: 7.99
-        },
-        {
-            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
-            "quantity" :2,
-            price: 7.99
-        },{
-            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
-            "quantity" :2,
-            price: 7.99
-        },{
-            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
-            "quantity" :2,
-            price: 7.99
-        }],totalPrice :23 },{weekTitle : "feb 23", ordersList :[{
-            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
-            "quantity" :2,
-            price: 7.99
-        },
-        {
-            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
-            "quantity" :2,
-            price: 7.99
-        },{
-            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
-            "quantity" :2,
-            price: 7.99
-        },{
-            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
-            "quantity" :2,
-            price: 7.99
-        }],totalPrice :23 },
-        {weekTitle : "feb 23", ordersList :[{
-            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
-            "quantity" :2,
-            price: 7.99
-        },
-        {
-            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
-            "quantity" :2,
-            price: 7.99
-        },{
-            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
-            "quantity" :2,
-            price: 7.99
-        },{
-            "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
-            "quantity" :2,
-            price: 7.99
-        }],totalPrice :23 }
-            ]
+        this.historyItems = [{
+                weekTitle: "Feb 23",
+                ordersList: [{
+                        "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+                        "quantity": 2,
+                        price: 7.99
+                    },
+                    {
+                        "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+                        "quantity": 2,
+                        price: 7.99
+                    }, {
+                        "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+                        "quantity": 2,
+                        price: 7.99
+                    }, {
+                        "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+                        "quantity": 2,
+                        price: 7.99
+                    }
+                ],
+                totalPrice: 23
+            }, {
+                weekTitle: "Feb 23",
+                ordersList: [{
+                        "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+                        "quantity": 2,
+                        price: 7.99
+                    },
+                    {
+                        "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+                        "quantity": 2,
+                        price: 7.99
+                    }, {
+                        "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+                        "quantity": 2,
+                        price: 7.99
+                    }, {
+                        "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+                        "quantity": 2,
+                        price: 7.99
+                    }
+                ],
+                totalPrice: 23
+            },
+            {
+                weekTitle: "Feb 23",
+                ordersList: [{
+                        "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+                        "quantity": 2,
+                        price: 7.99
+                    },
+                    {
+                        "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+                        "quantity": 2,
+                        price: 7.99
+                    }, {
+                        "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+                        "quantity": 2,
+                        price: 7.99
+                    }, {
+                        "item": "asd erf ftgyh ujil thwyidjak asd erf ftgyh ujil thwyidjak",
+                        "quantity": 2,
+                        price: 7.99
+                    }
+                ],
+                totalPrice: 23
+            }
+        ]
 
     }
 
-    
+
 }
 
 export default HistoryController;
