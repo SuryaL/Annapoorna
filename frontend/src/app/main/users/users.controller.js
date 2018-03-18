@@ -88,10 +88,12 @@ class UsersController {
         ]
         this.subheadTitle = `${this.usersList.length} users`;
         
-        this.footerText = "users";
+        this.btnText = "Add";
 
     }
-
+    btnClicked = () =>{
+        console.log('btn clicked');
+    }
 
 }
 

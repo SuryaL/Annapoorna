@@ -4,6 +4,9 @@
 vote {
   @extend .sub-main-view;
   .vote-view-header {
+    .align-head-right{
+      // @include align-self(flex-end);
+    }
     // @include flex(0, 0, 10vw);
   }
   .votes-container {
@@ -17,6 +20,7 @@ vote {
     .vote-items-wrapper {
       vote-item {
         .vote-item-container{
+
         }
       }
     }

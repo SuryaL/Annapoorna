@@ -8,7 +8,7 @@ let footerBtnComponent = {
   restrict: 'E',
   bindings: {
     "footText": "@",
-    "action": "&"
+    "callback": "="
   },
   template,
   controller,

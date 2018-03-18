@@ -5,29 +5,30 @@ class OrderController {
         this.user = {};
         this.headTitle = 'Order this week\'s dishes';
         this.subheadTitle = '8.8.88';
-        this.orderItems = [{ "itemName": "Runolfsson, Bergnaum and Jacobs asd kalsjldk jaslkjd lkasjd lkjasldk jaslkd jaskld jas"},
-            { "itemName": "Barton-Goldner"},
-            { "itemName": "Luettgen-Strosin"},
-            { "itemName": "Koepp, Crooks and Stiedemann"},
-            { "itemName": "O'Keefe-Kovacek"},
-            { "itemName": "Bergnaum Inc"},
-            { "itemName": "Rohan Group"},
-            { "itemName": "Balistreri Inc"},
-            { "itemName": "Denesik and Sons"},
-            { "itemName": "Swaniawski and Sons"},
-            { "itemName": "Altenwerth, Moore and Kerluke"},
-            { "itemName": "Rolfson, Jones and Kihn"},
-            { "itemName": "Wolff-Reichel"},
-            { "itemName": "Gutkowski-Bahringer"},
-            { "itemName": "Baumbach Inc"}]
-        this.footerText = "order";
+
+        this.orderItems = [{ "itemName": "Runolfsson, Bergnaum and Jacobs asd kalsjldk jaslkjd lkasjd lkjasldk jaslkd jaskld jas", "isSelected": false },
+            { "itemName": "Barton-Goldner", "isSelected": false },
+            { "itemName": "Luettgen-Strosin", "isSelected": false },
+            { "itemName": "Koepp, Crooks and Stiedemann", "isSelected": false },
+            { "itemName": "O'Keefe-Kovacek", "isSelected": false },
+            { "itemName": "Bergnaum Inc", "isSelected": false },
+            { "itemName": "Rohan Group", "isSelected": false },
+            { "itemName": "Balistreri Inc", "isSelected": false },
+            { "itemName": "Denesik and Sons", "isSelected": false },
+            { "itemName": "Swaniawski and Sons", "isSelected": false },
+            { "itemName": "Altenwerth, Moore and Kerluke", "isSelected": false },
+            { "itemName": "Rolfson, Jones and Kihn", "isSelected": false },
+            { "itemName": "Wolff-Reichel", "isSelected": false },
+            { "itemName": "Gutkowski-Bahringer", "isSelected": false },
+            { "itemName": "Baumbach Inc", "isSelected": false }]
+        this.btnText = "order";
         this.getVotedItems();
 
     }
 
-    order() {
-        console.log(this.orderItems);
-        // this.VoteService.find()
+    orderClicked = () => {
+        console.log('order');
+        // this.MenuService.find()
         //     .then(resp => {
         //         console.log(resp);
         //     })

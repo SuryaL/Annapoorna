@@ -1,5 +1,8 @@
 <div class="vote-view-header sub-main-view-header">
     <simple-header head-title="self.headTitle" subhead-title="self.subheadTitle"></simple-header>
+   <div class="align-head-right">
+        <header-btn class="" head-text="{{self.btnText}}" callback="self.voteClicked" ></header-btn>
+   </div>
 </div>
 <div class="votes-container sub-main-view-container">
     <div ng-repeat="type in self.menuTypes">
@@ -13,6 +16,4 @@
         <vote-item  item="vItem" ng-show="vItem.type == 'special'"></vote-item>
     </div> -->
 </div>
-<!-- <div class="vote-view-footer">
-    <footer-btn foot-text={{self.footerText}} action="self.callback"></footer-btn>
-</div> -->
+<footer-btn foot-text={{self.btnText}} callback="self.voteClicked"></footer-btn>
