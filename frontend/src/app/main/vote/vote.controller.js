@@ -21,15 +21,14 @@ class voteCtrl {
             { "itemName": "Gutkowski-Bahringer", "isSelected": false },
             { "itemName": "Baumbach Inc", "isSelected": false }]
         this.footerText = "Vote";
-
     }
 
     vote() {
-        console.log(this.voteItems);
-        this.MenuService.find()
-            .then(resp => {
-                console.log(resp);
-            })
+        console.log('vote');
+        // this.MenuService.find()
+        //     .then(resp => {
+        //         console.log(resp);
+        //     })
     }
 
     submit() {
