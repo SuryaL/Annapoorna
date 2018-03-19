@@ -4,6 +4,7 @@ let CleanWebpackPlugin = require('clean-webpack-plugin');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let webpack = require('webpack');
 let yargs = require('yargs');
+let env = require('./env');
 // let importer = require("node-sass-importer");
 
 let argv = yargs
@@ -19,12 +20,13 @@ let plugins = [
     }),
     new webpack.DefinePlugin({
         'ENV': JSON.stringify({
-            'url': 'http://localhost:4001',
-            API_URL: 'http://localhost:4001/api'
+            'url': env.base_url + ':' + env.port,
+            API_URL: env.base_url + ':' + env.port + (env.base_api_path || '')
         })
     })
 ]
-if (argv.disableclean) {
+
+if(argv.disableclean) {
     plugins.unshift(new CleanWebpackPlugin(['dist']))
 }
 
@@ -60,11 +62,10 @@ module.exports = {
                         options: {
                             includePaths: [path.resolve(__dirname, 'frontend/src/common/stylesheets')],
                             sourceMap: true,
-                    }
+                        }
                     }
                 ]
-            },
-            {
+            }, {
                 test: /\.css$/,
                 use: [{
                         loader: 'style-loader'
@@ -90,8 +91,7 @@ module.exports = {
                         publicPath: ''
                     }
                 }]
-            },
-            {
+            }, {
                 test: /\.html$/,
                 use: [{
                     loader: 'html-loader',

@@ -1,10 +1,11 @@
 const cassandra = require('cassandra-driver');
+const env = require('../env');
 
 module.exports = {
-    port: 4001,
-    base_api_path:'/api',
+    port: env.port,
+    base_api_path: env.base_api_path,
     cassandra: { 
-        contactPoints: ['192.168.0.20'], // private ips //192.168.0.20
+        contactPoints: [env.cassandra_url], // private ips //192.168.0.20
         keyspace: 'annapoorna',
         authProvider: new cassandra.auth.PlainTextAuthProvider('annapoorna', 'annapoorna!')
     },

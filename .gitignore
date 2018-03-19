@@ -1,6 +1,7 @@
 server/node_modules
 server/node_modules/*
 dist
+env.js
 
 *.DS_Store
 # Logs
