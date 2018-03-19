@@ -4,7 +4,7 @@
 history-item {
     color: red;
     .history-item-container {
-        .view-middle-item{
+        .view-middle-item {
             .view-middle-item-content {
                 max-width: 50em;
                 .history-week-name {
@@ -15,27 +15,43 @@ history-item {
                     padding:0.1em;
                 }
                 .order-history-items {
-                    width: 100%;
-                    .order-quantity,
-                    .order-price {
-                        font-size: 1.1em !important;
-                        @media(min-width: 600px) {
-                            font-size: 1em !important;
-                        }
-                        padding:0.1em;
+                    margin:0.3em;
+                    @media(min-width: 600px) {
+                        margin:0.7em 1em;
                     }
-                    .order-item {
-                        font-size: 1em !important;
+                    .order-history-item {
+                        width: 100%;
+                        margin:0.3em;
                         @media(min-width: 600px) {
+                        margin:0.1em 0.2em;
+                    }
+                        .order-quantity,
+                        .order-price,
+                        .order-item {
                             font-size: 0.9em !important;
+                            line-height: 1.1em !important;
+                            @media(min-width: 600px) {
+                                font-size: 0.8em !important;
+                            line-height: 0.7em !important;
+                            padding:0em;
+                            
+                        }
+                            padding:0.1em;
+                        }
+                        .order-quantity,
+                        .order-price{
+                            @extend .main-medium-font;
+                            
+                        }
+                        .order-item {
+                            @extend .main-lightitalic-font;
+                          
                         }
                     }
                 }
-                
             }
         }
-        
-        .item-price{
+        .item-price {
             font-size: 1.0em !important;
             @media(min-width: 600px) {
                 font-size: 1.2em !important;

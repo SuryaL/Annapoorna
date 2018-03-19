@@ -12,7 +12,8 @@ Sever:
 
 Portal:
     ☐ max/min-width needs to change to 600 and 601+. bug at 600px
-    ☐ need to make the pay input only dollar
-    ☐ submit button for mobile and desktop
-    ☐ fix simple header scss and reuse for other views
+    ✔ need to make the pay input only dollar @done (2018-3-18 23:14:49)
+    ✔ submit button for mobile and desktop @done (2018-3-18 23:14:52)
+    ✔ fix simple header scss and reuse for other views @done (2018-3-18 23:14:53)
     ☐ cleanup
+    ☐ get alternative font for lato-medium

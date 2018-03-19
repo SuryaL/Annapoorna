@@ -2,11 +2,13 @@
   <div class="view-middle-item">
     <div class="view-middle-item-content">
       <div class="history-week-name dynamic-text-m"> {{self.item.weekTitle}}</div>
-      <div class="order-history-items dynamic-text-m" ng-repeat="order in self.item.ordersList">
+      <div class="order-history-items">
+      <div class="order-history-item dynamic-text-m" ng-repeat="order in self.item.ordersList">
           <span class="order-quantity">{{order.quantity}}</span>
           <span class="order-item">{{order.item}}</span>
           <span class="order-price">{{order.price | currency}}</span>
       </div>
+    </div>
     </div>
     <div class="view-right-item item-price dynamic-text-xs">{{self.item.totalPrice | currency}}</div>
   </div>
