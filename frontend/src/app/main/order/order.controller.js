@@ -38,20 +38,20 @@ class OrderController {
     }
     
     getVotedItems(){
-        console.log('i am hete ', this.VoteService)
-        this.VoteService.find()
-         .then((result)=>{
-             console.log(result);
-             if(!result || result.length < 0) return;
-             if(result.length > 0){
-                 result.forEach(item => {
-                     return item;
-                 });
-                 this.voteItems = result;
-                 // console.log(this.voteItems)
-             }
-         })
-         .catch(err => console.log(err));
+        console.log('i am here ', this.VoteService)
+        // this.VoteService.find()
+        //  .then((result)=>{
+        //      console.log(result);
+        //      if(!result || result.length <= 0) return;
+        //      if(result.length > 0){
+        //          result.forEach(item => {
+        //              return item;
+        //          });
+        //          this.voteItems = result;
+        //          // console.log(this.voteItems)
+        //      }
+        //  })
+        //  .catch(err => console.log(err));
      }
 }
 

@@ -34,12 +34,12 @@ simple-header {
         .simple-head {
             @include flexbox;
             color: $chase-grey;
-            @extend .main-medium-font;
+            @extend .main-regular-font;
             margin-bottom: 0.25em;
         }
         .simple-subhead {
             @include flexbox;
-            @extend .main-medium-font;
+            @extend .main-regular-font;
             color: $chase-red;
         }
     }

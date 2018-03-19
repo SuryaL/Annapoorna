@@ -11,7 +11,7 @@ menu-bar {
     @include align-items(center);
     color: $chase-grey;
     .menu-item {
-      @extend .main-medium-font;
+      @extend .main-regular-font;
       @include flexbox;
       @include align-items(center);
       font-size: 0.9em;

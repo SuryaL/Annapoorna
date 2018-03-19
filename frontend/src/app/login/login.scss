@@ -18,7 +18,7 @@ login {
       margin-bottom: 7vh;
     }
     .login-btn {
-      @extend .main-medium-font;
+      @extend .main-regular-font;
       @include flexbox;
       @include justify-content(center);
       @include align-items(center);

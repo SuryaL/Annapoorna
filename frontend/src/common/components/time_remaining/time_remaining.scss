@@ -12,7 +12,7 @@ time-remaining {
         @include justify-content(center);
         @include align-items(center);
         .time-remain-text{
-            @extend .main-medium-font;
+            @extend .main-regular-font;
             // font-size:1.2em;
             color: $chase-red;
         }        

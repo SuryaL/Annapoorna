@@ -7,7 +7,7 @@ user-balance {
   @include justify-content(center);
   @include flex-direction(column);
   color: $chase-grey;
-  @extend .main-medium-font;
+  @extend .main-regular-font;
   margin-right:0.5em;
   .user-balance-text{
     font-size:0.8em;
