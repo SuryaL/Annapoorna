@@ -8,6 +8,9 @@ let voteItemComponent = {
   restrict: 'E',
   bindings: {
     item : "=",
+    selectedItem : "=",
+    votesCount : "="
+    
   },
   template,
   controller,

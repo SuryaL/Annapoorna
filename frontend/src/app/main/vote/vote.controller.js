@@ -13,6 +13,8 @@ class voteCtrl {
         this.getMenuItems();
         this.menuTypes = ['special', 'regular'];
         this.btnText = "Vote";
+        this.votesCount = 0;
+        this.selectedItems = new Set();
     }
 
     voteClicked = () => {
@@ -45,6 +47,20 @@ class voteCtrl {
             })
             .catch(err => console.log(err));
     }
+    getSelectedItems = (item) =>{
+
+        // this.voteItems.forEach((item)=>{
+        //     if(item.isSelected == true && item.id == id) this.votesCount++;
+            if(item.isSelected == true) this.selectedItems.add(item.id);
+            else if(this.selectedItems.has(item.id)) this.selectedItems.delete(item.id);
+
+            console.log(this.selectedItems,this.selectedItems.size)
+            let totalVotes = this.selectedItems.size ? this.selectedItems.size : 0 ;
+        return totalVotes ;
+        
+    }
+
+
 
 
 }

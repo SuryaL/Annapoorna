@@ -8,7 +8,7 @@
     <div ng-repeat="type in self.menuTypes">
         <div class="type-title"> {{type}} </div>
         <div class="vote-items-wrapper" ng-repeat="vItem in self.voteItems">
-            <vote-item item="vItem" ng-show="vItem.type == type"></vote-item>
+            <vote-item item="vItem" selected-item="self.getSelectedItems" votes-count ="self.totalVotes" ng-show="vItem.type == type"></vote-item>
         </div>
     </div>
     <!-- <div class="type-title"> SPECIAL </div>
