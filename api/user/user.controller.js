@@ -9,6 +9,7 @@ const create = async function (req) {
     console.log(UserService.createNewUserData());
     //TODO : verify all params body
     Object.assign(body, UserService.createNewUserData());
+    body.modified_by = req.user.id;
     const user = await UserService.createUser(body);
     return user;
 }

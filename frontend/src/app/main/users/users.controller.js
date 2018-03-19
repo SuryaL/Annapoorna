@@ -1,10 +1,11 @@
 class UsersController {
-    constructor($state, $auth, MenuService) {
+    constructor($state, $auth, $popup, UserService) {
         'ngInject';
         Object.assign(this, {
             $state,
             $auth,
-            MenuService
+            $popup,
+            UserService
         });
         this.user = {};
         this.headTitle = 'Users List';
@@ -14,7 +15,7 @@ class UsersController {
         this.usersList = [{
                 id: 1,
                 first_name: 'Surya',
-                last_name:'L',
+                last_name: 'L',
                 week_voted: true,
                 week_ordered: true,
                 owes: 100.00,
@@ -42,7 +43,7 @@ class UsersController {
             }, {
                 id: 2,
                 first_name: 'Sravanthi',
-                last_name:'L',
+                last_name: 'L',
                 week_voted: true,
                 week_ordered: false,
                 owes: 100.00,
@@ -71,7 +72,7 @@ class UsersController {
             {
                 id: 3,
                 first_name: 'Yashwanth',
-                last_name:'L',
+                last_name: 'L',
                 week_voted: false,
                 week_ordered: false,
                 owes: 10.00,
@@ -87,12 +88,24 @@ class UsersController {
             }
         ]
         this.subheadTitle = `${this.usersList.length} users`;
-        
-        this.btnText = "Add";
 
+        this.footerText = "users";
+        this.btnText = "Add";
     }
-    btnClicked = () =>{
-        console.log('btn clicked');
+
+    btnClicked() {
+        console.log("add user", this.newEmail);
+        if (!!this.newEmail) {
+            let obj = {
+                email: this.newEmail
+            }
+            this.UserService.create(obj)
+                .then(resp => {
+                    console.log(resp);
+                    this.newEmail = null;
+                })
+                .catch(err => console.log(err));
+        }
     }
 
 }

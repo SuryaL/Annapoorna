@@ -1,0 +1,25 @@
+.stax-popup.stax-popup-theme-classic {
+  .stax-popup-content {
+    max-width: 420px;
+    background-color: #000;
+    color: #fff;
+  }
+
+  .stax-popup-content-opening, {
+    -webkit-animation: popup-in 1s;
+    animation: popup-in 1s;
+  }
+  .stax-popup-content-closing {
+    -webkit-animation: popup-out 1s;
+    animation: popup-out 1s;
+  }
+  .stax-popup-overlay-opening {
+    -webkit-animation: popup-fadeIn 1s;
+    animation: popup-fadeIn 1s;
+  }
+  .stax-popup-overlay-closing {
+    -webkit-animation: popup-fadeOut 1s;
+    animation: popup-fadeOut 1s;
+  }
+
+}

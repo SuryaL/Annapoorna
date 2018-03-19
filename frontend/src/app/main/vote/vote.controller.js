@@ -8,15 +8,19 @@ class voteCtrl {
         });
         this.user = {};
         this.headTitle = 'Vote for this week\'s dishes';
-        this.subheadTitle = '8.8.88';
-        this.footerText = "Vote";
+
         this.getMenuItems();
         this.menuTypes = ['special', 'regular'];
         this.btnText = "Vote";
         this.votesCount = 0;
         this.selectedItems = new Set();
-    }
+        this.vote_deadline = '03-19-2018';
 
+
+    }
+    get subheadTitle() {
+        return 'Deadline : ' + this.vote_deadline.replace(/-/g, '.')
+    }
     voteClicked = () => {
         console.log('vote');
         // this.MenuService.find()
@@ -47,17 +51,17 @@ class voteCtrl {
             })
             .catch(err => console.log(err));
     }
-    getSelectedItems = (item) =>{
+    getSelectedItems = (item) => {
 
         // this.voteItems.forEach((item)=>{
         //     if(item.isSelected == true && item.id == id) this.votesCount++;
-            if(item.isSelected == true) this.selectedItems.add(item.id);
-            else if(this.selectedItems.has(item.id)) this.selectedItems.delete(item.id);
+        if (item.isSelected == true) this.selectedItems.add(item.id);
+        else if (this.selectedItems.has(item.id)) this.selectedItems.delete(item.id);
 
-            console.log(this.selectedItems,this.selectedItems.size)
-            let totalVotes = this.selectedItems.size ? this.selectedItems.size : 0 ;
-        return totalVotes ;
-        
+        console.log(this.selectedItems, this.selectedItems.size)
+        let totalVotes = this.selectedItems.size ? this.selectedItems.size : 0;
+        return totalVotes;
+
     }
 
 
