@@ -4,30 +4,42 @@ class TimeRemainingController {
         this.name = 'TimeRemaining';
         this.time_remaining = '';
         this.$interval = $interval;
+    }
+    $onInit(){
         this.loop();
     }
 
     loop(){
+        this.updateTime();
         this.$interval(()=>{
-            let{total, d,hr,m,s}= this.getTimeRemaining(this.deadline);
-            let timeR ={
-                d,hr,m,s
-            }
-            this.time_remaining = Object.keys(timeR).reduce((prev,curr)=>{
-                let val = timeR[curr];
-                if(val<=0 && !prev){
-                    return prev
-                }
-                prev += val+ curr + ' ';
-                return prev;
-            },'')
-            if(+total < 0){
-                this.time_remaining = '- ' + this.time_remaining;
-            }
+            this.updateTime();
         },1000)
     }
 
+    updateTime(){
+        let{total, d,hr,m,s}= this.getTimeRemaining(this.deadline);
+        let timeR ={
+            d,hr,m,s
+        }
+        this.time_remaining = Object.keys(timeR).reduce((prev,curr)=>{
+            let val = timeR[curr];
+            if(val<=0 && !prev){
+                return prev
+            }
+            prev += val+ curr + ' ';
+            return prev;
+        },'')
+        if(+total < 0){
+            this.time_remaining = '- ' + this.time_remaining;
+        }
+    }
+
     getTimeRemaining(endtime){
+        if(!endtime){
+            return{
+                total:0, d:0,hr:0,m:0,s:0
+            }
+        }
         var t = Date.parse(endtime) - Date.parse(new Date());
         var seconds = Math.floor( (t/1000) % 60 );
         var minutes = Math.floor( (t/1000/60) % 60 );
