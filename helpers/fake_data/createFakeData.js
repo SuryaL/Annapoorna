@@ -1,5 +1,5 @@
 const faker = require('./faker.js');
-const {executeQuery} =  require('../../helpers/utils/db_utils');
+const {execQuery} =  require('../../helpers/utils/db_utils');
 
 function createFakeData(table) {
     // console.log(faker.getUser());
@@ -26,7 +26,7 @@ function createFakeData(table) {
     })
     const query = 'INSERT INTO '+ table +' (' + columns.join() + ') VALUES (' + questions.join() + ')';
     // console.log(query,params)
-    // executeQuery(query, params)
+    // execQuery(query, params)
 
 }
 
