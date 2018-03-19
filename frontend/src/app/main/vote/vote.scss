@@ -4,24 +4,30 @@
 vote {
   @extend .sub-main-view;
   .vote-view-header {
-    .align-head-right{
+    .align-head-right {
       // @include align-self(flex-end);
-    }
-    // @include flex(0, 0, 10vw);
+    } // @include flex(0, 0, 10vw);
   }
   .votes-container {
     // @include flex(1, 0, 0);
     // background-color: white;
     // overflow-y: scroll;
-    .type-title{
-     padding: 1em;
-     text-transform: capitalize;
+    .item-type-class-wrap {
+      margin-top: 1em;
+      &:first-child{
+        margin-top: 0em;
+      }
+      .type-title {
+        padding: 0.5em 0.7em;
+        letter-spacing: 0.1em;
+        text-transform: capitalize;
+        color:$chase-grey;
+        @extend .main-heavy-font;
+      }
     }
     .vote-items-wrapper {
       vote-item {
-        .vote-item-container{
-
-        }
+        .vote-item-container {}
       }
     }
   }
