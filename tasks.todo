@@ -19,9 +19,12 @@ Portal:
     ☐ get alternative font for lato-medium
 
 
-
     /*
+    
+    INSERT INTO user (id,accessed_mobile,accessed_portal,active,created,deleted,email,facebook,first_name,image,last_name,modified,modified_by,password,phone,super,type) VALUES (1f78d00d-c625-4ac4-bc32-682d3ea24920,null,null,true,'2018-03-20T23:05:36.378Z',false,'yeshwanth.malekar@gmail.com',null,null,null,null,'2018-03-20T23:05:36.378Z',311566a5-b290-4c36-98f2-b8032cce2588,null,null,false,['user']);
+    INSERT INTO user (id,accessed_mobile,accessed_portal,active,created,deleted,email,facebook,first_name,image,last_name,modified,modified_by,password,phone,super,type) VALUES (7daa2c9d-6550-4cee-84ea-402a0dd2e840,null,null,true,'2018-03-20T23:05:17.951Z',false,'sj.jainsummet@gmail.com',null,null,null,null,'2018-03-20T23:05:17.951Z',311566a5-b290-4c36-98f2-b8032cce2588,null,null,false,['user']);
+    INSERT INTO user (id,accessed_mobile,accessed_portal,active,created,deleted,email,facebook,first_name,image,last_name,modified,modified_by,password,phone,super,type) VALUES (b4f1bbd8-872b-4847-a4c1-3e55ea5d15ea,null,'2018-03-20T22:57:23.063Z',true,'2018-03-20T22:50:49.419Z',false,'surysunny17@gmail.com','10208187102289704','Surya','https://graph.facebook.com/10208187102289704/picture?type=large','Shekhar','2018-03-20T22:50:49.419Z',311566a5-b290-4c36-98f2-b8032cce2588,null,null,false,['user']);
+    INSERT INTO user (id,accessed_mobile,accessed_portal,active,created,deleted,email,facebook,first_name,image,last_name,modified,modified_by,password,phone,super,type) VALUES (311566a5-b290-4c36-98f2-b8032cce2588,null,'2018-03-20T23:01:36.577Z',true,'2018-03-12T14:58:10.468Z',false,'sravanthi.gujjula@gmail.com','1630672800347412','Sravanthi','https://graph.facebook.com/1630672800347412/picture?type=large','Gujjula',null,null,null,null,true,['user','admin']);
 
-    INSERT INTO user (id,accessed_mobile,accessed_portal,active,created,deleted,email,facebook,first_name,image,last_name,modified,modified_by,password,phone,super,type) VALUES (311566a5-b290-4c36-98f2-b8032cce2588,null,'2018-03-20T18:25:31.410Z',true,'2018-03-12T14:58:10.468Z',false,'sravanthi.gujjula@gmail.com','1630672800347412','Sravanthi','https://graph.facebook.com/1630672800347412/picture?type=large','Gujjula',null,null,null,null,true,['user','admin']);
 
     */
