@@ -2,24 +2,20 @@ class voteCtrl {
     constructor($state) {
         'ngInject';
         this.user = {};
+        this.limitedSelections = 5;
     }
 
     $onInit() {
     }
     selectItem = () => {
-        let votes = this.selectedItem(this.item);
-        console.log('the votes before voting : ',votes)
-        // this.item.isSelected =  !this.item.isSelected;
-        if(votes < 5){
+
+        if(this.selectedItem(this.item) <  this.limitedSelections){
             this.item.isSelected =  !this.item.isSelected ;
         }
         else if(this.item.isSelected ){
             this.item.isSelected =  !this.item.isSelected ;
         }
-        console.log('the votes after voting are ',this.selectedItem(this.item));
-            // this.votesCount = this.item.isSelected ? this.votesCount++ :this.votesCount--;
-        // this.selectedItem(id);
-            
+       this.selectedItem(this.item);
     }
 }
 

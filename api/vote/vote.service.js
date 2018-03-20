@@ -1,15 +1,20 @@
 const {execQuery} =  require('../../helpers/utils/db_utils');
 const uuid = require('node-uuid');
 
+function createNewVoteData(){
+    const body = {};
+    
+    body.created = new Date().toISOString();
+    body.modified = new Date().toISOString();
+    body.week = new Date().toISOString(); // for now
 
+    //FIXME: need authentication middleware added
+    // body.modified_by = req.user.id.toString();
+    return body
+}
 
 async function createVote(body){
     //TODO : verify all params body
-
-    body.created = new Date().toISOString();
-    body.modified = new Date().toISOString();
-    // body.week = new Date().toISOString(); for this week 
-        
     const 
         columns = [],
         params = [];
@@ -19,10 +24,8 @@ async function createVote(body){
         params.push(body[key]);
     }
 
-    const query = 'INSERT INTO menu (' + columns.join() + ') VALUES (' + Array(params.length).join('?,') + '?)';
-
+    const query = 'INSERT INTO voting (' + columns.join() + ') VALUES (' + Array(params.length).join('?,') + '?)';
     await execQuery(query, params);
-
     return body;
 }
 
@@ -50,7 +53,7 @@ async function getVote(queryParams) {
         params.push(queryParams[key]);
     }
 
-    let query = 'SELECT * FROM menu';
+    let query = 'SELECT * FROM voting';
     if (columns.length > 0) {
         query += ' WHERE ' + columns.join('=? AND ') + '=? ALLOW FILTERING';
     }
@@ -79,7 +82,7 @@ async function updateVote(body) {
     params.push(userId);
     params.push(created);
 
-    const query = 'UPDATE menu SET ' + columns.join('=?,') + ' WHERE user = ? AND created = ?';
+    const query = 'UPDATE voting SET ' + columns.join('=?,') + ' WHERE user = ? AND created = ?';
 
     await execQuery(query, params);
     return body;
@@ -93,5 +96,6 @@ module.exports = {
     createVote,
     getVote,
     updateVote,
-    removeVote
+    removeVote,
+    createNewVoteData
 }

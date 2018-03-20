@@ -1,5 +1,5 @@
 class voteCtrl {
-    constructor($state, $auth, MenuService) {
+    constructor($state, $auth, MenuService,VoteService) {
         'ngInject';
         Object.assign(this, {
             $state,
@@ -8,13 +8,13 @@ class voteCtrl {
         });
         this.user = {};
         this.headTitle = 'Vote for this week\'s dishes';
-
         this.getMenuItems();
         this.menuTypes = ['special', 'regular'];
         this.btnText = "Vote";
         this.votesCount = 0;
         this.selectedItems = new Set();
         this.vote_deadline = '03-19-2018';
+        this.VoteService = VoteService;
 
 
     }
@@ -23,10 +23,12 @@ class voteCtrl {
     }
     voteClicked = () => {
         console.log('vote');
-        // this.MenuService.find()
-        //     .then(resp => {
-        //         console.log(resp);
-        //     })
+        if(!this.selectedItems || this.selectedItems.size < 1) return ;
+        this.VoteService.create({dishes:this.selectedItems})
+        .then(resp => {
+            console.log(resp);
+        })
+        .catch(err=> console.log(err));
     }
 
     submit() {
@@ -41,7 +43,7 @@ class voteCtrl {
                     result.forEach(item => {
                         item.isSelected = false;
                         item.itemName = item.name;
-                        item.type = Math.random(0, 1) > 0.5 ? 'special' : 'regular';
+                        // item.type = Math.random(0, 1) > 0.5 ? 'special' : 'regular'; // 
                         delete item.name;
                         return item;
                     });
@@ -53,12 +55,9 @@ class voteCtrl {
     }
     getSelectedItems = (item) => {
 
-        // this.voteItems.forEach((item)=>{
-        //     if(item.isSelected == true && item.id == id) this.votesCount++;
         if (item.isSelected == true) this.selectedItems.add(item.id);
         else if (this.selectedItems.has(item.id)) this.selectedItems.delete(item.id);
-
-        console.log(this.selectedItems, this.selectedItems.size)
+        // console.log(this.selectedItems, this.selectedItems.size)
         let totalVotes = this.selectedItems.size ? this.selectedItems.size : 0;
         return totalVotes;
 
