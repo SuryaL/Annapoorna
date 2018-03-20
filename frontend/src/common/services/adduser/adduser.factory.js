@@ -40,7 +40,7 @@ let AddUserPopupFactory = function($popup, $q) {
                         action:'user_add',
                         data:{
                             email:$scope.user_email, 
-                            user_type:$scope.active_user_type
+                            type:$scope.active_user_type
                         }
                     });
                 }

@@ -33,6 +33,7 @@ function createNewUserData(){
     }
  */
 async function createUser(body){
+    console.log(body);
     const 
         columns = [],
         params = [];

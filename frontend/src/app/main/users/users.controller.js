@@ -1,12 +1,13 @@
 class UsersController {
-    constructor($state, $auth, $popup, UserService, AddUserPopup) {
+    constructor($state, $auth, $popup, UserService, AddUserPopup,MyToastr) {
         'ngInject';
         Object.assign(this, {
             $state,
             $auth,
             $popup,
             UserService,
-            AddUserPopup
+            AddUserPopup,
+            MyToastr
         });
         this.user = {};
         this.headTitle = 'Users List';
@@ -96,13 +97,24 @@ class UsersController {
     }
 
     btnClicked = () => {
-        let mypop = this.AddUserPopup.open(({action,data})=>{
-            if(!data || (!!data && !data.email)) return;
-            this.UserService.create({data})
+        let mypop = this.AddUserPopup.open(({action,data:{type,email}})=>{
+            if(!type || !email){
+                mypop.btnClicked = false;
+                this.MyToastr.error(' Invalid prams');
+                return;
+            } 
+            this.UserService.create({type,email})
                 .then(resp => {
                     console.log(resp);
+                    this.MyToastr.success('User added : ',email);
+                    
+                    mypop.close();
                 })
-                .catch(err => console.log(err));
+                .catch(err => {
+                    mypop.btnClicked = false;
+                    this.MyToastr.error(' Failed to add user');
+                    console.log(err)
+                });
         });
     
 

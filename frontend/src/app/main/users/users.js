@@ -6,6 +6,7 @@ import simpleHeader from 'common/components/simpleHeader/simpleHeader';
 import footerBtn from 'common/components/footerBtn/footerBtn';
 import headerBtn from 'common/components/header_btn/header_btn';
 import inputPlaceholder from 'common/directives/inputPlaceholder';
+import toastr from 'common/services/mytoastr';
 
 import AuthService from 'common/services/auth';
 import userService from 'common/services/user';
@@ -13,6 +14,7 @@ import adduser from 'common/services/adduser';
 
 let usersModule = angular.module('users', [
     uiRouter,
+    toastr,
     userItem,
     headerBtn,
     footerBtn,

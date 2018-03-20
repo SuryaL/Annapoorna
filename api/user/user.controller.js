@@ -6,10 +6,15 @@ const create = async function (req) {
     if (body.id != null) {
         delete body.id;
     }
-    console.log(UserService.createNewUserData());
-    //TODO : verify all params body
+
+    if(!req.body.type || !req.body.email){
+        throw new Error('Required params missing');
+    }
     Object.assign(body, UserService.createNewUserData());
     body.modified_by = req.user.id;
+    body.active = true;
+    body.type = [req.body.type];
+    body.email = req.body.email;
     const user = await UserService.createUser(body);
     return user;
 }
