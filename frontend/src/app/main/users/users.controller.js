@@ -1,14 +1,16 @@
 class UsersController {
-    constructor($state, $auth, $popup, UserService) {
+    constructor($state, $auth, $popup, UserService, AddUserPopup) {
         'ngInject';
         Object.assign(this, {
             $state,
             $auth,
             $popup,
-            UserService
+            UserService,
+            AddUserPopup
         });
         this.user = {};
         this.headTitle = 'Users List';
+
 
         // NOTE:
         // active(not deleted) and admin added users only
@@ -93,19 +95,17 @@ class UsersController {
         this.btnText = "Add";
     }
 
-    btnClicked() {
-        console.log("add user", this.newEmail);
-        if (!!this.newEmail) {
-            let obj = {
-                email: this.newEmail
-            }
-            this.UserService.create(obj)
+    btnClicked = () => {
+        let mypop = this.AddUserPopup.open(({action,data})=>{
+            if(!data || (!!data && !data.email)) return;
+            this.UserService.create({data})
                 .then(resp => {
                     console.log(resp);
-                    this.newEmail = null;
                 })
                 .catch(err => console.log(err));
-        }
+        });
+    
+
     }
 
 }

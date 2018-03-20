@@ -1,0 +1,114 @@
+@import '~assets/stylesheets/common.scss';
+@import '~assets/stylesheets/variables.scss';
+@import '~assets/stylesheets/mixins.scss';
+.add-user-popup-dialog {
+    &.stax-popup {
+        position: absolute;
+        .stax-popup-overlay {
+            position: absolute;
+        }
+    }
+    .stax-popup-close {
+        // display: none;
+    }
+    .stax-popup-content {
+        background-color: $main-dark-color;
+        background-position: center center;
+        background-size: cover;
+        padding: 2vw 1vw !important;
+        border-radius: 10px !important;
+        max-width: 600px;
+        width: 100%;
+        .stax-popup-data {
+            .popup-wrap {
+                position: relative;
+                text-align: center;
+                width: 100%;
+                height: auto;
+                .add-user-email-input-wrap {
+                    position: relative;
+                    overflow: visible;
+                    display: inline-block;
+                    margin-top: 30px;
+                    width: 70%;
+                    
+                        // &.i-placeholder-up{
+                        //     color: white;
+                        // }
+                        // &.i-placeholder-down{
+                        //     color: black;
+                        // }
+                    // }
+                    &.cook {
+                        .i-placeholder,  .add-user-email-input{
+                        color: $chase-green;
+                        }
+                        .add-user-email-input{
+                        border: 3px solid $chase-green;
+                        }
+                    }
+                    &.user {
+                        .i-placeholder,.add-user-email-input{
+                        color: $chase-blue;
+                        }
+                        .add-user-email-input{
+                            border: 3px solid $chase-blue;
+                        }
+                    }
+                    .add-user-email-input {
+                        cursor:pointer;
+                        width: 100%;
+                        outline: none;
+                        height: 40px;
+                        @extend .main-regular-font;
+                        border: none;
+                        @include border-radius(5px);
+                    }
+                }
+                .title {
+                    @extend .main-semibold-font;
+                    color: $chase-grey;
+                }
+                .box-row {
+                    margin: 2vh 0 0 0;
+                    width: 100%;
+                    .user-type {
+                        cursor:pointer;
+                        padding: 3%;
+                        margin: 2%;
+                        opacity: 0.5;
+                        transition: 0.2s;
+                        -webkit-transition: 0.2s;
+                        @include border-radius(5px);
+                        @extend .main-regular-font;
+                        color: white;
+                        &.active {
+                            transition: 0.2s;
+                            -webkit-transition: 0.2s;
+                            opacity: 1;
+                        }
+                        &.cook {
+                            background: $chase-green;
+                        }
+                        &.user {
+                            background: $chase-blue;
+                        }
+                            border: 2px solid white;
+                    }
+                    .close {
+                        color: white;
+                        transition: all 0.5s;
+                        border: none;
+                        @extend .main-regular-font;
+                        background: transparent;
+                    }
+                }
+                .user-add-error{
+                    cursor:pointer;
+                    color:$chase-red;
+                    @extend .main-italic-font;
+                }
+            }
+        }
+    }
+}

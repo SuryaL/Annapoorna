@@ -1,0 +1,19 @@
+<form name="adduser" ng-submit="submit()" class="popup-wrap">
+    <div class=" title dynamic-text-xl">{{ texts.header }}</div>
+    <!-- <div class="box sub-heading dynamic-text-l">{{ texts.subHeader }}</div> -->
+    <div class="add-user-email-input-wrap {{active_user_type}}">
+        <input class="add-user-email-input dynamic-text-s "  type="email" input-placeholder="Email" ng-model="user_email" required/>
+    </div>
+    <div class="box-row">
+        <button type="button" ng-repeat="user_type in user_types"
+         ng-class="{'active': user_type == active_user_type}" 
+         class="{{user_type}} user-type dynamic-text-l" ng-click="changeActiveUserType(user_type)">{{user_type}}</button>
+    </div>
+    <div class="box-row">
+        <button type="submit" class="close dynamic-text-m">Submit</button>
+    </div>
+
+    <div ng-if="mypopup.error" class="user-add-error dynamic-text-xs">
+        {{mypopup.error}}
+    </div>
+</form>

@@ -1,0 +1,82 @@
+@import '~angular-toastr/dist/angular-toastr.min.css';
+@import '~assets/stylesheets/common.scss';
+@import '~assets/stylesheets/animation.scss';
+ #toast-container {
+     div[toast] {
+         top: 0;
+         position: fixed;
+         left: 0;
+         z-index: 10000;
+         &.ng-enter {
+             @include animation-name(slideInDown);
+             @include animation-duration(0.5s);
+             @include animation-timing-function(ease-in-out);
+             @include animation-delay(0s);
+             @include animation-fill-mode(both);
+         }
+         &.ng-leave {
+             @include animation-name(slideOutUp);
+             @include animation-duration(0.5s);
+             @include animation-timing-function(ease-in-out);
+             @include animation-delay(0s);
+             @include animation-fill-mode(both);
+         }
+     }
+     .toast.mycustom-toast {
+         text-align: center;
+         width: 100vw !important;
+         @include border-radius(0 0 0 0);
+         opacity: 0.95;
+         &.toast-warning.mycustom-toast-warning,
+         &.toast-success.mycustom-toast-success,
+         &.toast-error.mycustom-toast-error {
+             background-image: none!important;
+             color: #FFF;
+             text-align: center;
+             padding: 2vw 3vw!important;
+             .t-message-container {
+                 .t-image {
+                     display: inline-block;
+                     background-position: center center;
+                     background-repeat: no-repeat;
+                     background-size: contain;
+                     width: 2em;
+                     vertical-align: text-top;
+                     height: 2em;
+                 }
+                 .t-message {
+                     padding-left: 0.3em;
+                     display: inline-block;
+                     vertical-align: -webkit-baseline-middle;
+                 }
+                 .toast-message {
+                     display: inline-block;
+                 }
+             }
+         }
+         &.toast-success.mycustom-toast-success {
+             background-color: #1ea68b!important;
+             .t-message-container {
+                 .t-image {
+                    //  background-image: url('~common/assets/images/toastr/checkmark.svg')!important;
+                 }
+             }
+         }
+         &.toast-error.mycustom-toast-error {
+             background-color: red !important;
+             .t-message-container {
+                 .t-image {
+                    //  background-image: url('~common/assets/images/toastr/x-white2.svg')!important;
+                 }
+             }
+         }
+         &.toast-warning.mycustom-toast-warning {
+             // background-color: $error-red !important;
+             .t-message-container {
+                 .t-image {
+                    //  background-image: url('~common/assets/images/toastr/warning-white-edit.svg')!important;
+                 }
+             }
+         }
+     }
+ }

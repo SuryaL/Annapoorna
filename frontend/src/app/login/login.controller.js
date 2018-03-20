@@ -1,7 +1,7 @@
 class loginCtrl {
-    constructor($state, OauthService, $auth) {
+    constructor($state, OauthService, $auth, MyToastr) {
         'ngInject';
-        Object.assign(this, { $state, OauthService, $auth });
+        Object.assign(this, { $state, OauthService, $auth, MyToastr });
         this.user = {};
         this.$state = $state;
     }
@@ -13,7 +13,10 @@ class loginCtrl {
                 this.$auth.setToken(resp.data.token);
                 this.$state.go('app.main.vote');
             })
-            .catch(err => console.log("fb err", err));
+            .catch(err => {
+                this.MyToastr.error('No access')
+                console.error("fb err", err);
+            });
     }
 }
 

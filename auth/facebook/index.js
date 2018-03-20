@@ -57,12 +57,13 @@ module.exports = function(api) {
             client.execute('SELECT * FROM user where email = ? allow FILTERING', [profile.email], { prepare: true })
                 .then(function(results) {
                     if (results.rows.length <= 0) {
-                        user.type = ['user'];
-                        user.super = false;
-                        user.deleted = false;
-                        let query = 'INSERT INTO user JSON ?'
-                        let params = JSON.stringify(user);
-                        return client.execute(query, [params], { prepare: true });
+                        throw new Error('No access. Contact admin.')
+                        // user.type = ['user'];
+                        // user.super = false;
+                        // user.deleted = false;
+                        // let query = 'INSERT INTO user JSON ?'
+                        // let params = JSON.stringify(user);
+                        // return client.execute(query, [params], { prepare: true });
                     } else {
                         user = results.rows[0];
                         user.facebook = profile.id;
@@ -94,8 +95,8 @@ module.exports = function(api) {
                         }
                     });
                 })
-                .catch(err => {
-                    res.send(500, err);
+                .catch(errr => {
+                    return res.send(500, errr);
                 })
 
         });
