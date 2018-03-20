@@ -14,7 +14,6 @@ const create = async function (req) {
     const body = {name,price: price.toString(),vegetarian:!!vegetarian,image};
     
     Object.assign(body, MenuService.createNewMenuData());
-    console.log(body);
     const menu = await MenuService.createMenu(body);
     return menu;
 }

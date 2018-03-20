@@ -49,7 +49,7 @@ async function getMenu(queryParams) {
         params.push(queryParams[key]);
     }
 
-    let query = 'SELECT id,name,created,image,type FROM menu';
+    let query = 'SELECT id,name,created,image,type,price FROM menu';
     if (columns.length > 0) {
         query += ' WHERE ' + columns.join('=? AND ') + '=? ALLOW FILTERING';
     }

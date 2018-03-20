@@ -9,6 +9,8 @@ import timeRemaining from 'common/components/time_remaining/time_remaining';
 
 import AuthService from 'common/services/auth';
 import menuService from 'common/services/menu';
+import VoteService from 'common/services/vote';
+
 
 const module = angular.module('vote', [
         uirouter,
@@ -18,7 +20,8 @@ const module = angular.module('vote', [
         headerBtn,
         footerBtn,
         AuthService,
-        menuService
+        menuService,
+        VoteService
     ])
 
     .config(function($stateProvider) {

@@ -21,6 +21,23 @@ let VoteFactory = function($http, $httpParamSerializer) {
       })
   }
 
+  self.create = function(obj) {
+    // console.log('received obj is :', obj);
+    return $http({
+        method: 'POST',
+        url: API + self.PATH,
+        data: obj
+      })
+      .then((response) => {
+        console.log("Votes added:", response.data);
+        return response.data;
+      })
+      .catch((err) => {
+        console.log("error while adding votes", err.data);
+        return err.data;
+      })
+  }
+
   self.find = function() {
     return $http({
         method: 'GET',
