@@ -11,13 +11,7 @@ const UserFactory = function($http, $state) {
                 url: API + self.PATH,
                 data: obj
             })
-            .then(response => {
-                return response.data;
-            })
-            .catch(err => {
-                console.log("user create err", err.data);
-                return err.data;
-            })
+            .then(response => response.data)
     }
 
     // self.update = function(obj) {

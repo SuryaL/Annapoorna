@@ -6,17 +6,22 @@ const create = async function (req) {
     if (body.id != null) {
         delete body.id;
     }
-
     if(!req.body.type || !req.body.email){
         throw new Error('Required params missing');
     }
+    const foundUser = (await UserService.getUser({email:body.email}));
+    if (!!foundUser) {
+        throw new Error ('User exists') ;
+    } 
+
+    // PROCEED
     Object.assign(body, UserService.createNewUserData());
     body.modified_by = req.user.id;
     body.active = true;
     body.type = [req.body.type];
     body.email = req.body.email;
-    const user = await UserService.createUser(body);
-    return user;
+    
+    return  await UserService.createUser(body);
 }
 
 
@@ -25,6 +30,14 @@ const find = async function (req) {
     const result = await UserService.getUsers(query);
     return result;
 }
+
+
+// const findOne = async function (req) {
+//     const query = _.clone(req.query);
+//     query.email = req.body.email;
+//     const result = await UserService.getUsers(query);
+//     return result;
+// }
 
 const update = async function (req) {
 }

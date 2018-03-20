@@ -106,8 +106,7 @@ class UsersController {
             this.UserService.create({type,email})
                 .then(resp => {
                     console.log(resp);
-                    this.MyToastr.success('User added : ',email);
-                    
+                    this.MyToastr.success('Success');
                     mypop.close();
                 })
                 .catch(err => {

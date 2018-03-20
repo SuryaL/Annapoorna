@@ -8,7 +8,7 @@ class mainController {
         //  this.user.type  == user
         // this.user.type = 'user';
         // this.tabs = this.TabsService.fetchTabsForType(this.user.type)
-        this.tabs = this.TabsService.fetchTabsForType('user')
+        this.tabs = this.TabsService.fetchTabsForType(this.user.type)
     }
 }
 

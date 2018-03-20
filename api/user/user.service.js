@@ -53,6 +53,7 @@ async function createUser(body){
 
 
 async function getUsers(queryParams) {
+    console.log('queryParams :',queryParams)
     const options = queryParams.options || {};
     if (queryParams.options) {
         delete queryParams.options;
@@ -70,12 +71,19 @@ async function getUsers(queryParams) {
     if (columns.length > 0) {
         query += ' WHERE ' + columns.join('=? AND ') + '=? ALLOW FILTERING';
     }
-
+    // console.log(query, params);
     return (await execQuery(query, params, options)).rows;
 }
+
+async function getUser(queryParams) {
+    let founduser =  (await getUsers(queryParams))[0];
+    return founduser|| null;
+}
+
 
 module.exports = {
     createUser,
     getUsers,
+    getUser,
     createNewUserData
 }

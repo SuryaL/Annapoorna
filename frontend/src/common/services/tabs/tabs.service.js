@@ -6,30 +6,38 @@ let TabsFactory = function($http, $state) {
         id: 1,
         name: 'Vote',
         state: 'app.main.vote',
-        visibility :['user','cook','admin']
+        visibility :['user']
     }, {
         id: 2,
         name: 'Order',
         state: 'app.main.order',
-        visibility :['user','cook','admin']
+        visibility :['user']
     }, {
         id: 3,
         name: 'History',
         state: 'app.main.history',
-        visibility :['user','cook','admin']
+        visibility :['user']
     }, {
         id: 4,
         name: 'Users',
         state: 'app.main.users',
-        visibility :['user','cook','admin']
+        visibility :['admin']
     }, {
         id: 5,
         name: 'Profile',
         state: 'app.main.profile',
-        visibility :['user','cook','admin']
+        visibility :['user', 'cook', 'admin']
     }]
 
-    self.fetchTabsForType = (user_type) => self.all_tabs.filter(tab => tab.visibility.indexOf(user_type) != -1);
+    self.fetchTabsForType = (user_types) => self.all_tabs.filter(tab => {
+        let found=false;
+         user_types.forEach((type)=>{
+            if(tab.visibility.indexOf(type) != -1){
+                found = true
+            }
+        }) 
+        return found;
+    });
     
     return self;
 };
