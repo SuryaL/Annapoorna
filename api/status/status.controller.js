@@ -29,5 +29,6 @@ module.exports = {
     create,
     find,
     update, 
-    remove
+    remove,
+    getCurrentWeek
 }

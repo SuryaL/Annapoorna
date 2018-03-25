@@ -1,10 +1,11 @@
 class voteCtrl {
-    constructor($state, $auth, MenuService,VoteService) {
+    constructor($state, $auth, MenuService,VoteService,StatusService) {
         'ngInject';
         Object.assign(this, {
             $state,
             $auth,
-            MenuService
+            MenuService,
+            StatusService
         });
         this.user = {};
         this.headTitle = 'Vote for this week\'s dishes';
@@ -15,7 +16,10 @@ class voteCtrl {
         this.selectedItems = new Set();
         this.vote_deadline = '03-19-2018';
         this.VoteService = VoteService;
-
+        this.StatusService = StatusService;
+        this.StatusService.findActiveWeek()
+        .then(console.log)
+        .catch(console.error)
 
     }
     get subheadTitle() {
@@ -53,14 +57,14 @@ class voteCtrl {
             })
             .catch(err => console.log(err));
     }
-    getSelectedItems = (item) => {
 
+    
+    getSelectedItems = (item) => {
         if (item.isSelected == true) this.selectedItems.add(item.id);
         else if (this.selectedItems.has(item.id)) this.selectedItems.delete(item.id);
         // console.log(this.selectedItems, this.selectedItems.size)
         let totalVotes = this.selectedItems.size ? this.selectedItems.size : 0;
         return totalVotes;
-
     }
 
 

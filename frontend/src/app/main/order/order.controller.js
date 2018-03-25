@@ -38,7 +38,7 @@ class OrderController {
     }
     
     getVotedItems(){
-        console.log('i am here ', this.VoteService)
+        // console.log('i am here ', this.VoteService)
         // this.VoteService.find()
         //  .then((result)=>{
         //      console.log(result);
