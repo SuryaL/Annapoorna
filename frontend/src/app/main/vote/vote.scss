@@ -26,10 +26,26 @@ vote {
       }
     }
     .vote-items-wrapper {
-      &.disabled{
-        &.major{
-          background-color: $main-grey-light;
+      &.major{
+        background: $chase-green;
+        .vote-item-container {
+          @include add-hover(lighten($chase-green,5)!important);
         }
+        *{color:white}
+        // position: relative;
+        // &:after{
+        //   content:'*';
+        //   position: absolute;
+        //   right:10px;
+        //   top:50%;
+        //   transform:translate3d(0,-50%,0);
+        //   -webkit-transform:translate3d(0,-50%,0);
+        //   width:5px;
+        //   height:30%;
+        //   // background: blue;
+        // }
+      }
+      &.disabled{
         // pointer-events: none;
         .vote-item-container {
           @include add-hover(transparent!important);

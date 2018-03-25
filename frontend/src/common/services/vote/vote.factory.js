@@ -53,6 +53,20 @@ let VoteFactory = function($http, $httpParamSerializer) {
       })
   }
 
+  self.getMajority = function(obj = {}) {
+    return $http({
+        method: 'GET',
+        url: API + self.PATH+'/getMajority' + '?' + $httpParamSerializer(obj),
+      })
+      .then(resp => {
+        return resp.data;
+      })
+      .catch(err => {
+        console.log("vote find err:", err.data);
+        return err.data;
+      })
+  }
+
 
   return self;
 };

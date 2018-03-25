@@ -1,9 +1,11 @@
-const {execQuery} =  require('../../helpers/utils/db_utils');
+const {
+    execQuery
+} = require('../../helpers/utils/db_utils');
 const uuid = require('node-uuid');
 
-function createNewVoteData(){
+function createNewVoteData() {
     const body = {};
-    
+
     body.created = new Date().toISOString();
     body.modified = new Date().toISOString();
     // body.week = new Date().toISOString(); // for now
@@ -13,12 +15,12 @@ function createNewVoteData(){
     return body
 }
 
-async function createVote(body){
+async function createVote(body) {
     //TODO : verify all params body
-    const 
+    const
         columns = [],
         params = [];
-    
+
     for (let key in body) {
         columns.push(key);
         params.push(body[key]);
@@ -32,21 +34,14 @@ async function createVote(body){
 
 async function getVote(queryParams) {
     const options = queryParams.options || {};
-    const userId = queryParams.userId;
-    if (!userId) throw new Error('Prams are missing');
-    
+
     if (queryParams.options) {
         delete queryParams.options;
-        
-    }
-    if (queryParams.userId) {
-        delete queryParams.userId;
-        
     }
 
     // FIXME: not deleted only service
-    const columns = ['user'];
-    const params = [userId];
+    const columns = [];
+    const params = [];
 
     for (let key in queryParams) {
         columns.push(key);
@@ -69,10 +64,10 @@ async function updateVote(body) {
     delete body.user;
     delete body.created;
 
-    const 
+    const
         columns = [],
         params = [];
-    
+
     for (let key in body) {
         columns.push(key);
         params.push(body[key]);
@@ -87,14 +82,33 @@ async function updateVote(body) {
     return body;
 }
 
-
+function sortObject(dishCounts) {
+    let sortable = [];
+    for (let dish_id in dishCounts) {
+        sortable.push([dish_id, dishCounts[dish_id]]);
+    }
+    sortable.sort(function(a, b) {
+        return a[1] - b[1];
+    });
+    return sortable
+    // if(sortable.length>5){
+    //     // sortable.forEach((s)=>{
+    //     //     if(!counts.hasOwnProperty(dishCounts[dish_id])) counts[dishCounts[dish_id]]=[];
+    //     //     counts[dishCounts[dish_id]].push(dish_id)
+    //     // })
+    //     return sortable.map((d)=>d[0]);
+    // }else{
+    //     return sortable.map((d)=>d[0]);
+    // }
+}
 async function removeVote(id) {
-    
+
 }
 module.exports = {
     createVote,
     getVote,
     updateVote,
     removeVote,
-    createNewVoteData
+    createNewVoteData,
+    sortObject
 }

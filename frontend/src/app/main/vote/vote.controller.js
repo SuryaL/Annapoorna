@@ -27,16 +27,19 @@ class voteCtrl {
             this.currentWeek = this.weekDetails.week;
             this.vote_deadline = this.weekDetails.voting_deadline;
             this.menuItems = results[1] || [];
+            
             return this.$q.all([
                 this.VoteService.find({week:this.weekDetails.week}),
-                this.$q(resolve=>resolve(['39813b97-4b16-434b-bcf5-e9080e7565f8']))
+                // this.$q(resolve=>resolve(['39813b97-4b16-434b-bcf5-e9080e7565f8']))
                 //TODO: Add Voting results api 
-                //this.VoteService.getMajority({week:this.weekDetails.week}),
+                // majority is current top dishes
+                this.VoteService.getMajority({week:this.weekDetails.week}),
             ])
         })
         .then(([currentWeekVotes, majority])=> {
             this.majority = new Set(majority||[]);
-            const dishes_voted = (currentWeekVotes||[])[0].dishes;
+            const currentWeekUserVote = (currentWeekVotes||[])[0]||{};
+            const dishes_voted = currentWeekUserVote.dishes||[];
             this.already_voted = !!dishes_voted.length;
             (dishes_voted||[]).forEach(dish_id => this.selectedItems.add(dish_id));
         })
@@ -78,6 +81,7 @@ class voteCtrl {
             .create({dishes:this.selectedItems, week:this.currentWeek})
             .then(resp => {
                 this.MyToastr.success(`Vote Submitted`);
+                this.init()
             })
             .catch(err=> {
                 this.MyToastr.error(`Failed!`);

@@ -9,6 +9,8 @@
 Sever:
     ✔ api base routes @done (2018-3-17 01:49:45)
     ☐ rewrite using async await for fb and other stax imported code
+    ☐ voting api fixes to check deadline and week valid
+    ☐ getmajority voting api NEED TO ADD THE CORRECT COUNTING IN CASE OF CLASHES
 
 Portal:
     ☐ max/min-width needs to change to 600 and 601+. bug at 600px
@@ -16,8 +18,8 @@ Portal:
     ✔ submit button for mobile and desktop @done (2018-3-18 23:14:52)
     ✔ fix simple header scss and reuse for other views @done (2018-3-18 23:14:53)
     ☐ cleanup
+    ☐ remove all catches from services
     ✔ get alternative font for lato-medium @done (2018-3-24 18:58:52)
-
 
     /* cassandra user temp access
     
