@@ -32,8 +32,7 @@ const remove = async function(req){
 */
 
 const attachCurrentWeek = (req, res, next) => {
-    StatusController
-        .getCurrentWeek()
+    getCurrentWeek()
         .then((current_week) => {
             req.current_week = current_week;
             next();

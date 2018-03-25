@@ -3,7 +3,6 @@ const app = express();
 const config = require('./config');
 const requestify = require('./helpers/utils/requestify');
 const cassandra = require('./boundaries/cassandra');
-const StatusController = require('./api/status/status.controller');
 
 
 /**
@@ -19,12 +18,6 @@ requestify(app);
  */
 app.use(express.static('dist'));
 
-
-/**
- * Add current week to all requests
- * FIXME: change to per api basis
- */
-app.use(StatusController.attachCurrentWeek);
 
 
 /**
