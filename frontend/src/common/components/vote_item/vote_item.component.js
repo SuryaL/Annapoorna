@@ -8,7 +8,8 @@ let voteItemComponent = {
   restrict: 'E',
   bindings: {
     item : "=",
-    selectedItem : "=",
+    isSelectedItem : "=",
+    itemToggled : "=",
     votesCount : "="
     
   },

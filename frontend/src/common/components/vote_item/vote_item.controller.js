@@ -1,25 +1,15 @@
 class voteCtrl {
-    constructor($state,MyToastr,MenuVotingLimit) {
+    constructor($state) {
         'ngInject';
         this.user = {};
-        this.MyToastr = MyToastr;
-        this.MenuVotingLimit = MenuVotingLimit;
     }
 
-    $onInit() {
+    get isSelected(){
+        return this.isSelectedItem(this.item.id)
     }
+
     selectItem = () => {
-
-        if(this.selectedItem(this.item) <  this.MenuVotingLimit){
-            this.item.isSelected =  !this.item.isSelected ;
-        }
-        else if(this.item.isSelected ){
-            this.item.isSelected =  !this.item.isSelected ;
-        }
-        else if(!this.item.isSelected ){
-            this.MyToastr.error("Select atmost "+this.MenuVotingLimit+" dishes");
-        }
-       this.selectedItem(this.item);
+        this.itemToggled(this.item.id);
     }
 }
 

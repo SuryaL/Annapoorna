@@ -38,10 +38,10 @@ let VoteFactory = function($http, $httpParamSerializer) {
       })
   }
 
-  self.find = function() {
+  self.find = function(obj = {}) {
     return $http({
         method: 'GET',
-        url: API + self.PATH
+        url: API + self.PATH + '?' + $httpParamSerializer(obj),
       })
       .then(resp => {
         return resp.data;

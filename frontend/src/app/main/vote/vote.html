@@ -1,16 +1,17 @@
 <div class="vote-view-header sub-main-view-header">
+    {{self.votedSize}}
     <simple-header head-title="self.headTitle" subhead-title="self.subheadTitle"></simple-header>
    <div class="align-head-right">
        <time-remaining deadline="self.vote_deadline"></time-remaining>
-        <header-btn class="" head-text="{{self.btnText}}" callback="self.voteClicked" ></header-btn>
+        <header-btn class="" head-text="{{self.btnText}}" callback="self.voteSubmit" ></header-btn>
    </div>
 </div>
 <div class="votes-container sub-main-view-container">
     <div class="item-type-class-wrap" ng-repeat="type in self.menuTypes">
         <div class="type-title dynamic-text-m"> {{type}} </div>
-        <div class="vote-items-wrapper" ng-repeat="vItem in self.voteItems">
-            <vote-item item="vItem" selected-item="self.getSelectedItems" votes-count ="self.totalVotes" ng-show="vItem.type == type"></vote-item>
+        <div class="vote-items-wrapper" ng-repeat="vItem in self.menuItems">
+            <vote-item item="vItem" is-selected-item="self.isSelectedItem" item-toggled="self.voteToggle" votes-count ="self.totalVotes" ng-show="vItem.type == type"></vote-item>
         </div>
     </div>
 </div>
-<footer-btn foot-text={{self.btnText}} callback="self.voteClicked"></footer-btn>
+<footer-btn foot-text={{self.btnText}} callback="self.voteSubmit"></footer-btn>
