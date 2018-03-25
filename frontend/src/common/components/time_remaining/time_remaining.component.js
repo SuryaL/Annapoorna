@@ -5,7 +5,9 @@ import './time_remaining.scss';
 let timeRemainingComponent = {
   restrict: 'E',
   bindings: {
-    deadline:'='
+    deadline:'=',
+    timeRemaining:'=?',
+    timePassed:"=?"
   },
   template,
   controller,

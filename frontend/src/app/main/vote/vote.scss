@@ -26,6 +26,15 @@ vote {
       }
     }
     .vote-items-wrapper {
+      &.disabled{
+        &.major{
+          background-color: $main-grey-light;
+        }
+        // pointer-events: none;
+        .vote-item-container {
+          @include add-hover(transparent!important);
+        }
+      }
       vote-item {
         .vote-item-container {}
       }

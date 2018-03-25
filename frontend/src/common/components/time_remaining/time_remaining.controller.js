@@ -2,8 +2,9 @@ class TimeRemainingController {
     constructor($interval) {
         'ngInject';
         this.name = 'TimeRemaining';
-        this.time_remaining = '';
+        this.timeRemaining = '';
         this.$interval = $interval;
+        this.timePassed = true;
     }
     $onInit(){
         this.loop();
@@ -21,16 +22,19 @@ class TimeRemainingController {
         let timeR ={
             d,hr,m,s
         }
-        this.time_remaining = Object.keys(timeR).reduce((prev,curr)=>{
+        this.timeRemaining = Object.keys(timeR).reduce((prev,curr)=>{
             let val = timeR[curr];
             if(val<=0 && !prev){
                 return prev
             }
             prev += val+ curr + ' ';
             return prev;
-        },'')
+        },'');
         if(+total < 0){
-            this.time_remaining = '- ' + this.time_remaining;
+            this.timePassed = true;
+            this.timeRemaining = '- ' + this.timeRemaining;
+        }else{
+            this.timePassed = false;
         }
     }
 
