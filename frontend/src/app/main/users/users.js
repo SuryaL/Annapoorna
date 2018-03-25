@@ -34,9 +34,10 @@ let usersModule = angular.module('users', [
         authenticated: 'authenticated',
         resolve:function($q, $auth){
           'ngInject';
-          this.user = this.$auth.getUser() || {};
+          let user = $auth.getUser() || {};
+          console.log(user);
           return $q((resolve,reject) =>{
-            if((this.user.type || []).includes('admin')){
+            if((user.type || []).includes('admin')){
               resolve()
             }else{
               reject();
