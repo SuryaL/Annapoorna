@@ -6,7 +6,7 @@ function createNewVoteData(){
     
     body.created = new Date().toISOString();
     body.modified = new Date().toISOString();
-    body.week = new Date().toISOString(); // for now
+    // body.week = new Date().toISOString(); // for now
 
     //FIXME: need authentication middleware added
     // body.modified_by = req.user.id.toString();
@@ -45,7 +45,7 @@ async function getVote(queryParams) {
     }
 
     // FIXME: not deleted only service
-    const columns = ['userId'];
+    const columns = ['user'];
     const params = [userId];
 
     for (let key in queryParams) {
@@ -57,7 +57,6 @@ async function getVote(queryParams) {
     if (columns.length > 0) {
         query += ' WHERE ' + columns.join('=? AND ') + '=? ALLOW FILTERING';
     }
-
     return (await execQuery(query, params, options)).rows;
 }
 
