@@ -16,10 +16,10 @@ Portal:
     ✔ submit button for mobile and desktop @done (2018-3-18 23:14:52)
     ✔ fix simple header scss and reuse for other views @done (2018-3-18 23:14:53)
     ☐ cleanup
-    ☐ get alternative font for lato-medium
+    ✔ get alternative font for lato-medium @done (2018-3-24 18:58:52)
 
 
-    /*
+    /* cassandra user temp access
     
     INSERT INTO user (id,accessed_mobile,accessed_portal,active,created,deleted,email,facebook,first_name,image,last_name,modified,modified_by,password,phone,super,type) VALUES (1f78d00d-c625-4ac4-bc32-682d3ea24920,null,null,true,'2018-03-20T23:05:36.378Z',false,'yeshwanth.malekar@gmail.com',null,null,null,null,'2018-03-20T23:05:36.378Z',311566a5-b290-4c36-98f2-b8032cce2588,null,null,false,['user']);
     INSERT INTO user (id,accessed_mobile,accessed_portal,active,created,deleted,email,facebook,first_name,image,last_name,modified,modified_by,password,phone,super,type) VALUES (7daa2c9d-6550-4cee-84ea-402a0dd2e840,null,null,true,'2018-03-20T23:05:17.951Z',false,'sj.jainsummet@gmail.com',null,null,null,null,'2018-03-20T23:05:17.951Z',311566a5-b290-4c36-98f2-b8032cce2588,null,null,false,['user']);
