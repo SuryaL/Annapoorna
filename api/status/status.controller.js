@@ -24,6 +24,7 @@ const remove = async function(req){
     
 };
 
+
 /** 
  * Attach current week to req as a middleware to all requests
  * 
@@ -49,5 +50,6 @@ module.exports = {
     find,
     update, 
     remove,
-    attachCurrentWeek
+    attachCurrentWeek,
+    getCurrentWeek
 }
