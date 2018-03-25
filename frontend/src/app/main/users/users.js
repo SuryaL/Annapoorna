@@ -31,7 +31,18 @@ let usersModule = angular.module('users', [
       .state('app.main.users', {
         url: 'users',
         template: '<users></users>',
-        authenticated: 'authenticated'
+        authenticated: 'authenticated',
+        resolve:function($q, $auth){
+          'ngInject';
+          this.user = this.$auth.getUser() || {};
+          return $q((resolve,reject) =>{
+            if((this.user.type || []).includes('admin')){
+              resolve()
+            }else{
+              reject();
+            }
+          });
+        }
       });
   })
   .component('users', usersComponent);
