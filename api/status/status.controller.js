@@ -24,10 +24,30 @@ const remove = async function(req){
     
 };
 
+/** 
+ * Attach current week to req as a middleware to all requests
+ * 
+ * Note: change to per api basis
+*/
+
+const attachCurrentWeek = (req, res, next) => {
+    StatusController
+        .getCurrentWeek()
+        .then((current_week) => {
+            req.current_week = current_week;
+            next();
+        }).catch((err)=>{
+            req.current_week = null;
+            console.error(err);
+            next();
+        })
+}
+
 
 module.exports = {
     create,
     find,
     update, 
-    remove
+    remove,
+    attachCurrentWeek
 }
