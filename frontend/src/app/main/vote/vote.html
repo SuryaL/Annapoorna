@@ -3,7 +3,7 @@
     <simple-header head-title="self.headTitle" subhead-title="self.subheadTitle"></simple-header>
    <div class="align-head-right">
        <time-remaining deadline="self.vote_deadline"></time-remaining>
-        <header-btn class="" head-text="{{self.btnText}}" callback="self.voteSubmit" ></header-btn>
+        <header-btn ng-if="self.currentWeek" class="" head-text="{{self.btnText}}" callback="self.voteSubmit" ></header-btn>
    </div>
 </div>
 <div class="votes-container sub-main-view-container">
@@ -14,4 +14,4 @@
         </div>
     </div>
 </div>
-<footer-btn foot-text={{self.btnText}} callback="self.voteSubmit"></footer-btn>
+<footer-btn ng-if="self.currentWeek" foot-text={{self.btnText}} callback="self.voteSubmit"></footer-btn>

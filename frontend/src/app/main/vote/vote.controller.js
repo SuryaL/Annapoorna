@@ -12,7 +12,6 @@ class voteCtrl {
         });
         this.headTitle = 'Vote for this week\'s dishes';
         this.menuTypes = ['special', 'regular'];
-        this.btnText = "Vote";
 
         this.selectedItems = new Set();
         this.vote_deadline = '03-19-2018';
@@ -22,18 +21,23 @@ class voteCtrl {
     }
 
     init(){
-        this.$q.all([this.MenuService.find(), this.StatusService.findActiveWeek()])
+        this.$q.all([this.StatusService.findActiveWeek(), this.MenuService.find()])
         .then(results => {
-            this.menuItems = results[0] || [];
-            this.weekDetails = results[1];
+            this.weekDetails = results[0]||{};
             this.currentWeek = this.weekDetails.week;
+            this.menuItems = results[1] || [];
             return this.VoteService.find({week:this.weekDetails.week})
         })
         .then((currentWeekVotes)=> {
             const dishes_voted = (currentWeekVotes||[])[0].dishes;
+            this.already_voted = !!dishes_voted.length;
             (dishes_voted||[]).forEach(dish_id => this.selectedItems.add(dish_id));
         })
         .catch(console.error)
+    }
+    
+    get btnText(){
+        return !!this.already_voted ? 'Revote' : 'Vote';
     }
 
     get subheadTitle() {
@@ -45,12 +49,14 @@ class voteCtrl {
     }
     
     voteSubmit = () => {
-        if(!this.selectedItems || this.selectedItems.size < 1) return ;
+        if(!this.selectedItems || this.selectedItems.size < 1 || !this.currentWeek) {
+            this.MyToastr.error(`Select atleast 1`);
+            return;
+        };
         this.VoteService
         .create({dishes:this.selectedItems, week:this.currentWeek})
         .then(resp => {
             this.MyToastr.success(`Vote Submitted`);
-            console.log(resp);
         })
         .catch(err=> {
             this.MyToastr.error(`Failed!`);
