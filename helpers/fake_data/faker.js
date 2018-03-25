@@ -81,23 +81,39 @@ function getOrder() {
 
 function getStatus() {
     status = {
-        week: (faker.date.recent()).toISOString(),
-        voting_count: faker.random.number({
-            min: 0,
-            max: 5
-        }),
-
-        order_count: faker.random.number({
-            min: 0,
-            max: 5
-        }),
-        voting_email_sent: faker.random.boolean(),
-        order_email_sent: faker.random.boolean(),
-        active: faker.random.boolean(),
-        voting_status: faker.random.boolean(),
-        order_status: faker.random.boolean(),
+        week: (new Date('03-24-2018')).toISOString(),
+        voting_count: 0,
+        order_deadline:(new Date('03-26-2018')).toISOString(),
+        email_time:'2',
+        voting_deadline:(new Date('03-28-2018')).toISOString(),
+        order_count: 0,
+        voting_email_sent: false,
+        order_email_sent: false,
+        active: true,
+        voting_status: false,
+        order_status: false,
 
     }
+    // status = {
+    //     week: (new Date('03-24-2018')).toISOString(),
+    //     voting_count: faker.random.number({
+    //         min: 0,
+    //         max: 5
+    //     }),
+    //     order_deadline:(new Date('03-26-2018')).toISOString(),
+    //     email_time:2,
+    //     voting_deadline:(new Date('03-28-2018')).toISOString(),
+    //     order_count: faker.random.number({
+    //         min: 0,
+    //         max: 5
+    //     }),
+    //     voting_email_sent: faker.random.boolean(),
+    //     order_email_sent: faker.random.boolean(),
+    //     active: faker.random.boolean(),
+    //     voting_status: faker.random.boolean(),
+    //     order_status: faker.random.boolean(),
+
+    // }
     return status;
 }
 

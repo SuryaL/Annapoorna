@@ -66,9 +66,12 @@ CREATE TABLE IF NOT EXISTS status (
   week            text,
   voting_count    int,
   order_count     int,
+  order_deadline  text,
+  email_time      text,
   voting_status   boolean,
   order_status    boolean,
   active          boolean,
+  voting_deadline  text,
   voting_email_sent  boolean,
   order_email_sent   boolean,
   PRIMARY KEY (week)
