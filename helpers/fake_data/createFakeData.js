@@ -26,7 +26,7 @@ function createFakeData(table) {
     })
     const query = 'INSERT INTO '+ table +' (' + columns.join() + ') VALUES (' + questions.join() + ')';
     // console.log(query,params)
-    // execQuery(query, params)
+    execQuery(query, params)
 
 }
 
@@ -41,6 +41,7 @@ function GenerateData(count) {
             // createFakeData('menu')
             // createFakeData('order')
             // createFakeData('user')
+            createFakeData('status')
         }
     }
     else{
@@ -52,4 +53,4 @@ function GenerateData(count) {
 //     GenerateData();
 
 // }
-// GenerateData(10);
+GenerateData(1);
