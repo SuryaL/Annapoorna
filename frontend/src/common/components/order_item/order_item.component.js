@@ -4,7 +4,10 @@ import './order_item.scss';
 
 let orderItemComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    item:'=',
+    quantity:'=?'
+  },
   template,
   controller,
   controllerAs: 'self'

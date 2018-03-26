@@ -3,6 +3,7 @@ class OrderItemController {
         'ngInject';
         this.name = 'OrderItem';
     }
+
 }
 
 export default OrderItemController;
