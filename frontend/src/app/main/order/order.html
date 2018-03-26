@@ -1,8 +1,8 @@
 <div class="order-view-header sub-main-view-header">
     <simple-header head-title="self.headTitle" subhead-title="self.subheadTitle"></simple-header>
     <div class="align-head-right">
-        <time-remaining ng-if="self.order_deadline" deadline="self.order_deadline"></time-remaining>
-        <header-btn head-text={{self.btnText}} callback="self.orderClicked"></header-btn>
+        <time-remaining time-passed="self.timePassed" deadline="self.order_deadline"></time-remaining>
+        <header-btn ng-if="self.showSubmit()" head-text={{self.btnText}} callback="self.orderSubmit"></header-btn>
     </div>
 </div>
 <div class="orders-container sub-main-view-container">
@@ -10,4 +10,4 @@
         <order-item item="vItem"></order-item>
     </div>
 </div>
-<footer-btn foot-text={{self.btnText}} callback="self.orderClicked"></footer-btn>
+<footer-btn ng-if="self.showSubmit()" foot-text={{self.btnText}} callback="self.orderSubmit"></footer-btn>
