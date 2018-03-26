@@ -36,16 +36,15 @@ function GenerateData(count) {
     if (!!count && count >0){
         for (let i = 1; i <= count; i++) {
             // createFakeData('user');
-            // createFakeData();
             // createFakeData('voting')
             // createFakeData('menu')
             // createFakeData('order')
             // createFakeData('user')
-            createFakeData('status')
+            // createFakeData('status')
         }
     }
     else{
-        console.log(' please specify the count');
+        console.log('please specify the count');
     }
 }
 
@@ -53,4 +52,4 @@ function GenerateData(count) {
 //     GenerateData();
 
 // }
-GenerateData(1);
+// GenerateData(10);
