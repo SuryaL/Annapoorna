@@ -25,6 +25,7 @@ class voteCtrl {
         .then(results => {
             this.weekDetails = results[0]||{};
             this.currentWeek = this.weekDetails.week;
+            this.voting_status = this.weekDetails.voting_status;
             this.vote_deadline = this.weekDetails.voting_deadline;
             this.menuItems = results[1] || [];
             
@@ -67,7 +68,7 @@ class voteCtrl {
     }
 
     showSubmit(){
-        return this.currentWeek && !this.timePassed
+        return this.currentWeek && !this.timePassed && !this.voting_status
     }
     
     voteSubmit = () => {

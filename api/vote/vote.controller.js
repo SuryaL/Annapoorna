@@ -20,6 +20,10 @@ const create = async function (req) {
         throw new Error ('Select atleast one dish');
     }
     let body = {dishes:req.body.dishes, user :req.user.id, week: req.body.week};
+    if(!req.current_week || !req.body.week || req.body.week !=  req.current_week.week || !!req.current_week.voting_status){
+        throw new Error('Failed')
+    }
+
     // TODO: check week validity before insert
     Object.assign(body, VoteService.createNewVoteData());
     const votes = await VoteService.createVote(body);
@@ -42,6 +46,8 @@ const getMajority = async function(req){
 
     //FIXME : NEED TO ADD THE CORRECT COUNTING IN CASE OF CLASHES
     const sortable = VoteService.sortObject(dishCounts);
+
+    //FIXME : If not enough votes, then pick random
     return sortable.map((d)=>d[0]).slice(0,5);
 }
 

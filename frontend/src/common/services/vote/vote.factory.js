@@ -15,10 +15,6 @@ let VoteFactory = function($http, $httpParamSerializer) {
         console.log("vote update resp:", response.data);
         return response.data;
       })
-      .catch((err) => {
-        console.log("vote update err", err.data);
-        return err.data;
-      })
   }
 
   self.create = function(obj) {
@@ -32,10 +28,6 @@ let VoteFactory = function($http, $httpParamSerializer) {
         console.log("Votes added:", response.data);
         return response.data;
       })
-      .catch((err) => {
-        console.log("error while adding votes", err.data);
-        return err.data;
-      })
   }
 
   self.find = function(obj = {}) {
@@ -47,10 +39,6 @@ let VoteFactory = function($http, $httpParamSerializer) {
         return resp.data;
 
       })
-      .catch(err => {
-        console.log("vote find err:", err.data);
-        return err.data;
-      })
   }
 
   self.getMajority = function(obj = {}) {
@@ -60,10 +48,6 @@ let VoteFactory = function($http, $httpParamSerializer) {
       })
       .then(resp => {
         return resp.data;
-      })
-      .catch(err => {
-        console.log("vote find err:", err.data);
-        return err.data;
       })
   }
 
