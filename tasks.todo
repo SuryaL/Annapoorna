@@ -29,4 +29,11 @@ Portal:
     INSERT INTO user (id,accessed_mobile,accessed_portal,active,created,deleted,email,facebook,first_name,image,last_name,modified,modified_by,password,phone,super,type) VALUES (311566a5-b290-4c36-98f2-b8032cce2588,null,'2018-03-20T23:01:36.577Z',true,'2018-03-12T14:58:10.468Z',false,'sravanthi.gujjula@gmail.com','1630672800347412','Sravanthi','https://graph.facebook.com/1630672800347412/picture?type=large','Gujjula',null,null,null,null,true,['user','admin']);
 
 
+    ////vote start
+//INSERT INTO status (week,active,email_time,order_count,order_deadline,order_email_sent,order_status,voting_count,voting_deadline,voting_email_sent,voting_status) VALUES ('2018-03-24T05:00:00.000Z',true,'2',0,'2018-03-28T05:00:00.000Z',false,false,0,'2018-03-26T05:00:00.000Z',false,false);
+//
+////vote end
+//INSERT INTO status (week,active,email_time,order_count,order_deadline,order_email_sent,order_status,voting_count,voting_deadline,voting_email_sent,voting_status) VALUES ('2018-03-24T05:00:00.000Z',true,'2',0,'2018-03-28T05:00:00.000Z',false,false,0,'2018-03-26T05:00:00.000Z',true,true);
+
+
     */
