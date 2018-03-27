@@ -1,12 +1,12 @@
 class OrderController {
-    constructor($state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService) {
+    constructor($state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService, $filter) {
         'ngInject';
-        Object.assign(this, { $state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService });
+        Object.assign(this, { $state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService, $filter });
         this.user = {};
         this.headTitle = 'Order this week\'s dishes';
 
         this.orderItems = [];
-        this.btnText = "order";
+        // this.btnText = "order";
         // this.getVotedItems();
         // this.order_deadline = '03-20-2018';
         this.init();
@@ -43,10 +43,10 @@ class OrderController {
 
                         // TODO: should we show the price for which they ordered?
                         // How to update the new price?
-                        const item_ordered = this.myorders.find(ord=> ord.dish == menuitem.id);
-                        const {id,name,price} = menuitem;
+                        const item_ordered = this.myorders.find(ord => ord.dish == menuitem.id);
+                        const { id, name, price } = menuitem;
                         const quantity = item_ordered ? item_ordered.quantity : 0;
-                        this.orderItems.push({ id,name,price, quantity })
+                        this.orderItems.push({ id, name, price, quantity })
                     }
                 }
                 // (dishes_voted||[]).forEach(dish_id => this.selectedItems.add(dish_id));
@@ -62,28 +62,73 @@ class OrderController {
         return 'Deadline : ' + d
     }
 
+    get orderTotal() {
+        return(this.orderItems || []).reduce((p, c) => {
+            p += c.quantity * +c.price
+            return p;
+        }, 0)
+    }
+
+    get btnText() {
+        let text = '';
+        if((this.myorders || []).length) {
+            text = 'Update Order';
+        } else {
+            text = 'Order';
+        }
+
+        // orderTotal ? text += ' (' + this.$filter('currency')(this.orderTotal) +')': '';
+        return text
+    }
+
     showSubmit() {
         return this.currentWeek && !this.timePassed && !!this.voting_status && !this.order_status
     }
 
+    vItemClicked(event){
+        if(!this.showSubmit()){
+            event.stopPropagation();
+            event.preventDefault();
+            this.MyToastr.error(`Ordering Disabled!`);
+            return false;
+        }
+    }
+
     orderSubmit = () => {
         // TODO: check valid data
-        const dishes = this.orderItems.map(oItem => ({
+        if(this.timePassed) {
+            return this.MyToastr.error(`Time Expired!`);
+        }
+
+        if(!this.showSubmit()){
+            return this.MyToastr.error(`Ordering closed`);
+        }
+
+        const dishes = this.getDishesToOrder();
+        if(!dishes || !dishes.length || !this.currentWeek) {
+            return this.MyToastr.error(`Select atleast 1`);
+        };
+
+        this.OrderService.createMyOrder({ week: this.currentWeek, dishes })
+            .then((resp) => {
+                this.MyToastr.success('Order Placed');
+                this.init();
+            }).catch((err) => {
+                this.MyToastr.error('Failed');
+                console.error(err);
+            })
+    }
+
+    getDishesToOrder() {
+        return (this.orderItems||[]).map(oItem => ({
             dish: oItem.id,
             dish_name: oItem.name,
             price: oItem.price,
             quantity: oItem.quantity,
         })).filter(ord => ord.quantity);
-        console.log(this.orderItems, dishes, this.currentWeek);
-        this.OrderService.createMyOrder({
-                week: this.currentWeek,
-                dishes
-            })
-            .then((resp) => {
-                this.init();
-                console.log(resp);
-            }).catch(console.error)
     }
+
+
 
     getVotedItems() {
         // console.log('i am here ', this.VoteService)

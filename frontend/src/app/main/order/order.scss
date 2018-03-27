@@ -3,11 +3,15 @@
 @import '~assets/stylesheets/variables';
 order {
   @extend .sub-main-view;
+  .disabled {
+    pointer-events: none;
+    *{
+      @include add-hover(transparent !important);
+    }
+  }
   order-item.is-selected {
-      *{
-        color: $chase-green;
-      }
-      .order-quantity {
+   
+    * {
       color: $chase-green;
     }
   }

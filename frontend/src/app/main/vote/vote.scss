@@ -27,12 +27,15 @@ vote {
     }
     .vote-items-wrapper {
       &.major{
-        background: transparentize($chase-green,0.5);
+        // background: transparentize($chase-green,0.5);
+        *{
+          color:$chase-green;
+        }
         .vote-item-container {
           @include add-hover(transparentize($chase-green,0.3)!important);
-          *{
-            color:white;
-          }
+          // *{
+          //   color:white;
+          // }
         }
         // *{color:white}
         // position: relative;
