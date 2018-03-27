@@ -1,7 +1,7 @@
 const controller = require('./vote.controller')
 const {handleReq} = require('../../helpers/utils/communication_utils');
-const endpoint_name = "/vote";
 const auth = require('../../auth/auth.controller');
+const endpoint_name = "/vote";
 
 
 module.exports = app =>  {

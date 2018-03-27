@@ -1,5 +1,6 @@
 const controller = require('./order.controller')
 const {handleReq} =  require('../../helpers/utils/communication_utils');
+const auth = require('../../auth/auth.controller');
 const endpoint_name = "/order"
 
 module.exports = app =>  {
