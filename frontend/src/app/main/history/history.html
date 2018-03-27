@@ -1,9 +1,15 @@
 <div class="history-view-header sub-main-view-header">
-    <simple-header head-title="self.headTitle" subhead-title="self.subheadTitle"></simple-header>
+    <simple-header head-title="self.headTitle"
+                   subhead-title="self.subheadTitle"></simple-header>
 </div>
 <div class="historys-container sub-main-view-container">
-    <div class="history-items-wrapper" ng-repeat="vItem in self.historyItems">
+    <div class="no-orders"
+         ng-if="!self.myorders.length">No orders yet!</div>
+    <div class="history-items-wrapper"
+         ng-repeat="vItem in self.myorders"
+         ng-class="{'current-order': vItem.week==self.currentWeek}">
         <history-item item="vItem"></history-item>
     </div>
 </div>
-<footer-btn foot-text={{self.btnText}} callback="self.nocallback"></footer-btn>
+<footer-btn foot-text="{{self.btnText}}"
+            callback="self.nocallback"></footer-btn>

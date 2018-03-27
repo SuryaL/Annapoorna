@@ -1,15 +1,16 @@
 <div class="view-item-container history-item-container">
-  <div class="view-middle-item">
-    <div class="view-middle-item-content">
-      <div class="history-week-name dynamic-text-m"> {{self.item.weekTitle}}</div>
-      <div class="order-history-items">
-      <div class="order-history-item dynamic-text-m" ng-repeat="order in self.item.ordersList">
-          <span class="order-quantity">{{order.quantity}}</span>
-          <span class="order-item">{{order.item}}</span>
-          <span class="order-price">{{order.price | currency}}</span>
-      </div>
+    <div class="view-middle-item">
+        <div class="view-middle-item-content">
+            <div class="history-week-name dynamic-text-m"> {{self.item.week | date}}</div>
+            <div class="order-history-items">
+                <div class="order-history-item dynamic-text-m"
+                     ng-repeat="order in self.item.dishes">
+                    <span class="order-quantity">{{order.quantity}}</span>
+                    <span class="order-item">{{order.name}}</span>
+                    <span class="order-price">{{order.price | currency}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="view-right-item item-price dynamic-text-xs">{{self.item.total | currency}}</div>
     </div>
-    </div>
-    <div class="view-right-item item-price dynamic-text-xs">{{self.item.totalPrice | currency}}</div>
-  </div>
 </div>

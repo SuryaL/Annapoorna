@@ -25,6 +25,15 @@ let OrderFactory = function($http, $httpParamSerializer) {
             return resp.data;
           })
       }
+      self.getMyOrders = function(obj = {}) {
+        return $http({
+            method: 'GET',
+            url: API + self.PATH + '/getMyOrders'
+          })
+          .then(resp => {
+            return resp.data;
+          })
+      }
     
 
     // self.update = function(obj) {

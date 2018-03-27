@@ -38,6 +38,15 @@ async function findUserOrder(user, week) {
     return found.rows
 }
 
+async function getAllUserOrders(user){
+    if(!user){
+        throw new Error('Invalid user');
+    }
+    const query = 'Select * from orders where user = ? allow filtering';
+    const found = await execQuery(query, [user]);
+    return found.rows
+}
+
 async function deleteUserOrders(user, week) {
     const query = 'delete from orders where user = ? and week = ?';
     await execQuery(query, [user, week]);
@@ -90,9 +99,32 @@ async function createOrderSingleItem(body) {
     return body;
 }
 
+function formatOrderHistory(orders){
+    let history = {};
+    for(let oItem of orders){
+        if(!history[oItem.week]){
+            history[oItem.week] = {week:oItem.week, dishes:[],total:0}
+        }
+        history[oItem.week]['dishes'].push({
+            name: oItem.dish_name,
+            price : oItem.price,
+            quantity: oItem.quantity
+        });
+        history[oItem.week]['total'] += +(+oItem.price * +oItem.quantity).toFixed(2);
+    }
+
+    let history_orders=[];
+    for(let week of Object.keys(history)){
+        history_orders.push(history[week])
+    }
+    return history_orders
+}
+
 module.exports = {
+    formatOrderHistory,
     createNewOrderData,
     findUserOrder,
     deleteUserOrders,
     createOrders,
+    getAllUserOrders
 }

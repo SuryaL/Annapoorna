@@ -105,8 +105,8 @@ class OrderController {
         }
 
         const dishes = this.getDishesToOrder();
-        if(!dishes || !dishes.length || !this.currentWeek) {
-            return this.MyToastr.error(`Select atleast 1`);
+        if(!dishes || !this.currentWeek) {
+            return this.MyToastr.error(`Failed`);
         };
 
         this.OrderService.createMyOrder({ week: this.currentWeek, dishes })

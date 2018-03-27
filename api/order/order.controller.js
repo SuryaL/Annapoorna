@@ -1,6 +1,6 @@
 const OrderService = require('./order.service');
 
-const createMyOrder = async function(req){
+const createUserOrder = async function(req){
     console.log(req.body.dishes);
     if(!req.body.dishes) {
         throw new Error ('Select atleast one dish');
@@ -16,11 +16,17 @@ const createMyOrder = async function(req){
 }
 
 
-const getMyOrder = async function(req){
+const getUserOrder = async function(req){
     let {week}  = req.query;
     let user = (req.user.id || '').toString();
-    console.log(week,user);
     return await OrderService.findUserOrder(user,week);
+}
+
+const getAllUserOrders = async function(req){
+    const user = (req.user.id || '').toString();
+    const orders = await OrderService.getAllUserOrders(user);
+    const history_orders = OrderService.formatOrderHistory(orders);
+    return history_orders;
 }
 
 //TODO
@@ -41,8 +47,9 @@ const remove = async function(req){
 
 
 module.exports = {
-    getMyOrder,
-    createMyOrder,
+    getAllUserOrders,
+    getUserOrder,
+    createUserOrder,
     find,
     update, 
     remove

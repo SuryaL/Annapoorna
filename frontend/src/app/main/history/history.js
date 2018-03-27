@@ -2,13 +2,15 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import historyComponent from './history.component';
 import historyItem from 'common/components/history_item/history_item';
-import footerBtn from 'common/components/footerBtn/footerBtn';
 import simpleHeader from 'common/components/simpleHeader/simpleHeader';
+import footerBtn from 'common/components/footerBtn/footerBtn';
 import headerBtn from 'common/components/header_btn/header_btn';
 
 import AuthService from 'common/services/auth';
+import VoteService from 'common/services/vote';
+import OrderService from 'common/services/order';
 import menuService from 'common/services/menu';
-
+import StatusService from 'common/services/status';
 let historyModule = angular.module('history', [
     uiRouter,
     headerBtn,
@@ -16,18 +18,21 @@ let historyModule = angular.module('history', [
     simpleHeader,
     AuthService,
     menuService,
-    historyItem
+    historyItem,
+    VoteService,
+    OrderService,
+    StatusService
   ])
-  .config(($stateProvider) => {
-    'ngInject';
+    .config(($stateProvider) => {
+        'ngInject';
 
-    $stateProvider
-      .state('app.main.history', {
-        url: 'history',
-        template: '<history></history>',
-        authenticated: 'authenticated'
-      });
-  })
-  .component('history', historyComponent);
+        $stateProvider
+            .state('app.main.history', {
+                url: 'history',
+                template: '<history></history>',
+                authenticated: 'authenticated'
+            });
+    })
+    .component('history', historyComponent);
 
 export default historyModule.name;
