@@ -2,60 +2,57 @@
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
 history-item {
-    color: red;
-    .history-item-container {
-        .view-middle-item {
-            .view-middle-item-content {
-                max-width: 50em;
-                .history-week-name {
-                    font-size: 1.1em !important;
-                    @media(min-width: 600px) {
-                        font-size: 1.4em !important;
-                    }
-                    padding:0.1em;
-                }
-                .order-history-items {
-                    margin:0.3em;
-                    @media(min-width: 600px) {
-                        margin:0.7em 1em;
-                    }
-                    .order-history-item {
-                        width: 100%;
-                        margin:0.3em;
-                        @media(min-width: 600px) {
-                        margin:0.1em 0.2em;
-                    }
-                        .order-quantity,
-                        .order-price,
-                        .order-item {
-                            font-size: 0.9em !important;
-                            line-height: 1.1em !important;
-                            @media(min-width: 600px) {
-                                font-size: 0.8em !important;
-                            line-height: 0.7em !important;
-                            padding:0em;
-                            
-                        }
-                            padding:0.1em;
-                        }
-                        .order-quantity,
-                        .order-price{
-                            @extend .main-regular-font;
-                            
-                        }
-                        .order-item {
-                            @extend .main-lightitalic-font;
-                          
-                        }
-                    }
-                }
-            }
+  color: red;
+  .history-item-container {
+    .view-middle-item {
+      .view-middle-item-content {
+        max-width: 50em;
+        .history-week-name {
+          font-size: 1.1em !important;
+          @media(min-width: 600px) {
+            font-size: 1.4em !important;
+          }
+          padding:0.1em;
         }
-        .item-price {
-            font-size: 1.0em !important;
+        .order-history-items {
+          margin: 0.3em;
+          @media(min-width: 600px) {
+            margin:0.7em 1em;
+          }
+          .order-history-item {
+            width: 100%;
+            margin: 0.3em;
             @media(min-width: 600px) {
-                font-size: 1.2em !important;
+              margin:0.1em 0.2em;
             }
+            .order-quantity,
+            .order-price,
+            .order-item {
+              font-size: 0.9em !important;
+              line-height: 1.1em !important;
+              @media(min-width: 600px) {
+                font-size: 0.8em !important;
+                line-height: 0.7em !important;
+                padding: 0em;
+              }
+              padding:0.1em;
+            }
+            .order-quantity,
+            .order-price {
+              @extend .main-regular-font;
+            }
+            .order-item {
+              @extend .main-lightitalic-font;
+            }
+          }
         }
+      }
     }
+    .item-price {
+      font-size: 1.0em !important;
+      @media(min-width: 600px) {
+        font-size: 1.2em !important;
+      }
+    }
+  }
 }
