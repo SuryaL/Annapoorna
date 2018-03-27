@@ -1,7 +1,14 @@
 @import '~assets/stylesheets/common';
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
-
 order {
   @extend .sub-main-view;
+  order-item.is-selected {
+      *{
+        color: $chase-green;
+      }
+      .order-quantity {
+      color: $chase-green;
+    }
+  }
 }

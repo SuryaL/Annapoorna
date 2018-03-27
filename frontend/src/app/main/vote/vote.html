@@ -1,19 +1,32 @@
 <div class="vote-view-header sub-main-view-header">
-    <simple-header head-title="self.headTitle" subhead-title="self.subheadTitle"></simple-header>
+    <simple-header head-title="self.headTitle"
+                   subhead-title="self.subheadTitle"></simple-header>
     <div class="align-head-right">
-        <time-remaining time-passed="self.timePassed" deadline="self.vote_deadline"></time-remaining>
-        <header-btn ng-if="self.showSubmit()" class="" head-text="{{self.btnText}}" callback="self.voteSubmit"></header-btn>
+        <time-remaining ng-if="self.vote_deadline"
+                        time-passed="self.timePassed"
+                        deadline="self.vote_deadline"></time-remaining>
+        <header-btn ng-if="self.showSubmit()"
+                    class=""
+                    head-text="{{self.btnText}}"
+                    callback="self.voteSubmit"></header-btn>
     </div>
 </div>
 <div class="votes-container sub-main-view-container">
-    <div class="item-type-class-wrap" ng-repeat="type in self.menuTypes">
+    <div class="item-type-class-wrap"
+         ng-repeat="type in self.menuTypes">
         <div class="type-title dynamic-text-m"> {{type}} </div>
-        <div class="vote-items-wrapper" ng-show="vItem.type == type" 
-        ng-class="{ 'disabled': !!self.timePassed,
-            'major':self.isMajority(vItem.id)}" 
-        ng-repeat="vItem in self.menuItems track by vItem.id">
-            <vote-item item="vItem" is-selected-item="self.isSelectedItem" item-toggled="self.voteToggle" votes-count="self.totalVotes"></vote-item>
+        <div class="vote-items-wrapper"
+             ng-show="vItem.type == type"
+             ng-class="{ 'disabled': !!self.timePassed,
+            'major':self.isMajority(vItem.id)}"
+             ng-repeat="vItem in self.menuItems track by vItem.id">
+            <vote-item item="vItem"
+                       is-selected-item="self.isSelectedItem"
+                       item-toggled="self.voteToggle"
+                       votes-count="self.totalVotes"></vote-item>
         </div>
     </div>
 </div>
-<footer-btn ng-if="self.showSubmit()" foot-text={{self.btnText}} callback="self.voteSubmit"></footer-btn>
+<footer-btn ng-if="self.showSubmit()"
+            foot-text={{self.btnText}}
+            callback="self.voteSubmit"></footer-btn>

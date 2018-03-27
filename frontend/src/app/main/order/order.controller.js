@@ -1,7 +1,7 @@
 class OrderController {
-    constructor($state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr) {
+    constructor($state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService) {
         'ngInject';
-        Object.assign(this, { $state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr });
+        Object.assign(this, { $state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService });
         this.user = {};
         this.headTitle = 'Order this week\'s dishes';
 
@@ -23,29 +23,30 @@ class OrderController {
                 this.vote_deadline = this.weekDetails.voting_deadline;
                 this.menuItems = results[1] || [];
                 return this.$q.all([
-                this.VoteService.find({ week: this.weekDetails.week }),
-                // this.$q(resolve=>resolve(['39813b97-4b16-434b-bcf5-e9080e7565f8']))
-                //TODO: Add Voting results api 
-                // majority is current top dishes
-                this.VoteService.getMajority({ week: this.weekDetails.week }),
-            ])
+                    this.VoteService.find({ week: this.weekDetails.week }),
+                    // majority is current top dishes
+                    this.VoteService.getMajority({ week: this.weekDetails.week }),
+                    this.OrderService.getMyOrder({ week: this.weekDetails.week })
+                ])
             })
-            .then(([currentWeekVotes, majority]) => {
+            .then(([currentWeekVotes, majority, myorders]) => {
+                this.myorders = myorders;
                 this.majority = new Set(majority || []);
+
                 const currentWeekUserVote = (currentWeekVotes || [])[0] || {};
                 const dishes_voted = currentWeekUserVote.dishes || [];
                 this.already_voted = !!dishes_voted.length;
                 this.orderItems = [];
-
                 // FIXME: populate previously saved order
                 for(let menuitem of this.menuItems) {
                     if(this.majority.has(menuitem.id)) {
-                        this.orderItems.push({
-                            quantity: 0,
-                            id: menuitem.id,
-                            name: menuitem.name,
-                            price: menuitem.price
-                        })
+
+                        // TODO: should we show the price for which they ordered?
+                        // How to update the new price?
+                        const item_ordered = this.myorders.find(ord=> ord.dish == menuitem.id);
+                        const {id,name,price} = menuitem;
+                        const quantity = item_ordered ? item_ordered.quantity : 0;
+                        this.orderItems.push({ id,name,price, quantity })
                     }
                 }
                 // (dishes_voted||[]).forEach(dish_id => this.selectedItems.add(dish_id));
@@ -66,11 +67,22 @@ class OrderController {
     }
 
     orderSubmit = () => {
-        console.log(this.orderItems);
-        // this.MenuService.find()
-        //     .then(resp => {
-        //         console.log(resp);
-        //     })
+        // TODO: check valid data
+        const dishes = this.orderItems.map(oItem => ({
+            dish: oItem.id,
+            dish_name: oItem.name,
+            price: oItem.price,
+            quantity: oItem.quantity,
+        })).filter(ord => ord.quantity);
+        console.log(this.orderItems, dishes, this.currentWeek);
+        this.OrderService.createMyOrder({
+                week: this.currentWeek,
+                dishes
+            })
+            .then((resp) => {
+                this.init();
+                console.log(resp);
+            }).catch(console.error)
     }
 
     getVotedItems() {

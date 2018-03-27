@@ -9,6 +9,9 @@ import timeRemaining from 'common/components/time_remaining/time_remaining';
 
 import AuthService from 'common/services/auth';
 import VoteService from 'common/services/vote';
+import OrderService from 'common/services/order';
+import menuService from 'common/services/menu';
+import StatusService from 'common/services/status';
 
 let orderModule = angular.module('order', [
     uiRouter,
@@ -19,6 +22,9 @@ let orderModule = angular.module('order', [
     simpleHeader,
     AuthService,
     VoteService,
+    StatusService,
+    menuService,
+    OrderService
   ])
   .config(($stateProvider) => {
     'ngInject';
