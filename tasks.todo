@@ -19,6 +19,7 @@ Portal:
     ✔ fix simple header scss and reuse for other views @done (2018-3-18 23:14:53)
     ☐ cleanup
     ☐ remove all catches from services
+    ☐ bug: dishes can be clicked after voting closed when view is loading
     ✔ get alternative font for lato-medium @done (2018-3-24 18:58:52)
 
     /* cassandra user temp access

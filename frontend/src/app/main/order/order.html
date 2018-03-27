@@ -1,13 +1,24 @@
 <div class="order-view-header sub-main-view-header">
-    <simple-header head-title="self.headTitle" subhead-title="self.subheadTitle"></simple-header>
+    <simple-header head-title="self.headTitle"
+                   subhead-title="self.subheadTitle"></simple-header>
+
     <div class="align-head-right">
-        <time-remaining time-passed="self.timePassed" deadline="self.order_deadline"></time-remaining>
-        <header-btn ng-if="self.showSubmit()" head-text={{self.btnText}} callback="self.orderSubmit"></header-btn>
+        <time-remaining time-passed="self.timePassed"
+                        deadline="self.order_deadline"></time-remaining>
+        <header-btn ng-if="self.showSubmit()"
+                    head-text={{self.btnText}}
+                    callback="self.orderSubmit"></header-btn>
     </div>
 </div>
+
 <div class="orders-container sub-main-view-container">
-    <div class="order-items-wrapper" ng-repeat="vItem in self.orderItems">
-        <order-item item="vItem"></order-item>
+    <div class="order-items-wrapper"
+         ng-repeat="vItem in self.orderItems">
+        <order-item item="vItem" quantity="vItem.quantity"></order-item>
     </div>
 </div>
-<footer-btn ng-if="self.showSubmit()" foot-text={{self.btnText}} callback="self.orderSubmit"></footer-btn>
+
+
+<footer-btn ng-if="self.showSubmit()"
+            foot-text={{self.btnText}}
+            callback="self.orderSubmit"></footer-btn>

@@ -5,8 +5,7 @@ import './order_item.scss';
 let orderItemComponent = {
   restrict: 'E',
   bindings: {
-    item:'=',
-    quantity:'=?'
+    item:'='
   },
   template,
   controller,
