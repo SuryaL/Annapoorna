@@ -29,6 +29,12 @@ function createNewOrderData() {
     return body
 }
 
+async function getAllOrders(){
+    const query = 'Select * from orders';
+    const found = await execQuery(query, []);
+    return found.rows
+}
+
 async function findUserOrder(user, week) {
     if(!user || !week){
         throw new Error('Invalid user/week');
@@ -45,6 +51,15 @@ async function getAllUserOrders(user){
     const query = 'Select * from orders where user = ? allow filtering';
     const found = await execQuery(query, [user]);
     return found.rows
+}
+
+async function getUserOrderPriceTotal(user){
+    const orders = await getAllUserOrders(user);
+    let total = 0;
+    for(let oItem of orders){
+        total += +(+oItem.price * +oItem.quantity).toFixed(2);
+    }
+    return total;
 }
 
 async function deleteUserOrders(user, week) {
@@ -121,6 +136,7 @@ function formatOrderHistory(orders){
 }
 
 module.exports = {
+    getUserOrderPriceTotal,
     formatOrderHistory,
     createNewOrderData,
     findUserOrder,
