@@ -14,7 +14,6 @@ class voteCtrl {
         this.menuTypes = ['special', 'regular'];
 
         this.selectedItems = new Set();
-        // this.vote_deadline = '03-19-2018';
         this.VoteService = VoteService;
         this.StatusService = StatusService;
         this.init();
@@ -70,7 +69,14 @@ class voteCtrl {
     showSubmit(){
         return this.currentWeek && !this.timePassed && !this.voting_status
     }
-    
+    vItemClicked = (event) =>{
+        if(!this.showSubmit()){
+            event.stopPropagation();
+            event.preventDefault();
+            this.MyToastr.error(`Voting Disabled!`);
+            return false;
+        }
+    }
     voteSubmit = () => {
         if(this.timePassed){
             return this.MyToastr.error(`Time Expired!`);

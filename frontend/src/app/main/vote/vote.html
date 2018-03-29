@@ -11,13 +11,14 @@
                     callback="self.voteSubmit"></header-btn>
     </div>
 </div>
-<div class="votes-container sub-main-view-container">
+<div class="votes-container sub-main-view-container"  ng-class="{'disabled':!self.showSubmit()}">
     <div class="item-type-class-wrap"
          ng-repeat="type in self.menuTypes">
         <div class="type-title dynamic-text-m"> {{type}} </div>
         <div class="vote-items-wrapper"
+             ng-click="self.vItemClicked($event)"
              ng-show="vItem.type == type"
-             ng-class="{ 'disabled': !!self.timePassed,
+             ng-class="{ 'disabled': (!self.showSubmit()),
             'major':self.isMajority(vItem.id)}"
              ng-repeat="vItem in self.menuItems track by vItem.id">
             <vote-item item="vItem"

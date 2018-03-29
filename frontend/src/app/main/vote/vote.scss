@@ -12,32 +12,33 @@ vote {
     // @include flex(1, 0, 0);
     // background-color: white;
     // overflow-y: scroll;
+    &.disabled{
+      background-color: #DDD;
+    }
     .item-type-class-wrap {
       margin-top: 1em;
-      &:first-child{
+      &:first-child {
         margin-top: 0em;
       }
       .type-title {
         padding: 0.5em 0.7em;
         letter-spacing: 0.1em;
         text-transform: capitalize;
-        color:$chase-grey;
+        color: $chase-grey;
         @extend .main-heavy-font;
       }
     }
     .vote-items-wrapper {
-      &.major{
+      &.major {
         // background: transparentize($chase-green,0.5);
-        *{
-          color:$chase-green;
+        * {
+          color: $chase-green;
         }
         .vote-item-container {
-          @include add-hover(transparentize($chase-green,0.3)!important);
-          // *{
+          @include add-hover(transparentize($chase-green, 0.3) !important); // *{
           //   color:white;
           // }
-        }
-        // *{color:white}
+        } // *{color:white}
         // position: relative;
         // &:after{
         //   content:'*';
@@ -51,10 +52,10 @@ vote {
         //   // background: blue;
         // }
       }
-      &.disabled{
-        // pointer-events: none;
+      &.disabled {
         .vote-item-container {
-          @include add-hover(transparent!important);
+          pointer-events: none;
+          @include add-hover(transparent !important);
         }
       }
       vote-item {

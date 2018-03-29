@@ -3,16 +3,25 @@
 @import '~assets/stylesheets/variables';
 order {
   @extend .sub-main-view;
-  .disabled {
-    pointer-events: none;
-    *{
-      @include add-hover(transparent !important);
-    }
+  .no-orders{
+    @extend .main-lightitalic-font;
+    font-size:1.5em;
+    padding:1em;
   }
-  order-item.is-selected {
-   
-    * {
-      color: $chase-green;
+  .orders-container {
+    &.disabled{
+      background-color: #DDD;
+    }
+    .disabled {
+      pointer-events: none;
+      * {
+        @include add-hover(transparent !important);
+      }
+    }
+    order-item.is-selected {
+      * {
+        color: $chase-green;
+      }
     }
   }
 }
