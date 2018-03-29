@@ -1,7 +1,12 @@
 const StatusService = require('../../api/status/status.service');
-let enable = true;
+let enabled = false;
+
+function setEnable(bool){
+    enabled = !!bool;
+}
+
 async function checkStatus(){
-    if(!enable){
+    if(!enabled){
         //keep adding timeouts
         // return;
     }else{
@@ -13,5 +18,6 @@ async function checkStatus(){
 };
 
 module.exports ={
-    checkStatus
+    checkStatus,
+    setEnable
 }

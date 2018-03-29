@@ -9,6 +9,7 @@ const StatusCheckService = require('./helpers/utils/status_check');
  */
 router.use(StatusController.attachCurrentWeek);
 
+StatusCheckService.setEnable(true);
 StatusCheckService.checkStatus();
 
 require('./auth')(router);
