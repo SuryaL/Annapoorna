@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const StatusController = require('./api/status/status.controller');
+const StatusCheckService = require('./helpers/utils/status_check');
 
 /**
  * Add current week to all requests
  * FIXME: change to per api basis
  */
 router.use(StatusController.attachCurrentWeek);
+
+StatusCheckService.checkStatus();
 
 require('./auth')(router);
 require('./api/user')(router);

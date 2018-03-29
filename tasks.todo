@@ -21,6 +21,7 @@ Portal:
     ☐ remove all catches from services
     ☐ bug: dishes can be clicked after voting closed when view is loading
     ☐ bug: auth exchange
+    ☐ fix vote and orders when week is not active or order is not started
     ✔ get alternative font for lato-medium @done (2018-3-24 18:58:52)
 
     /* cassandra user temp access

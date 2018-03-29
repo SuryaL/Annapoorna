@@ -13,7 +13,7 @@ history {
     &.current-order{
       .history-week-name{
         &:after{
-          content:' ( upcoming )';
+          content:' (upcoming)';
           color:$chase-green;
           font-size:0.8em;
         }
