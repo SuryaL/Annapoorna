@@ -17,6 +17,7 @@ require('./api/user')(router);
 require('./api/menu')(router);
 require('./api/vote')(router);
 require('./api/order')(router);
+require('./api/payment')(router);
 require('./api/status')(router);
 
 // require('./helpers/fake_data/createFakeData');

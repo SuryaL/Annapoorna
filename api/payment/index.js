@@ -1,6 +1,7 @@
 const controller = require('./payment.controller')
 const {handleReq} =  require('../../helpers/utils/communication_utils');
 const endpoint_name = "/payment"
+const auth = require('../../auth/auth.controller');
 
 module.exports = app =>  {
     app.post(endpoint_name, auth.isAuthenticated(), auth.hasRole('admin'),handleReq(controller.create))
