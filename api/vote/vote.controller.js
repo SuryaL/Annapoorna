@@ -1,5 +1,5 @@
 const VoteService = require('./vote.service');
-const MenuService = require('../menu/menu.sevice');
+// const MenuService = require('../menu/menu.sevice');
 const _ = require('underscore');
 
 
@@ -53,8 +53,12 @@ const getMajority = async function(req){
 }
 
 // const getFinalMajority = async function (req){
-//     getMajority
-//     let menu = await MenuService.getMenu();
+//     let sorted = await getMajority(req);
+//     if(sorted.length != 5){
+//         // let menu = await MenuService.getMenu();
+
+//         // notify admin?
+//     }
 // }
 
 module.exports = {
