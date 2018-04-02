@@ -1,4 +1,5 @@
 const VoteService = require('./vote.service');
+const MenuService = require('../menu/menu.sevice');
 const _ = require('underscore');
 
 
@@ -41,7 +42,7 @@ const getMajority = async function(req){
         result.dishes.forEach(dish_id => {
             if(!dishCounts.hasOwnProperty(dish_id)) dishCounts[dish_id]=0;
             dishCounts[dish_id]++;
-        });;
+        });
     }
 
     //FIXME : NEED TO ADD THE CORRECT COUNTING IN CASE OF CLASHES
@@ -50,6 +51,11 @@ const getMajority = async function(req){
     //FIXME : If not enough votes, then pick random
     return sortable.map((d)=>d[0]).slice(0,5);
 }
+
+// const getFinalMajority = async function (req){
+//     getMajority
+//     let menu = await MenuService.getMenu();
+// }
 
 module.exports = {
     create,
