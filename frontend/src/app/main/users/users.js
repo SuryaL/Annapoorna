@@ -9,6 +9,7 @@ import inputPlaceholder from 'common/directives/inputPlaceholder';
 import toastr from 'common/services/mytoastr';
 
 import AuthService from 'common/services/auth';
+import PaymentService from 'common/services/payment';
 import userService from 'common/services/user';
 import adduser from 'common/services/adduser';
 
@@ -20,6 +21,7 @@ let usersModule = angular.module('users', [
     footerBtn,
     simpleHeader,
     AuthService,
+    PaymentService,
     userService,
     adduser,
     inputPlaceholder

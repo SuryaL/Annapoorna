@@ -1,6 +1,6 @@
 <div class="user-balance-text">
-        Balance
+    {{self.owesText}}
     </div>
 <div class="user-balance-value dynamic-text-m">
-    $33.55
+    <span ng-if="self.owes">{{(self.owes > 0? self.owes : -self.owes | currency)}}</span>
 </div>

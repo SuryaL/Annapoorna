@@ -1,7 +1,7 @@
 class OrderController {
-    constructor($state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService, $filter) {
+    constructor($state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService, $filter, $rootScope) {
         'ngInject';
-        Object.assign(this, { $state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService, $filter });
+        Object.assign(this, { $state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService, $filter, $rootScope });
         this.user = {};
         this.headTitle = 'Order this week\'s dishes';
 
@@ -112,6 +112,7 @@ class OrderController {
         this.OrderService.createMyOrder({ week: this.currentWeek, dishes })
             .then((resp) => {
                 this.MyToastr.success('Order Placed');
+                this.$rootScope.$broadcast('pay-update');
                 this.init();
             }).catch((err) => {
                 this.MyToastr.error('Failed');

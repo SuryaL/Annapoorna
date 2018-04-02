@@ -5,7 +5,8 @@ import './user_item.scss';
 let userItemComponent = {
   restrict: 'E',
   bindings: {
-    item:'='
+    item:'=',
+    payAmount:'=?'
   },
   template,
   controller,
