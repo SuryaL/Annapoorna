@@ -46,7 +46,7 @@ async function createUser(body){
     const query = 'INSERT INTO user (' + columns.join() + ') VALUES (' + Array(params.length).join('?,') + '?)';
 
     await execQuery(query, params);
-
+    
     delete body.password;
     return body;
 }

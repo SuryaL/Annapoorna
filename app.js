@@ -1,8 +1,9 @@
-const express = require('express');
-const app = express();
-const config = require('./config');
+const express    = require('express');
+const app        = express();
+const config     = require('./config');
 const requestify = require('./helpers/utils/requestify');
-const cassandra = require('./boundaries/cassandra');
+const cassandra  = require('./boundaries/cassandra');
+const email      = require ('./helpers/email');
 
 
 /**
@@ -30,6 +31,10 @@ cassandra.init(config.cassandra)
     .catch(console.error)
 
 
+/**
+ * email init
+ */
+email.init(config);
 
 
 /**

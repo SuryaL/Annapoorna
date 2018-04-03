@@ -101,9 +101,12 @@ function sortObject(dishCounts) {
     //     return sortable.map((d)=>d[0]);
     // }
 }
+
 async function removeVote(id) {
 
 }
+
+
 module.exports = {
     createVote,
     getVote,
