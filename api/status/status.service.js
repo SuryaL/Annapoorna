@@ -142,10 +142,12 @@ function dallastime(date){
 async function sendToMailAllUsers(email_type,options={}){
     let users = await UserService.getUsers({});
     for(let user of users){
-        let {first_name, email} = user;
-        let data = Object.assign({first_name,email},options);
-        // await emailService.send('surysunny17@gmail.com', email_type, {user:data}, [])
-        await emailService.send(email, email_type, {user:data}, [])
+        if(user.type.indexOf('user')!=-1){
+            let {first_name, email} = user;
+            let data = Object.assign({first_name,email},options);
+            // await emailService.send('surysunny17@gmail.com', email_type, {user:data}, [])
+            await emailService.send(email, email_type, {user:data}, [])
+        }
     }
 }
 
