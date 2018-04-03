@@ -11,7 +11,7 @@ class voteCtrl {
             MyToastr
         });
         this.headTitle = 'Vote for this week\'s dishes';
-        this.menuTypes = ['special', 'regular'];
+        this.menuTypes = ['Special', 'Regular'];
 
         this.selectedItems = new Set();
         this.VoteService = VoteService;
@@ -27,7 +27,6 @@ class voteCtrl {
             this.voting_status = this.weekDetails.voting_status;
             this.vote_deadline = this.weekDetails.voting_deadline;
             this.menuItems = results[1] || [];
-            
             return this.$q.all([
                 this.VoteService.find({week:this.weekDetails.week}),
                 // this.$q(resolve=>resolve(['39813b97-4b16-434b-bcf5-e9080e7565f8']))
