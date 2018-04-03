@@ -62,6 +62,15 @@ async function getUserOrderPriceTotal(user){
     return total;
 }
 
+async function getAllOrdersPriceTotal(user){
+    const orders = await getAllOrders();
+    let total = 0;
+    for(let oItem of orders){
+        total += +(+oItem.price * +oItem.quantity).toFixed(2);
+    }
+    return total;
+}
+
 async function deleteUserOrders(user, week) {
     const query = 'delete from orders where user = ? and week = ?';
     await execQuery(query, [user, week]);
@@ -146,6 +155,7 @@ function formatOrderHistory(orders){
 
 module.exports = {
     getAllOrders,
+    getAllOrdersPriceTotal,
     getUserOrderPriceTotal,
     formatOrderHistory,
     createNewOrderData,

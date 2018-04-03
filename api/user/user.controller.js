@@ -10,11 +10,22 @@ const create = async function(req) {
     if(!req.body.type || !req.body.email) {
         throw new Error('Required params missing');
     }
+    
     const foundUser = (await UserService.getUser({ email: body.email }));
+    
     if(!!foundUser) {
         throw new Error('User exists');
     }
 
+    if(req.body.type == 'cook'){
+        let resps = await find({query:{}});
+        let foundCook = resps.rows.find((row)=>{
+            return row.type.indexOf('cook')
+        })
+        if(foundCook){
+            throw new Error('App does not support multiple cooks yet.');
+        }
+    }
     // PROCEED
     Object.assign(body, UserService.createNewUserData());
     body.modified_by = req.user.id;

@@ -18,6 +18,10 @@ async function getUserBalance(req){
     let user = req.user;
     return await (PaymentService.getUserBalance(user.id));
 }
+async function getCookBalance(req){
+    let user = req.user;
+    return await (PaymentService.getCookBalance(user.id));
+}
 
 
 const create = async function(req){
@@ -38,6 +42,7 @@ const remove = async function(req){
 
 
 module.exports = {
+    getCookBalance,
     getUserBalance,
     getAllUsersBalances,
     addUserPayments,

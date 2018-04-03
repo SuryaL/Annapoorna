@@ -11,9 +11,9 @@ class mainController {
         this.tabs = this.TabsService.fetchTabsForType(this.user.type)
     }
 
-    needsUserBalance(){
-        return (this.user.type||[]).indexOf('user') != -1
-    }
+    // needsUserBalance(){
+    //     return (this.user.type||[]).indexOf('user') != -1
+    // }
 }
 
 export default mainController;

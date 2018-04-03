@@ -14,7 +14,16 @@ let VoteFactory = function($http, $httpParamSerializer) {
         return resp.data;
       })
   }
-
+  self.getCookBalance = function(obj = {}) {
+    return $http({
+        method: 'GET',
+        url: API + self.PATH+'/getCookBalance' + '?' + $httpParamSerializer(obj),
+      })
+      .then(resp => {
+        return resp.data;
+      })
+  }
+  
   self.getAllUsersBalances = function(obj = {}) {
     return $http({
         method: 'GET',

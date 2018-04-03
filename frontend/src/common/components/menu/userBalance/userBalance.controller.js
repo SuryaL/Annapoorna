@@ -1,14 +1,21 @@
 class footerBtnCtrl {
-    constructor($state, PaymentService, $scope) {
+    constructor($state, PaymentService, $scope, $auth) {
         'ngInject';
         this.PaymentService = PaymentService;
         this.$scope         = $scope;
+        this.user = $auth.getUser();
     }
     
     init(){
-        this.PaymentService.getUserBalance().then(resp => {
-            this.userPayment = resp;
-        })
+        if(this.user.type.indexOf('user') != -1){
+            this.PaymentService.getUserBalance().then(resp => {
+                this.userPayment = resp;
+            })
+        }else if(this.user.type.indexOf('cook') != -1){
+            this.PaymentService.getCookBalance().then(resp => {
+                this.userPayment = resp;
+            })
+        }
     }
     
     $onInit(){

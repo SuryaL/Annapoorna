@@ -21,6 +21,15 @@ async function getUserBalance(user_id) {
     }
 }
 
+async function getCookBalance(user_id) {
+    let orders_bill = await OrderService.getAllOrdersPriceTotal();
+    let payments = await getUserPayments(user_id);
+    return {
+        orders_bill: - +orders_bill,
+        payments
+    }
+}
+
 async function getUserPayments(user_id) {
     if(!user_id){
         throw new Error('missing params');
@@ -62,6 +71,11 @@ async function getAllUsersBalances() {
                 Object.assign(user, bal);
                 return user
             }))
+        }else if(user.type.indexOf('cook')!=-1){
+            proms.push(getCookBalance(user.id).then((bal)=>{
+                Object.assign(user, bal);
+                return user
+            }))
         }
     }
     return await Promise.all(proms);
@@ -71,5 +85,6 @@ async function getAllUsersBalances() {
 module.exports = {
     addUserPayment,
     getAllUsersBalances,
+    getCookBalance,
     getUserBalance
 }
