@@ -51,15 +51,18 @@ async function getAllUsersBalances() {
         id: user.id,
         first_name: user.first_name,
         last_name: user.last_name,
-        email:user.email
+        email:user.email,
+        type: user.type
     }))
     // console.log(users_list);
     let proms = [];
     for (let user of users){
-        proms.push(getUserBalance(user.id).then((bal)=>{
-            Object.assign(user, bal);
-            return user
-        }))
+        if(user.type.indexOf('user')!=-1){
+            proms.push(getUserBalance(user.id).then((bal)=>{
+                Object.assign(user, bal);
+                return user
+            }))
+        }
     }
     return await Promise.all(proms);
 }

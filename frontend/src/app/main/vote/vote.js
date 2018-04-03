@@ -33,7 +33,26 @@ const module = angular.module('vote', [
         $stateProvider.state('app.main.vote', {
             url: 'vote',
             template: '<vote></vote>',
-            authenticated: 'authenticated'
+            authenticated: 'authenticated',
+            resolve: function($q, $auth, $state, $timeout) {
+                'ngInject';
+                let user = $auth.getUser() || {};
+                return $q((resolve, reject) => {
+                    if((user.type || []).includes('user')) {
+                        resolve()
+                    } else if((user.type || []).includes('cook')) {
+                        $timeout(() => {
+                            $state.go('app.main.orders');
+                        })
+                        reject();
+                    }else{
+                        $timeout(() => {
+                            $state.go('app.main.profile');
+                        })
+                        reject();
+                    }
+                });
+            }
         })
     })
     .component('vote', component)

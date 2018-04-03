@@ -3,9 +3,9 @@ class OrdersController {
         'ngInject';
         Object.assign(this, { $state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService, $filter });
         this.user = {};
-        this.headTitle = 'History';
+        this.headTitle = 'Orders';
         this.subheadTitle = '.';
-        this.btnText = "history";
+        this.btnText = "orders";
         this.init();
     }
 

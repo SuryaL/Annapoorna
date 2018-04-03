@@ -2,7 +2,7 @@
     <div class="menu-header">
         <menu-icon ng-click="self.fun()"></menu-icon>
         <menu-bar ng-if="self.tabs" tabs="self.tabs"></menu-bar>
-        <user-balance></user-balance> 
+        <user-balance ng-if="self.needsUserBalance()"></user-balance> 
     </div>
     <div class="main-view" ui-view></div>
 </div>

@@ -30,7 +30,18 @@ let historyModule = angular.module('history', [
             .state('app.main.history', {
                 url: 'history',
                 template: '<history></history>',
-                authenticated: 'authenticated'
+                authenticated: 'authenticated',
+                resolve:function($q, $auth){
+                  'ngInject';
+                  let user = $auth.getUser() || {};
+                  return $q((resolve,reject) =>{
+                    if((user.type || []).includes('user')){
+                      resolve()
+                    }else{
+                      reject();
+                    }
+                  });
+                }
             });
     })
     .component('history', historyComponent);

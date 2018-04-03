@@ -104,7 +104,7 @@ class UsersController {
             .getAllUsersBalances()
             .then((resp) => {
                 this.usersList = resp;
-                // console.log(resp);
+                console.log(resp);
             })
             .catch((err)=>{
                 console.error(err);

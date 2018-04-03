@@ -26,6 +26,7 @@ user-item {
                 @include justify-content(space-between);
                 @include flex-direction(row);
                 width:100%;
+                min-width:150px;
                 &-date {
                     @extend .main-semibold-font;
                 }
