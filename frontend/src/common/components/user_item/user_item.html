@@ -20,7 +20,7 @@
     </div>
     <div class="view-right-item user-item-owe-wrap">
         <div class="user-item-owes dynamic-text-xs">{{self.owesText(self.item.has_type)}} <span ng-if="self.owes">{{(self.owes > 0? self.owes : -self.owes | currency)}}</span></div>
-        <input ng-class="{'deducting':self.payAmount<0}"
+        <input ng-class="{'deducting':self.payAmount<0 , 'cook':self.item.has_type=='cook' }"
                class="user-item-pay dynamic-text-xs"
                currency-format
                ng-model="self.payAmount" />

@@ -93,16 +93,27 @@ user-item {
                 padding: 0.5em 0;
                 text-align: center;
                 color: $chase-green;
+                &.cook{
+                    color: $chase-red;
+                }
                 cursor: pointer !important;
                 &.deducting{
                     color: $chase-red !important;
                     border-color: $chase-red !important;
+                    &.cook{
+                        color: $chase-green !important;
+                        border-color: $chase-green !important;
+                    }
                 }
                 &:hover {
                     border-color: $chase-blue;
                 }
                 &:active, &:focus {
                     border-color: $chase-green;
+                    &.cook{
+                        color: $chase-red !important;
+                        border-color: $chase-red !important;
+                    }
                 }
             }
         }
