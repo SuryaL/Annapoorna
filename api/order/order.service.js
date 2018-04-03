@@ -120,11 +120,20 @@ function formatOrderHistory(orders){
         if(!history[oItem.week]){
             history[oItem.week] = {week:oItem.week, dishes:[],total:0}
         }
-        history[oItem.week]['dishes'].push({
-            name: oItem.dish_name,
-            price : oItem.price,
-            quantity: oItem.quantity
-        });
+
+        let found = history[oItem.week]['dishes'].find((dish_item)=> dish_item.price == oItem.price && dish_item.dish_id.toString() ==  oItem.dish.toString());
+
+        if(!found){
+            history[oItem.week]['dishes'].push({
+                dish_id:oItem.dish,
+                name: oItem.dish_name,
+                price : oItem.price,
+                quantity: oItem.quantity
+            });
+        }else{
+            found.quantity = +found.quantity + +oItem.quantity;
+        }
+
         history[oItem.week]['total'] += +(+oItem.price * +oItem.quantity).toFixed(2);
     }
 
@@ -136,6 +145,7 @@ function formatOrderHistory(orders){
 }
 
 module.exports = {
+    getAllOrders,
     getUserOrderPriceTotal,
     formatOrderHistory,
     createNewOrderData,

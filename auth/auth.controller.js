@@ -92,7 +92,35 @@ exports.hasRole = function(roleRequired, subRoleRequired) {
             }
         });
 };
+exports.hasOneRole = function(rolesRequired=[], subRoleRequired) {
+    if (!rolesRequired) throw new Error('Required role needs to be set');
 
+    return compose()
+        .use(exports.isAuthenticated())
+        .use(function(req, res, next) {
+            let check = false;
+            console.log(req.user.type);
+            for (let i = 0; i < req.user.type.length; i++) {
+                for(let roleRequired of rolesRequired){
+                    if (config.roles.indexOf(req.user.type[i]) >= config.roles.indexOf(roleRequired)) {
+                        check = true;
+                        break;
+                    }
+                }
+            }
+            if (!!check) {
+                if (subRoleRequired != null && config.subRoles.indexOf(req.user.subrole) >= config.subRoles.indexOf(subRoleRequired)) {
+                    next();
+                } else if (subRoleRequired == null) {
+                    next()
+                } else {
+                    return res.send(403, new Error('User is not authorized for this request.'));
+                }
+            } else {
+                return res.send(403, new Error('User is not authorized for this request.'));
+            }
+        });
+};
 /**
  * exchange - exchange existing token with a new token
  * @param {Object} req - the request object

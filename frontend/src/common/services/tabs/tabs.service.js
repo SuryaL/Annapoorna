@@ -22,8 +22,13 @@ let TabsFactory = function($http, $state) {
         name: 'Users',
         state: 'app.main.users',
         visibility :['admin']
+    },{
+        id: 4,
+        name: 'Orders',
+        state: 'app.main.orders',
+        visibility :['admin','cook']
     }, {
-        id: 5,
+        id: 6,
         name: 'Profile',
         state: 'app.main.profile',
         visibility :['user', 'cook', 'admin']

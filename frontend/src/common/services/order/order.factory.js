@@ -5,6 +5,16 @@ let OrderFactory = function($http, $httpParamSerializer) {
     const API = ENV.API_URL;
     self.PATH = '/order';
     
+    
+    self.getAllOrders = function(obj = {}) {
+      return $http({
+          method: 'GET',
+          url: API + self.PATH + '/getAllOrders' + '?' + $httpParamSerializer(obj),
+        })
+        .then(resp => {
+          return resp.data;
+        })
+    }
 
     self.getMyOrder = function(obj = {}) {
       return $http({
@@ -15,6 +25,7 @@ let OrderFactory = function($http, $httpParamSerializer) {
           return resp.data;
         })
     }
+    
     self.createMyOrder = function(obj = {}) {
         return $http({
             method: 'POST',

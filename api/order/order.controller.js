@@ -29,6 +29,13 @@ const getAllUserOrders = async function(req){
     return history_orders;
 }
 
+const getAllUsersOrders = async function(req){
+    // const user = (req.user.id || '').toString();
+    const orders = await OrderService.getAllOrders();
+    const history_orders = OrderService.formatOrderHistory(orders);
+    return history_orders;
+}
+
 //TODO
 // need api to update feedback and rating
 // need separate api for admin
@@ -47,6 +54,7 @@ const remove = async function(req){
 
 
 module.exports = {
+    getAllUsersOrders,
     getAllUserOrders,
     getUserOrder,
     createUserOrder,
