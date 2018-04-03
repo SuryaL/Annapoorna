@@ -1,5 +1,9 @@
 const MenuService = require('./menu.service');
+const MenuCreate = require('./menu_create');
 const _ = require('underscore');
+
+// MenuCreate.recreateAllMenu();
+
 /**
  * 
  * name : string, 
@@ -9,9 +13,9 @@ const _ = require('underscore');
  * 
  */
 const create = async function (req) {
-    const {name,price,vegetarian,image} = req.body;
+    const {name,price,vegetarian,image,type} = req.body;
     //TODO: check if valid params
-    const body = {name,price: price.toString(),vegetarian:!!vegetarian,image};
+    const body = {name,price: price.toString(),vegetarian:!!vegetarian,image,type};
     
     Object.assign(body, MenuService.createNewMenuData());
     const menu = await MenuService.createMenu(body);
