@@ -1,10 +1,25 @@
 class UserItemController {
-    constructor() {
+    constructor($auth) {
         'ngInject';
         this.name = 'UserItem';
         this.limit = 3;
         this.increaseBy = 10;
+        this.user = $auth.getUser();
+        this.texts          = {
+            user:{
+                minus:'owes',
+                plus:'overpaid',
+                zero:'settled up'
+            },
+            cook:{
+                minus:'owes',
+                plus:'gets back',
+                zero:'settled up'
+            }
+        }
     }
+
+
     $onInit(){
         this.payAmount = '0.00';
     }
@@ -24,11 +39,12 @@ class UserItemController {
         return 'noname'
     }
 
-    get owesText(){
+  owesText(has_type){
+        let text = this.texts[has_type]
         if(this.owes == 0){
-            return 'settled up'
+            return text.zero;
         }
-        return this.owes > 0 ? 'owes' : 'overpaid'
+        return this.owes > 0 ? text.minus : text.plus
     }
 
     get owes(){

@@ -2,13 +2,31 @@
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
 user-item {
+    max-width: 100vw;
+    
     .user-item-container {
         @include add-hover();
+        .view-middle-item-content{
+            width:100%;
+            // max-width:10em;
+            // overflow-x:auto;
+            // text-overflow: ellipsis;
+        }
+      
         .user-item-header {
             @include flexbox;
             @include justify-content(flex-start);
             @include align-items(center);
-            .user-item-name {}
+            .user-item-name {
+                @media(max-width:600px){
+                    &.emailname{
+                        font-size:0.8em !important;
+                    }
+                }
+                .cook-label{
+                    color: $chase-green;    
+                }
+            }
             .user-item-status {
                 margin-left: 0.5em;
                 color: $chase-blue;
@@ -16,22 +34,27 @@ user-item {
         }
         .user-item-payments {
             @include flexbox;
-            @include align-items(center);
-            @include justify-content(center);
+            @include align-items(flex-start);
+            @include justify-content(flex-start);
             @include flex-direction(column);
-            margin: 0.7em 2em 0 2em;
-            .user-item-payment {
+            margin: 0.7em 0em 0em 1em;
+                .user-item-payment {
                 @include flexbox;
                 @include align-items(center);
                 @include justify-content(space-between);
                 @include flex-direction(row);
-                width:100%;
-                min-width:150px;
+                // width:100%;
+                width:180px;
+                @media(max-width:600px){
+                    width:36vw;
+                }
                 &-date {
+                    @include flex(1,0,0);
                     @extend .main-semibold-font;
                 }
                 &-amount {
-                    margin-left: 1em;
+                // @include flex(1,0,0);
+                margin-left: auto;
                 }
             }
             .user-payment-show-more {
@@ -55,6 +78,7 @@ user-item {
             }
             .user-item-owes {
                 margin-right: 0.5em;
+                text-align: right;
             }
             .user-item-pay {
                 margin: 0;

@@ -69,11 +69,13 @@ async function getAllUsersBalances() {
         if(user.type.indexOf('user')!=-1){
             proms.push(getUserBalance(user.id).then((bal)=>{
                 Object.assign(user, bal);
+                user.has_type ='user';
                 return user
             }))
         }else if(user.type.indexOf('cook')!=-1){
             proms.push(getCookBalance(user.id).then((bal)=>{
                 Object.assign(user, bal);
+                user.has_type ='cook';
                 return user
             }))
         }

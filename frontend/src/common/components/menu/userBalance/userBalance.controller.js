@@ -3,31 +3,59 @@ class footerBtnCtrl {
         'ngInject';
         this.PaymentService = PaymentService;
         this.$scope         = $scope;
-        this.user = $auth.getUser();
-    }
-    
-    init(){
-        if(this.user.type.indexOf('user') != -1){
-            this.PaymentService.getUserBalance().then(resp => {
-                this.userPayment = resp;
-            })
-        }else if(this.user.type.indexOf('cook') != -1){
-            this.PaymentService.getCookBalance().then(resp => {
-                this.userPayment = resp;
-            })
+        this.user           = $auth.getUser();
+        this.texts          = {
+            user:{
+                minus:'owe',
+                plus:'overpaid',
+                zero:'settled up'
+            },
+            cook:{
+                minus:'owe',
+                plus:'get back',
+                zero:'settled up'
+            }
         }
     }
     
+    init(){
+        if(this.usertype == 'user'){
+            this.getUserBalance();
+        }else if(this.usertype == 'cook'){
+          this.getCookBalance();
+        }
+    }
+
+    getCookBalance(){
+        this.PaymentService.getCookBalance().then(resp => {
+            this.userPayment = resp;
+        })
+    }
+
+    getUserBalance(){
+        this.PaymentService.getUserBalance().then(resp => {
+            this.userPayment = resp;
+        })
+    }
+    
+    get usertype(){
+        if(!this.user){
+            return '';
+        }
+        return (this.user.type||[]).indexOf('user') != -1 ? 'user': ((this.user.type||[]).indexOf('cook') != -1 ? 'cook' : '');
+    }
+
     $onInit(){
         this.init();
         this.$scope.$on('pay-update', ()=> this.init())
     }
 
     get owesText(){
+        let text = this.texts[this.usertype]
         if(this.owes == 0){
-            return 'settled up'
+            return text.zero;
         }
-        return this.owes > 0 ? 'owes' : 'overpaid'
+        return this.owes > 0 ? text.minus : text.plus
     }
 
     get owes(){

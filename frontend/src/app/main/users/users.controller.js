@@ -17,82 +17,6 @@ class UsersController {
         this.usersList = [];
         // NOTE:
         // active(not deleted) and admin added users only
-        // this.usersList = [{
-        //         id: 1,
-        //         first_name: 'Surya',
-        //         last_name: 'L',
-        //         week_voted: true,
-        //         week_ordered: true,
-        //         owes: 100.00,
-        //         payment_history: [{
-        //             date: 'Feb 20',
-        //             amount: 40.99,
-        //             type: 'paid'
-        //         }, {
-        //             date: 'Feb 20',
-        //             amount: 40.99,
-        //             type: 'paid'
-        //         }, {
-        //             date: 'Feb 20',
-        //             amount: 40.99,
-        //             type: 'paid'
-        //         }, {
-        //             date: 'Feb 21',
-        //             amount: 40.99,
-        //             type: 'paid'
-        //         }, {
-        //             date: 'Feb 16',
-        //             amount: 40.99,
-        //             type: 'paid'
-        //         }]
-        //     }, {
-        //         id: 2,
-        //         first_name: 'Sravanthi',
-        //         last_name: 'L',
-        //         week_voted: true,
-        //         week_ordered: false,
-        //         owes: 100.00,
-        //         payment_history: [{
-        //             date: 'Feb 20',
-        //             amount: 40.99,
-        //             type: 'paid'
-        //         }, {
-        //             date: 'Feb 20',
-        //             amount: 40.99,
-        //             type: 'paid'
-        //         }, {
-        //             date: 'Feb 20',
-        //             amount: 40.99,
-        //             type: 'paid'
-        //         }, {
-        //             date: 'Feb 21',
-        //             amount: 40.99,
-        //             type: 'paid'
-        //         }, {
-        //             date: 'Feb 16',
-        //             amount: 40.99,
-        //             type: 'paid'
-        //         }]
-        //     },
-        //     {
-        //         id: 3,
-        //         first_name: 'Yashwanth',
-        //         last_name: 'L',
-        //         week_voted: false,
-        //         week_ordered: false,
-        //         owes: 10.00,
-        //         payment_history: [{
-        //             date: 'Feb 20',
-        //             amount: 40.99,
-        //             type: 'paid'
-        //         }, {
-        //             date: 'Feb 20',
-        //             amount: 40.99,
-        //             type: 'paid'
-        //         }]
-        //     }
-        // ]
-
 
         this.footerText = "users";
         this.init();
@@ -137,10 +61,16 @@ class UsersController {
     }
 
     pay(pay_arr){
-        let data = pay_arr.map(pay_item => ({
+        let data = pay_arr.map(pay_item => {
+            let amount = pay_item.pay_amount;
+            if(pay_item.has_type == 'cook'){
+                amount *= -1;
+            }
+            return ({
             user: pay_item.id,
-            amount: pay_item.pay_amount
-        }))
+            amount
+        })
+    })
         this.PaymentService
             .addPayments(data)
             .then(_ => {

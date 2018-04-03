@@ -2,7 +2,7 @@
     <div class="view-middle-item">
         <div class="view-middle-item-content">
             <div class="user-item-header">
-                <div class="user-item-name dynamic-text-l">{{self.username}} </div>
+                <div class="user-item-name dynamic-text-l" ng-class="{'emailname':self.item.email == self.username}">{{self.username}} <span class="cook-label" ng-if="self.item.has_type=='cook'">(cook)</span></div>
                 <div ng-if="self.status(self.item)"
                      class="user-item-status dynamic-text-xs">{{self.status(self.item)}}</div>
             </div>
@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="view-right-item user-item-owe-wrap">
-        <div class="user-item-owes dynamic-text-xs">{{self.owesText}} <span ng-if="self.owes">{{(self.owes > 0? self.owes : -self.owes | currency)}}</span></div>
+        <div class="user-item-owes dynamic-text-xs">{{self.owesText(self.item.has_type)}} <span ng-if="self.owes">{{(self.owes > 0? self.owes : -self.owes | currency)}}</span></div>
         <input ng-class="{'deducting':self.payAmount<0}"
                class="user-item-pay dynamic-text-xs"
                currency-format
