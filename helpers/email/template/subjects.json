@@ -3,5 +3,6 @@
   "orderending" : "Order deadline",
   "voteending" : "Vote deadline",
   "orderenabled" : "Ordering enabled",
-  "voteenabled" : "Voting enabled"
+  "voteenabled" : "Voting enabled",
+  "custom" : "Important Information from admin"
 }

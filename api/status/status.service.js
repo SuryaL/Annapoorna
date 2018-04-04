@@ -79,25 +79,25 @@ async function checkStatus() {
     const order_predeadline_timestamp = order_deadline_timestamp - email_time_ms;
     const current_utc_timestamp = new Date().getTime();
 
-    if(!voting_email_sent && current_utc_timestamp > voting_predeadline_timestamp){
+    if(!voting_email_sent && current_utc_timestamp > voting_predeadline_timestamp) {
         await updateStatus(week, { voting_email_sent: true })
-        await sendToMailAllUsers('voteending',{
-            deadline : dallastime(voting_deadline)
+        await sendToMailAllUsers('voteending', {
+            deadline: dallastime(voting_deadline)
         })
     }
 
     if(!voting_status && current_utc_timestamp > voting_deadline_timestamp) {
         console.log('voting time over', current_utc_timestamp, voting_deadline_timestamp);
         await updateStatus(week, { voting_status: true })
-        await sendToMailAllUsers('orderenabled',{
-            deadline : dallastime(order_deadline)
+        await sendToMailAllUsers('orderenabled', {
+            deadline: dallastime(order_deadline)
         })
     }
 
-    if(!order_email_sent && current_utc_timestamp > order_predeadline_timestamp){
+    if(!order_email_sent && current_utc_timestamp > order_predeadline_timestamp) {
         await updateStatus(week, { order_email_sent: true })
-        await sendToMailAllUsers('orderending',{
-            deadline : dallastime(order_deadline)
+        await sendToMailAllUsers('orderending', {
+            deadline: dallastime(order_deadline)
         })
     }
 
@@ -111,11 +111,11 @@ async function checkStatus() {
 
         let data = prepareNextWeekData();
         await createStatus(data);
-        await sendToMailAllUsers('voteenabled',{
-            deadline : dallastime(data.voting_deadline)
+        await sendToMailAllUsers('voteenabled', {
+            deadline: dallastime(data.voting_deadline)
         })
     }
-    
+
 
     //  emailService.send('surysunny17@gmail.com', 'voteenabled', {
     //      user:{
@@ -124,8 +124,8 @@ async function checkStatus() {
     //          deadline: new Date(voting_deadline).toLocaleString("en-US", {timeZone: "America/Chicago"})
     //      }
     //  }, []);
-    
-    
+
+
 
 
     console.log('-');
@@ -135,21 +135,26 @@ async function checkStatus() {
 
 }
 
-function dallastime(date){
-    return new Date(date).toLocaleString("en-US", {timeZone: "America/Chicago"})
+function dallastime(date) {
+    return new Date(date).toLocaleString("en-US", { timeZone: "America/Chicago" })
 }
 
-async function sendToMailAllUsers(email_type,options={}){
+async function sendToMailAllUsers(email_type, options = {}) {
     let users = await UserService.getUsers({});
-    for(let user of users){
-        if(user.type.indexOf('user')!=-1){
-            let {first_name, email} = user;
-            let data = Object.assign({first_name,email},options);
+    for(let user of users) {
+        if(user.type.indexOf('user') != -1) {
+            let { first_name, email } = user;
+            let data = Object.assign({ first_name, email }, options);
             // await emailService.send('surysunny17@gmail.com', email_type, {user:data}, [])
-            await emailService.send(email, email_type, {user:data}, [])
+            await emailService.send(email, email_type, { user: data }, [])
         }
     }
 }
+// sendToMailAllUsers('custom', {
+//         info: 'We are happy to announce that, effective immediately, the app has moved to http://www.annapoornafeeds.com',
+//         subinfo: 'App is under inactive development. Please bookmark us and bear with us!'
+// })
+// emailService.send('surysunny17@gmail.com', 'custom', }, [])
 
 module.exports = {
     activeweek,
