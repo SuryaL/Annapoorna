@@ -14,7 +14,7 @@
         <div class="no-orders"
         ng-if="!self.orderItems.length">No votes yet!</div>
     <div class="order-items-wrapper"
-         ng-repeat="vItem in self.orderItems" ng-click="self.vItemClicked($event)">
+         ng-repeat="vItem in self.orderItems |orderBy:'name' track by vItem.id" ng-click="self.vItemClicked($event)">
         <order-item ng-class="{'is-selected':vItem.quantity,'disabled':!self.showSubmit()}"
                     item="vItem"
                     quantity="vItem.quantity"></order-item>

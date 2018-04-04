@@ -92,6 +92,7 @@ class UsersController {
                     console.log(resp);
                     this.MyToastr.success('Success');
                     mypop.close();
+                    this.init();
                 })
                 .catch(err => {
                     mypop.btnClicked = false;

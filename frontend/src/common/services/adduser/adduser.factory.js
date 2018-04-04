@@ -20,7 +20,7 @@ let AddUserPopupFactory = function($popup, $q) {
             controller: function($scope, $popup) {        
                 'ngInject';
                 $scope.user_types = ['user','cook'];
-                $scope.user_email = 'surysunny17@gmail.com';
+                $scope.user_email = '';
                 $scope.changeActiveUserType = (user_type) =>{
                     $scope.active_user_type = user_type;
                 }
