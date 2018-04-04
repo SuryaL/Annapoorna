@@ -34,24 +34,27 @@ const module = angular.module('vote', [
             url: 'vote',
             template: '<vote></vote>',
             authenticated: 'authenticated',
-            resolve: function($q, $auth, $state, $timeout) {
-                'ngInject';
-                let user = $auth.getUser() || {};
-                return $q((resolve, reject) => {
-                    if((user.type || []).includes('user')) {
-                        resolve()
-                    } else if((user.type || []).includes('cook')) {
-                        $timeout(() => {
-                            $state.go('app.main.orders');
-                        })
-                        reject();
-                    }else{
-                        $timeout(() => {
-                            $state.go('app.main.profile');
-                        })
-                        reject();
-                    }
-                });
+            resolve: {
+                valid: function($q, $auth, $state, $timeout) {
+                    'ngInject';
+                    let user = $auth.getUser() || {};
+                    return $q((resolve, reject) => {
+                        console.log(user.type, (user.type || []).includes('user'), (user.type || []).includes('cook'));
+                        if((user.type || []).includes('user')) {
+                            resolve()
+                        } else if((user.type || []).includes('cook')) {
+                            $timeout(() => {
+                                $state.go('app.main.orders');
+                            })
+                            reject();
+                        } else {
+                            $timeout(() => {
+                                $state.go('app.main.profile');
+                            })
+                            reject();
+                        }
+                    });
+                }
             }
         })
     })

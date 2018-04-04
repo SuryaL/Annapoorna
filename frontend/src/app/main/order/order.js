@@ -26,27 +26,29 @@ let orderModule = angular.module('order', [
     menuService,
     OrderService
   ])
-  .config(($stateProvider) => {
-    'ngInject';
+    .config(($stateProvider) => {
+        'ngInject';
 
-    $stateProvider
-      .state('app.main.order', {
-        url: 'order',
-        template: '<order></order>',
-        authenticated: 'authenticated',
-        resolve:function($q, $auth){
-          'ngInject';
-          let user = $auth.getUser() || {};
-          return $q((resolve,reject) =>{
-            if((user.type || []).includes('user')){
-              resolve()
-            }else{
-              reject();
-            }
-          });
-        }
-      });
-  })
-  .component('order', orderComponent);
+        $stateProvider
+            .state('app.main.order', {
+                url: 'order',
+                template: '<order></order>',
+                authenticated: 'authenticated',
+                resolve: {
+                    valid: function($q, $auth) {
+                        'ngInject';
+                        let user = $auth.getUser() || {};
+                        return $q((resolve, reject) => {
+                            if((user.type || []).includes('user')) {
+                                resolve()
+                            } else {
+                                reject();
+                            }
+                        });
+                    }
+                }
+            });
+    })
+    .component('order', orderComponent);
 
 export default orderModule.name;

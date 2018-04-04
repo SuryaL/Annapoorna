@@ -30,7 +30,7 @@
     "angular-aria": "^1.5.11",
     "angular-qrcode": "^7.2.0",
     "angular-toastr": "^2.1.1",
-    "angular-ui-router": "^0.4.2",
+    "angular-ui-router": "^1.0.3",
     "bcrypt": "^1.0.3",
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.1",

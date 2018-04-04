@@ -31,16 +31,18 @@ let historyModule = angular.module('history', [
                 url: 'history',
                 template: '<history></history>',
                 authenticated: 'authenticated',
-                resolve:function($q, $auth){
-                  'ngInject';
-                  let user = $auth.getUser() || {};
-                  return $q((resolve,reject) =>{
-                    if((user.type || []).includes('user')){
-                      resolve()
-                    }else{
-                      reject();
+                resolve: {
+                    valid: function($q, $auth) {
+                        'ngInject';
+                        let user = $auth.getUser() || {};
+                        return $q((resolve, reject) => {
+                            if((user.type || []).includes('user')) {
+                                resolve()
+                            } else {
+                                reject();
+                            }
+                        });
                     }
-                  });
                 }
             });
     })

@@ -26,27 +26,29 @@ let usersModule = angular.module('users', [
     adduser,
     inputPlaceholder
   ])
-  .config(($stateProvider) => {
-    'ngInject';
+    .config(($stateProvider) => {
+        'ngInject';
 
-    $stateProvider
-      .state('app.main.users', {
-        url: 'users',
-        template: '<users></users>',
-        authenticated: 'authenticated',
-        resolve:function($q, $auth){
-          'ngInject';
-          let user = $auth.getUser() || {};
-          return $q((resolve,reject) =>{
-            if((user.type || []).includes('admin')){
-              resolve()
-            }else{
-              reject();
-            }
-          });
-        }
-      });
-  })
-  .component('users', usersComponent);
+        $stateProvider
+            .state('app.main.users', {
+                url: 'users',
+                template: '<users></users>',
+                authenticated: 'authenticated',
+                resolve: {
+                    valid: function($q, $auth) {
+                        'ngInject';
+                        let user = $auth.getUser() || {};
+                        return $q((resolve, reject) => {
+                            if((user.type || []).includes('admin')) {
+                                resolve()
+                            } else {
+                                reject();
+                            }
+                        });
+                    }
+                }
+            });
+    })
+    .component('users', usersComponent);
 
 export default usersModule.name;

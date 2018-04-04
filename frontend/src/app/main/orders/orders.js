@@ -23,27 +23,29 @@ let ordersModule = angular.module('orders', [
   menuService,
   StatusService
 ])
-.config(($stateProvider) => {
-  'ngInject';
+    .config(($stateProvider) => {
+        'ngInject';
 
-  $stateProvider
-  .state('app.main.orders', {
-    url: 'orders',
-    template: '<orders></orders>',
-    authenticated: 'authenticated',
-    resolve:function($q, $auth){
-      'ngInject';
-      let user = $auth.getUser() || {};
-      return $q((resolve,reject) =>{
-        if((user.type || []).includes('admin') || (user.type || []).includes('cook')){
-          resolve()
-        }else{
-          reject();
-        }
-      });
-    }
-  });
-})
-.component('orders', ordersComponent);
+        $stateProvider
+            .state('app.main.orders', {
+                url: 'orders',
+                template: '<orders></orders>',
+                authenticated: 'authenticated',
+                resolve: {
+                    valid: function($q, $auth) {
+                        'ngInject';
+                        let user = $auth.getUser() || {};
+                        return $q((resolve, reject) => {
+                            if((user.type || []).includes('admin') || (user.type || []).includes('cook')) {
+                                resolve()
+                            } else {
+                                reject();
+                            }
+                        });
+                    }
+                }
+            });
+    })
+    .component('orders', ordersComponent);
 
 export default ordersModule.name;
