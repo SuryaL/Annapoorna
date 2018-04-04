@@ -17,6 +17,28 @@ async function recreateAllMenu(){
     // console.log(JSON.stringify(menuitems));
 }
 
+/**
+ * 
+let temp = [
+    ['Methi murgh', '9', 'true', 'Special'],
+    ['Soya chunks veg pulav', '8', 'true', 'Regular'],
+    ['Tawa pulav', '8', 'true', 'Regular'],
+    ['Bhindi masala', '9', 'true', 'Special'],
+    ['Methi dal', '7', 'true', 'Regular'],
+    ['Methi chole', '7', 'true', 'Regular'],
+    ['Gobhi matar masala', '7', 'true', 'Regular'],
+    ['Tindora coconut stir fry', '9', 'true', 'Special'],
+    ['Cabbage dal kootu', '7', 'true', 'Regular'],
+    ['Chicken chettinand', '9', 'true', 'Special'],
+    ['Paneer Methi Chaman', '9', 'true', 'Special']
+];
+let query = (name,price,vegetarian,type)=> `INSERT INTO menu (id,created,deleted,image,modified,modified_by,name,price,type,vegetarian) VALUES (${uuid.v4()},'2018-04-04T15:51:06.349Z',false,'http://lorempixel.com/640/480/abstract','2018-04-04T15:51:06.349Z',null,'${name}','${price}','${type}',${vegetarian});`
+
+temp.forEach((v)=>{
+console.log(query(...v));
+})
+ */
+
 module.exports={
     recreateAllMenu
 }

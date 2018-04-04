@@ -4,13 +4,13 @@ const config     = require('./config');
 const requestify = require('./helpers/utils/requestify');
 const cassandra  = require('./boundaries/cassandra');
 const email      = require ('./helpers/email');
+const uuid = require('node-uuid');
 
 
 /**
  * request related middlewares
  */
 requestify(app);
-
 
 
 
