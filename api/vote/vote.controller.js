@@ -54,18 +54,22 @@ const getMajority = async function(req) {
         }
     })
 
-    //FIXME : NEED TO ADD THE CORRECT COUNTING IN CASE OF CLASHES
-    const sortable = VoteService.sortObject(dishCounts);
+    //FIXME : INEFFICIENT ALGO (needs rewrite)
+    const sortable = VoteService.sortObject(dishCounts).reverse();
 
     let val = null,
-        vals_arrange = [];
+        vals_arrange = [],
+        vals_arrange_obj = {};
     Object.keys(dishCounts).forEach((item) => {
         let temp_val = dishCounts[item];
-        if(val != temp_val) {
-            val = temp_val;
-            vals_arrange.push({ val, dishes: [] })
+        if(!vals_arrange_obj[temp_val]){
+            vals_arrange_obj[temp_val]={ val:temp_val, dishes: [] };
         }
-        vals_arrange[vals_arrange.length - 1].dishes.push(item)
+        vals_arrange_obj[temp_val].dishes.push(item)
+    });
+    
+    Object.keys(vals_arrange_obj).sort().reverse().forEach((it)=>{
+        vals_arrange.push(vals_arrange_obj[it])
     });
 
     vals_arrange.forEach((val_item) => {
