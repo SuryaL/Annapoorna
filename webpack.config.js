@@ -96,7 +96,7 @@ module.exports = {
                 use: [{
                     loader: 'html-loader',
                     options: {
-                        attrs: ['img:src', 'img:ng-src', 'img:fallback-src']
+                        attrs: ['link:href','img:src', 'img:ng-src', 'img:fallback-src']
                     }
                 }]
             },
