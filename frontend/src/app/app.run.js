@@ -5,6 +5,7 @@ export default function($state, $rootScope, $window, $auth) {
 
     // 'none', 'both', 'authenticated'
     function States(event, toState, toParams, fromState, fromParams) {
+        console.log(event, toState, toParams, fromState, fromParams);
         var authenticated = $auth.isAuthenticated();
         if (!authenticated && toState.authenticated === 'authenticated') {
             !!event.preventDefault && event.preventDefault();
