@@ -15,9 +15,9 @@ export default function($state, $rootScope, $window, $auth) {
             $auth.exchange();
             if (toState.authenticated === 'none') {
                 !!event.preventDefault && event.preventDefault();
-                if((this.$auth.getUser().type || []).includes('user')){
+                if(($auth.getUser().type || []).includes('user')){
                     $state.go('app.main.vote');
-                }else if((this.$auth.getUser().type || []).includes('cook')){
+                }else if(($auth.getUser().type || []).includes('cook')){
                     $state.go('app.main.orders');
                 }else{
                     $state.go('app.main.profile');
