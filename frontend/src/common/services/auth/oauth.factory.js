@@ -122,7 +122,7 @@ let OauthFactory = function($http, $q, $window, $interval, $timeout) {
     self.popupHandle = function(url, name, options) {
         return $q(function(resolve, reject) {
             var redirectUriParser = document.createElement('a');
-            redirectUriParser.href = 'http://localhost:8080/';
+            redirectUriParser.href = window.location.origin + '/';
             var redirectUriPath = self.getFullUrlPath(redirectUriParser);
 
             var window_test = $window.open(url, '_blank', "width=950,height=780");
