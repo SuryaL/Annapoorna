@@ -34,6 +34,8 @@ const create = async function(req) {
     body.email = req.body.email;
 
     let resp = await UserService.createUser(body);
+    
+    // TODO: replace with UserService.sendMailToUsers
     email.send(body.email, 'welcome', { user: { email: body.email, } }, []);
     return resp;
 }

@@ -1,7 +1,6 @@
 const { execQuery } = require('../../helpers/utils/db_utils');
 const uuid = require('node-uuid');
 const date_time = require('../../helpers/utils/date_time');
-const emailService = require('../../helpers/email');
 const UserService = require('../user/user.service');
 
 function prepareNextWeekData() {
@@ -81,7 +80,7 @@ async function checkStatus() {
 
     if(!voting_email_sent && current_utc_timestamp > voting_predeadline_timestamp) {
         await updateStatus(week, { voting_email_sent: true })
-        await sendToMailAllUsers('voteending', {
+        await UserService.sendMailToUsers({user_types:['user']})('voteending', {
             deadline: dallastime(voting_deadline)
         })
     }
@@ -89,14 +88,14 @@ async function checkStatus() {
     if(!voting_status && current_utc_timestamp > voting_deadline_timestamp) {
         console.log('voting time over', current_utc_timestamp, voting_deadline_timestamp);
         await updateStatus(week, { voting_status: true })
-        await sendToMailAllUsers('orderenabled', {
+        await UserService.sendMailToUsers({user_types:['user']})('orderenabled', {
             deadline: dallastime(order_deadline)
         })
     }
 
     if(!order_email_sent && current_utc_timestamp > order_predeadline_timestamp) {
         await updateStatus(week, { order_email_sent: true })
-        await sendToMailAllUsers('orderending', {
+        await UserService.sendMailToUsers({user_types:['user']})('orderending', {
             deadline: dallastime(order_deadline)
         })
     }
@@ -111,23 +110,14 @@ async function checkStatus() {
 
         let data = prepareNextWeekData();
         await createStatus(data);
-        await sendToMailAllUsers('voteenabled', {
+        await UserService.sendMailToUsers({user_types:['user']})('voteenabled', {
             deadline: dallastime(data.voting_deadline)
         })
     }
 
-
-    //  emailService.send('surysunny17@gmail.com', 'voteenabled', {
-    //      user:{
-    //          first_name:'surya',
-    //          email:'surysunny17@gmail.com',
-    //          deadline: new Date(voting_deadline).toLocaleString("en-US", {timeZone: "America/Chicago"})
-    //      }
-    //  }, []);
-
-
-
-
+    // UserService.sendMailToUsers({user_ids:['311566a5-b290-4c36-98f2-b8032cce2588'], user_types:['cook','admin']})('voteenabled', {
+    //     deadline:' dallastime(data.voting_deadline)'
+    // })
     console.log('-');
     /**
      * check if vote_deadline is passed
@@ -139,22 +129,7 @@ function dallastime(date) {
     return new Date(date).toLocaleString("en-US", { timeZone: "America/Chicago" })
 }
 
-async function sendToMailAllUsers(email_type, options = {}) {
-    let users = await UserService.getUsers({});
-    for(let user of users) {
-        if(user.type.indexOf('user') != -1) {
-            let { first_name, email } = user;
-            let data = Object.assign({ first_name, email }, options);
-            // await emailService.send('surysunny17@gmail.com', email_type, {user:data}, [])
-            await emailService.send(email, email_type, { user: data }, [])
-        }
-    }
-}
-// sendToMailAllUsers('custom', {
-//         info: 'We are happy to announce that, effective immediately, the app has moved to http://www.annapoornafeeds.com',
-//         subinfo: 'App is under inactive development. Please bookmark us and bear with us!'
-// })
-// emailService.send('surysunny17@gmail.com', 'custom', }, [])
+
 
 module.exports = {
     activeweek,

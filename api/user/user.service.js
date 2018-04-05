@@ -1,7 +1,8 @@
-const {execQuery} =  require('../../helpers/utils/db_utils');
+const { execQuery } = require('../../helpers/utils/db_utils');
 const uuid = require('uuid');
+const emailService = require('../../helpers/email');
 
-function createNewUserData(){
+function createNewUserData() {
     const body = {};
     body.id = uuid.v4();
     body.active = true;
@@ -32,13 +33,13 @@ function createNewUserData(){
         "type": ["user"]
     }
  */
-async function createUser(body){
+async function createUser(body) {
     console.log(body);
-    const 
+    const
         columns = [],
         params = [];
-    
-    for (let key in body) {
+
+    for(let key in body) {
         columns.push(key);
         params.push(body[key]);
     }
@@ -46,42 +47,88 @@ async function createUser(body){
     const query = 'INSERT INTO user (' + columns.join() + ') VALUES (' + Array(params.length).join('?,') + '?)';
 
     await execQuery(query, params);
-    
+
     delete body.password;
     return body;
 }
 
 
 async function getUsers(queryParams) {
-    console.log('queryParams :',queryParams)
+    console.log('queryParams :', queryParams)
     const options = queryParams.options || {};
-    if (queryParams.options) {
+    if(queryParams.options) {
         delete queryParams.options;
     }
 
     const columns = [];
     const params = [];
 
-    for (let key in queryParams) {
+    for(let key in queryParams) {
         columns.push(key);
         params.push(queryParams[key]);
     }
 
     let query = 'SELECT * FROM user';
-    if (columns.length > 0) {
+    if(columns.length > 0) {
         query += ' WHERE ' + columns.join('=? AND ') + '=? ALLOW FILTERING';
     }
     // console.log(query, params);
-    return (await execQuery(query, params, options)).rows;
+    return(await execQuery(query, params, options)).rows;
 }
 
 async function getUser(queryParams) {
-    let founduser =  (await getUsers(queryParams))[0];
-    return founduser|| null;
+    let founduser = (await getUsers(queryParams))[0];
+    return founduser || null;
+}
+/**
+ * example
+ * 
+ *     UserService.sendMailToUsers({user_ids:['311566a5-b290-4c36-98f2-b8032cce2588'], user_types:['cook','admin']})('voteenabled', {
+        deadline:' dallastime(data.voting_deadline)'
+    })
+ */
+function sendMailToUsers(filters = {}) {
+    // TODO : check (need to be arrays)
+    let filter_user_types = (filters.user_types||[]).length ? filters.user_types : null;
+    let filter_user_ids = (filters.user_ids||[]).length ? filters.user_ids : null;
+    
+    return async function(email_type, options = {}){
+        // FIXME: Create query based instead of fetching all users
+        let users = await getUsers({});
+        
+        let toSendUsers = users.filter((user)=>{
+            let bool1 = true, bool2=true;
+            if(!!filter_user_ids){
+                bool1 = hasMatching(filter_user_ids, [user.id.toString()])
+            }
+            if(!!filter_user_types){
+                bool2 = hasMatching(user.type, filter_user_types)
+            }
+            return bool1 && bool2
+        })
+       
+        for(let user of toSendUsers) {
+            let { first_name, email } = user;
+            let data = Object.assign({ first_name, email }, options);
+            // console.log(user);
+            // await emailService.send('surysunny17@gmail.com', email_type, {user:data}, [])
+            await emailService.send(email, email_type, { user: data }, [])
+        }
+    }
+}
+
+function hasMatching(arr1,arr2){
+    for(let item of arr2){
+        if(arr1.indexOf(item) != -1){
+            return true;
+        }
+    }
+    return false;
 }
 
 
 module.exports = {
+    sendMailToUsers,
     createUser,
     getUsers,
     getUser,
