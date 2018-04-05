@@ -19,32 +19,60 @@ let emailusersPopupFactory = function($popup, $q) {
             // closingOverlayClass: 'custompopup-overlay-closing',
             controller: function($scope, $popup) {        
                 'ngInject';
-                $scope.user_types = ['user','cook'];
-                $scope.user_email = '';
-                $scope.changeActiveUserType = (user_type) =>{
-                    $scope.active_user_type = user_type;
-                }
-                $scope.changeActiveUserType($scope.user_types[0]);
                 $scope.texts = {
-                    header: 'Add User', 
-                    subHeader: 'Select the user type'
-                };   
+                    header: 'Email Users',
+                    subHeader: ''
+                };
 
-                $scope.submit = () =>{
-                    if(!!mypopup.btnClicked){
+                $scope.selected_users = new Set();
+                $scope.toggleUserSelect = (id) => {
+                    $scope.isSelectedUser(id) ? $scope.selected_users.delete(id) : $scope.selected_users.add(id)
+                }
+                $scope.isSelectedUser = (id) => $scope.selected_users.has(id);
+                $scope.toggleSelectAll = () => {
+                    $scope.allselected ? $scope.selected_users.clear() : $scope.selectAllUsers();
+                }
+                
+                Object.defineProperty($scope, 'allselected', { get: function() { return $scope.userslist.length == $scope.selected_users.size} });
+                
+                $scope.selectAllUsers = () => $scope.userslist.forEach(user=>$scope.selected_users.add(user.id))
+                // $scope.isAllSelected = () => $scope.userslist.length == $scope.selected_users.size
+
+                $scope.userslist = [{
+                    name: 'Surya',
+                    get userSelected() {
+                        return $scope.isSelectedUser(this.id)
+                    },
+                    id: 1
+                }, {
+                    name: 'Surya',
+                    get userSelected() {
+                        return $scope.isSelectedUser(this.id)
+                    },
+                    id: 2
+                }, {
+                    name: 'Surya',
+                    get userSelected() {
+                        return $scope.isSelectedUser(this.id)
+                    },
+                    id: 3
+                }]
+
+                $scope.submit = () => {
+                    if(!!mypopup.btnClicked) {
                         return;
                     }
 
                     mypopup.btnClicked = true;
                     cb && cb({
-                        action:'user_add',
-                        data:{
-                            email:$scope.user_email, 
-                            type:$scope.active_user_type
+                        action: 'user_add',
+                        data: {
+                            email: $scope.user_email,
+                            type: $scope.active_user_type
                         }
                     });
                 }
-               
+
                 $scope.close = function() {   
                     mypopup.close('Awww yisss');
                 };

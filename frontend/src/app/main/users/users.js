@@ -12,6 +12,7 @@ import AuthService from 'common/services/auth';
 import PaymentService from 'common/services/payment';
 import userService from 'common/services/user';
 import adduser from 'common/services/adduser';
+import emailusers from 'common/services/emailusers';
 
 let usersModule = angular.module('users', [
     uiRouter,
@@ -24,6 +25,7 @@ let usersModule = angular.module('users', [
     PaymentService,
     userService,
     adduser,
+    emailusers,
     inputPlaceholder
   ])
     .config(($stateProvider) => {

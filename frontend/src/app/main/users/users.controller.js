@@ -1,5 +1,5 @@
 class UsersController {
-    constructor($state, $auth, $popup, UserService, AddUserPopup, PaymentService, MyToastr, $rootScope) {
+    constructor($state, $auth, $popup, UserService,EmailUsersPopup, AddUserPopup, PaymentService, MyToastr, $rootScope) {
         'ngInject';
         Object.assign(this, {
             $state,
@@ -7,6 +7,7 @@ class UsersController {
             $popup,
             UserService,
             AddUserPopup,
+            EmailUsersPopup,
             PaymentService,
             MyToastr,
             $rootScope
@@ -21,6 +22,9 @@ class UsersController {
         this.footerText = "users";
         this.init();
         // this.btnText = "Add";
+    }
+    $onInit = () =>{
+        this.EmailUsersPopup.open();
     }
 
     init() {
@@ -78,6 +82,11 @@ class UsersController {
                 return this.init()
             }).then(()=> this.MyToastr.success('Success'))
             .catch(console.error)
+    }
+
+    openEmailPopup = () =>{
+        // console.log('here');
+        this.EmailUsersPopup.open()
     }
 
     adduserPop = () => {

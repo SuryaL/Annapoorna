@@ -1,8 +1,11 @@
 <div class="users-view-header sub-main-view-header">
     <simple-header head-title="self.headTitle"
                    subhead-title="self.subheadTitle"></simple-header>
-    <span class="email-icon-wrap"><img ng-src="~assets/images/Email@2x.png" alt=""></span>
-    
+    <span class="email-icon-wrap"
+          ng-click="self.openEmailPopup()">
+        <img ng-src="~assets/images/Email@2x.png" alt="">
+    </span>
+
     <div class="align-head-right">
         <header-btn class=""
                     head-text="{{self.btnText}}"
