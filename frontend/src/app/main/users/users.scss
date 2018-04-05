@@ -4,6 +4,17 @@
 
 users {
     @extend .sub-main-view;
+    simple-header{
+        @include inline-flex;
+    }
+    .email-icon-wrap{
+        padding: 0.3em;
+        height:1em;
+        img{
+            width:1.2em;
+            // margin-right:1em;
+        }
+    }
     .users-container{
         max-width: 100vw;
             
