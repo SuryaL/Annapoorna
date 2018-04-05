@@ -115,14 +115,7 @@ async function checkStatus() {
         })
     }
 
-    // UserService.sendMailToUsers({user_ids:['311566a5-b290-4c36-98f2-b8032cce2588'], user_types:['cook','admin']})('voteenabled', {
-    //     deadline:' dallastime(data.voting_deadline)'
-    // })
     console.log('-');
-    /**
-     * check if vote_deadline is passed
-     */
-
 }
 
 function dallastime(date) {

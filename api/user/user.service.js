@@ -1,6 +1,7 @@
 const { execQuery } = require('../../helpers/utils/db_utils');
 const uuid = require('uuid');
 const emailService = require('../../helpers/email');
+const HelperUtils = require('../../helpers/utils/helper_utils');
 
 function createNewUserData() {
     const body = {};
@@ -80,6 +81,7 @@ async function getUser(queryParams) {
     let founduser = (await getUsers(queryParams))[0];
     return founduser || null;
 }
+
 /**
  * example
  * 
@@ -99,10 +101,10 @@ function sendMailToUsers(filters = {}) {
         let toSendUsers = users.filter((user)=>{
             let bool1 = true, bool2=true;
             if(!!filter_user_ids){
-                bool1 = hasMatching(filter_user_ids, [user.id.toString()])
+                bool1 = HelperUtils.hasArrayMatching(filter_user_ids, [user.id.toString()])
             }
             if(!!filter_user_types){
-                bool2 = hasMatching(user.type, filter_user_types)
+                bool2 = HelperUtils.hasArrayMatching(user.type, filter_user_types)
             }
             return bool1 && bool2
         })
@@ -117,14 +119,7 @@ function sendMailToUsers(filters = {}) {
     }
 }
 
-function hasMatching(arr1,arr2){
-    for(let item of arr2){
-        if(arr1.indexOf(item) != -1){
-            return true;
-        }
-    }
-    return false;
-}
+
 
 
 module.exports = {
