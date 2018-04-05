@@ -11,15 +11,16 @@
                     callback="self.voteSubmit"></header-btn>
     </div>
 </div>
-<div class="votes-container sub-main-view-container"  ng-class="{'disabled':!self.showSubmit()}">
+
+<div class="votes-container sub-main-view-container"
+     ng-class="{'disabled':!self.showSubmit()}">
     <div class="item-type-class-wrap"
          ng-repeat="type in self.menuTypes">
         <div class="type-title dynamic-text-m"> {{type}} </div>
         <div class="vote-items-wrapper"
              ng-click="self.vItemClicked($event)"
              ng-show="vItem.type == type"
-             ng-class="{ 'disabled': (!self.showSubmit()),
-            'major':self.isMajority(vItem.id)}"
+             ng-class="{ 'disabled': (!self.showSubmit()),'major':self.isMajority(vItem.id)}"
              ng-repeat="vItem in self.menuItems |orderBy:'name' track by vItem.id">
             <vote-item item="vItem"
                        is-selected-item="self.isSelectedItem"
@@ -27,6 +28,13 @@
                        votes-count="self.totalVotes"></vote-item>
         </div>
     </div>
+</div>
+<div class="vote-pills-container "
+     ng-class="{'disabled':!self.showSubmit()}">
+    <pill callback="self.voteToggle(vItemid)"
+            vtext="{{self.menuItemsObj[vItemid].name}}"
+          ng-class="{ 'disabled': (!self.showSubmit()),'major':self.isMajority(vItemid) }"
+          ng-repeat="vItemid in self.selectedItemsArr |orderBy:'name'" > </pill>
 </div>
 <footer-btn ng-if="self.showSubmit()"
             foot-text={{self.btnText}}

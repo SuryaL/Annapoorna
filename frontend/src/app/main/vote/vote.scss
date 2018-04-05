@@ -8,11 +8,25 @@ vote {
       // @include align-self(flex-end);
     } // @include flex(0, 0, 10vw);
   }
+  .vote-pills-container{
+    @include inline-flex;
+    // @include flex(0,0,0);
+    @include flex-wrap(wrap);
+    // min-height:3em !important;
+    background-color: transparent;
+    
+    &.disabled {
+      background-color: #DDD;
+      // background-color: transparent;
+    }
+    
+    padding:0.4em 0.2em;
+  }
   .votes-container {
-    // @include flex(1, 0, 0);
+    @include flex(1, 0, 0);
     // background-color: white;
     // overflow-y: scroll;
-    &.disabled{
+    &.disabled {
       background-color: #DDD;
     }
     .item-type-class-wrap {
@@ -56,6 +70,9 @@ vote {
         .vote-item-container {
           pointer-events: none;
           @include add-hover(transparent !important);
+        }
+        .vote-pills-container {
+          pointer-events: none;
         }
       }
       vote-item {

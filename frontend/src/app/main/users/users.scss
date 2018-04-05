@@ -5,6 +5,12 @@ users {
   @extend .sub-main-view;
   simple-header {
     @include inline-flex;
+    border:none;
+  }
+  .users-view-header{
+    @media (max-width:600px){
+      border-bottom: 1px solid #EEE;
+    }
   }
   .email-icon-wrap {
     cursor: pointer;

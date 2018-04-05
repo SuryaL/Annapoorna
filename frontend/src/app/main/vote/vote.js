@@ -6,6 +6,7 @@ import footerBtn from 'common/components/footerBtn/footerBtn';
 import simpleHeader from 'common/components/simpleHeader/simpleHeader';
 import headerBtn from 'common/components/header_btn/header_btn';
 import timeRemaining from 'common/components/time_remaining/time_remaining';
+import pill from 'common/components/pill/pill';
 
 import AuthService from 'common/services/auth';
 import menuService from 'common/services/menu';
@@ -17,6 +18,7 @@ import StatusService from 'common/services/status';
 const module = angular.module('vote', [
         uirouter,
         voteItem,
+        pill,
         simpleHeader,
         timeRemaining,
         headerBtn,

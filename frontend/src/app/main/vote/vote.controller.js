@@ -27,6 +27,10 @@ class voteCtrl {
             this.voting_status = this.weekDetails.voting_status;
             this.vote_deadline = this.weekDetails.voting_deadline;
             this.menuItems = results[1] || [];
+            this.menuItemsObj = this.menuItems.reduce((prev,curr)=>{
+                prev[curr.id] = curr;
+                return prev;
+            },{})
             return this.$q.all([
                 this.VoteService.find({week:this.weekDetails.week}),
                 // this.$q(resolve=>resolve(['39813b97-4b16-434b-bcf5-e9080e7565f8']))
@@ -43,6 +47,10 @@ class voteCtrl {
             (dishes_voted||[]).forEach(dish_id => this.selectedItems.add(dish_id));
         })
         .catch(console.error)
+    }
+
+    get selectedItemsArr (){
+        return [...this.selectedItems];
     }
 
     isMajority(id){
@@ -66,6 +74,7 @@ class voteCtrl {
     }
 
     showSubmit(){
+        // return true;
         return this.currentWeek && !this.timePassed && !this.voting_status
     }
     vItemClicked = (event) =>{
