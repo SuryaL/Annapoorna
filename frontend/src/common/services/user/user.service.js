@@ -14,6 +14,15 @@ const UserFactory = function($http, $state) {
             .then(response => response.data)
     }
 
+    self.emailUsers = function(data={}){
+        return $http({
+            method: 'POST',
+            url: API + self.PATH + '/emailUsers',
+            data
+        })
+        .then(response => response.data)
+    }
+
     // self.update = function(obj) {
     //     return $http({
     //             method: 'PUT',

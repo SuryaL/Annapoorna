@@ -36,7 +36,8 @@ const create = async function(req) {
     let resp = await UserService.createUser(body);
     
     // TODO: replace with UserService.sendMailToUsers
-    email.send(body.email, 'welcome', { user: { email: body.email, } }, []);
+    // email.send(body.email, 'welcome', { user: { email: body.email, } }, []);
+    UserService.sendMailToUsers({user_ids:[body.id.toString()]})('welcome',{});
     return resp;
 }
 
@@ -45,6 +46,18 @@ const find = async function(req) {
     const query = _.clone(req.query);
     const result = await UserService.getUsers(query);
     return result;
+}
+
+const emailUsers = async function(req){
+    const {ids,email_body} = req.body;
+    if(!ids || !email_body){
+        throw new Error('Missing params');
+    }
+    const result = await UserService.sendMailToUsers({user_ids:ids})('custom',{
+        info: email_body,
+        subinfo:''
+    });
+    return 'success'
 }
 
 
@@ -61,6 +74,7 @@ const remove = async function(req) {};
 
 
 module.exports = {
+    emailUsers,
     create,
     find,
     update,

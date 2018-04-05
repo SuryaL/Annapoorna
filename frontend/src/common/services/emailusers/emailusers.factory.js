@@ -5,7 +5,7 @@ let emailusersPopupFactory = function($popup, $q) {
     'ngInject';
     var self = this;
 
-    self.open = function(cb) {  
+    self.open = function(users, cb) {  
 
         let mypopup = $popup.open({      
             template: PopupHtml,
@@ -38,25 +38,16 @@ let emailusersPopupFactory = function($popup, $q) {
                 $scope.selectAllUsers = () => $scope.userslist.forEach(user=>$scope.selected_users.add(user.id))
                 // $scope.isAllSelected = () => $scope.userslist.length == $scope.selected_users.size
 
-                $scope.userslist = [{
-                    name: 'Surya',
-                    get userSelected() {
-                        return $scope.isSelectedUser(this.id)
-                    },
-                    id: 1
-                }, {
-                    name: 'Surya',
-                    get userSelected() {
-                        return $scope.isSelectedUser(this.id)
-                    },
-                    id: 2
-                }, {
-                    name: 'Surya',
-                    get userSelected() {
-                        return $scope.isSelectedUser(this.id)
-                    },
-                    id: 3
-                }]
+                $scope.userslist = (users||[]).map((user_list_item)=>{
+                    return ({
+                        id:user_list_item.id,
+                        name:user_list_item.first_name || user_list_item.email,
+                        type:user_list_item.type,
+                        get userSelected() {
+                            return $scope.isSelectedUser(this.id)
+                        }
+                    })
+                })
 
                 $scope.submit = () => {
                     if(!!mypopup.btnClicked) {
@@ -65,10 +56,10 @@ let emailusersPopupFactory = function($popup, $q) {
 
                     mypopup.btnClicked = true;
                     cb && cb({
-                        action: 'user_add',
+                        action: 'email_users',
                         data: {
-                            email: $scope.user_email,
-                            type: $scope.active_user_type
+                            email_body: $scope.email_body,
+                            ids: [...$scope.selected_users]
                         }
                     });
                 }

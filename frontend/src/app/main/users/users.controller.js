@@ -1,5 +1,5 @@
 class UsersController {
-    constructor($state, $auth, $popup, UserService,EmailUsersPopup, AddUserPopup, PaymentService, MyToastr, $rootScope) {
+    constructor($state, $auth, $popup, UserService, EmailUsersPopup, AddUserPopup, PaymentService, MyToastr, $rootScope) {
         'ngInject';
         Object.assign(this, {
             $state,
@@ -23,8 +23,9 @@ class UsersController {
         this.init();
         // this.btnText = "Add";
     }
-    $onInit = () =>{
-        this.EmailUsersPopup.open();
+
+    $onInit = () => {
+
     }
 
     init() {
@@ -34,12 +35,12 @@ class UsersController {
                 this.usersList = resp;
                 console.log(resp);
             })
-            .catch((err)=>{
+            .catch((err) => {
                 console.error(err);
                 this.MyToastr.error('Failed');
             })
     }
-    get subheadTitle(){
+    get subheadTitle() {
         return `${this.usersList.length} users`;
     }
 
@@ -64,29 +65,43 @@ class UsersController {
         }
     }
 
-    pay(pay_arr){
+    pay(pay_arr) {
         let data = pay_arr.map(pay_item => {
             let amount = pay_item.pay_amount;
-            if(pay_item.has_type == 'cook'){
+            if(pay_item.has_type == 'cook') {
                 amount *= -1;
             }
-            return ({
-            user: pay_item.id,
-            amount
+            return({
+                user: pay_item.id,
+                amount
+            })
         })
-    })
         this.PaymentService
             .addPayments(data)
             .then(_ => {
                 this.$rootScope.$broadcast('pay-update');
                 return this.init()
-            }).then(()=> this.MyToastr.success('Success'))
+            }).then(() => this.MyToastr.success('Success'))
             .catch(console.error)
     }
 
-    openEmailPopup = () =>{
+    openEmailPopup = () => {
         // console.log('here');
-        this.EmailUsersPopup.open()
+        // this.EmailUsersPopup.open()
+        let pop = this.EmailUsersPopup.open(this.usersList, (info) => {
+            if(info.action == 'email_users') {
+                this.MyToastr.warning('Sending!')
+                this.UserService.emailUsers(info.data)
+                    .then(() => {
+                        this.MyToastr.success('Emails Sent!');
+                        pop.close();
+                    }).catch((err) => {
+                        console.error(err);
+                        pop.btnClicked = false;
+                        this.MyToastr.error('Failed!')
+                    })
+            }
+        });
     }
 
     adduserPop = () => {

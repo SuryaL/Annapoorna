@@ -13,11 +13,11 @@
             <div class="checkbox-container" ng-click="toggleUserSelect(user.id)">
                 <checkbox toggle-var="user.userSelected"></checkbox>
                 <span class="checkbox-label">{{user.name}}</span>
-                <span class="user-tags">{{user.type}}</span>
+                <span class="dynamic-text-xs user-tags">({{user.type.join(', ')}})</span>
             </div>
         </div>
     </div>
-    <textarea class="email-users-email-input dynamic-text-s"
+    <textarea class="email-users-email-input dynamic-text-xs"
               placeholder="Enter a message"
               ng-model="email_body"
               required/>

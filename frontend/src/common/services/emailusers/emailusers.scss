@@ -1,7 +1,7 @@
 @import '~assets/stylesheets/common.scss';
 @import '~assets/stylesheets/variables.scss';
 @import '~assets/stylesheets/mixins.scss';
-$main-dark-color:white;
+// $main-dark-color:white;
 .email-users-popup-dialog {
   &.stax-popup {
     position: absolute;
@@ -32,6 +32,11 @@ $main-dark-color:white;
         }
         .sub-heading {
           margin-bottom: 1em;
+          .checkbox-container{
+            .checkbox-label{
+                // color:$chase-grey;
+            }
+          }
         }
         .checkbox-container {
           @include flexbox;
@@ -49,15 +54,25 @@ $main-dark-color:white;
         .email-users-list {
           max-height: 20em;
           overflow-y: scroll;
-          padding-left:0.5em;
+          padding-left:0.9em;
           .email-user-item {
             height: 2em;
+            .user-tags{
+                color:$chase-green;
+                margin-left:0.5em;
+                @include flexbox;
+                // @include justify-content(center);
+                @include align-items(flex-end);
+            }
           }
         }
         textarea {
           @include flexbox;
           width: 100%;
           height: 5em;
+          border:1px solid $main-grey;
+          background-color: $main-dark-color;
+          color:white;
         }
         .box-row {
           margin: 2vh 0 0 0;
@@ -86,7 +101,7 @@ $main-dark-color:white;
             border: 2px solid white;
           }
           .close {
-            color: black;
+            color: white;
             transition: all 0.5s;
             border: none;
             @extend .main-regular-font;
