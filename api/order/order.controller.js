@@ -1,7 +1,7 @@
 const OrderService = require('./order.service');
 
 const createUserOrder = async function(req){
-    console.log(req.body.dishes);
+    // console.log(req.body.dishes);
     if(!req.body.dishes) {
         throw new Error ('Select atleast one dish');
     }

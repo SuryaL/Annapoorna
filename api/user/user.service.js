@@ -35,7 +35,7 @@ function createNewUserData() {
     }
  */
 async function createUser(body) {
-    console.log(body);
+    // console.log(body);
     const
         columns = [],
         params = [];
@@ -55,7 +55,7 @@ async function createUser(body) {
 
 
 async function getUsers(queryParams) {
-    console.log('queryParams :', queryParams)
+    // console.log('queryParams :', queryParams)
     const options = queryParams.options || {};
     if(queryParams.options) {
         delete queryParams.options;

@@ -49,7 +49,7 @@ async function updateStatus(week, body) {
     params.push(week);
 
     const query = 'UPDATE status SET ' + columns.join('=?,') + '=? WHERE week = ?';
-    console.log(query);
+    // console.log(query);
     await execQuery(query, params);
     return body;
 }
