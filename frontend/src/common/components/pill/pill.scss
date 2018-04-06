@@ -5,33 +5,36 @@ pill {
   @include inline-flex;
   margin: 0.2em;
   position: relative;
-  &.major{
-      &:before{
-          content:'';
-          position: absolute;
-          top:0;
-          left:0;
-          transform:translate3d(0,-30%,0);
-          -webkit-transform:translate3d(0,-30%,0);
-          width:0.8em;
-          height:0.8em;
-          @include border-radius(0.8em);
-          @media (max-width:600px){
-            width:0.5em;
-            height:0.5em;
-            @include border-radius(0.5em);
-          }
-          background: $chase-green;
-          border:0.1em solid white;
+  &.major {
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate3d(0, -30%, 0);
+      -webkit-transform: translate3d(0, -30%, 0);
+      width: 0.8em;
+      height: 0.8em;
+      @include border-radius(0.8em);
+      @media (max-width: 600px) {
+        width:0.5em;
+        height: 0.5em;
+        @include border-radius(0.5em);
       }
-  }
-  &.disabled{
-    background: $chase-grey !important;
-    .pill-text{
-        color: white;
+      background: $chase-green;
+      border:0.1em solid white;
     }
-    .pill-cancel{
-        display: none;
+  }
+  &.disabled {
+    background: darken($chase-grey,10) !important;
+    .pill-text {
+      color: white;
+    }
+    .pill-price {
+        // color: $chase-green;
+      }
+    .pill-cancel {
+      display: none;
     }
   }
   &:nth-child(3n+0) {
@@ -45,20 +48,28 @@ pill {
   }
   @include border-radius(2em);
   .pill-wrap {
-  @include flexbox;
+    @include flexbox;
     @include align-items(center);
     @include justify-content(center);
     .pill-text {
       font-family: 'Lato-LightItalic';
       color: #EEE;
     }
-    .pill-cancel {
-        font-family: 'Lato-Semibold';
+    .pill-price{
+        font-family: 'Lato-thin';
         color: white;
-          padding-left: 0.7em;
+        // position: absolute;
+        // top:-0.2em;
+        // right:1em;
+        margin-right:0.2em;
+        font-size:0.8em !important;
     }
-      padding: 0.6em;
-      padding-bottom: 0.7em;
-
+    .pill-cancel {
+      font-family: 'Lato-Semibold';
+      color: white;
+      padding-left: 0.7em;
+    }
+    padding: 0.6em;
+    padding-bottom: 0.7em;
   }
 }

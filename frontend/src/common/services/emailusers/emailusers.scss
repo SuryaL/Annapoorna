@@ -48,6 +48,7 @@
             }
           }
           .checkbox-label {
+            @extend .main-regular-font;
             margin-left: 0.25em;
           }
         }
@@ -58,6 +59,8 @@
           .email-user-item {
             height: 2em;
             .user-tags{
+                @extend .main-thin-font;
+              
                 color:$chase-green;
                 margin-left:0.5em;
                 @include flexbox;
@@ -68,6 +71,7 @@
         }
         textarea {
           @include flexbox;
+          @extend .main-thin-font;
           width: 100%;
           height: 5em;
           border:1px solid $main-grey;
