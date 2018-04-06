@@ -8,10 +8,14 @@ module.exports = app =>  {
     app.get(endpoint_name + "/getAllOrders",auth.isAuthenticated(), auth.hasOneRole(['admin','cook']), handleReq(controller.getAllUsersOrders))
     app.get(endpoint_name + "/getMyOrders",auth.isAuthenticated(), handleReq(controller.getAllUserOrders))
     app.post(endpoint_name + "/createMyOrder",auth.isAuthenticated(), handleReq(controller.createUserOrder))
+    app.get(endpoint_name + "/getAllUsersOrdersWeekly",auth.isAuthenticated(), auth.hasOneRole(['admin']), handleReq(controller.getAllUsersOrdersWeekly))
+    
     
     // app.post(endpoint_name,auth.isAuthenticated(), handleReq(controller.create))
     // app.get(endpoint_name,auth.isAuthenticated(), handleReq(controller.find))
     // app.put(endpoint_name + "/:id", handleReq(controller.update))
     // app.delete(endpoint_name + "/:id", handleReq(controller.remove))
 }
+
+
 

@@ -5,7 +5,8 @@ import './history_item.scss';
 let historyItemComponent = {
   restrict: 'E',
   bindings: {
-    "item" : "="
+    "item" : "=",
+    "individualOrderDetails" : "="
   },
   template,
   controller,

@@ -36,6 +36,13 @@ const getAllUsersOrders = async function(req){
     return history_orders;
 }
 
+const getAllUsersOrdersWeekly = async function(req){
+    let {week}  = req.query;
+    const orders = await OrderService.getAllOrders(week);
+    const order_details = OrderService.formatOrderDetails(orders);
+    return order_details;
+}
+
 //TODO
 // need api to update feedback and rating
 // need separate api for admin
@@ -60,5 +67,6 @@ module.exports = {
     createUserOrder,
     find,
     update, 
-    remove
+    remove,
+    getAllUsersOrdersWeekly
 }

@@ -8,7 +8,7 @@
   <div class="history-items-wrapper"
        ng-repeat="vItem in self.myorders"
        ng-class="{'current-order': vItem.week==self.currentWeek}">
-      <history-item item="vItem"></history-item>
+      <history-item item="vItem" individual-order-details="self.openOrderDetails"></history-item>
   </div>
 </div>
 <footer-btn foot-text="{{self.btnText}}"
