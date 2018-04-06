@@ -12,11 +12,6 @@ exports.init = function (cfg) {
   template = require ('./template')(cfg);
   subjects = require (path.join(__dirname, 'template', 'subjects.json'));
   config = cfg;
-//   exports.send('surysunny17@gmail.com', 'welcome', {
-//     user: {
-//         email: 'surysunny17@gmail.com'
-//     }
-// }, []);
 };
 
 /**
