@@ -10,6 +10,15 @@ orders {
     padding:1em;
   }
   .history-items-wrapper{
+    history-item .view-item-container{
+      cursor: pointer !important;
+      @include add-hover();
+    }    
+    &.disabled{
+      history-item .view-item-container{
+        pointer-events: none;
+      }    
+    }
     &.current-order{
       .history-week-name{
         &:after{

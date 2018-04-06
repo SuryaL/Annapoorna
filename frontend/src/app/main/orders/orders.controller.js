@@ -2,10 +2,10 @@ class OrdersController {
     constructor($state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService, $filter,OrderDetailsPopup) {
         'ngInject';
         Object.assign(this, { $state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService, $filter,OrderDetailsPopup });
-        this.user = {};
         this.headTitle = 'Orders';
         this.subheadTitle = '.';
         this.btnText = "orders";
+        let user = this.$auth.getUser();
         this.init();
     }
 
@@ -25,8 +25,13 @@ class OrdersController {
             .catch(console.error)
     }
 
-
+    isAdmin(){
+        return user && user.type.indexOf('admin')!=-1
+    }
     openOrderDetails = (week) =>{
+        if(!this.isAdmin){
+            return ;
+        }
         this.OrderService.getAllUsersOrdersWeekly(week)
         .then((res)=>{
             this.OrderDetailsPopup.open(res)

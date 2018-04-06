@@ -7,7 +7,7 @@
        ng-if="!self.myorders.length">No orders yet!</div>
   <div class="history-items-wrapper"
        ng-repeat="vItem in self.myorders"
-       ng-class="{'current-order': vItem.week==self.currentWeek}">
+       ng-class="{'current-order': vItem.week==self.currentWeek, 'disabled':!self.isAdmin}">
       <history-item item="vItem" individual-order-details="self.openOrderDetails"></history-item>
   </div>
 </div>
