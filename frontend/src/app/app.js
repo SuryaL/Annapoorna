@@ -6,6 +6,7 @@ import inputPlaceholder from 'common/directives/inputPlaceholder';
 
 import appConfig from './app.config';
 import appRun from './app.run';
+import mymo from 'common/services/mymo';
 
 // common //
 // import colpick from 'common/components/colpick/colpick';
@@ -17,7 +18,7 @@ import main from './main/main';
 import login from './login/login';
 
 
-const app = angular.module('annapoorna', [uirouter, main,login, AuthService, inputPlaceholder])
+const app = angular.module('annapoorna', [uirouter, main,login, AuthService, inputPlaceholder,mymo])
 app.config(appConfig)
 app.run(appRun)
 

@@ -30,6 +30,18 @@ body{
     background-size: cover;
 }
 
+.loading-spinner{
+    z-index: 99999;
+    position: absolute;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100%;
+    &.ng-hide{
+        pointer-events: none;
+    }
+}
+
 .app-container{
     width: 100%;
     height: 100%;
