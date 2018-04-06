@@ -21,7 +21,8 @@ let plugins = [
     new webpack.DefinePlugin({
         'ENV': JSON.stringify({
             'url': env.base_url + ':' + env.port,
-            API_URL: env.base_url + ':' + env.port + (env.base_api_path || '')
+            'API_URL': env.base_url + ':' + env.port + (env.base_api_path || ''),
+            'FACEBOOK_CLIENT_ID': env.secret_configs.FACEBOOK_CLIENT_ID
         })
     })
 ]

@@ -14,7 +14,7 @@ let OauthFactory = function($http, $q, $window, $interval, $timeout) {
         oauthType: '2.0',
         popupOptions: { width: 580, height: 400 },
         defaultUrlParams: ['response_type', 'client_id', 'redirect_uri'],
-        clientId: '219723525446897',
+        clientId: ENV.FACEBOOK_CLIENT_ID,
         responseType: 'code',
         responseParams: {
             code: 'code',
