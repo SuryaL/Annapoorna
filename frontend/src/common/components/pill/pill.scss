@@ -26,13 +26,13 @@ pill {
     }
   }
   &.disabled {
-    background: darken($chase-grey,10) !important;
+    background: darken($chase-grey, 10) !important;
     .pill-text {
       color: white;
     }
     .pill-price {
-        // color: $chase-green;
-      }
+      // color: $chase-green;
+    }
     .pill-cancel {
       display: none;
     }
@@ -48,28 +48,27 @@ pill {
   }
   @include border-radius(2em);
   .pill-wrap {
-    @include flexbox;
+    @include inline-flex;
     @include align-items(center);
     @include justify-content(center);
     .pill-text {
       font-family: 'Lato-LightItalic';
       color: #EEE;
     }
-    .pill-price{
-        font-family: 'Lato-thin';
-        color: white;
-        // position: absolute;
-        // top:-0.2em;
-        // right:1em;
-        margin-right:0.2em;
-        font-size:0.8em !important;
+    .pill-price {
+      font-family: 'Lato-medium';
+      color: white; // position: absolute;
+      // top:-0.2em;
+      // right:1em;
+      margin-right: 0.2em;
+      font-size: 0.8em !important;
+      line-height: 0.8em !important;
     }
     .pill-cancel {
       font-family: 'Lato-Semibold';
       color: white;
-      padding-left: 0.7em;
+      padding-left: 0.5em;
     }
-    padding: 0.6em;
-    padding-bottom: 0.7em;
+    padding: 0.7em; // padding-bottom: 0.7em;
   }
 }
