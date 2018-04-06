@@ -8,21 +8,26 @@ function getNextWeekData() {
     nextmonday.setDate(nextmonday.getDate() + (1 + 7 - nextmonday.getDay()) % 7);
     nextmonday.setHours(18, 59, 59);
     // console.log(nextmonday);
+    let nexttues = new Date(nextmonday);
+    nexttues.addHours(24);
 
-    let nextwed = new Date(nextmonday);
-    nextwed.addHours(48);
+    let nextwed = new Date(nexttues);
+    nextwed.addHours(24);
     //    console.log(nextwed);
+    let nextthurs = new Date(nextwed);
+    nextthurs.addHours(24);
 
-    let nextfri = new Date(nextwed);
-    nextfri.addHours(48);
+    let nextfri = new Date(nextthurs);
+    nextfri.addHours(24);
     //    console.log(nextfri);
     return {
         week: nextmonday.toISOString(),
-        voting_deadline: nextwed.toISOString(),
-        order_deadline: nextfri.toISOString()
+        voting_deadline: nexttues.toISOString(),
+        order_deadline: nextthurs.toISOString()
     }
-
 }
+
+console.log(getNextWeekData().voting_deadline)
 
 module.exports={
     getNextWeekData
