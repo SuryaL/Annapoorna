@@ -20,6 +20,7 @@ class voteCtrl {
     }
 
     init(){
+        startloading;
         this.$q.all([this.StatusService.findActiveWeek(), this.MenuService.find()])
         .then(results => {
             this.weekDetails = results[0]||{};
@@ -45,8 +46,13 @@ class voteCtrl {
             const dishes_voted = currentWeekUserVote.dishes||[];
             this.already_voted = !!dishes_voted.length;
             (dishes_voted||[]).forEach(dish_id => this.selectedItems.add(dish_id));
+            stoploading;
         })
-        .catch(console.error)
+        .catch(err =>{
+            console.error(err);
+            stoploading;
+        })
+        
     }
 
     get selectedItemsArr (){
@@ -92,6 +98,7 @@ class voteCtrl {
         if(!this.selectedItems || this.selectedItems.size < 1 || !this.currentWeek) {
             return this.MyToastr.error(`Select atleast 1`);
         };
+        startloading;
         this.VoteService
             .create({dishes:this.selectedItems, week:this.currentWeek})
             .then(resp => {
@@ -101,6 +108,7 @@ class voteCtrl {
             .catch(err=> {
                 this.MyToastr.error(`Failed!`);
                 console.log(err);
+                stoploading;
             });
     }
 
