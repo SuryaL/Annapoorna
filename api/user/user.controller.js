@@ -50,7 +50,7 @@ const find = async function(req) {
 
 const emailUsers = async function(req){
     const {ids,email_body} = req.body;
-    if(!ids || !email_body){
+    if(!ids || !email_body || !ids.length){
         throw new Error('Missing params');
     }
     const result = await UserService.sendMailToUsers({user_ids:ids})('custom',{

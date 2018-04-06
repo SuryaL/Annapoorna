@@ -32,9 +32,10 @@
 <div class="vote-pills-container "
      ng-class="{'disabled':!self.showSubmit()}">
     <pill callback="self.voteToggle(vItemid)"
-            vtext="{{self.menuItemsObj[vItemid].name}}"
+          vtext="{{self.menuItemsObj[vItemid].name}}"
+          vprice="{{self.menuItemsObj[vItemid].price | currency}}"
           ng-class="{ 'disabled': (!self.showSubmit()),'major':self.isMajority(vItemid) }"
-          ng-repeat="vItemid in self.selectedItemsArr |orderBy:'name'" > </pill>
+          ng-repeat="vItemid in self.selectedItemsArr |orderBy:'name'"> </pill>
 </div>
 <footer-btn ng-if="self.showSubmit()"
             foot-text={{self.btnText}}

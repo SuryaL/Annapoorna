@@ -1,7 +1,7 @@
 import PopupHtml from './emailusers.html';
 import './emailusers.scss';
 
-let emailusersPopupFactory = function($popup, $q) {
+let emailusersPopupFactory = function($popup, $q, MyToastr) {
     'ngInject';
     var self = this;
 
@@ -50,6 +50,11 @@ let emailusersPopupFactory = function($popup, $q) {
                 })
 
                 $scope.submit = () => {
+                    if($scope.selected_users.size == 0){
+                        MyToastr.error('Select atleast one user');
+                        return;
+                    }
+
                     if(!!mypopup.btnClicked) {
                         return;
                     }

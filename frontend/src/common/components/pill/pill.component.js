@@ -6,6 +6,7 @@ let pillComponent = {
   restrict: 'E',
   bindings: {
     vtext:'@',
+    vprice:'@',
     callback:'&?'
   },
   template,
