@@ -1,0 +1,10 @@
+<div class="popup-wrap">
+    <div class=" title dynamic-text-xl">{{ texts.header }}</div>
+    <div class="user-wrapper" ng-repeat="order in orders">
+        <div class="name-wraper dynamic-text-l">{{order.name}}</div>
+        <div class="dishes-wrapper dynamic-text-s" ng-repeat="dish in order.dishes">
+            <div class="dish-name">{{dish.dishName}}</div>
+            <div class="dish-quantity">{{dish.quantity}}</div>
+        </div>
+    </div>
+</div>

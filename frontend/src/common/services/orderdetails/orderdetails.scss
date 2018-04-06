@@ -1,0 +1,82 @@
+@import '~assets/stylesheets/common.scss';
+@import '~assets/stylesheets/variables.scss';
+@import '~assets/stylesheets/mixins.scss';
+// $main-dark-color:white;
+.order-details-popup-dialog {
+  &.stax-popup {
+    position: absolute;
+    .stax-popup-overlay {
+      position: absolute;
+    }
+  }
+  .stax-popup-close {
+    z-index: 999; // display: none;
+  }
+  .stax-popup-content {
+    background-color: $main-dark-color;
+    background-position: center center;
+    background-size: cover;
+    padding: 2vw 1vw !important;
+    border-radius: 10px !important;
+    max-width: 600px;
+    width: 100%;
+    .stax-popup-data {
+      .popup-wrap {
+        position: relative;
+        text-align: center;
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        overflow-y: auto;
+        .title {
+          @extend .main-semibold-font;
+          color: $chase-grey;
+        }
+        .sub-heading {
+          margin-bottom: 1em;
+        }
+        .user-wrapper {
+          @include flexbox();
+          @include flex-direction(column);
+          @include justify-content(center);
+          @include align-items(flex-start);
+          color: white;
+          padding: 1.5em;
+          left: 0; // position: absolute;
+          left: 0; // margin-left :1em;
+          .name-wraper {
+            padding: 0.3em 0;
+            color: $chase-green;
+          }
+          .dishes-wrapper {
+            @include flexbox();
+            @include justify-content(center);
+            @include align-items(center);
+            @include flex-direction(row);
+            padding: 0.2em 0;
+            .dish-name {
+              padding: 0em 0.5em;
+              text-transform: capitalize;
+            }
+            .dish-quantity {
+              padding: 0em 0.5em;
+              color: $chase-red;
+            }
+          }
+        }
+        .close {
+          color: white;
+          transition: all 0.5s;
+          border: none;
+          @extend .main-regular-font;
+          background: transparent;
+        }
+      }
+      .user-add-error {
+        cursor: pointer;
+        color: $chase-red;
+        @extend .main-italic-font;
+      }
+    }
+  }
+}

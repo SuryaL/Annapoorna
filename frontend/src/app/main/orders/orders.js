@@ -11,6 +11,9 @@ import VoteService from 'common/services/vote';
 import OrderService from 'common/services/order';
 import menuService from 'common/services/menu';
 import StatusService from 'common/services/status';
+
+import orderdetails from 'common/services/orderdetails';
+
 let ordersModule = angular.module('orders', [
   uiRouter,
   historyItem,
@@ -21,7 +24,8 @@ let ordersModule = angular.module('orders', [
   VoteService,
   OrderService,
   menuService,
-  StatusService
+  StatusService,
+  orderdetails
 ])
     .config(($stateProvider) => {
         'ngInject';

@@ -1,7 +1,9 @@
-const {
-    execQuery
-} = require('../../helpers/utils/db_utils');
+const {execQuery} = require('../../helpers/utils/db_utils');
 const uuid = require('node-uuid');
+
+const UserService = require('../user/user.service');
+
+
 
 /**
  week
@@ -29,14 +31,14 @@ function createNewOrderData() {
     return body
 }
 
-async function getAllOrders(){
+async function getAllOrders() {
     const query = 'Select * from orders';
     const found = await execQuery(query, []);
     return found.rows
 }
 
 async function findUserOrder(user, week) {
-    if(!user || !week){
+    if (!user || !week) {
         throw new Error('Invalid user/week');
     }
     const query = 'Select * from orders where user = ? and week = ?';
@@ -44,8 +46,8 @@ async function findUserOrder(user, week) {
     return found.rows
 }
 
-async function getAllUserOrders(user){
-    if(!user){
+async function getAllUserOrders(user) {
+    if (!user) {
         throw new Error('Invalid user');
     }
     const query = 'Select * from orders where user = ? allow filtering';
@@ -53,19 +55,19 @@ async function getAllUserOrders(user){
     return found.rows
 }
 
-async function getUserOrderPriceTotal(user){
+async function getUserOrderPriceTotal(user) {
     const orders = await getAllUserOrders(user);
     let total = 0;
-    for(let oItem of orders){
+    for (let oItem of orders) {
         total += +(+oItem.price * +oItem.quantity).toFixed(2);
     }
     return total;
 }
 
-async function getAllOrdersPriceTotal(user){
+async function getAllOrdersPriceTotal(user) {
     const orders = await getAllOrders();
     let total = 0;
-    for(let oItem of orders){
+    for (let oItem of orders) {
         total += +(+oItem.price * +oItem.quantity).toFixed(2);
     }
     return total;
@@ -79,16 +81,32 @@ async function deleteUserOrders(user, week) {
 
 async function createOrders(body) {
     //delete
-    const { user, week, dishes } = body;
-    if(!user || !week || !dishes) {
+    const {
+        user,
+        week,
+        dishes
+    } = body;
+    if (!user || !week || !dishes) {
         throw new Error('Invalid order');
     }
     await deleteUserOrders(user, week);
 
     const addedOrders = [];
-    for(let dish_order of dishes) {
-        let { dish, dish_name, price, quantity } = dish_order;
-        let resp = await createOrderSingleItem({ week, user, dish, dish_name, price, quantity });
+    for (let dish_order of dishes) {
+        let {
+            dish,
+            dish_name,
+            price,
+            quantity
+        } = dish_order;
+        let resp = await createOrderSingleItem({
+            week,
+            user,
+            dish,
+            dish_name,
+            price,
+            quantity
+        });
         resp && addedOrders.push(resp);
     }
     return addedOrders
@@ -106,14 +124,16 @@ async function createOrderSingleItem(body) {
     const reqd = ["week", "user", "dish", "dish_name", "price", "quantity"];
     const valid = true;
     reqd.forEach((k) => {
-        if(body[k] == undefined || body[k] == null) {
+        if (body[k] == undefined || body[k] == null) {
             valid = false;
         }
     })
-    if(!valid) { return null }
+    if (!valid) {
+        return null
+    }
 
     Object.assign(body, createNewOrderData());
-    for(let key in body) {
+    for (let key in body) {
         columns.push(key);
         params.push(body[key]);
     }
@@ -123,34 +143,64 @@ async function createOrderSingleItem(body) {
     return body;
 }
 
-function formatOrderHistory(orders){
+function formatOrderHistory(orders) {
     let history = {};
-    for(let oItem of orders){
-        if(!history[oItem.week]){
-            history[oItem.week] = {week:oItem.week, dishes:[],total:0}
+    for (let oItem of orders) {
+        if (!history[oItem.week]) {
+            history[oItem.week] = {
+                week: oItem.week,
+                dishes: [],
+                total: 0
+            }
         }
 
-        let found = history[oItem.week]['dishes'].find((dish_item)=> dish_item.price == oItem.price && dish_item.dish_id.toString() ==  oItem.dish.toString());
+        let found = history[oItem.week]['dishes'].find((dish_item) => dish_item.price == oItem.price && dish_item.dish_id.toString() == oItem.dish.toString());
 
-        if(!found){
+        if (!found) {
             history[oItem.week]['dishes'].push({
-                dish_id:oItem.dish,
+                dish_id: oItem.dish,
                 name: oItem.dish_name,
-                price : oItem.price,
+                price: oItem.price,
                 quantity: oItem.quantity
             });
-        }else{
+        } else {
             found.quantity = +found.quantity + +oItem.quantity;
         }
 
         history[oItem.week]['total'] += +(+oItem.price * +oItem.quantity).toFixed(2);
     }
 
-    let history_orders=[];
-    for(let week of Object.keys(history)){
+    let history_orders = [];
+    for (let week of Object.keys(history)) {
         history_orders.push(history[week])
     }
     return history_orders
+}
+
+async function formatOrderDetails(orders) {
+    let orderDetails = {};
+    orders.forEach((order) => {
+        let user = (order.user).toString();
+        orderDetails[user] = orderDetails.hasOwnProperty(user) ? orderDetails[user] : [];
+        orderDetails[user].push({
+            dishName: order.dish_name,
+            quantity: order.quantity
+        })
+    })
+    let users_list = await UserService.getUsers({});
+    let allUsers ={};
+    users_list.forEach(user=>{
+        let id = user.id;
+        let  name = user.first_name  || user.email;
+        allUsers[id] = name;
+    })
+    OrderArray =[];
+    Object.keys(orderDetails).forEach(key =>{
+        OrderArray.push({name: allUsers[key], dishes: orderDetails[key]})
+
+    })
+    // console.log('OrderArray :',OrderArray)
+    return OrderArray;
 }
 
 module.exports = {
@@ -162,5 +212,6 @@ module.exports = {
     findUserOrder,
     deleteUserOrders,
     createOrders,
-    getAllUserOrders
+    getAllUserOrders,
+    formatOrderDetails
 }
