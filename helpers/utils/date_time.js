@@ -27,8 +27,6 @@ function getNextWeekData() {
     }
 }
 
-console.log(getNextWeekData().voting_deadline)
-
 module.exports={
     getNextWeekData
 }
