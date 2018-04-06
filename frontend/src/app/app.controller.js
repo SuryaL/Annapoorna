@@ -6,7 +6,7 @@ class appCtrl {
     }
 
     $onInit(){
-        this.Mymo.initLoader({parent:'.loading-spinner'});
+        this.Mymo.initLoader({parent:'.myloading-spinner'});
     }
 }
 

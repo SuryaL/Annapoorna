@@ -1,6 +1,7 @@
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
 import inputPlaceholder from 'common/directives/inputPlaceholder';
+import angularAnimate from 'angular-animate';
 
 // app //
 
@@ -18,7 +19,7 @@ import main from './main/main';
 import login from './login/login';
 
 
-const app = angular.module('annapoorna', [uirouter, main,login, AuthService, inputPlaceholder,mymo])
+const app = angular.module('annapoorna', [angularAnimate, uirouter, main,login, AuthService, inputPlaceholder, mymo])
 app.config(appConfig)
 app.run(appRun)
 
