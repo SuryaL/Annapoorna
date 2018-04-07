@@ -45,18 +45,23 @@ body {
   &.ng-hide-add {
     pointer-events: none;
     @include animation-name(fadeOut);
-    @include animation-duration(0.5s);
+    @include animation-duration(0.2s);
     @include animation-timing-function(ease-in-out);
-    @include animation-delay(0s);
+    @include animation-delay(0.1s);
     @include animation-fill-mode(both);
   }
   &.ng-hide-remove {
     @include animation-name(fadeIn);
-    @include animation-duration(0.5s);
+    @include animation-duration(0.2s);
     @include animation-timing-function(ease-in-out);
     @include animation-delay(0s);
     @include animation-fill-mode(both);
   }
+  // @include animation-name(fadeIn);
+  // @include animation-duration(0.2s);
+  // @include animation-timing-function(ease-in-out);
+  // @include animation-delay(0s);
+  // @include animation-fill-mode(both);
 }
 
 .app-container {
