@@ -191,12 +191,12 @@ async function formatOrderDetails(orders) {
     let allUsers ={};
     users_list.forEach(user=>{
         let id = user.id;
-        let  name = user.first_name  || user.email;
-        allUsers[id] = name;
+        let  personName = user.first_name  || user.email;
+        allUsers[id] = personName;
     })
     OrderArray =[];
     Object.keys(orderDetails).forEach(key =>{
-        OrderArray.push({name: allUsers[key], dishes: orderDetails[key]})
+        OrderArray.push({personName: allUsers[key], dishes: orderDetails[key]})
 
     })
     // console.log('OrderArray :',OrderArray)

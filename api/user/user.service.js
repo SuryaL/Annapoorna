@@ -2,6 +2,7 @@ const { execQuery } = require('../../helpers/utils/db_utils');
 const uuid = require('uuid');
 const emailService = require('../../helpers/email');
 const HelperUtils = require('../../helpers/utils/helper_utils');
+const config = require('../../config');
 
 function createNewUserData() {
     const body = {};
@@ -96,7 +97,11 @@ function sendMailToUsers(filters = {}) {
     
     return async function(email_type, options = {}){
         // FIXME: Create query based instead of fetching all users
+        if(!config.mail_enabled) {
+            return;
+        }
         let users = await getUsers({});
+
         
         let toSendUsers = users.filter((user)=>{
             let bool1 = true, bool2=true;

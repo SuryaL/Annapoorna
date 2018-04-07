@@ -9,6 +9,7 @@ module.exports = {
         keyspace: 'annapoorna',
         authProvider: new cassandra.auth.PlainTextAuthProvider('annapoorna', 'annapoorna!')
     },
+    mail_enabled :env.mail.enabled,
     smtp: {
         pool: true,
         host: 'smtp.gmail.com',
