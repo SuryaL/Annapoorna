@@ -2,32 +2,33 @@
       ng-submit="submitComments()"
       class="popup-wrap">
     <div class=" title dynamic-text-xl">{{ texts.header }}</div>
-
-    <div class="missed-rating-week"
-         ng-repeat="missed_week in missed_ratings">
-         <div class="missed-rating-week-title dynamic-text-m">{{missed_week.week | date}}</div>
-        <div class="menu-item-wrapper"
-             ng-repeat="item in missed_week.dishes">
-            <div class="item-rating-container">
-                <div class="item-name dynamic-text-s">{{item.name}}</div>
-                <div class="item-stars">
-                    <starsy mode="write"
-                            output="item.rating"
-                            number-of-stars='5'>
-                    </starsy>
+    <div class="feedback-inner-wrap">
+        <div class="missed-rating-week"
+             ng-repeat="missed_week in missed_ratings">
+            <div class="missed-rating-week-title dynamic-text-m">{{missed_week.week | date}}</div>
+            <div class="menu-item-wrapper"
+                 ng-repeat="item in missed_week.dishes">
+                <div class="item-rating-container">
+                    <div class="item-name dynamic-text-s">{{item.name}}</div>
+                    <div class="item-stars">
+                        <starsy mode="write"
+                                output="item.rating"
+                                number-of-stars='5'>
+                        </starsy>
+                    </div>
+                    <div class="comment-toggler dynamic-text-xs"
+                         ng-click="item.show_comment = !item.show_comment">
+                        <img ng-src="~assets/images/Comment-Off@2x.png"
+                             ng-show="!item.show_comment && !item.feedback">
+                        <img ng-src="~assets/images/Comment-On@2x.png"
+                             ng-show="item.show_comment || item.feedback">
+                    </div>
                 </div>
-                <div class="comment-toggler dynamic-text-xs"
-                     ng-click="item.show_comment = !item.show_comment">
-                    <img ng-src="~assets/images/Comment-Off@2x.png"
-                         ng-show="!item.show_comment && !item.feedback">
-                    <img ng-src="~assets/images/Comment-On@2x.png"
-                         ng-show="item.show_comment || item.feedback">
-                </div>
+                <textarea class="item-feedback dynamic-text-xs"
+                          placeholder="Enter your comment"
+                          ng-model="item.feedback"
+                          ng-show="item.show_comment" />
             </div>
-            <textarea class="item-feedback dynamic-text-xs"
-                      placeholder="Enter your comment"
-                      ng-model="item.feedback"
-                      ng-show="item.show_comment" />
         </div>
     </div>
     <div class="box-row">

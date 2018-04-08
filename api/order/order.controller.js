@@ -52,11 +52,12 @@ const getMyMissedRatings = async function(req){
 
 const updateMyOrderRatings = async function(req){
     const user = (req.user.id || '').toString();
+    console.log(JSON.stringify(req.body,null,2));
     if(!req.body.ratings || !req.body.ratings.length) {
         throw new Error ('No ratings to update');
     }
     const missedRatings = await getMyMissedRatings(req);
-    await UpdateMyRatings(user, missedRatings,req.body.ratings);
+    await OrderService.UpdateMyRatings(user, missedRatings,req.body.ratings);
 }
 
 // getMyMissedRatings({user:{id:'b4f1bbd8-872b-4847-a4c1-3e55ea5d15ea'}}).then((resp)=>{

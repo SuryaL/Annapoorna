@@ -2,6 +2,7 @@ const { execQuery } = require('../../helpers/utils/db_utils');
 const uuid = require('node-uuid');
 
 const UserService = require('../user/user.service');
+const MenuService = require('../menu/menu.service');
 
 
 
@@ -79,9 +80,9 @@ async function deleteUserOrders(user, week) {
     return true;
 }
 
-async function updateUserRating(user, week, dish_id, rating, feedback=null) {
-    const query = 'update orders set rating = ? and feedback = ? where user = ? and week = ? and dish_id=?';
-    await execQuery(query, [rating, feedback, user, week, dish_id]);
+async function updateUserRating(user, week, dish_id, rating, feedback = null) {
+    const query = 'update orders set rating = ?, feedback = ? where user = ? and week = ? and dish=?';
+    await execQuery(query, [rating.toString(), feedback, user, week, dish_id]);
     return true;
 }
 
@@ -214,7 +215,7 @@ async function findMissingRatings(orders) {
     let unrated_obj = {};
     for(let oItem of orders) {
         // added week validation to skip uneaten days
-        const has_eaten = true;//WeekHasBeenEaten(oItem.week);
+        const has_eaten = WeekHasBeenEaten(oItem.week);
 
         if(oItem.rating || !has_eaten) {
             continue;
@@ -238,34 +239,52 @@ async function findMissingRatings(orders) {
         }
     }
     let unrated = [];
-    for (let week of Object.keys(unrated_obj)) {
+    for(let week of Object.keys(unrated_obj)) {
         unrated.push(unrated_obj[week])
     }
     return unrated
 }
 
-async function UpdateMyRatings(user, missedRatings, updateRatings){
-    const unrated_obj = missedRatings.reduce((unrated_obj, week_obj)=>{
-        week_obj.dishes.forEach(dish=>{
-            if(!unrated_obj[week_obj.week]){
+async function UpdateMyRatings(user, missedRatings, updateRatings) {
+    console.log(user, JSON.stringify(missedRatings, null, 2), JSON.stringify(updateRatings, null, 2));
+    const unrated_obj = missedRatings.reduce((unrated_obj, week_obj) => {
+        week_obj.dishes.forEach(dish => {
+            if(!unrated_obj[week_obj.week]) {
                 unrated_obj[week_obj.week] = {}
             }
             unrated_obj[week_obj.week][dish.dish_id] = dish
         })
         return unrated_obj;
-    },{});
+    }, {});
 
-    for(let u_rating of updateRatings){
-        const {week,dish_id,feedback,rating} = u_rating;
-        if(!unrated_obj[week] || !unrated_obj[week][dish_id] || !rating){
+    for(let u_rating of updateRatings) {
+        const { week, dish_id, feedback, rating } = u_rating;
+        if(!unrated_obj[week] || !unrated_obj[week][dish_id] || !rating) {
             continue;
         }
-        //update rating 
-        await updateUserRating(user, week, dish_id, rating, feedback)
+        // console.log(user, week, dish_id, rating, feedback);
+        //update order rating 
+        let [menu_item] = await Promise.all([
+            MenuService.getMenu({ id: dish_id }),
+            updateUserRating(user, week, dish_id, rating, feedback)
+        ])
+        // update menu rating
+        let {rating:menu_rating, total_ratings, created, id} = menu_item[0];
+        if(!!created && !!id){
+            if(!total_ratings){
+                total_ratings = 0;
+            }
+            if(!menu_rating){
+                menu_rating = 0;
+            }
+            let new_total_ratings = +total_ratings + 1;
+            menu_rating = (((+menu_rating* +total_ratings) + +rating)/ +new_total_ratings).toFixed(2);
+            await MenuService.updateMenu({rating:menu_rating, total_ratings:new_total_ratings.toString() ,created, id})
+        }
     }
 }
 
-function WeekHasBeenEaten(week){
+function WeekHasBeenEaten(week) {
     const uneaten_duration = 12 * 24 * 60 * 60 * 1000; //monday to next friday
     const week_timestamp = new Date(week).getTime();
     const current_utc_timestamp = new Date().getTime();

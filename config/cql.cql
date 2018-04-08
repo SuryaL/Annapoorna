@@ -32,6 +32,8 @@ CREATE TABLE IF NOT EXISTS menu (
   vegetarian      boolean,
   price           text,
   image           text,
+  rating          text,
+  total_ratings   text,
   deleted         boolean,
   type            text,
   PRIMARY KEY (id, created)

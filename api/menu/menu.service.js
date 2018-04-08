@@ -49,7 +49,7 @@ async function getMenu(queryParams) {
         params.push(queryParams[key]);
     }
 
-    let query = 'SELECT id,name,created,image,type,price FROM menu';
+    let query = 'SELECT id, name, created, image, type, price, rating, total_ratings FROM menu';
     if (columns.length > 0) {
         query += ' WHERE ' + columns.join('=? AND ') + '=? ALLOW FILTERING';
     }
@@ -78,7 +78,7 @@ async function updateMenu(body) {
     params.push(id);
     params.push(created);
 
-    const query = 'UPDATE menu SET ' + columns.join('=?,') + ' WHERE id = ? AND created = ?';
+    const query = 'UPDATE menu SET ' + columns.join('=?,') + '=? WHERE id = ? AND created = ?';
 
     await execQuery(query, params);
     return body;
