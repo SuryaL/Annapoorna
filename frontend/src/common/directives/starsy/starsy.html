@@ -1,0 +1,6 @@
+<div class="starsy-rating-stars">
+    <div on-touch="touched($index)" ng-click="touched($index)" ng-style="{'width' : width + 'px', 'margin':'0px '+ margin + 'px', 'height': height +'px'}" ng-repeat="star in getNumber(numberOfStars) track by $index" class="star-container star{{$index+1}}">
+        <div class="off-star" ng-style="{'width' : '100%'}"><img ng-src="{{starOffIcon}}" /></div>
+        <div class="on-star" ng-style="{'width' : widthArray[$index]+'%'}"><img ng-src="{{starOnIcon}}" /></div>
+    </div>
+</div>

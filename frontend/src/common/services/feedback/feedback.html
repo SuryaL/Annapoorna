@@ -1,0 +1,30 @@
+<form name="feedback"
+      ng-submit="submitComments()"
+      class="popup-wrap">
+    <div class=" title dynamic-text-xl">{{ texts.header }}</div>
+    <div class="menu-item-wrapper"
+         ng-repeat="item in items">
+        <div class="item-rating-container">
+            <div class="item-name dynamic-text-m">{{item.name}}</div>
+            <div class="item-stars">
+                <starsy 
+                        mode="write"
+                        output="item.rating"
+                        number-of-stars='5'>
+                </starsy>
+            </div>
+            <div class="comment-toggler dynamic-text-xs" ng-click="item.show_comment = !item.show_comment">
+                <img ng-src="~assets/images/Comment-Off@2x.png" ng-show="!item.show_comment && !item.feedback">
+                <img ng-src="~assets/images/Comment-On@2x.png" ng-show="item.show_comment || item.feedback">
+            </div>
+        </div>
+        <textarea class="item-feedback dynamic-text-xs"
+                  placeholder="Enter your comment"
+                  ng-model="item.feedback" 
+                  ng-show="item.show_comment"/>
+    </div>
+    <div class="box-row">
+        <button type="submit"
+                class="close dynamic-text-m">Submit</button>
+    </div>
+</form>

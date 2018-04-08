@@ -1,0 +1,171 @@
+@import '~assets/stylesheets/common.scss';
+@import '~assets/stylesheets/variables.scss';
+@import '~assets/stylesheets/mixins.scss';
+// $main-dark-color:white;
+.feedback-popup-dialog {
+  &.stax-popup {
+    position: absolute;
+    .stax-popup-overlay {
+      position: absolute;
+    }
+  }
+  .stax-popup-close {
+    z-index: 999; // display: none;
+  }
+  .stax-popup-content {
+    background-color: $main-dark-color;
+    background-position: center center;
+    background-size: cover;
+    padding: 2vw 1vw !important;
+    border-radius: 10px !important;
+    max-width: 600px;
+    width: 100%;
+    .stax-popup-data {
+      .popup-wrap {
+        position: relative;
+        text-align: center;
+        width: 100%;
+        height: auto;
+        .title {
+          @extend .main-semibold-font;
+          color: $chase-grey;
+        }
+        .sub-heading {
+          margin-bottom: 1em;
+          .checkbox-container {
+            .checkbox-label {
+              // color:$chase-grey;
+            }
+          }
+        }
+        .menu-item-wrapper {
+          // @include flexbox();
+          // @include justify-content(center);
+          // @include align-items(center);
+          // @include flex-direction(column);
+          .item-rating-container {
+            @include flexbox();
+            @include justify-content(space-between);
+            @include align-items(center);
+            @include flex-direction(row);
+            padding: 0 1em;
+            margin: 1em 0;
+            height: 2em;
+            position: relative;
+            right: 0px; // padding: 10px;
+            .item-name {
+              color: $chase-grey;
+              @include flex(0, 0, 40%);
+              max-width: 40%;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              text-align: left;
+              @extend .main-regular-font;
+            }
+            .item-stars {
+              height: 75%;
+              margin-left: auto;
+              margin-right: 0.5em; // @include flex(1,0,0);
+              // @include flex(0,0);
+              display: inline-block;
+              position: relative;
+            }
+            .comment-toggler {
+              @include flex(0, 0, 2em);
+              position: relative;
+              height: 100%;
+              img {
+                height: 100%; // width: 2em;
+              }
+            }
+          }
+          .item-feedback {
+            // margin: 0 1em;
+            @include flexbox;
+            @extend .main-thin-font;
+            border: 1px solid $main-grey;
+            background-color: $main-dark-color;
+            color: white;
+          }
+        }
+        .checkbox-container {
+          @include flexbox;
+          height: 1em;
+          color: $chase-grey;
+          checkbox {
+            img {
+              height: 1em;
+            }
+          }
+          .checkbox-label {
+            @extend .main-regular-font;
+            margin-left: 0.25em;
+          }
+        }
+        .email-users-list {
+          max-height: 20em;
+          overflow-y: scroll;
+          padding-left: 0.9em;
+          .email-user-item {
+            height: 2em;
+            .user-tags {
+              @extend .main-thin-font;
+              color: $chase-green;
+              margin-left: 0.5em;
+              @include flexbox; // @include justify-content(center);
+              @include align-items(flex-end);
+            }
+          }
+        }
+        textarea {
+          @include flexbox;
+          @extend .main-thin-font;
+          width: 100%;
+          height: 5em;
+          border: 1px solid $main-grey;
+          background-color: $main-dark-color;
+          color: white;
+        }
+        .box-row {
+          margin: 2vh 0 0 0;
+          width: 100%;
+          .user-type {
+            cursor: pointer;
+            padding: 3%;
+            margin: 2%;
+            opacity: 0.5;
+            transition: 0.2s;
+            -webkit-transition: 0.2s;
+            @include border-radius(5px);
+            @extend .main-regular-font;
+            color: white;
+            &.active {
+              transition: 0.2s;
+              -webkit-transition: 0.2s;
+              opacity: 1;
+            }
+            &.cook {
+              background: $chase-green;
+            }
+            &.user {
+              background: $chase-blue;
+            }
+            border: 2px solid white;
+          }
+          .close {
+            color: white;
+            transition: all 0.5s;
+            border: none;
+            @extend .main-regular-font;
+            background: transparent;
+          }
+        }
+        .user-add-error {
+          cursor: pointer;
+          color: $chase-red;
+          @extend .main-italic-font;
+        }
+      }
+    }
+  }
+}
