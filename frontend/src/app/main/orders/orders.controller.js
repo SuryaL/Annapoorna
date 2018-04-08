@@ -33,6 +33,7 @@ class OrdersController {
     isAdmin() {
         return user && user.type.indexOf('admin') != -1
     }
+    
     openOrderDetails = (week) => {
         if(!this.isAdmin) {
             return;

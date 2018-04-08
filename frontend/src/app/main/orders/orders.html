@@ -1,15 +1,16 @@
 <div class="history-view-header sub-main-view-header">
-  <simple-header head-title="self.headTitle"
-                 subhead-title="self.subheadTitle"></simple-header>
+    <simple-header head-title="self.headTitle"
+                   subhead-title="self.subheadTitle"></simple-header>
 </div>
 <div class="historys-container sub-main-view-container">
-  <div class="no-orders"
-       ng-if="!self.myorders.length">No orders yet!</div>
-  <div class="history-items-wrapper"
-       ng-repeat="vItem in self.myorders"
-       ng-class="{'current-order': vItem.week==self.currentWeek, 'disabled':!self.isAdmin}">
-      <history-item item="vItem" individual-order-details="self.openOrderDetails"></history-item>
-  </div>
+    <div class="no-orders"
+         ng-if="!self.myorders.length">No orders yet!</div>
+    <div class="history-items-wrapper"
+         ng-repeat="vItem in self.myorders"
+         ng-class="{'current-order': vItem.week==self.currentWeek, 'disabled':!self.isAdmin}">
+        <history-item item="vItem"
+                      ng-click="self.openOrderDetails(vItem.week)"></history-item>
+    </div>
 </div>
 <footer-btn foot-text="{{self.btnText}}"
-          callback="self.nocallback"></footer-btn>
+            callback="self.nocallback"></footer-btn>
