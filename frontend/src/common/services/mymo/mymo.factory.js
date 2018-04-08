@@ -183,25 +183,30 @@ let MymoFactory = function($timeout, $window) {
 
         return self.loader
     }
-
+    
+    self.loading_count = 0;
     self.startLoading = () => {
         self.loader && !self.loading && self.loader.replay();
         self.loading = true;
+        self.loading_count++;
     }
 
-
-
     self.stopLoading = () => {
+        let load_count = self.loading_count;
         if(self.loader && self.loading) {
             $timeout(() => {
+                console.log(load_count , self.loading_count);
+                if(load_count != self.loading_count){
+                    return;
+                }
+                self.loading = false;
                 self.loader.pause();
                 self.loader.reset();
                 self.loader.setProgress(0);
                 $timeout(() => {
                     self.loader.setProgress(0);
                 }, 10);
-            }, 300);
-            self.loading = false;
+            }, 500);
         }
     }
 

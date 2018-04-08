@@ -12,7 +12,6 @@
 $app-back-img: url('~assets/images/bg-food-min.jpg');
 // $load-background-color: white;
 $load-background-color: white;
-
 html,
 body,
   {
@@ -38,10 +37,11 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: transparentize($load-background-color,0.28);
-  @media (max-width:600px){
-    background-color: transparentize($load-background-color,0.12);
-  }
+  background-color: transparentize($load-background-color, 0.28);
+  @media (max-width: 600px) {
+    background-color: transparentize($load-background-color, 0.12);
+  } 
+
   &.ng-hide-add {
     pointer-events: none;
     @include animation-name(fadeOut);
@@ -50,18 +50,14 @@ body {
     @include animation-delay(0.1s);
     @include animation-fill-mode(both);
   }
+
   &.ng-hide-remove {
     @include animation-name(fadeIn);
     @include animation-duration(0.2s);
     @include animation-timing-function(ease-in-out);
     @include animation-delay(0s);
     @include animation-fill-mode(both);
-  }
-  // @include animation-name(fadeIn);
-  // @include animation-duration(0.2s);
-  // @include animation-timing-function(ease-in-out);
-  // @include animation-delay(0s);
-  // @include animation-fill-mode(both);
+  } 
 }
 
 .app-container {
