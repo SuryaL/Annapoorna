@@ -1,5 +1,5 @@
 class voteCtrl {
-    constructor($state, $auth, MenuService,VoteService,StatusService,$q,MenuVotingLimit, MyToastr,FeedbackPopup) {
+    constructor($state, $auth, MenuService,VoteService,StatusService,$q,MenuVotingLimit, MyToastr) {
         'ngInject';
         Object.assign(this, {
             $state,
@@ -8,8 +8,7 @@ class voteCtrl {
             StatusService,
             $q,
             MenuVotingLimit,
-            MyToastr,
-            FeedbackPopup
+            MyToastr
         });
         this.headTitle = 'Vote for this week\'s dishes';
         this.menuTypes = ['Special', 'Regular'];
@@ -18,7 +17,6 @@ class voteCtrl {
         this.VoteService = VoteService;
         this.StatusService = StatusService;
         this.init();
-        // this.FeedbackPopup.open();
     }
 
     init(){

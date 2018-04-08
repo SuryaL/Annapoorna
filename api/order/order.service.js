@@ -79,6 +79,13 @@ async function deleteUserOrders(user, week) {
     return true;
 }
 
+async function updateUserRating(user, week, dish_id, rating, feedback=null) {
+    const query = 'update orders set rating = ? and feedback = ? where user = ? and week = ? and dish_id=?';
+    await execQuery(query, [rating, feedback, user, week, dish_id]);
+    return true;
+}
+
+
 async function createOrders(body) {
     //delete
     const {
@@ -207,7 +214,7 @@ async function findMissingRatings(orders) {
     let unrated_obj = {};
     for(let oItem of orders) {
         // added week validation to skip uneaten days
-        const has_eaten = WeekHasBeenEaten(oItem.week);
+        const has_eaten = true;//WeekHasBeenEaten(oItem.week);
 
         if(oItem.rating || !has_eaten) {
             continue;
@@ -237,6 +244,27 @@ async function findMissingRatings(orders) {
     return unrated
 }
 
+async function UpdateMyRatings(user, missedRatings, updateRatings){
+    const unrated_obj = missedRatings.reduce((unrated_obj, week_obj)=>{
+        week_obj.dishes.forEach(dish=>{
+            if(!unrated_obj[week_obj.week]){
+                unrated_obj[week_obj.week] = {}
+            }
+            unrated_obj[week_obj.week][dish.dish_id] = dish
+        })
+        return unrated_obj;
+    },{});
+
+    for(let u_rating of updateRatings){
+        const {week,dish_id,feedback,rating} = u_rating;
+        if(!unrated_obj[week] || !unrated_obj[week][dish_id] || !rating){
+            continue;
+        }
+        //update rating 
+        await updateUserRating(user, week, dish_id, rating, feedback)
+    }
+}
+
 function WeekHasBeenEaten(week){
     const uneaten_duration = 12 * 24 * 60 * 60 * 1000; //monday to next friday
     const week_timestamp = new Date(week).getTime();
@@ -246,6 +274,7 @@ function WeekHasBeenEaten(week){
 }
 
 module.exports = {
+    UpdateMyRatings,
     findMissingRatings,
     getAllOrders,
     getAllOrdersPriceTotal,

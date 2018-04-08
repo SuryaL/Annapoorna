@@ -56,6 +56,26 @@ let OrderFactory = function($http, $httpParamSerializer) {
       })
   }
 
+  self.getMyMissedRatings = function(obj = {}) {
+    return $http({
+        method: 'GET',
+        url: API + self.PATH + '/getMyMissedRatings'
+      })
+      .then(resp => {
+        return resp.data;
+      })
+  }
+
+  self.updateMyOrderRatings = function(obj = {}) {
+    return $http({
+        method: 'POST',
+        url: API + self.PATH + '/updateMyOrderRatings',
+        data: obj
+      })
+      .then(resp => {
+        return resp.data;
+      })
+  }
 
   // self.update = function(obj) {
   //   return $http({

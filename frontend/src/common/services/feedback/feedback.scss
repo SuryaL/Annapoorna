@@ -10,7 +10,8 @@
     }
   }
   .stax-popup-close {
-    z-index: 999; // display: none;
+    z-index: 999;
+    display: none;
   }
   .stax-popup-content {
     background-color: $main-dark-color;
@@ -26,6 +27,8 @@
         text-align: center;
         width: 100%;
         height: auto;
+        max-height: 20em;
+        overflow-y: auto;
         .title {
           @extend .main-semibold-font;
           color: $chase-grey;
@@ -38,54 +41,66 @@
             }
           }
         }
-        .menu-item-wrapper {
-          // @include flexbox();
-          // @include justify-content(center);
-          // @include align-items(center);
-          // @include flex-direction(column);
-          .item-rating-container {
-            @include flexbox();
-            @include justify-content(space-between);
-            @include align-items(center);
-            @include flex-direction(row);
-            padding: 0 1em;
-            margin: 1em 0;
-            height: 2em;
-            position: relative;
-            right: 0px; // padding: 10px;
-            .item-name {
-              color: $chase-grey;
-              @include flex(0, 0, 40%);
-              max-width: 40%;
-              text-overflow: ellipsis;
-              overflow: hidden;
-              text-align: left;
-              @extend .main-regular-font;
-            }
-            .item-stars {
-              height: 75%;
-              margin-left: auto;
-              margin-right: 0.5em; // @include flex(1,0,0);
-              // @include flex(0,0);
-              display: inline-block;
+        .missed-rating-week {
+          margin: 1em 0em;
+          .missed-rating-week-title {
+            margin: 0em 0.4em;
+            color: $chase-green;
+            @extend .main-regular-font;
+            text-align: left;
+          }
+          .menu-item-wrapper {
+            margin: 0 1em; // @include flexbox();
+            // @include justify-content(center);
+            // @include align-items(center);
+            // @include flex-direction(column);
+            .item-rating-container {
+              @include flexbox();
+              @include justify-content(space-between);
+              @include align-items(center);
+              @include flex-direction(row);
+              margin: 0.4em 0;
+              height: 2em;
               position: relative;
-            }
-            .comment-toggler {
-              @include flex(0, 0, 2em);
-              position: relative;
-              height: 100%;
-              img {
-                height: 100%; // width: 2em;
+              right: 0px; // padding: 10px;
+              .item-name {
+                color: $chase-grey;
+                @include flex(0, 0, 45%);
+                max-width: 45%;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                text-align: left;
+                @extend .main-regular-font;
+                white-space: nowrap;
+              }
+              .item-stars {
+                height: 65%;
+                @media (min-width: 600px) {
+                  height: 75%;
+                }
+                margin-left: auto;
+                margin-right: 0.5em; // @include flex(1,0,0);
+                // @include flex(0,0);
+                display: inline-block;
+                position: relative;
+              }
+              .comment-toggler {
+                @include flex(0, 0, 2em);
+                position: relative;
+                height: 100%;
+                img {
+                  height: 100%; // width: 2em;
+                }
               }
             }
-          }
-          .item-feedback {
-            // margin: 0 1em;
-            @include flexbox;
-            @extend .main-thin-font;
-            border: 1px solid $main-grey;
-            background-color: $main-dark-color;
-            color: white;
+            .item-feedback {
+              // margin: 0 1em;
+              @include flexbox;
+              @extend .main-thin-font;
+              border: 1px solid $main-grey;
+              background-color: $main-dark-color;
+              color: white;
+            }
           }
         }
         .checkbox-container {
@@ -100,21 +115,6 @@
           .checkbox-label {
             @extend .main-regular-font;
             margin-left: 0.25em;
-          }
-        }
-        .email-users-list {
-          max-height: 20em;
-          overflow-y: scroll;
-          padding-left: 0.9em;
-          .email-user-item {
-            height: 2em;
-            .user-tags {
-              @extend .main-thin-font;
-              color: $chase-green;
-              margin-left: 0.5em;
-              @include flexbox; // @include justify-content(center);
-              @include align-items(flex-end);
-            }
           }
         }
         textarea {

@@ -14,6 +14,7 @@ import history from './history/history';
 import users from './users/users';
 import profile from './profile/profile';
 import orders from './orders/orders';
+import feedback from 'common/services/feedback';
 
 const module = angular.module('main', [
         menuBar,
@@ -27,7 +28,8 @@ const module = angular.module('main', [
         users,
         profile,
         TabsService,
-        orders
+        orders,
+        feedback
     ])
 
     .config(function($stateProvider) {

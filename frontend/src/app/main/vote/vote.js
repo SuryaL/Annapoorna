@@ -12,8 +12,6 @@ import AuthService from 'common/services/auth';
 import menuService from 'common/services/menu';
 import VoteService from 'common/services/vote';
 import StatusService from 'common/services/status';
-import feedback from 'common/services/feedback';
-
 
 const module = angular.module('vote', [
         uirouter,
@@ -26,8 +24,7 @@ const module = angular.module('vote', [
         AuthService,
         menuService,
         VoteService,
-        StatusService,
-        feedback
+        StatusService
     ])
 
     .config(function($stateProvider) {
