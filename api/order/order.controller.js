@@ -43,6 +43,18 @@ const getAllUsersOrdersWeekly = async function(req){
     return order_details;
 }
 
+const getMyMissedRatings = async function(req){
+    const user = (req.user.id || '').toString();
+    const orders = await OrderService.getAllUserOrders(user);
+    const ratings = OrderService.findMissingRatings(orders);
+    return ratings;
+}
+
+// getMyMissedRatings({user:{id:'b4f1bbd8-872b-4847-a4c1-3e55ea5d15ea'}}).then((resp)=>{
+//     console.log(JSON.stringify(resp,null,2))
+// })
+
+
 //TODO
 // need api to update feedback and rating
 // need separate api for admin
@@ -61,6 +73,7 @@ const remove = async function(req){
 
 
 module.exports = {
+    getMyMissedRatings,
     getAllUsersOrders,
     getAllUserOrders,
     getUserOrder,

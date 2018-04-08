@@ -7,6 +7,7 @@ module.exports = app =>  {
     app.get(endpoint_name + "/getMyOrder",auth.isAuthenticated(), handleReq(controller.getUserOrder))
     app.get(endpoint_name + "/getAllOrders",auth.isAuthenticated(), auth.hasOneRole(['admin','cook']), handleReq(controller.getAllUsersOrders))
     app.get(endpoint_name + "/getMyOrders",auth.isAuthenticated(), handleReq(controller.getAllUserOrders))
+    app.get(endpoint_name + "/getMyMissedRatings",auth.isAuthenticated(), handleReq(controller.getMyMissedRatings))
     app.post(endpoint_name + "/createMyOrder",auth.isAuthenticated(), handleReq(controller.createUserOrder))
     app.get(endpoint_name + "/getAllUsersOrdersWeekly",auth.isAuthenticated(), auth.hasOneRole(['admin']), handleReq(controller.getAllUsersOrdersWeekly))
     

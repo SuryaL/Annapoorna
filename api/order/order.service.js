@@ -1,4 +1,4 @@
-const {execQuery} = require('../../helpers/utils/db_utils');
+const { execQuery } = require('../../helpers/utils/db_utils');
 const uuid = require('node-uuid');
 
 const UserService = require('../user/user.service');
@@ -38,7 +38,7 @@ async function getAllOrders() {
 }
 
 async function findUserOrder(user, week) {
-    if (!user || !week) {
+    if(!user || !week) {
         throw new Error('Invalid user/week');
     }
     const query = 'Select * from orders where user = ? and week = ?';
@@ -47,7 +47,7 @@ async function findUserOrder(user, week) {
 }
 
 async function getAllUserOrders(user) {
-    if (!user) {
+    if(!user) {
         throw new Error('Invalid user');
     }
     const query = 'Select * from orders where user = ? allow filtering';
@@ -58,7 +58,7 @@ async function getAllUserOrders(user) {
 async function getUserOrderPriceTotal(user) {
     const orders = await getAllUserOrders(user);
     let total = 0;
-    for (let oItem of orders) {
+    for(let oItem of orders) {
         total += +(+oItem.price * +oItem.quantity).toFixed(2);
     }
     return total;
@@ -67,7 +67,7 @@ async function getUserOrderPriceTotal(user) {
 async function getAllOrdersPriceTotal(user) {
     const orders = await getAllOrders();
     let total = 0;
-    for (let oItem of orders) {
+    for(let oItem of orders) {
         total += +(+oItem.price * +oItem.quantity).toFixed(2);
     }
     return total;
@@ -86,13 +86,13 @@ async function createOrders(body) {
         week,
         dishes
     } = body;
-    if (!user || !week || !dishes) {
+    if(!user || !week || !dishes) {
         throw new Error('Invalid order');
     }
     await deleteUserOrders(user, week);
 
     const addedOrders = [];
-    for (let dish_order of dishes) {
+    for(let dish_order of dishes) {
         let {
             dish,
             dish_name,
@@ -124,16 +124,16 @@ async function createOrderSingleItem(body) {
     const reqd = ["week", "user", "dish", "dish_name", "price", "quantity"];
     const valid = true;
     reqd.forEach((k) => {
-        if (body[k] == undefined || body[k] == null) {
+        if(body[k] == undefined || body[k] == null) {
             valid = false;
         }
     })
-    if (!valid) {
+    if(!valid) {
         return null
     }
 
     Object.assign(body, createNewOrderData());
-    for (let key in body) {
+    for(let key in body) {
         columns.push(key);
         params.push(body[key]);
     }
@@ -145,8 +145,8 @@ async function createOrderSingleItem(body) {
 
 function formatOrderHistory(orders) {
     let history = {};
-    for (let oItem of orders) {
-        if (!history[oItem.week]) {
+    for(let oItem of orders) {
+        if(!history[oItem.week]) {
             history[oItem.week] = {
                 week: oItem.week,
                 dishes: [],
@@ -156,7 +156,7 @@ function formatOrderHistory(orders) {
 
         let found = history[oItem.week]['dishes'].find((dish_item) => dish_item.price == oItem.price && dish_item.dish_id.toString() == oItem.dish.toString());
 
-        if (!found) {
+        if(!found) {
             history[oItem.week]['dishes'].push({
                 dish_id: oItem.dish,
                 name: oItem.dish_name,
@@ -171,7 +171,7 @@ function formatOrderHistory(orders) {
     }
 
     let history_orders = [];
-    for (let week of Object.keys(history)) {
+    for(let week of Object.keys(history)) {
         history_orders.push(history[week])
     }
     return history_orders
@@ -188,22 +188,65 @@ async function formatOrderDetails(orders) {
         })
     })
     let users_list = await UserService.getUsers({});
-    let allUsers ={};
-    users_list.forEach(user=>{
+    let allUsers = {};
+    users_list.forEach(user => {
         let id = user.id;
-        let  personName = user.first_name  || user.email;
+        let personName = user.first_name || user.email;
         allUsers[id] = personName;
     })
-    OrderArray =[];
-    Object.keys(orderDetails).forEach(key =>{
-        OrderArray.push({personName: allUsers[key], dishes: orderDetails[key]})
+    OrderArray = [];
+    Object.keys(orderDetails).forEach(key => {
+        OrderArray.push({ personName: allUsers[key], dishes: orderDetails[key] })
 
     })
     // console.log('OrderArray :',OrderArray)
     return OrderArray;
 }
 
+async function findMissingRatings(orders) {
+    let unrated_obj = {};
+    for(let oItem of orders) {
+        // added week validation to skip uneaten days
+        const has_eaten = WeekHasBeenEaten(oItem.week);
+
+        if(oItem.rating || !has_eaten) {
+            continue;
+        }
+
+        if(!unrated_obj[oItem.week]) {
+            unrated_obj[oItem.week] = {
+                week: oItem.week,
+                dishes: [],
+            }
+        }
+
+        let found = unrated_obj[oItem.week]['dishes'].find((dish_item) => dish_item.price == oItem.price && dish_item.dish_id.toString() == oItem.dish.toString());
+        if(!found) {
+            unrated_obj[oItem.week]['dishes'].push({
+                dish_id: oItem.dish,
+                name: oItem.dish_name,
+                rating: oItem.rating,
+                feedback: oItem.feedback
+            });
+        }
+    }
+    let unrated = [];
+    for (let week of Object.keys(unrated_obj)) {
+        unrated.push(unrated_obj[week])
+    }
+    return unrated
+}
+
+function WeekHasBeenEaten(week){
+    const uneaten_duration = 12 * 24 * 60 * 60 * 1000; //monday to next friday
+    const week_timestamp = new Date(week).getTime();
+    const current_utc_timestamp = new Date().getTime();
+    const has_eaten = ((week_timestamp + uneaten_duration) < current_utc_timestamp);
+    return has_eaten;
+}
+
 module.exports = {
+    findMissingRatings,
     getAllOrders,
     getAllOrdersPriceTotal,
     getUserOrderPriceTotal,
