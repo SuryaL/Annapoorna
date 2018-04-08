@@ -4,13 +4,15 @@ import component from './vote_item.component';
 import AuthService from 'common/services/auth';
 import checkbox from 'common/components/checkbox/checkbox';
 import toastr from 'common/services/mytoastr';
+import starsy from 'common/directives/starsy';
 
 
 const module = angular.module('voteItem', [
         uirouter,
         AuthService,
         toastr,
-        checkbox
+        checkbox,
+        starsy
     ])
 
     .config(function($stateProvider) {

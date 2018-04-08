@@ -10,8 +10,6 @@ let voteItemComponent = {
     item : "=",
     isSelectedItem : "=",
     itemToggled : "=",
-    votesCount : "="
-    
   },
   template,
   controller,

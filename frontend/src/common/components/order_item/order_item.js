@@ -3,11 +3,13 @@ import uiRouter from 'angular-ui-router';
 import orderItemComponent from './order_item.component';
 import AuthService from 'common/services/auth';
 import QuantityPicker from 'common/components/quantity_picker/quantity_picker';
+import starsy from 'common/directives/starsy';
 
 let orderItemModule = angular.module('orderItem', [
   uiRouter,
   AuthService,
-  QuantityPicker
+  QuantityPicker,
+  starsy
 ])
 .config(($stateProvider) => {
   'ngInject';

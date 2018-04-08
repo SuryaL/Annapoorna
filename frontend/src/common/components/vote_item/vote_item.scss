@@ -10,8 +10,14 @@ vote-item {
     @include add-hover();
     .view-left-item {
       @media (max-width: 600px) {
-        @include flex(0, 0, 1.5em!important);
+        @include flex(0, 0, 1.5em !important);
       }
     }
-  } 
+    .stars-container {
+      // @include flexbox;
+      // @include align-items(center);
+      height: 0.65em;
+      max-height: 0.65em;
+    }
+  }
 }

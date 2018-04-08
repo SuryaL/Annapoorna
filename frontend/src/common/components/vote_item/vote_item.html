@@ -1,7 +1,21 @@
-<div ng-click="self.selectItem()" class="view-item-container vote-item-container">
-    <checkbox class="view-left-item" toggle-var="self.isSelected"></checkbox>
+<div ng-click="self.selectItem()"
+     class="view-item-container vote-item-container">
+    <checkbox class="view-left-item"
+              toggle-var="self.isSelected"></checkbox>
     <div class="view-middle-item item-title-wrap">
-       <div class="view-middle-item-content item-title dynamic-text-m"> {{self.item.name}} </div>
+        <div class="view-middle-item-content item-title dynamic-text-m">
+            <span>{{self.item.name}}</span>
+            <div class="stars-container"
+                 ng-if="self.item.rating">
+                <starsy mode="read"
+                        margin="1"
+                        this-much="self.item.rating"
+                        number-of-stars='5'>
+                </starsy>
+            </div>
+        </div>
+
     </div>
+
     <div class="view-right-item item-price dynamic-text-m">{{self.item.price | currency}}</div>
 </div>

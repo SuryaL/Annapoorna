@@ -47,7 +47,7 @@ class OrderController {
                         const item_ordered = this.myorders.find(ord => ord.dish == menuitem.id);
                         const { id, name, price } = menuitem;
                         const quantity = item_ordered ? item_ordered.quantity : 0;
-                        this.orderItems.push({ id, name, price, quantity })
+                        this.orderItems.push({ id, name, price, quantity , rating:menuitem.rating})
                     }
                 }
                 stoploading;

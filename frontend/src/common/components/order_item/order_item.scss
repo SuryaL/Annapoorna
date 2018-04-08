@@ -1,18 +1,31 @@
 @import '~assets/stylesheets/common';
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
-
 order-item {
-    .order-item-container{
-        @include add-hover();
-       .order-item-name{
-
-       }
-       .order-item-price{
-        @extend .main-lightitalic-font;
-        @media(min-width:600px){
-            font-size: 1em !important;
+  .view-middle-item-content {
+    max-width: 100% !important;
+  }
+  .order-item-container {
+    @include add-hover();
+    .order-item-name {
+      @media(min-width: 600px) {
+        @include flexbox;
+        @include align-items(center);
+      }
+      .stars-container {
+        height: 0.65em;
+        max-height: 0.65em;
+        @media(min-width: 600px) {
+          margin-left:0.3em;
+          display: inline-block;
         }
+      }
     }
+    .order-item-price {
+      @extend .main-lightitalic-font;
+      @media(min-width: 600px) {
+        font-size: 1em !important;
+      }
     }
+  }
 }
