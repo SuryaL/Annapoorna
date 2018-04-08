@@ -3,11 +3,16 @@ Date.prototype.addHours = function(h) {
     return this;
 }
 
+// FIXME NEED BETTER WAY
+//CURRENTLY HARDCODED
 function getNextWeekData() {
     let nextmonday = new Date();
     nextmonday.setDate(nextmonday.getDate() + (1 + 7 - nextmonday.getDay()) % 7);
-    nextmonday.setHours(18, 59, 59);
-    // console.log(nextmonday);
+    
+    let [one,two1] = nextmonday.toISOString().split('T');
+    let [two2,three]=two1.split('.');
+    nextmonday = new Date(one+'T23:59:59.'+three);
+    
     let nexttues = new Date(nextmonday);
     nexttues.addHours(24);
 
@@ -27,6 +32,12 @@ function getNextWeekData() {
     }
 }
 
+
+function dallastime(date) {
+    return new Date(date).toLocaleString("en-US", { timeZone: "America/Chicago" })
+}
+
 module.exports={
-    getNextWeekData
+    getNextWeekData,
+    dallastime
 }

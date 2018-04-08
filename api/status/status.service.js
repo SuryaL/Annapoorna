@@ -81,7 +81,7 @@ async function checkStatus() {
     if(!voting_email_sent && current_utc_timestamp > voting_predeadline_timestamp) {
         await updateStatus(week, { voting_email_sent: true })
         await UserService.sendMailToUsers({user_types:['user']})('voteending', {
-            deadline: dallastime(voting_deadline)
+            deadline: date_time.dallastime(voting_deadline)
         })
     }
 
@@ -89,14 +89,14 @@ async function checkStatus() {
         console.log('voting time over', current_utc_timestamp, voting_deadline_timestamp);
         await updateStatus(week, { voting_status: true })
         await UserService.sendMailToUsers({user_types:['user']})('orderenabled', {
-            deadline: dallastime(order_deadline)
+            deadline: date_time.dallastime(order_deadline)
         })
     }
 
     if(!order_email_sent && current_utc_timestamp > order_predeadline_timestamp) {
         await updateStatus(week, { order_email_sent: true })
         await UserService.sendMailToUsers({user_types:['user']})('orderending', {
-            deadline: dallastime(order_deadline)
+            deadline: date_time.dallastime(order_deadline)
         })
     }
 
@@ -111,16 +111,13 @@ async function checkStatus() {
         let data = prepareNextWeekData();
         await createStatus(data);
         await UserService.sendMailToUsers({user_types:['user']})('voteenabled', {
-            deadline: dallastime(data.voting_deadline)
+            deadline: date_time.dallastime(data.voting_deadline)
         })
     }
 
     console.log('-');
 }
 
-function dallastime(date) {
-    return new Date(date).toLocaleString("en-US", { timeZone: "America/Chicago" })
-}
 
 
 
