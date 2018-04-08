@@ -13,6 +13,7 @@ class OrderController {
     }
 
     init() {
+        startloading;
         this.$q.all([this.StatusService.findActiveWeek(), this.MenuService.find()])
             .then(results => {
                 this.weekDetails = results[0] || {};
@@ -49,9 +50,13 @@ class OrderController {
                         this.orderItems.push({ id, name, price, quantity })
                     }
                 }
+                stoploading;
                 // (dishes_voted||[]).forEach(dish_id => this.selectedItems.add(dish_id));
             })
-            .catch(console.error)
+            .catch(error => {
+                console.error(error);
+                stoploading;
+            })
     }
 
     get subheadTitle() {
@@ -85,8 +90,8 @@ class OrderController {
         return this.currentWeek && !this.timePassed && !!this.voting_status && !this.order_status
     }
 
-    vItemClicked(event){
-        if(!this.showSubmit()){
+    vItemClicked(event) {
+        if(!this.showSubmit()) {
             event.stopPropagation();
             event.preventDefault();
             this.MyToastr.error(`Ordering Disabled!`);
@@ -100,7 +105,7 @@ class OrderController {
             return this.MyToastr.error(`Time Expired!`);
         }
 
-        if(!this.showSubmit()){
+        if(!this.showSubmit()) {
             return this.MyToastr.error(`Ordering closed`);
         }
 
@@ -108,7 +113,7 @@ class OrderController {
         if(!dishes || !this.currentWeek) {
             return this.MyToastr.error(`Failed`);
         };
-
+        startloading;
         this.OrderService.createMyOrder({ week: this.currentWeek, dishes })
             .then((resp) => {
                 this.MyToastr.success('Order Placed');
@@ -117,11 +122,12 @@ class OrderController {
             }).catch((err) => {
                 this.MyToastr.error('Failed');
                 console.error(err);
+                stoploading;
             })
     }
 
     getDishesToOrder() {
-        return (this.orderItems||[]).map(oItem => ({
+        return(this.orderItems || []).map(oItem => ({
             dish: oItem.id,
             dish_name: oItem.name,
             price: oItem.price,

@@ -10,6 +10,7 @@ class HistoryController {
     }
 
     init() {
+        startloading;
         this.$q.all([this.StatusService.findActiveWeek(), this.OrderService.getMyOrders()])
             .then(results => {
                 this.weekDetails = results[0] || {};
@@ -20,8 +21,12 @@ class HistoryController {
                 this.vote_deadline = this.weekDetails.voting_deadline;
                 this.myorders = results[1] || [];
                 console.log(results[1]);
+                stoploading;
             })
-            .catch(console.error)
+            .catch(error => {
+                console.error(error);
+                stoploading;
+            })
     }
 
 

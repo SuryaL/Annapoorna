@@ -3,5 +3,5 @@ import MenuService from './menu.service';
 
 export default angular.module('menuService', [])
     .service('MenuService', MenuService)
-    .constant('MenuVotingLimit', 15)
+    .constant('MenuVotingLimit', 10)
     .name;

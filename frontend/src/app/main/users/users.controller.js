@@ -29,15 +29,18 @@ class UsersController {
     }
 
     init() {
+        startloading;
         this.PaymentService
             .getAllUsersBalances()
             .then((resp) => {
                 this.usersList = resp;
                 console.log(resp);
+                stoploading;
             })
             .catch((err) => {
                 console.error(err);
                 this.MyToastr.error('Failed');
+                stoploading;
             })
     }
     get subheadTitle() {
@@ -76,13 +79,17 @@ class UsersController {
                 amount
             })
         })
+        startloading;
         this.PaymentService
             .addPayments(data)
             .then(_ => {
                 this.$rootScope.$broadcast('pay-update');
                 return this.init()
             }).then(() => this.MyToastr.success('Success'))
-            .catch(console.error)
+            .catch(error => {
+                console.error(error);
+                stoploading;
+            })
     }
 
     openEmailPopup = () => {
@@ -90,15 +97,18 @@ class UsersController {
         // this.EmailUsersPopup.open()
         let pop = this.EmailUsersPopup.open(this.usersList, (info) => {
             if(info.action == 'email_users') {
-                this.MyToastr.warning('Sending!')
+                this.MyToastr.warning('Sending!');
+                startloading;
                 this.UserService.emailUsers(info.data)
                     .then(() => {
                         this.MyToastr.success('Emails Sent!');
                         pop.close();
+                        stoploading;
                     }).catch((err) => {
                         console.error(err);
                         pop.btnClicked = false;
-                        this.MyToastr.error('Failed!')
+                        this.MyToastr.error('Failed!');
+                        stoploading;
                     })
             }
         });
@@ -111,6 +121,7 @@ class UsersController {
                 this.MyToastr.error(' Invalid prams');
                 return;
             }
+            startloading;
             this.UserService.create({ type, email })
                 .then(resp => {
                     console.log(resp);
@@ -121,7 +132,8 @@ class UsersController {
                 .catch(err => {
                     mypop.btnClicked = false;
                     this.MyToastr.error(' Failed to add user');
-                    console.log(err)
+                    console.log(err);
+                    stoploading;
                 });
         });
     }

@@ -1,7 +1,7 @@
 class OrdersController {
-    constructor($state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService, $filter,OrderDetailsPopup) {
+    constructor($state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService, $filter, OrderDetailsPopup) {
         'ngInject';
-        Object.assign(this, { $state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService, $filter,OrderDetailsPopup });
+        Object.assign(this, { $state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService, $filter, OrderDetailsPopup });
         this.headTitle = 'Orders';
         this.subheadTitle = '.';
         this.btnText = "orders";
@@ -10,6 +10,7 @@ class OrdersController {
     }
 
     init() {
+        startloading;
         this.$q.all([this.StatusService.findActiveWeek(), this.OrderService.getAllOrders()])
             .then(results => {
                 this.weekDetails = results[0] || {};
@@ -21,22 +22,32 @@ class OrdersController {
                 this.vote_deadline = this.weekDetails.voting_deadline;
                 this.myorders = results[1] || [];
                 console.log(results[1]);
+                stoploading;
             })
-            .catch(console.error)
+            .catch(error => {
+                console.error(error);
+                stoploading;
+            })
     }
 
-    isAdmin(){
-        return user && user.type.indexOf('admin')!=-1
+    isAdmin() {
+        return user && user.type.indexOf('admin') != -1
     }
-    openOrderDetails = (week) =>{
-        if(!this.isAdmin){
-            return ;
+    openOrderDetails = (week) => {
+        if(!this.isAdmin) {
+            return;
         }
+        startloading;
         this.OrderService.getAllUsersOrdersWeekly(week)
-        .then((res)=>{
-            this.OrderDetailsPopup.open(res)
-        })
-        .catch(err => console.error(err))
+            .then((res) => {
+                this.OrderDetailsPopup.open(res);
+                stoploading;
+
+            })
+            .catch(error => {
+                console.error(error);
+                stoploading;
+            })
 
     }
 
