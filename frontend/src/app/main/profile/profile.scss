@@ -10,19 +10,8 @@ profile {
     @include align-items(center);
     @include flex-direction(column);
     profilepic {
-      .user-item-profile-picture {
-        height: 10em;
-        width: 10em;
-        @media (max-width: 600px) {
-          height: 5em;
-          width: 5em;
-        }
-        img {
-          @include border-radius(50%);
-          height: 100%;
-          width: 100%; // background-image: url('/images/blank_profile.png');
-        }
-      }
+      height:10em;
+      width:10em;
     }
     .profile-name {
       padding: 1em;

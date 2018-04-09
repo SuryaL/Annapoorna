@@ -23,16 +23,20 @@ let TabsFactory = function($http, $state) {
         state: 'app.main.users',
         visibility :['admin']
     },{
-        id: 4,
+        id: 5,
         name: 'Orders',
         state: 'app.main.orders',
         visibility :['admin','cook']
-    }, {
+    }]
+
+    /** MOVED TO PROFILE ICON
+     * {
         id: 6,
         name: 'Profile',
         state: 'app.main.profile',
         visibility :['user', 'cook', 'admin']
-    }]
+    }
+     */
 
     self.fetchTabsForType = (user_types) => self.all_tabs.filter(tab => {
         let found=false;

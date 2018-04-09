@@ -7,6 +7,7 @@ import TabsService from 'common/services/tabs';
 import menuBar from 'common/components/menu/menuBar/menuBar';
 import menuIcon from 'common/components/menu/menuIcon/menuIcon';
 import userBalance from 'common/components/menu/userBalance/userBalance';
+import profilepic from 'common/components/profilepic/profilepic';
 
 import vote from './vote/vote';
 import order from './order/order';
@@ -29,7 +30,8 @@ const module = angular.module('main', [
         profile,
         TabsService,
         orders,
-        feedback
+        feedback,
+        profilepic
     ])
 
     .config(function($stateProvider) {

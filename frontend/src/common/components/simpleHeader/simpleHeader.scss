@@ -41,6 +41,9 @@ simple-header {
             @include flexbox;
             @extend .main-regular-font;
             color: $chase-red;
+            &.no-sub-head{
+                color:transparent;
+            }
         }
     }
 }

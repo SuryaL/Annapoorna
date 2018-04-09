@@ -2,12 +2,23 @@
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
 profilepic {
+  @include border-radius(50%);
+  overflow: hidden;
   .user-item-profile-picture {
-    height: 2em;
-    width: 2em;
-    margin-right: 0.5em;
+    // @include border-radius(50%);
+    // overflow: hidden;
+    height: 100%;
+    width: 100%;
+    position: relative;
     img {
-      @include border-radius(50%);
+      position: absolute;
+      top: -9999px;
+      right: -9999px;
+      bottom: -9999px;
+      left: -9999px;
+      margin: auto;
+      min-width: 100%;
+      min-height: 100%;
       height: 100%;
       width: 100%;
     }

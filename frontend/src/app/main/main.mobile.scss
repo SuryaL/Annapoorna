@@ -3,58 +3,63 @@
 @import '~assets/stylesheets/variables';
 // Mobile //
 @media (max-width: 600px) {
-    main {
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        .main-wrap {
-            position: relative;
-            @include flexbox;
-            @include flex-direction(column);
-            @include justify-content(center);
-            @include align-items(space-around);
-            height: 100%;
-            background-color: $main-app-color;
-            .menu-header {
-                position: relative;
-                @include flexbox;
-                @include flex(0, 0, 6vw);
-                @include flex-direction(column);
-                @include justify-content(center);
-                @include align-items(center); // height: 10vw;
-                min-height: 120px;
-                menu-icon {
-                    @include flex(0, 0, 6vw);
-                    min-width: initial;
-                    height: 70px;
-                    padding: 5px;
-                }
-                menu-bar {
-                    width: 100%;
-                    border: 1px solid $main-grey-light;
-                    border-left: none;
-                    border-right: none;
-                    @include flex(1, 0, 0);
-                    .menu-bar-wrapper {
-                        height: 100%;
-                        justify-content: flex-start;
-                        padding-left: 0.2em;
-                    }
-                }
-                user-balance {
-                    position: absolute;
-                    right: 0;
-                    top: 0;
-                    height: 70px;
-                    @include flex(0, 0, 6vw);
-                    min-width: 70px;
-                }
-            }
-            .main-view {
-                @include flexbox;
-                @include flex-direction(column);
-                @include flex(1, 0, 0); // height:10vw;
-            }
+  main {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    .main-wrap {
+      position: relative;
+      @include flexbox;
+      @include flex-direction(column);
+      @include justify-content(center);
+      @include align-items(space-around);
+      height: 100%;
+      background-color: $main-app-color;
+      .menu-header {
+        position: relative;
+        @include flexbox;
+        @include flex(0, 0, 6vw);
+        @include flex-direction(column);
+        @include justify-content(center);
+        @include align-items(center); // height: 10vw;
+        min-height: 120px;
+        menu-icon {
+          @include flex(0, 0, 6vw);
+          min-width: initial;
+          height: 70px;
+          padding: 5px;
         }
+        menu-bar {
+          width: 100%;
+          border: 1px solid $main-grey-light;
+          border-left: none;
+          border-right: none;
+          @include flex(1, 0, 0);
+          .menu-bar-wrapper {
+            height: 100%;
+            justify-content: flex-start;
+            padding-left: 0.2em;
+          }
+        }
+        user-balance {
+          position: absolute;
+          right: 3em;
+          top: 0;
+          height: 70px;
+          @include flex(0, 0, 6vw);
+          min-width: 70px;
+        }
+        profilepic {
+          position: absolute; //   @include vertical-align(absolute);
+          top: 0.65em;
+          right: 0.2em;
+        }
+      }
+      .main-view {
+        @include flexbox;
+        @include flex-direction(column);
+        @include flex(1, 0, 0); // height:10vw;
+      }
     }
+  }
 }

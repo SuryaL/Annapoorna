@@ -1,8 +1,14 @@
 <div class="main-wrap">
     <div class="menu-header">
         <menu-icon ng-click="self.fun()"></menu-icon>
-        <menu-bar ng-if="self.tabs" tabs="self.tabs"></menu-bar>
-        <user-balance ></user-balance> 
+        <menu-bar ng-if="self.tabs"
+                  tabs="self.tabs"></menu-bar>
+        <user-balance></user-balance>
+        <profilepic title="profile"
+                    ui-sref="app.main.profile"
+                    ng-class="{'active': self.isCurrentState('app.main.profile')}"
+                    image="{{self.user&&self.user.image? self.user.image + '&type=small':''}}"></profilepic>
     </div>
-    <div class="main-view" ui-view></div>
+    <div class="main-view"
+         ui-view></div>
 </div>

@@ -1,4 +1,5 @@
 <div class="simple-header-wrap">
     <div class="dynamic-text-xl simple-head">{{self.headTitle}}</div>
-    <div class="dynamic-text-s simple-subhead">{{self.subheadTitle}}</div>
+    <div ng-class="{'no-sub-head':self.subheadTitle=='.'}"
+         class="dynamic-text-s simple-subhead">{{self.subheadTitle}}</div>
 </div>

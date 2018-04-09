@@ -45,6 +45,9 @@ class mainController {
         // $timeout(_=>stoploading,3000)
         // $timeout(_=>startloading,6000)
     }
+
+    isCurrentState = (state) => this.$state.current.name == state
+    
 }
 
 export default mainController;

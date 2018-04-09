@@ -2,6 +2,8 @@ class ProfileController {
     constructor($auth) {
         'ngInject';
         this.name = 'Profile';
+        this.headTitle = "Profile";
+        this.subheadTitle = ".";
         Object.assign(this,{
             $auth
         });

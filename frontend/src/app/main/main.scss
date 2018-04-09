@@ -1,0 +1,19 @@
+@import '~assets/stylesheets/common';
+@import '~assets/stylesheets/flex';
+@import '~assets/stylesheets/variables';
+main {
+  .menu-header {
+    profilepic {
+      * {
+        pointer-events: none;
+      }
+      cursor: pointer;
+      height:3em;
+      width:3em;
+      border: 3px solid transparent;
+      &.active {
+        border: 3px solid $chase-green;
+      }
+    }
+  }
+}

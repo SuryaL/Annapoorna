@@ -4,6 +4,7 @@ import controller from './main.controller';
 import template from './main.html';
 import './main.mobile.scss';
 import './main.desktop.scss';
+import './main.scss';
 
 let mainComponent = {
   restrict: 'E',
