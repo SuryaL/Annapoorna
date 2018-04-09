@@ -19,7 +19,7 @@ const create = async function(req) {
 
     if(req.body.type == 'cook'){
         let resps = await find({query:{}});
-        let foundCook = resps.rows.find((row)=>{
+        let foundCook = resps.rows && resps.rows.find((row)=>{
             return row.type.indexOf('cook')
         })
         if(foundCook){
