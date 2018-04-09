@@ -62,7 +62,7 @@ class OrderController {
     get subheadTitle() {
         let d = '';
         if(this.order_deadline) {
-            d = new Date(this.order_deadline).toLocaleString().split('T')[0];
+            d = this.$filter('date')(this.order_deadline,'EEE MMM d,  h:mm:ss a');
         }
         return 'Deadline : ' + d
     }
@@ -70,7 +70,7 @@ class OrderController {
     get headTitle(){
         let d = '';
         if(this.currentWeek){
-            d = this.$filter('date')(this.currentWeek,'MMM dd');
+            d = this.$filter('date')(this.currentWeek,'MMM d');
         }
         return 'Order '+ d +' week\'s dishes';
     }

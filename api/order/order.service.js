@@ -219,7 +219,7 @@ async function findMissingRatings(orders) {
     let unrated_obj = {};
     for(let oItem of orders) {
         // added week validation to skip uneaten days
-        const has_eaten = true; //WeekHasBeenEaten(oItem.week);
+        const has_eaten = WeekHasBeenEaten(oItem.week);
 
         if(oItem.rating || !has_eaten) {
             continue;

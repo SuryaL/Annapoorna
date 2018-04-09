@@ -70,7 +70,7 @@ class voteCtrl {
     get headTitle(){
         let d = '';
         if(this.currentWeek){
-            d = this.$filter('date')(this.currentWeek,'MMM dd');
+            d = this.$filter('date')(this.currentWeek,'MMM d');
         }
         return 'Vote for '+ d +' week\'s dishes';
     }
@@ -78,7 +78,7 @@ class voteCtrl {
     get subheadTitle() {
         let d = '';
         if(this.vote_deadline){
-            d = new Date(this.vote_deadline).toLocaleString().split('T')[0]
+            d = this.$filter('date')(this.vote_deadline,'EEE MMM d,  h:mm:ss a');
         }
         return 'Deadline : ' + d
     }
