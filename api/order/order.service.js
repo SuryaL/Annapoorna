@@ -158,7 +158,7 @@ function formatOrderHistory(orders) {
             history[oItem.week] = {
                 week: oItem.week,
                 dishes: [],
-                total: 0
+                total: 0,
             }
         }
 
@@ -169,10 +169,14 @@ function formatOrderHistory(orders) {
                 dish_id: oItem.dish,
                 name: oItem.dish_name,
                 price: oItem.price,
-                quantity: oItem.quantity
+                quantity: oItem.quantity,
+                feedbacks: !!oItem.feedback ?  [oItem.feedback] : [],
+                ratings : !!oItem.rating ?  [oItem.rating] : []
             });
         } else {
             found.quantity = +found.quantity + +oItem.quantity;
+            !!oItem.feedback && found.feedbacks.push(oItem.feedback);
+            !!oItem.rating && found.ratings.push(oItem.rating);
         }
 
         history[oItem.week]['total'] += +(+oItem.price * +oItem.quantity).toFixed(2);
@@ -215,7 +219,7 @@ async function findMissingRatings(orders) {
     let unrated_obj = {};
     for(let oItem of orders) {
         // added week validation to skip uneaten days
-        const has_eaten = WeekHasBeenEaten(oItem.week);
+        const has_eaten = true; //WeekHasBeenEaten(oItem.week);
 
         if(oItem.rating || !has_eaten) {
             continue;

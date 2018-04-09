@@ -1,5 +1,5 @@
 class voteCtrl {
-    constructor($state, $auth, MenuService,VoteService,StatusService,$q,MenuVotingLimit, MyToastr) {
+    constructor($state, $auth, MenuService,VoteService,StatusService,$q, $filter,MenuVotingLimit, MyToastr) {
         'ngInject';
         Object.assign(this, {
             $state,
@@ -8,9 +8,9 @@ class voteCtrl {
             StatusService,
             $q,
             MenuVotingLimit,
-            MyToastr
+            MyToastr,
+            $filter
         });
-        this.headTitle = 'Vote for this week\'s dishes';
         this.menuTypes = ['Special', 'Regular'];
 
         this.selectedItems = new Set();
@@ -65,6 +65,14 @@ class voteCtrl {
 
     get btnText(){
         return !!this.already_voted ? 'Re-Vote' : 'Vote';
+    }
+
+    get headTitle(){
+        let d = '';
+        if(this.currentWeek){
+            d = this.$filter('date')(this.currentWeek,'MMM dd');
+        }
+        return 'Vote for '+ d +' week\'s dishes';
     }
 
     get subheadTitle() {

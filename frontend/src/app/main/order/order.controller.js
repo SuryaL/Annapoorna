@@ -3,7 +3,7 @@ class OrderController {
         'ngInject';
         Object.assign(this, { $state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService, $filter, $rootScope });
         this.user = {};
-        this.headTitle = 'Order this week\'s dishes';
+        // this.headTitle = 'Order this week\'s dishes';
 
         this.orderItems = [];
         // this.btnText = "order";
@@ -62,9 +62,17 @@ class OrderController {
     get subheadTitle() {
         let d = '';
         if(this.order_deadline) {
-            d = new Date(this.order_deadline).toLocaleString().split('T')[0]
+            d = new Date(this.order_deadline).toLocaleString().split('T')[0];
         }
         return 'Deadline : ' + d
+    }
+
+    get headTitle(){
+        let d = '';
+        if(this.currentWeek){
+            d = this.$filter('date')(this.currentWeek,'MMM dd');
+        }
+        return 'Order '+ d +' week\'s dishes';
     }
 
     get orderTotal() {

@@ -16,12 +16,14 @@ order-item {
     .order-item-price {
       @include flexbox;
       @include align-items(center);
+      // @include justify-content(center);
       @extend .main-lightitalic-font;
       @media(min-width: 600px) {
         font-size: 1em !important;
       }
       .stars-container {
         display: inline-block;
+        font-size:1.1em;
         height: 0.65em;
         max-height: 0.65em;
           margin-left:0.3em;
