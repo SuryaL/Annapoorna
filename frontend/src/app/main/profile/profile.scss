@@ -9,30 +9,31 @@ profile {
     @include justify-content(center);
     @include align-items(center);
     @include flex-direction(column);
-    .profile-image {
-      height: 10em;
-      width: 10em;
-      @media (max-width: 600px) {
-        height: 5em;
-        width: 5em;
-      }
-      img {
-        @include border-radius(50%);
-        height: 100%;
-        width: 100%;
-        // background-image: url('/images/blank_profile.png');
+    profilepic {
+      .user-item-profile-picture {
+        height: 10em;
+        width: 10em;
+        @media (max-width: 600px) {
+          height: 5em;
+          width: 5em;
+        }
+        img {
+          @include border-radius(50%);
+          height: 100%;
+          width: 100%; // background-image: url('/images/blank_profile.png');
+        }
       }
     }
     .profile-name {
       padding: 1em;
       @extend .main-heavy-font;
       color: $chase-grey;
-      letter-spacing :0.04em;
+      letter-spacing: 0.04em;
     }
     .profile-email {
       color: $chase-grey;
       @extend .main-italic-font;
-      letter-spacing :0.05em;
+      letter-spacing: 0.05em;
     }
     .logout {
       padding: 1em;

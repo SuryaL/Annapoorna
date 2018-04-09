@@ -6,12 +6,12 @@ class ProfileController {
             $auth
         });
         this.getProfileInfo();
-        this.defaultPic = require('assets/images/blank_profile.png');
     }
 
     logout() {
         this.$auth.logout();
     }
+    
     getProfileInfo = () =>{
         console.log(' user details :',this.$auth.getUser());
         let user = this.$auth.getUser();

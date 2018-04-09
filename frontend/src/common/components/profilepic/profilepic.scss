@@ -1,0 +1,16 @@
+@import '~assets/stylesheets/common';
+@import '~assets/stylesheets/flex';
+@import '~assets/stylesheets/variables';
+profilepic {
+  .user-item-profile-picture {
+    height: 2em;
+    width: 2em;
+    margin-right: 0.5em;
+    img {
+      @include border-radius(50%);
+      height: 100%;
+      width: 100%;
+    }
+  }
+  color: red;
+}
