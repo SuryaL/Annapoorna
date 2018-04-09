@@ -17,6 +17,7 @@ class UserItemController {
                 zero:'settled up'
             }
         }
+        this.defaultPic = require('assets/images/blank_profile.png');
     }
 
 

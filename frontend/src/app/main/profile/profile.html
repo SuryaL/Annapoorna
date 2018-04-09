@@ -1,5 +1,13 @@
 <div class="sub-main-view-header">
+</div>
+<div class="sub-main-view-container">
+  <div class="profile-wrapper">
+    <div class="profile-image">
+      <img ng-src="{{self.userDetails.image}}" ng-if="!!self.userDetails.image" alt="">
+      <img ng-src="{{self.defaultPic}}" ng-if="!self.userDetails.image" alt="">
+    </div>
+    <div class="profile-name dynamic-text-l">{{self.userDetails.name}}</div>
+    <div class="profile-email dynamic-text-s">{{self.userDetails.email}}</div>
+    <div class="button logout dynamic-text-s main-heavy-italic-font" ng-click="self.logout()">Logout</div>
   </div>
-  <div class="sub-main-view-container">
-      <div class="button logout dynamic-text-s main-heavy-italic-font" ng-click="self.logout()">Logout</div> 
-  </div>
+</div>

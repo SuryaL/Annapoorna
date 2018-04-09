@@ -17,6 +17,17 @@ user-item {
             @include flexbox;
             @include justify-content(flex-start);
             @include align-items(center);
+            .user-item-profile-picture{
+            height: 2em;
+            width: 2em;
+            margin-right :0.5em;
+                img{
+                    @include border-radius(50%);
+                    height: 100%;
+                    width: 100%;
+                    background-image: url('/images/blank_profile.png');
+                }
+            }
             .user-item-name {
                 @media(max-width:600px){
                     &.emailname{
