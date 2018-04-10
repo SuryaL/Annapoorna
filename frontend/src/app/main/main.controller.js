@@ -1,7 +1,7 @@
 class mainController {
-    constructor($state, $auth, TabsService, $scope, $timeout, FeedbackPopup, OrderService, MyToastr) {
+    constructor($state, $auth, TabsService, UserService, $scope, $timeout, FeedbackPopup, OrderService, MyToastr) {
         'ngInject';
-        Object.assign(this, { $state, $auth, FeedbackPopup, OrderService, MyToastr });
+        Object.assign(this, { UserService, $state, $auth, FeedbackPopup, OrderService, MyToastr });
         this.user = this.$auth.getUser();
         this.TabsService = TabsService;
         this.tabs = this.TabsService.fetchTabsForType(this.user.type)

@@ -4,7 +4,7 @@
 </div>
 <div class="sub-main-view-container">
     <div class="profile-wrapper" ng-if="self.userDetails">
-        <profilepic image="{{self.userDetails.image? self.userDetails.image: ''}}"></profilepic>
+        <profilepic image="{{self.UserService.getprofileimageurl(self.userDetails.id)}}"></profilepic>
         <div class="profile-name dynamic-text-l">{{self.userDetails.name}}</div>
         <div class="profile-email dynamic-text-s">{{self.userDetails.email}}</div>
         <div class="button logout dynamic-text-s main-heavy-italic-font"

@@ -1,5 +1,5 @@
 class ProfilepicController {
-    constructor($sce) {
+    constructor($sce, UserService) {
         'ngInject';
         this.name = 'Profilepic';
         this.$sce = $sce;

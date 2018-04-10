@@ -16,6 +16,7 @@ import users from './users/users';
 import profile from './profile/profile';
 import orders from './orders/orders';
 import feedback from 'common/services/feedback';
+import user from 'common/services/user';
 
 const module = angular.module('main', [
         menuBar,
@@ -31,7 +32,8 @@ const module = angular.module('main', [
         TabsService,
         orders,
         feedback,
-        profilepic
+        profilepic,
+        user
     ])
 
     .config(function($stateProvider) {

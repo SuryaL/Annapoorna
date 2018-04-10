@@ -4,6 +4,7 @@ const UserFactory = function($http, $state) {
     const self = this;
     const API = ENV.API_URL;
     self.PATH = '/user';
+    self.profilepic_base = API + self.PATH + '/profilepic';
 
     self.create = function(obj) {
         return $http({
@@ -21,6 +22,10 @@ const UserFactory = function($http, $state) {
             data
         })
         .then(response => response.data)
+    }
+
+    self.getprofileimageurl = function(id){
+        return self.profilepic_base + '?id=' + id;
     }
 
     // self.update = function(obj) {

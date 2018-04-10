@@ -1,10 +1,12 @@
 class UserItemController {
-    constructor($auth) {
+    constructor($auth, UserService) {
         'ngInject';
         this.name = 'UserItem';
         this.limit = 3;
         this.increaseBy = 10;
         this.user = $auth.getUser();
+        this.UserService = UserService;
+        
         this.texts          = {
             user:{
                 minus:'owes',

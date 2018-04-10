@@ -2,7 +2,7 @@
     <div class="view-middle-item">
         <div class="view-middle-item-content">
             <div class="user-item-header">
-                <profilepic image="{{self.item.image ? self.item.image + '&type=small' : ''}}"></profilepic>
+                <profilepic image="{{self.UserService.getprofileimageurl(self.item.id) + '&small=true'}}"></profilepic>
                 <div class="user-item-name dynamic-text-l" ng-class="{'emailname':self.item.email == self.username}">{{self.username}}
                     <span class="cook-label" ng-if="self.item.has_type=='cook'">(cook)</span>
                 </div>

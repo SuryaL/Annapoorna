@@ -7,7 +7,7 @@
         <profilepic title="profile"
                     ui-sref="app.main.profile"
                     ng-class="{'active': self.isCurrentState('app.main.profile')}"
-                    image="{{self.user&&self.user.image? self.user.image + '&type=small':''}}"></profilepic>
+                    image="{{self.UserService.getprofileimageurl(self.user.id) + '&small=true'}}"></profilepic>
     </div>
     <div class="main-view"
          ui-view></div>

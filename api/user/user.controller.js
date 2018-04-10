@@ -1,3 +1,5 @@
+const request  = require('request');
+
 const UserService = require('./user.service');
 const _ = require('underscore');
 const email = require('../../helpers/email');
@@ -68,12 +70,32 @@ const emailUsers = async function(req){
 //     return result;
 // }
 
+function streamprofilepic (req,res,next){
+    let {small, id} = req.query;
+    if(!id){
+        return res.send(500,'No id')
+    }
+    UserService.getprofilepic(req.query.id)
+    .then((image)=>{
+        if(!image){
+            return res.send(500)    
+        }
+        if(small){
+            image = image + '&type=small';
+        }
+        request(image).pipe(res);
+    }).catch((err)=>{
+        return res.send(500)
+    })
+}
+
 const update = async function(req) {}
 
 const remove = async function(req) {};
 
 
 module.exports = {
+    streamprofilepic,
     emailUsers,
     create,
     find,

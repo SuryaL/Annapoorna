@@ -124,10 +124,14 @@ function sendMailToUsers(filters = {}) {
     }
 }
 
-
-
+async function getprofilepic(user){
+    let query = 'select image from user where id = ?';
+    let found = (await execQuery(query, [user])).rows[0] || {};
+    return found.image
+}
 
 module.exports = {
+    getprofilepic,
     sendMailToUsers,
     createUser,
     getUsers,

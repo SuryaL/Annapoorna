@@ -1,11 +1,12 @@
 class ProfileController {
-    constructor($auth) {
+    constructor($auth,UserService) {
         'ngInject';
         this.name = 'Profile';
         this.headTitle = "Profile";
         this.subheadTitle = ".";
         Object.assign(this,{
-            $auth
+            $auth,
+            UserService
         });
         this.getProfileInfo();
     }
@@ -20,7 +21,8 @@ class ProfileController {
         this.userDetails={ 
             name : user.first_name ? user.first_name + ' ' + user.last_name : user.email,
             email :user.email,
-            image: user.image
+            image: user.image,
+            id: user.id
         };
     }
 }
