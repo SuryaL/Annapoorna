@@ -125,7 +125,7 @@ function sendMailToUsers(filters = {}) {
 }
 
 async function getprofilepic(user){
-    let query = 'select image from user where id = ?';
+    let query = 'select image from user where id = ? allow filtering';
     let found = (await execQuery(query, [user])).rows[0] || {};
     return found.image
 }

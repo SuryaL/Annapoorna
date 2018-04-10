@@ -73,19 +73,19 @@ const emailUsers = async function(req){
 function streamprofilepic (req,res,next){
     let {small, id} = req.query;
     if(!id){
-        return res.send(500,'No id')
+        return res.send(200,'')
     }
     UserService.getprofilepic(req.query.id)
     .then((image)=>{
         if(!image){
-            return res.send(500)    
+        return res.send(200,'')
         }
         if(small){
             image = image + '&type=small';
         }
         request(image).pipe(res);
     }).catch((err)=>{
-        return res.send(500)
+        return res.send(200,'')
     })
 }
 
