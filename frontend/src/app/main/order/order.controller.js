@@ -6,6 +6,7 @@ class OrderController {
         // this.headTitle = 'Order this week\'s dishes';
 
         this.orderItems = [];
+        this.dishes_voted = [];
         // this.btnText = "order";
         // this.getVotedItems();
         // this.order_deadline = '03-20-2018';
@@ -36,6 +37,7 @@ class OrderController {
 
                 const currentWeekUserVote = (currentWeekVotes || [])[0] || {};
                 const dishes_voted = currentWeekUserVote.dishes || [];
+                this.dishes_voted = dishes_voted;
                 this.already_voted = !!dishes_voted.length;
                 this.orderItems = [];
                 // FIXME: populate previously saved order

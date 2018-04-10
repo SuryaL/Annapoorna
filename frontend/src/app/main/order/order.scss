@@ -9,6 +9,52 @@ order {
     padding:1em;
   }
   .orders-container {
+    .order-items-wrapper{
+      position: relative;
+      &.major {
+        .order-item-name{
+          position: relative;
+        }
+        .order-item-name:before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: -0.6em;
+          transform: translate3d(0, -50%, 0);
+          -webkit-transform: translate3d(0, -50%, 0);
+          width: 0.38em;
+          height: 0.38em;
+          @include border-radius(0.8em);
+          @media (max-width: 600px) {
+            width:0.5em;
+            height: 0.5em;
+            left: -0.85em;
+          @include border-radius(0.5em);
+          }
+          background: $chase-green;
+          border:0.1em solid white;
+        }
+        // &:before {
+        //   content: '';
+        //   position: absolute;
+        //   top: 50%;
+        //   left: 0;
+        //   transform: translate3d(0, -50%, 0);
+        //   -webkit-transform: translate3d(0, -50%, 0);
+        //   width: 0.3em;
+        //   height: 100%;
+        //   // @include border-radius(0.8em);
+        //   @media (max-width: 600px) {
+        //     width:0.3em;
+        //     // height: 0.5em;
+        //     // @include border-radius(0.5em);
+        //   }
+        //   background: $chase-green;
+        //   // border:0.1em solid white;
+        // }
+      }
+    }
+
     &.disabled{
       background-color: #DDD;
     }
