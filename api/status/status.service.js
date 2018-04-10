@@ -106,6 +106,9 @@ async function checkStatus() {
         // send email to cook?
         // active to false;
         //add next week?
+        await UserService.sendMailToUsers({user_types:['cook']})('ordersdone', {
+            deadline: date_time.dallastime(week)
+        });
         await updateStatus(week, { order_status: true, active: false })
 
         let data = prepareNextWeekData();
