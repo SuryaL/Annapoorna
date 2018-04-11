@@ -1,8 +1,7 @@
 import angular from 'angular';
 
-export default function($state, $rootScope, $window, $auth) {
+export default function($state, $trace, $transitions, $rootScope, $window, $auth) {
     'ngInject';
-
     // 'none', 'both', 'authenticated'
     function States(event, toState, toParams, fromState, fromParams) {
         console.log(event, toState, toParams, fromState, fromParams);
@@ -13,6 +12,7 @@ export default function($state, $rootScope, $window, $auth) {
             $state.go('app.login');
         } else if (authenticated) {
             $auth.exchange();
+            $rootScope.$broadcast('pay-update');
             if (toState.authenticated === 'none') {
                 !!event.preventDefault && event.preventDefault();
                 if(($auth.getUser().type || []).includes('user')){

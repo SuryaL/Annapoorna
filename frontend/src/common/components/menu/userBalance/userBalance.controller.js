@@ -19,6 +19,7 @@ class footerBtnCtrl {
     }
     
     init(){
+        console.log('balance here');
         if(this.usertype == 'user'){
             this.getUserBalance();
         }else if(this.usertype == 'cook'){
