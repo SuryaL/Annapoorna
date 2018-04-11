@@ -48,8 +48,8 @@ let OrderFactory = function($http, $httpParamSerializer) {
   self.getAllUsersOrdersWeekly = function(obj = {}) {
     return $http({
         method: 'GET',
-        url: API + self.PATH + '/getAllUsersOrdersWeekly',
-        data: obj
+        url: API + self.PATH + '/getAllUsersOrdersWeekly'+ '?' + $httpParamSerializer(obj),
+       
       })
       .then(resp => {
         return resp.data;

@@ -38,7 +38,7 @@ const getAllUsersOrders = async function(req){
 
 const getAllUsersOrdersWeekly = async function(req){
     let {week}  = req.query;
-    const orders = await OrderService.getAllOrders(week);
+    const orders = await OrderService.getAllOrdersWeekly(week);
     const order_details = OrderService.formatOrderDetails(orders);
     return order_details;
 }

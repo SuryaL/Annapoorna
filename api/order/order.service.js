@@ -38,6 +38,15 @@ async function getAllOrders() {
     return found.rows
 }
 
+async function getAllOrdersWeekly(week) {
+    if(!week) {
+        throw new Error('Invalid week');
+    }
+    const query = 'Select * from orders where week = ?';
+    const found = await execQuery(query, [week]);
+    return found.rows
+}
+
 async function findUserOrder(user, week) {
     if(!user || !week) {
         throw new Error('Invalid user/week');
@@ -308,5 +317,6 @@ module.exports = {
     deleteUserOrders,
     createOrders,
     getAllUserOrders,
-    formatOrderDetails
+    formatOrderDetails,
+    getAllOrdersWeekly
 }
