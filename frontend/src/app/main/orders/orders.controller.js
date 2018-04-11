@@ -20,7 +20,7 @@ class OrdersController {
                 this.order_status = this.weekDetails.order_status;
                 this.order_deadline = this.weekDetails.order_deadline;
                 this.vote_deadline = this.weekDetails.voting_deadline;
-                this.myorders = results[1] || [];
+                this.myorders = results[1].reverse() || [];
                 console.log(results[1]);
                 stoploading;
             })
@@ -39,8 +39,9 @@ class OrdersController {
             return;
         }
         startloading;
-        this.OrderService.getAllUsersOrdersWeekly(week)
+        this.OrderService.getAllUsersOrdersWeekly({week: week})
             .then((res) => {
+                console.log('the result is ', res);
                 this.OrderDetailsPopup.open(res);
                 stoploading;
 
