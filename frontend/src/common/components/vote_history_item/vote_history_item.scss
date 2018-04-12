@@ -1,0 +1,109 @@
+@import '~assets/stylesheets/common';
+@import '~assets/stylesheets/flex';
+@import '~assets/stylesheets/variables';
+
+vote-history-item {
+    color: red;
+    .history-item-container {
+      .view-middle-item {
+        .view-middle-item-content {
+          max-width: 50em;
+          .history-week-name {
+            font-size: 1.1em !important;
+            @media(min-width: 600px) {
+              font-size: 1.4em !important;
+            }
+            padding:0.1em;
+            .comment-toggler {
+              display: inline-block;
+              position: relative;
+              height: 1.25em;
+              -webkit-transform:  rotateY(180deg);
+              -moz-transform:  rotateY(180deg);
+               -ms-transform:  rotateY(180deg);
+                -o-transform:  rotateY(180deg);
+                   transform: rotateY(180deg);
+              img {
+                height: 100%; // width: 2em;
+              }
+            }
+          }
+          .order-history-items {
+            margin: 0.3em;
+            @media(min-width: 600px) {
+              margin:0.7em 1em;
+            }
+            .order-history-item {
+              width: 100%;
+              margin: 0.3em;
+              position:relative;
+              &.has-feedback{
+                &:before{
+                  content:'';
+                  position: absolute;
+                  left:-20px;
+                  width:20px;
+                  height:20px;
+                  background-image: url('~assets/images/Comment-Off@2x.png');
+                  background-repeat: no-repeat;
+                  background-size: contain;
+  
+                }
+              }
+              @media(min-width: 600px) {
+                margin:0.1em 0.2em;
+              }
+              .order-rating-wrapper{
+                  display: inline-block;
+                  position: relative;
+                  // height:100%;
+                  height: 0.65em;
+                  max-height: 0.65em;
+                .order-rating {
+                  position: absolute;
+                  width:100px;
+                  height: 0.50em;
+                  max-height: 0.5em;
+                  display: inline-block;
+                  @include vertical-align(absolute);
+                }
+              }
+              .order-feedbacks {
+                margin: 0.4em 0em;
+                font-size: 0.7em !important;
+                
+                .order-feedback{
+                  list-style-type: circle;
+                }
+              }
+              .order-quantity,
+              .order-price,
+              .order-item {
+                font-size: 0.9em !important;
+                line-height: 1.1em !important;
+                @media(min-width: 600px) {
+                  font-size: 0.8em !important;
+                  line-height: 0.7em !important;
+                  padding: 0em;
+                }
+                padding:0.1em;
+              }
+              .order-quantity,
+              .order-price {
+                @extend .main-regular-font;
+              }
+              .order-item {
+                @extend .main-lightitalic-font;
+              }
+            }
+          }
+        }
+      }
+      .item-price {
+        font-size: 1.0em !important;
+        @media(min-width: 600px) {
+          font-size: 1.2em !important;
+        }
+      }
+    }
+}

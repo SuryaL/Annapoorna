@@ -1,0 +1,16 @@
+<div class="history-view-header sub-main-view-header">
+  <simple-header head-title="self.headTitle"
+                 subhead-title="self.subheadTitle"></simple-header>
+</div>
+<div class="historys-container sub-main-view-container">
+  <div class="no-orders"
+       ng-if="!self.myvotes.length">No Votes yet!</div>
+  <div class="history-items-wrapper"
+       ng-repeat="vItem in self.myvotes"
+       ng-class="{'current-order': vItem.week==self.currentWeek, 'disabled':!self.isAdmin}">
+      <vote-history-item item="vItem"
+                    ng-click="self.openVoteDetails(vItem.week)" menu ="self.menuList"></vote-history-item>
+  </div>
+</div>
+<footer-btn foot-text="{{self.btnText}}"
+          callback="self.nocallback"></footer-btn>

@@ -51,6 +51,26 @@ let VoteFactory = function($http, $httpParamSerializer) {
       })
   }
 
+  self.getAllVotes = function(obj = {}) {
+    return $http({
+        method: 'GET',
+        url: API + self.PATH + '/getAllVotes' + '?' + $httpParamSerializer(obj),
+      })
+      .then(resp => {
+        return resp.data;
+      })
+  }
+
+  self.getAllUsersVotingsWeekly = function(obj = {}) {
+    return $http({
+        method: 'GET',
+        url: API + self.PATH + '/getAllUsersVotingsWeekly'+ '?' + $httpParamSerializer(obj),
+       
+      })
+      .then(resp => {
+        return resp.data;
+      })
+  }
 
   return self;
 };

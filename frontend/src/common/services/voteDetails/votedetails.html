@@ -1,0 +1,15 @@
+<div class="popup-wrap">
+    <div class=" title dynamic-text-xl">{{ texts.header }}</div>
+    <!-- <div class=" title dynamic-text-xl">{{votes}}</div> -->
+    
+    <div class="user-wrapper" ng-repeat="vote in totalVotes"> 
+        <div class="name-wraper dynamic-text-l">{{getDishName(vote.dishId)}}</div>
+        <!-- <div class="name-wraper dynamic-text-l">{{vote.dishId}}</div> -->
+        
+        <div class="dishes-wrapper dynamic-text-s" ng-repeat="user in vote.users">
+            <div class="dish-name">{{getUserName(user)}}</div>
+            <!-- <div class="dish-name">{{user}}</div> -->
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+@import '~assets/stylesheets/common';
+@import '~assets/stylesheets/flex';
+@import '~assets/stylesheets/variables';
+
+votes {
+  @extend .sub-main-view;
+  .no-orders{
+    @extend .main-lightitalic-font;
+    font-size:1.5em;
+    padding:1em;
+  }
+  .history-items-wrapper{
+    history-item .view-item-container{
+      cursor: pointer !important;
+      @include add-hover();
+    }    
+    &.disabled{
+      history-item .view-item-container{
+        pointer-events: none;
+      }    
+    }
+    &.current-order{
+      .history-week-name{
+        &:after{
+          content:' (upcoming)';
+          color:$chase-green;
+          font-size:0.8em;
+        }
+      }
+    }
+  }
+}

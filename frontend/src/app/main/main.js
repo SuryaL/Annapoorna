@@ -15,6 +15,8 @@ import history from './history/history';
 import users from './users/users';
 import profile from './profile/profile';
 import orders from './orders/orders';
+import votes from './votes/votes';
+
 import feedback from 'common/services/feedback';
 import user from 'common/services/user';
 
@@ -33,7 +35,8 @@ const module = angular.module('main', [
         orders,
         feedback,
         profilepic,
-        user
+        user,
+        votes
     ])
 
     .config(function($stateProvider) {

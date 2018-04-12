@@ -1,0 +1,16 @@
+<div class="view-item-container history-item-container">
+  <div class="view-middle-item">
+      <div class="view-middle-item-content">
+          <div class="history-week-name dynamic-text-m"> {{self.item.week | date}}
+          </div>
+          <div class="order-history-items">
+              <div class="order-history-item dynamic-text-m"
+                   ng-repeat="dish in self.item.dishes | orderBy :'-count'" > 
+                  <span class="order-quantity">{{self.getDishName(dish.dishId)}}</span>
+                  <!-- <span class="order-quantity">{{dish.dishId}}</span> -->
+                  <span class="order-item">{{dish.count}}</span>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

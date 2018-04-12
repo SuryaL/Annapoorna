@@ -106,8 +106,6 @@ function shuffle(array, rng) {
     return array;
 }
 
-
-
 // const getFinalMajority = async function (req){
 //     let sorted = await getMajority(req);
 //     if(sorted.length != 5){
@@ -117,10 +115,27 @@ function shuffle(array, rng) {
 //     }
 // }
 
+const getAllUsersVotes = async function(req){
+    const votes = await VoteService.getAllUserVotes();
+    const history_votes = VoteService.formatVotesHistory(votes);
+    return history_votes;
+}
+
+
+const getAllUsersVotingsWeekly = async function(req){
+    
+    let {week}  = req.query;
+    const votes = await VoteService.getAllVotesWeekly(week);
+    const vote_details = VoteService.formatVotesHistory(votes);
+    return vote_details;
+}
+
 module.exports = {
     create,
     find,
     update,
     remove,
-    getMajority
+    getMajority,
+    getAllUsersVotes,
+    getAllUsersVotingsWeekly
 }
