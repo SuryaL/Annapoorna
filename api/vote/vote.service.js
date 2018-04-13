@@ -127,7 +127,6 @@ async function getAllVotesWeekly(week) {
     return found.rows
 }
 
-
 async function formatVotesHistory(votes) {
 
     let voteDetails = {};

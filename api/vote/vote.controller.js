@@ -44,8 +44,15 @@ const getMajority = async function(req) {
     for(let result of results) {
         result.dishes.forEach(dish_id => {
             if(!dishCounts.hasOwnProperty(dish_id)) dishCounts[dish_id] = 0;
-            dishCounts[dish_id]++;
+            dishCounts[dish_id]++; 
         });
+
+        if(!result.assure) result.assure = {};
+        Object.keys(result.assure).forEach(dish_id =>{
+            if(result.assure[dish_id]){
+                dishCounts[dish_id] += +result.assure[dish_id];
+            }
+        })
     }
 
     menuitems.forEach(menuitem => {
@@ -53,7 +60,7 @@ const getMajority = async function(req) {
             dishCounts[menuitem.id] = 0;
         }
     })
-
+    
     //FIXME : INEFFICIENT ALGO (needs rewrite)
     const sortable = VoteService.sortObject(dishCounts).reverse();
 
@@ -130,6 +137,23 @@ const getAllUsersVotingsWeekly = async function(req){
     return vote_details;
 }
 
+const getWeeksVotes = async function(req){
+    let {week}  = req.query;
+    const votesResp = await VoteService.getAllVotesWeekly(week);
+    let votes={};
+    for(let user_item of votesResp){
+        user_item.dishes.forEach((dish)=>{
+            if(!votes[dish]){
+                votes[dish]={vote:0,assure:0}
+            }
+            votes[dish].vote += 1; 
+            votes[dish].assure += +(user_item.assure[dish]||0);
+        })
+    }
+    return votes;
+}
+// getWeeksVotes({query:{week:'2018-04-16T23:59:59.283Z'}})
+
 module.exports = {
     create,
     find,
@@ -137,5 +161,6 @@ module.exports = {
     remove,
     getMajority,
     getAllUsersVotes,
+    getWeeksVotes,
     getAllUsersVotingsWeekly
 }

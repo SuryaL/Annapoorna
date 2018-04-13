@@ -37,6 +37,8 @@ class OrderController {
 
                 const currentWeekUserVote = (currentWeekVotes || [])[0] || {};
                 const dishes_voted = currentWeekUserVote.dishes || [];
+
+                const assures = currentWeekUserVote.assure||{};
                 this.dishes_voted = dishes_voted;
                 this.already_voted = !!dishes_voted.length;
                 this.orderItems = [];
@@ -49,9 +51,10 @@ class OrderController {
                         const item_ordered = this.myorders.find(ord => ord.dish == menuitem.id);
                         const { id, name, price } = menuitem;
                         const quantity = item_ordered ? item_ordered.quantity : 0;
-                        this.orderItems.push({ id, name, price, quantity , rating:menuitem.rating})
+                        this.orderItems.push({ id, name, price, quantity , min: assures[id]||0, rating:menuitem.rating})
                     }
                 }
+                console.log( this.orderItems);
                 stoploading;
                 // (dishes_voted||[]).forEach(dish_id => this.selectedItems.add(dish_id));
             })

@@ -7,6 +7,7 @@ let pillComponent = {
   bindings: {
     vtext:'@',
     vprice:'@',
+    vassure:'=',
     callback:'&?'
   },
   template,

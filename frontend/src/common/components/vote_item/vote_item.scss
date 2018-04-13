@@ -13,64 +13,86 @@ vote-item {
         @include flex(0, 0, 1.5em !important);
       }
     }
-    .item-title{
-      .assure{
-        overflow: visible;
-        position: relative;
-        &:after{
-          content:'';
-          display: inline-block;
-          width:1em;
-          height:1em;
-          position: absolute;
-          right:-1.3em;
-          @include vertical-align(absolute);
-          background-image: url('~assets/images/smile_emoji.png');
-          background-repeat: no-repeat;
-          background-size: contain;
-          // top:-2.1em;
-          // font-size:0.6em;
+    .item-title {
+      position: relative;
+      .item-vote-summary {
+        margin-left:0.5em;
+        @include inline-flex;
+        @include align-items(center);
+        @include justify-content(center); // height:1em;
+        .item-title-votes {
+          @extend .main-lightitalic-font;
+          color: transparentize($chase-grey, 0.5); // width:1em;
+          // height:1em;
+          font-size: 0.6em !important;
+          background: url('~assets/images/vote.png') no-repeat;
+          background-position: right;
+          background-size: 1em;
+          padding-right: 1.5em; // line-height:0.6em !important;
         }
-      }
+        .item-title-assures {
+          margin-left: 1.2em;
+          background: url('~assets/images/assure.png') no-repeat;
+          background-position: 100% 55%;
+          background-size: 1em;
+          padding-right: 1.5em; 
+          padding-left: 1.2em; 
+
+          border-left: 1px solid transparentize($chase-grey, 0.9);
+          @extend .main-lightitalic-font; // width:1em;
+          // height:1em;
+          font-size: 0.6em !important; // line-height:0.6em !important;
+          color: transparentize($chase-grey, 0.5);
+        }
+      } // .assure{
+      //   overflow: visible;
+      //   position: relative;
+      //   &:after{
+      //     content:'';
+      //     display: inline-block;
+      //     width:1em;
+      //     height:1em;
+      //     position: absolute;
+      //     right:-1.3em;
+      //     @include vertical-align(absolute);
+      //     background-image: url('~assets/images/smile_emoji.png');
+      //     background-repeat: no-repeat;
+      //     background-size: contain;
+      //     // top:-2.1em;
+      //     // font-size:0.6em;
+      //   }
+      // }
     }
     .vote-item-price {
       @include flexbox;
-      @include align-items(center);
-      // @include justify-content(center);
-      @extend .main-lightitalic-font;
-      // @media(min-width: 600px) {
+      @include align-items(center); // @include justify-content(center);
+      @extend .main-lightitalic-font; // @media(min-width: 600px) {
       //   font-size: 1em !important;
       // }
       .stars-container {
         display: inline-block;
-        font-size:1.1em;
+        font-size: 1.1em;
         height: 0.65em;
         max-height: 0.65em;
-          margin-left:0.3em;
-         
+        margin-left: 0.3em;
       }
     }
-    quantity-picker{
+    quantity-picker {
       overflow: visible;
       position: relative;
-      &.assure{
-        &:after{
-          content:'assure';
+      &.assure {
+        &:after {
+          content: 'assure';
           position: absolute;
-          top:-2.1em;
-          font-size:0.6em;
+          top: -2.1em;
+          font-size: 0.6em;
         }
       }
-    }
-
-  
-    // .stars-container {
+    } // .stars-container {
     //   // @include flexbox;
     //   // @include align-items(center);
     //   height: 0.65em;
     //   max-height: 0.65em;
     // }
   }
-
-  
 }

@@ -34,22 +34,27 @@ class voteCtrl {
             },{})
             return this.$q.all([
                 this.VoteService.find({week:this.weekDetails.week}),
+                this.VoteService.getWeeksVotes({week:this.weekDetails.week}),
                 // this.$q(resolve=>resolve(['39813b97-4b16-434b-bcf5-e9080e7565f8']))
                 //TODO: Add Voting results api 
                 // majority is current top dishes
                 this.VoteService.getMajority({week:this.weekDetails.week}),
             ])
         })
-        .then(([currentWeekVotes, majority])=> {
+        .then(([currentWeekVotes,voteSummary, majority])=> {
+            // console.log('voteSummary',voteSummary);
             this.majority = new Set(majority||[]);
             const currentWeekUserVote = (currentWeekVotes||[])[0]||{};
             const dishes_voted = currentWeekUserVote.dishes||[];
-            
             const assures = currentWeekUserVote.assure||{};
-            Object.keys(assures).forEach((key)=>{
-                let menuFound = this.menuItemsObj[key];
-                if(menuFound){
-                    menuFound.quantity = +assures[key];
+
+            this.menuItems.forEach((menuitem)=>{
+                let key = menuitem.id;
+                if(assures[key]){
+                    menuitem.quantity = +assures[key];
+                }
+                if(voteSummary[key]){
+                    menuitem.voteSummary = voteSummary[key];
                 }
             })
 

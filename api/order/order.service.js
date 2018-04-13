@@ -3,6 +3,7 @@ const uuid = require('node-uuid');
 
 const UserService = require('../user/user.service');
 const MenuService = require('../menu/menu.service');
+const VoteService = require('../vote/vote.service');
 
 
 
@@ -179,8 +180,8 @@ function formatOrderHistory(orders) {
                 name: oItem.dish_name,
                 price: oItem.price,
                 quantity: oItem.quantity,
-                feedbacks: !!oItem.feedback ?  [oItem.feedback] : [],
-                ratings : !!oItem.rating ?  [oItem.rating] : []
+                feedbacks: !!oItem.feedback ? [oItem.feedback] : [],
+                ratings: !!oItem.rating ? [oItem.rating] : []
             });
         } else {
             found.quantity = +found.quantity + +oItem.quantity;
@@ -258,6 +259,27 @@ async function findMissingRatings(orders) {
     return unrated
 }
 
+async function orderAssured(week) {
+    let all_votes = await VoteService.getAllVotesWeekly(week);
+    console.log(all_votes);
+    let allmenu = await MenuService.getMenu({});
+    for(let user_item of all_votes) {
+        let assured_dishes = Object.keys(user_item.assure)
+        for(let dish of assured_dishes) {
+            let foundMenu = allmenu.find(menu_item => menu_item.id.toString() == dish);
+            if(foundMenu) {
+                await createOrderSingleItem({
+                    week,
+                    user: user_item.user,
+                    dish_name: foundMenu.name,
+                    price: foundMenu.price,
+                    quanity: user_item.assure[dish]
+                })
+            }
+        }
+    }
+}
+
 async function UpdateMyRatings(user, missedRatings, updateRatings) {
     console.log(user, JSON.stringify(missedRatings, null, 2), JSON.stringify(updateRatings, null, 2));
     const unrated_obj = missedRatings.reduce((unrated_obj, week_obj) => {
@@ -282,17 +304,17 @@ async function UpdateMyRatings(user, missedRatings, updateRatings) {
             updateUserRating(user, week, dish_id, rating, feedback)
         ])
         // update menu rating
-        let {rating:menu_rating, total_ratings, created, id} = menu_item[0];
-        if(!!created && !!id){
-            if(!total_ratings){
+        let { rating: menu_rating, total_ratings, created, id } = menu_item[0];
+        if(!!created && !!id) {
+            if(!total_ratings) {
                 total_ratings = 0;
             }
-            if(!menu_rating){
+            if(!menu_rating) {
                 menu_rating = 0;
             }
             let new_total_ratings = +total_ratings + 1;
-            menu_rating = (((+menu_rating* +total_ratings) + +rating)/ +new_total_ratings).toFixed(2);
-            await MenuService.updateMenu({rating:menu_rating, total_ratings:new_total_ratings.toString() ,created, id})
+            menu_rating = (((+menu_rating * +total_ratings) + +rating) / +new_total_ratings).toFixed(2);
+            await MenuService.updateMenu({ rating: menu_rating, total_ratings: new_total_ratings.toString(), created, id })
         }
     }
 }
@@ -306,6 +328,7 @@ function WeekHasBeenEaten(week) {
 }
 
 module.exports = {
+    orderAssured,
     UpdateMyRatings,
     findMissingRatings,
     getAllOrders,

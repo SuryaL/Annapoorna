@@ -5,8 +5,8 @@ const endpoint_name = "/vote";
 
 
 module.exports = app =>  {
-
-    app.get(endpoint_name + '/getAllVotes',auth.hasRole('admin'), handleReq(controller.getAllUsersVotes))
+    app.get(endpoint_name + '/getWeeksVotes',auth.isAuthenticated(), handleReq(controller.getWeeksVotes))
+    app.get(endpoint_name + '/getAllVotes', auth.hasRole('admin'), handleReq(controller.getAllUsersVotes))
     app.get(endpoint_name + "/getAllUsersVotingsWeekly",auth.hasRole('admin'), handleReq(controller.getAllUsersVotingsWeekly))
     app.post(endpoint_name,auth.isAuthenticated(), handleReq(controller.create))
     app.get(endpoint_name, auth.isAuthenticated(),handleReq(controller.find))

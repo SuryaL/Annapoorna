@@ -4,7 +4,12 @@
               toggle-var="self.isSelected"></checkbox>
     <div class="view-middle-item item-title-wrap">
         <div class="view-middle-item-content item-title dynamic-text-m">
-            <span ng-class="{'assure':+self.item.quantity}">{{self.item.name}}</span>
+            <span class="item-title-name">{{self.item.name}}
+            <span class="item-vote-summary">
+                <span class="item-title-votes dynamic-text-xs" ng-if="self.item.voteSummary && self.item.voteSummary.vote">{{self.item.voteSummary.vote}}</span>
+                <span class="item-title-assures dynamic-text-xs" ng-if="self.item.voteSummary && self.item.voteSummary.assure">{{self.item.voteSummary.assure}}</span>
+            </span>
+        </span>
             <div class="vote-item-price  dynamic-text-xs"><span>{{self.item.price | currency}}</span>
                 <div class="stars-container dynamic-text-s">
                     <starsy ng-if="self.item.rating"

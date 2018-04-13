@@ -4,7 +4,6 @@ class voteCtrl {
         this.user = {};
         let self = this;
         $scope.$watch('self.item.quantity',(nv,ov)=>{
-            console.log(nv,ov);
             if(+nv == 0){
                 // if(self.isSelected){
                 //     self.selectItem();

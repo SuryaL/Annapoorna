@@ -2,6 +2,7 @@ const { execQuery } = require('../../helpers/utils/db_utils');
 const uuid = require('node-uuid');
 const date_time = require('../../helpers/utils/date_time');
 const UserService = require('../user/user.service');
+const OrderService = require('../order/order.service');
 
 function prepareNextWeekData() {
     let data = date_time.getNextWeekData();
@@ -87,7 +88,9 @@ async function checkStatus() {
 
     if(!voting_status && current_utc_timestamp > voting_deadline_timestamp) {
         console.log('voting time over', current_utc_timestamp, voting_deadline_timestamp);
-        await updateStatus(week, { voting_status: true })
+        await updateStatus(week, { voting_status: true });
+        // order for assured votes
+        await OrderService.orderAssured(week);
         await UserService.sendMailToUsers({user_types:['user']})('orderenabled', {
             deadline: date_time.dallastime(order_deadline)
         })

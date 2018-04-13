@@ -5,7 +5,8 @@ import './quantity_picker.scss';
 let quantityPickerComponent = {
   restrict: 'E',
   bindings: {
-    quantity:'=?'
+    quantity:'=?',
+    min:'=?'
   },
   template,
   controller,

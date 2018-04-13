@@ -9,7 +9,7 @@ let voteItemComponent = {
   bindings: {
     item : "=",
     isSelectedItem : "=",
-    itemToggled : "=",
+    itemToggled : "="
   },
   template,
   controller,

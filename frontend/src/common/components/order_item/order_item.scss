@@ -31,6 +31,18 @@ order-item {
       }
     }
   }
+  quantity-picker{
+    overflow: visible;
+    position: relative;
+    &.assure{
+      &:after{
+        content:'assured';
+        position: absolute;
+        top:-2.1em;
+        font-size:0.6em;
+      }
+    }
+  }
 }
 
 
