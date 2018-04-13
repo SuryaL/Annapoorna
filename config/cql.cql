@@ -45,8 +45,9 @@ CREATE TABLE IF NOT EXISTS voting (
   week            text,
   user            uuid,
   created         text,
-  modified        text,
+  modified          text,
   dishes          list<uuid>,
+  atleast         map<text,text>,
   PRIMARY KEY (week, user)
 );
 

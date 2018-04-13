@@ -2,16 +2,18 @@
     <div class="view-middle-item">
         <div class="view-middle-item-content">
             <div class="order-item-name dynamic-text-m"><span>{{self.item.name}}</span>
-              
+
             </div>
-            <div class="order-item-price  dynamic-text-xs"><span>{{self.item.price | currency}}</span>  <div class="stars-container"
-                ng-if="self.item.rating">
-               <starsy mode="read"
-                       margin="1"
-                       this-much="self.item.rating"
-                       number-of-stars='5'>
-               </starsy>
-           </div></div>
+            <div class="order-item-price  dynamic-text-xs"><span>{{self.item.price | currency}}</span>
+                <div class="stars-container"
+                     ng-if="self.item.rating">
+                    <starsy mode="read"
+                            margin="1"
+                            this-much="self.item.rating"
+                            number-of-stars='5'>
+                    </starsy>
+                </div>
+            </div>
         </div>
     </div>
     <quantity-picker quantity="self.item.quantity"

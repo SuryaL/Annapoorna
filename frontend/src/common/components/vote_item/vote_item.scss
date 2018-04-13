@@ -13,11 +13,30 @@ vote-item {
         @include flex(0, 0, 1.5em !important);
       }
     }
-    .stars-container {
-      // @include flexbox;
-      // @include align-items(center);
-      height: 0.65em;
-      max-height: 0.65em;
+    .vote-item-price {
+      @include flexbox;
+      @include align-items(center);
+      // @include justify-content(center);
+      @extend .main-lightitalic-font;
+      // @media(min-width: 600px) {
+      //   font-size: 1em !important;
+      // }
+      .stars-container {
+        display: inline-block;
+        font-size:1.1em;
+        height: 0.65em;
+        max-height: 0.65em;
+          margin-left:0.3em;
+         
+      }
     }
+    // .stars-container {
+    //   // @include flexbox;
+    //   // @include align-items(center);
+    //   height: 0.65em;
+    //   max-height: 0.65em;
+    // }
   }
+
+  
 }

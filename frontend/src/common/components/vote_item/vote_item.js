@@ -5,6 +5,7 @@ import AuthService from 'common/services/auth';
 import checkbox from 'common/components/checkbox/checkbox';
 import toastr from 'common/services/mytoastr';
 import starsy from 'common/directives/starsy';
+import QuantityPicker from 'common/components/quantity_picker/quantity_picker';
 
 
 const module = angular.module('voteItem', [
@@ -12,7 +13,8 @@ const module = angular.module('voteItem', [
         AuthService,
         toastr,
         checkbox,
-        starsy
+        starsy,
+        QuantityPicker
     ])
 
     .config(function($stateProvider) {
