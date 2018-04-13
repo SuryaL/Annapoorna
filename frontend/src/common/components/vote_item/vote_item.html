@@ -4,21 +4,23 @@
               toggle-var="self.isSelected"></checkbox>
     <div class="view-middle-item item-title-wrap">
         <div class="view-middle-item-content item-title dynamic-text-m">
-            <span>{{self.item.name}}</span> 
+            <span ng-class="{'assure':+self.item.quantity}">{{self.item.name}}</span>
             <div class="vote-item-price  dynamic-text-xs"><span>{{self.item.price | currency}}</span>
-            <div class="stars-container dynamic-text-s">
-                <starsy ng-if="self.item.rating" mode="read"
-                        margin="1"
-                        this-much="self.item.rating"
-                        number-of-stars='5'>
-                </starsy>
+                <div class="stars-container dynamic-text-s">
+                    <starsy ng-if="self.item.rating"
+                            mode="read"
+                            margin="1"
+                            this-much="self.item.rating"
+                            number-of-stars='5'>
+                    </starsy>
+                </div>
             </div>
-        </div>
         </div>
 
     </div>
 
     <!-- <div class="view-right-item item-price dynamic-text-m"></div> -->
     <quantity-picker quantity="self.item.quantity"
+                     ng-class="{'assure':+self.item.quantity}"
                      class="view-right-item dynamic-text-s"></quantity-picker>
 </div>

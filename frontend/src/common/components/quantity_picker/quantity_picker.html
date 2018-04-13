@@ -1,7 +1,7 @@
-<div class="order-minus" ng-click="self.decrement()">
+<div class="order-minus" ng-click="self.decrement($event)">
   <img src="~assets/images/minus.svg" alt="">
 </div>
 <div class="order-quantity">{{self.quantity}}</div>
-<div class="order-plus" ng-click="self.increment()">
+<div class="order-plus" ng-click="self.increment($event)">
     <img src="~assets/images/plus.svg" alt="">
 </div>

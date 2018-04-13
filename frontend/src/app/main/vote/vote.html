@@ -21,7 +21,7 @@
              ng-click="self.vItemClicked($event)"
              ng-show="vItem.type == type"
              ng-class="{ 'disabled': (!self.showSubmit()),'major':self.isMajority(vItem.id)}"
-             ng-repeat="vItem in self.menuItems |orderBy:'name' track by vItem.id">
+             ng-repeat="vItem in self.menuItems |orderBy:'name'">
             <vote-item item="vItem"
                        is-selected-item="self.isSelectedItem"
                        item-toggled="self.voteToggle"

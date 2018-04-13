@@ -44,6 +44,15 @@ class voteCtrl {
             this.majority = new Set(majority||[]);
             const currentWeekUserVote = (currentWeekVotes||[])[0]||{};
             const dishes_voted = currentWeekUserVote.dishes||[];
+            
+            const assures = currentWeekUserVote.assure||{};
+            Object.keys(assures).forEach((key)=>{
+                let menuFound = this.menuItemsObj[key];
+                if(menuFound){
+                    menuFound.quantity = +assures[key];
+                }
+            })
+
             this.already_voted = !!dishes_voted.length;
             (dishes_voted||[]).forEach(dish_id => this.selectedItems.add(dish_id));
             stoploading;
@@ -99,6 +108,16 @@ class voteCtrl {
             return false;
         }
     }
+
+    getAssures(){
+        return this.menuItems.filter((item)=>{
+            return +item.quantity
+        }).reduce((prev, item)=>{
+            if(!prev[item.id]) prev[item.id] = item.quantity.toString();
+            return prev;
+        },{})
+    }
+
     voteSubmit = () => {
         if(this.timePassed){
             return this.MyToastr.error(`Time Expired!`);
@@ -106,9 +125,10 @@ class voteCtrl {
         if(!this.selectedItems || this.selectedItems.size < 1 || !this.currentWeek) {
             return this.MyToastr.error(`Select atleast 1`);
         };
+
         startloading;
         this.VoteService
-            .create({dishes:this.selectedItems, week:this.currentWeek})
+            .create({dishes:this.selectedItems, assure:this.getAssures(), week:this.currentWeek})
             .then(resp => {
                 this.MyToastr.success(`Vote Submitted`);
                 this.init()

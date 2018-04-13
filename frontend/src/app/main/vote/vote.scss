@@ -49,8 +49,8 @@ vote {
           color: $chase-green;
         }
         .vote-item-container {
-          @include add-hover(transparentize($chase-green, 0.3) !important); // *{
-          //   color:white;
+          // @include add-hover(transparentize($chase-green, 0.3) !important); // *{
+              
           // }
         } // *{color:white}
         // position: relative;
@@ -69,7 +69,9 @@ vote {
       &.disabled {
         .vote-item-container {
           pointer-events: none;
-          @include add-hover(transparent !important);
+          @media(min-width:600px){
+            @include add-hover(transparent !important);
+          }
         }
         .vote-pills-container {
           pointer-events: none;

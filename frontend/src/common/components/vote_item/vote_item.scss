@@ -13,6 +13,26 @@ vote-item {
         @include flex(0, 0, 1.5em !important);
       }
     }
+    .item-title{
+      .assure{
+        overflow: visible;
+        position: relative;
+        &:after{
+          content:'';
+          display: inline-block;
+          width:1em;
+          height:1em;
+          position: absolute;
+          right:-1.3em;
+          @include vertical-align(absolute);
+          background-image: url('~assets/images/smile_emoji.png');
+          background-repeat: no-repeat;
+          background-size: contain;
+          // top:-2.1em;
+          // font-size:0.6em;
+        }
+      }
+    }
     .vote-item-price {
       @include flexbox;
       @include align-items(center);
@@ -30,6 +50,20 @@ vote-item {
          
       }
     }
+    quantity-picker{
+      overflow: visible;
+      position: relative;
+      &.assure{
+        &:after{
+          content:'assure';
+          position: absolute;
+          top:-2.1em;
+          font-size:0.6em;
+        }
+      }
+    }
+
+  
     // .stars-container {
     //   // @include flexbox;
     //   // @include align-items(center);

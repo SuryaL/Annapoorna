@@ -2,8 +2,10 @@
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
 checkbox {
+  position: relative;
   .check-icon,
   .check-icon-off {
+    position: absolute;
     max-width: 100%;
   }
 }

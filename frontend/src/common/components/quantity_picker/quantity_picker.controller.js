@@ -7,13 +7,16 @@ class QuantityPickerController {
         this.limit_min = 0;
     }
 
-    increment(){
+    increment($event){
+        $event.stopPropagation();
         if(this.quantity>=this.limit_max){
             return;
         }
         this.quantity++;
     }
-    decrement(){
+
+    decrement($event){
+        $event.stopPropagation();
         if(this.quantity<=this.limit_min){
             return;
         }

@@ -15,10 +15,10 @@ const update = async function(req) {}
 const remove = async function(req) {};
 
 const create = async function(req) {
-    if(!req.body.dishes) {
+    if(!req.body.dishes || !req.body.assure) {
         throw new Error('Select atleast one dish');
     }
-    let body = { dishes: req.body.dishes, user: req.user.id, week: req.body.week };
+    let body = { dishes: req.body.dishes, assure: req.body.assure, user: req.user.id, week: req.body.week };
     if(!req.current_week || !req.body.week || req.body.week != req.current_week.week || !!req.current_week.voting_status) {
         throw new Error('Failed')
     }
