@@ -16,6 +16,14 @@ class voteCtrl {
         })
     }
 
+    get vote_count(){
+        
+    }
+    
+    get assure_count(){
+
+    }
+
     get isSelected(){
         return this.isSelectedItem(this.item.id)
     }

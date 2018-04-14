@@ -34,11 +34,19 @@ order-item {
   quantity-picker{
     overflow: visible;
     position: relative;
+    opacity:0.5;
     &.assure{
+      opacity:1;
       &:after{
-        content:'assured';
+        content:'';
+        background: url('~assets/images/assure.png') no-repeat;
+        background-position: center center;
+        background-size: 1.8em;
+        width: 1.8em;
+        height: 1.8em;
+        opacity:0.5;
         position: absolute;
-        top:-2.1em;
+        top:-2em;
         font-size:0.6em;
       }
     }
