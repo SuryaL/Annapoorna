@@ -321,7 +321,7 @@ async function UpdateMyRatings(user, missedRatings, updateRatings) {
 }
 
 function WeekHasBeenEaten(week) {
-    const uneaten_duration = 12 * 24 * 60 * 60 * 1000; //monday to next friday
+    const uneaten_duration = +(11.5 * 24 * 60 * 60 * 1000).toFixed(0); //monday to next friday
     const week_timestamp = new Date(week).getTime();
     const current_utc_timestamp = new Date().getTime();
     const has_eaten = ((week_timestamp + uneaten_duration) < current_utc_timestamp);
