@@ -3,13 +3,13 @@
 @import '~assets/stylesheets/variables';
 order {
   @extend .sub-main-view;
-  .no-orders{
+      .no-orders{
     @extend .main-lightitalic-font;
     font-size:1.5em;
     padding:1em;
   }
   .orders-container {
-    .order-items-wrapper{
+      .order-items-wrapper{
       position: relative;
       &.major {
         .order-item-name{

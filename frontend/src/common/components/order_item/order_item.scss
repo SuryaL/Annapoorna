@@ -37,7 +37,7 @@ order-item {
     opacity:0.5;
     &.assure{
       opacity:1;
-      &:after{
+      &:before{ // &:after{
         content:'';
         background: url('~assets/images/assure.png') no-repeat;
         background-position: center center;
@@ -45,8 +45,11 @@ order-item {
         width: 1.8em;
         height: 1.8em;
         opacity:0.5;
-        position: absolute;
+        // position: absolute;
         top:-2em;
+        @media(min-width:600px){
+          top:-1.6em;
+        }
         font-size:0.6em;
       }
     }

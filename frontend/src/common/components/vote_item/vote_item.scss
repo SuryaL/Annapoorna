@@ -83,7 +83,7 @@ vote-item {
       opacity: 0.5;
       &.assure {
         opacity: 1;
-        &:after {
+        &:before { //  &:after {
           content: '';
           background: url('~assets/images/assure.png') no-repeat;
           background-position: center center;
@@ -91,7 +91,7 @@ vote-item {
           width: 1.8em;
           height: 1.8em;
           opacity:0.5;
-          position: absolute;
+          // position: absolute;
           top: -2em;
           font-size: 0.6em;
         }

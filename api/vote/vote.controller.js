@@ -141,10 +141,18 @@ const getWeeksVotes = async function(req){
     let {week}  = req.query;
     const votesResp = await VoteService.getAllVotesWeekly(week);
     let votes={};
+
+    // console.log(JSON.stringify(votesResp,null,2));
     for(let user_item of votesResp){
+    // console.log(JSON.stringify(user_item.dishes,null,2));
+        
         user_item.dishes.forEach((dish)=>{
+            // console.log(dish);
             if(!votes[dish]){
                 votes[dish]={vote:0,assure:0}
+            }
+            if(!user_item.assure){
+                user_item.assure={}
             }
             votes[dish].vote += 1; 
             votes[dish].assure += +(user_item.assure[dish]||0);

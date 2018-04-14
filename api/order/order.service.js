@@ -140,7 +140,7 @@ async function createOrderSingleItem(body) {
 
     //required
     const reqd = ["week", "user", "dish", "dish_name", "price", "quantity"];
-    const valid = true;
+    let valid = true;
     reqd.forEach((k) => {
         if(body[k] == undefined || body[k] == null) {
             valid = false;
@@ -155,7 +155,7 @@ async function createOrderSingleItem(body) {
         columns.push(key);
         params.push(body[key]);
     }
-
+    console.log(params);
     const query = 'INSERT INTO orders (' + columns.join() + ') VALUES (' + Array(params.length).join('?,') + '?)';
     await execQuery(query, params);
     return body;
@@ -261,19 +261,20 @@ async function findMissingRatings(orders) {
 
 async function orderAssured(week) {
     let all_votes = await VoteService.getAllVotesWeekly(week);
-    console.log(all_votes);
     let allmenu = await MenuService.getMenu({});
     for(let user_item of all_votes) {
-        let assured_dishes = Object.keys(user_item.assure)
+        let assure = user_item.assure||{};
+        let assured_dishes = Object.keys(assure)
         for(let dish of assured_dishes) {
             let foundMenu = allmenu.find(menu_item => menu_item.id.toString() == dish);
-            if(foundMenu) {
+            if(foundMenu && assure[dish]) {
                 await createOrderSingleItem({
                     week,
                     user: user_item.user,
+                    dish,
                     dish_name: foundMenu.name,
                     price: foundMenu.price,
-                    quanity: user_item.assure[dish]
+                    quantity: assure[dish]
                 })
             }
         }
