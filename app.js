@@ -5,13 +5,18 @@ const requestify = require('./helpers/utils/requestify');
 const cassandra  = require('./boundaries/cassandra');
 const email      = require ('./helpers/email');
 const uuid = require('node-uuid');
-
+const compression = require('compression')
 
 /**
  * request related middlewares
  */
 requestify(app);
 
+
+/**
+ * gzip
+ */
+app.use(compression())
 
 
 /**
