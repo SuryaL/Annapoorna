@@ -78,6 +78,11 @@ vote {
         }
       }
       vote-item {
+        checkbox{
+          .check-icon{
+    position: absolute;
+          }
+        }
         .vote-item-container {}
       }
     }
