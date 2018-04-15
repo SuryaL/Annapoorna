@@ -14,9 +14,9 @@ vote-item {
       }
     }
     .item-title {
-      position: relative;
+      position: relative; // white-space: nowrap;
       .item-vote-summary {
-        margin-left:0.5em;
+        margin-left: 0.5em;
         @include inline-flex;
         @include align-items(center);
         @include justify-content(center); // height:1em;
@@ -35,14 +35,37 @@ vote-item {
           background: url('~assets/images/assure.png') no-repeat;
           background-position: 100% 55%;
           background-size: 1em;
-          padding-right: 1.5em; 
-          padding-left: 1.2em; 
-
+          padding-right: 1.5em;
+          padding-left: 1.2em;
           border-left: 1px solid transparentize($chase-grey, 0.9);
           @extend .main-lightitalic-font; // width:1em;
           // height:1em;
           font-size: 0.6em !important; // line-height:0.6em !important;
           color: transparentize($chase-grey, 0.5);
+        }
+      }
+      @media(max-width:600px) {
+        .item-vote-summary {
+          position: absolute;
+          right: 0;
+          top: 50%;
+          -moz-transform: translate3d(148%, -60%, 0);
+          -webkit-transform: translate3d(148%, -60%, 0);
+          transform: translate3d(148%, -60%, 0);
+          @include flex-direction(column);
+          .item-title-votes {
+            background-position: 100% 30%;
+            margin: 0;
+            font-size: 0.75em !important; // line-height:0.6em !important;
+            margin-bottom: 0.3em;
+          }
+          .item-title-assures {
+            margin: 0;
+            padding-left: 0;
+            border-left: none;
+            background-position: 100% 30%;
+            font-size: 0.75em !important; // line-height:0.6em !important;
+          }
         }
       } // .assure{
       //   overflow: visible;
@@ -81,19 +104,36 @@ vote-item {
       overflow: visible;
       position: relative;
       opacity: 0.5;
+      @media(max-width: 600px) {
+        padding:0 !important;
+        margin: 0 !important;
+      }
       &.assure {
         opacity: 1;
-        &:before { //  &:after {
+        &:before,
+        &:after {
           content: '';
           background: url('~assets/images/assure.png') no-repeat;
           background-position: center center;
           background-size: 1.8em;
           width: 1.8em;
           height: 1.8em;
-          opacity:0.5;
-          // position: absolute;
-          top: -2em;
+          opacity: 0.5; // position: absolute;
           font-size: 0.6em;
+        }
+        @media(max-width: 600px) {
+          &:before {
+            display: none;
+          }
+          &::after {
+            position: absolute;
+            top: -1.6em;
+          }
+        }
+        @media(min-width: 600px) {
+          &:after {
+            display: none;
+          }
         }
       }
     } // .stars-container {

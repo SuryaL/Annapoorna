@@ -19,13 +19,13 @@
         <div class="type-title dynamic-text-m"> {{type}} </div>
         <div class="vote-items-wrapper"
              ng-click="self.vItemClicked($event)"
-             ng-show="vItem.type == type"
+             ng-if="vItem.type == type"
              ng-class="{ 'disabled': (!self.showSubmit()),'major':self.isMajority(vItem.id)}"
              ng-repeat="vItem in self.menuItems |orderBy:'name'">
             <vote-item item="vItem"
                        is-selected-item="self.isSelectedItem"
                        item-toggled="self.voteToggle"></vote-item>
-        </div>
+    </div>
     </div>
 </div>
 <div class="vote-pills-container "

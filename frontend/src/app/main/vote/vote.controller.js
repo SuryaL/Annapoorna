@@ -16,32 +16,37 @@ class voteCtrl {
         this.selectedItems = new Set();
         this.VoteService = VoteService;
         this.StatusService = StatusService;
+        this.menuItems=[];
         this.init();
     }
 
     init(){
         startloading;
-        this.$q.all([this.StatusService.findActiveWeek(), this.MenuService.find()])
+        this.$q.all([this.StatusService.findActiveWeek()])
         .then(results => {
-            this.weekDetails = results[0]||{};
+          let weekDetails = results[0]||{};
+        //   let menuItems = results[1] || [];
+            return this.$q.all([
+                this.VoteService.find({week:weekDetails.week}),
+                this.VoteService.getWeeksVotes({week:weekDetails.week}),
+                this.VoteService.getMajority({week:weekDetails.week}),
+                this.MenuService.find(),
+                this.$q(resolve=>resolve(weekDetails))
+            ])
+        })
+        .then(([currentWeekVotes,voteSummary, majority, menuItems, weekDetails])=> {
+
+            this.weekDetails = weekDetails;
+            this.menuItems.length=0;
+            this.menuItems.push(...menuItems);
             this.currentWeek = this.weekDetails.week;
             this.voting_status = this.weekDetails.voting_status;
             this.vote_deadline = this.weekDetails.voting_deadline;
-            this.menuItems = results[1] || [];
             this.menuItemsObj = this.menuItems.reduce((prev,curr)=>{
                 prev[curr.id] = curr;
                 return prev;
             },{})
-            return this.$q.all([
-                this.VoteService.find({week:this.weekDetails.week}),
-                this.VoteService.getWeeksVotes({week:this.weekDetails.week}),
-                // this.$q(resolve=>resolve(['39813b97-4b16-434b-bcf5-e9080e7565f8']))
-                //TODO: Add Voting results api 
-                // majority is current top dishes
-                this.VoteService.getMajority({week:this.weekDetails.week}),
-            ])
-        })
-        .then(([currentWeekVotes,voteSummary, majority])=> {
+
             // console.log('voteSummary',voteSummary);
             this.majority = new Set(majority||[]);
             const currentWeekUserVote = (currentWeekVotes||[])[0]||{};
