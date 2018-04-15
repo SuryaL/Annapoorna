@@ -22,7 +22,7 @@ class VotesController {
                 this.order_status = this.weekDetails.order_status;
                 this.order_deadline = this.weekDetails.order_deadline;
                 this.vote_deadline = this.weekDetails.voting_deadline;
-                this.myvotes = results[1].totalVotes.reverse() || [];
+                this.myvotes = results[1].totalVotes || [];
                 this.menuList = results[1].menuObj || {};
                 this.usersList = results[1].usersObj || {};
                 // console.log(results[1]);
@@ -37,7 +37,10 @@ class VotesController {
     isAdmin() {
         return user && user.type.indexOf('admin') != -1
     }
-    
+    sortItem(item) {
+        var date = new Date(item.week);
+        return date;
+    }
     openVoteDetails = (week) => {
         if(!this.isAdmin) {
             return;

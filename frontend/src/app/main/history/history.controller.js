@@ -20,7 +20,7 @@ class HistoryController {
                 this.order_deadline = this.weekDetails.order_deadline;
                 this.vote_deadline = this.weekDetails.voting_deadline;
                 this.myorders = results[1] || [];
-                console.log('the results are : ', results[1].reverse());
+                // console.log('the results are : ', results[1].reverse());
                 stoploading;
             })
             .catch(error => {
@@ -29,7 +29,10 @@ class HistoryController {
             })
     }
 
-
+    sortItem(item) {
+        var date = new Date(item.week);
+        return date;
+    }
 
 }
 

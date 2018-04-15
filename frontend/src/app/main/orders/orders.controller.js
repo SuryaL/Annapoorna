@@ -20,8 +20,7 @@ class OrdersController {
                 this.order_status = this.weekDetails.order_status;
                 this.order_deadline = this.weekDetails.order_deadline;
                 this.vote_deadline = this.weekDetails.voting_deadline;
-                this.myorders = results[1].reverse() || [];
-                console.log(results[1]);
+                this.myorders = results[1] || [];
                 stoploading;
             })
             .catch(error => {
@@ -29,7 +28,10 @@ class OrdersController {
                 stoploading;
             })
     }
-
+    sortItem(item) {
+        var date = new Date(item.week);
+        return date;
+    }
     isAdmin() {
         return user && user.type.indexOf('admin') != -1
     }

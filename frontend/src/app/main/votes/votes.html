@@ -6,7 +6,7 @@
   <div class="no-orders"
        ng-if="!self.myvotes.length">No Votes yet!</div>
   <div class="history-items-wrapper"
-       ng-repeat="vItem in self.myvotes"
+       ng-repeat="vItem in self.myvotes |orderBy:self.sortItem:true"
        ng-class="{'current-order': vItem.week==self.currentWeek, 'disabled':!self.isAdmin}">
       <vote-history-item item="vItem"
                     ng-click="self.openVoteDetails(vItem.week)" menu ="self.menuList"></vote-history-item>

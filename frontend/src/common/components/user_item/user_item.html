@@ -10,8 +10,8 @@
             </div>
             <div class="user-item-payments">
                 <div class="user-item-payment" ng-repeat="payment in self.payment_history |orderBy:'-week' | limitTo:self.limit">
-                    <div class="user-item-payment-date dynamic-text-s">{{payment.week | date:'dd MMM yy'}}</div>
-                    <div class="user-item-payment-amount dynamic-text-s">{{payment.amount | currency}}</div>
+                    <div class="user-item-payment-date dynamic-text-xs">{{payment.week | date:'dd MMM yy'}}</div>
+                    <div class="user-item-payment-amount dynamic-text-xs">{{payment.amount | currency}}</div>
                 </div>
                 <div class="user-payment-show-more" ng-click="self.showMoreClicked()" ng-if="self.shouldShowMore(self.payment_history, self.limit)">show more</div>
             </div>

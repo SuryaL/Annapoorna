@@ -6,7 +6,7 @@
     <div class="no-orders"
          ng-if="!self.myorders.length">No orders yet!</div>
     <div class="history-items-wrapper"
-         ng-repeat="vItem in self.myorders"
+         ng-repeat="vItem in self.myorders |orderBy:self.sortItem:true"
          ng-class="{'current-order': vItem.week==self.currentWeek, 'disabled':!self.isAdmin}">
         <history-item item="vItem"
                       ng-click="self.openOrderDetails(vItem.week)"></history-item>
