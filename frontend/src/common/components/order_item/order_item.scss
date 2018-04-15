@@ -33,6 +33,10 @@ order-item {
     overflow: visible;
     position: relative;
     opacity: 0.5;
+    @media(max-width: 600px) {
+      padding:0 !important;
+      margin: 0 !important;
+    }
     &.assure {
       opacity: 1;
       &:before,
