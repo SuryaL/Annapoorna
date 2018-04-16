@@ -28,7 +28,7 @@ class VotesController {
                 .then((resp)=>{
                     this.majorityItems.length = 0;
                     this.majorityItems = resp
-                    console.log('majority are :',this.majorityItems );
+                    // console.log('majority are :',this.majorityItems );
                 })
                 // this.menuList = results[1].menuObj || {};
                 // this.usersList = results[1].usersObj || {};

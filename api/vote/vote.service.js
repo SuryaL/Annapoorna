@@ -151,7 +151,7 @@ async function formatVotesHistory(votes) {
         }
         (dishes||[]).forEach((dish) => {
             dish = dish.toString();
-            console.log(voteDetails[week].dishes, dish);
+            // console.log(voteDetails[week].dishes, dish);
             if (!voteDetails[week].dishes[dish]) {
                 voteDetails[week].dishes[dish] = {dish, dish_name:menuObj[dish], users:[], vote:0, assure:0};
             }
