@@ -2,13 +2,11 @@
     <div class=" title dynamic-text-xl">{{ texts.header }}</div>
     <!-- <div class=" title dynamic-text-xl">{{votes}}</div> -->
     
-    <div class="user-wrapper" ng-repeat="vote in totalVotes"> 
-        <div class="name-wraper dynamic-text-l">{{getDishName(vote.dishId)}}</div>
-        <!-- <div class="name-wraper dynamic-text-l">{{vote.dishId}}</div> -->
+    <div class="user-wrapper" ng-repeat="dish in weeklyVotes.dishes | orderBy :sortItem:true"> 
+        <div class="name-wraper dynamic-text-l">{{dish.dish_name}}</div>
         
-        <div class="dishes-wrapper dynamic-text-s" ng-repeat="user in vote.users">
-            <div class="dish-name">{{getUserName(user)}}</div>
-            <!-- <div class="dish-name">{{user}}</div> -->
+        <div class="dishes-wrapper dynamic-text-s" ng-repeat="user in dish.users">
+            <div class="dish-name">{{user.name}}</div>
             
         </div>
     </div>

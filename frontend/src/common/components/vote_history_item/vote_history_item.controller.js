@@ -7,8 +7,9 @@ class VoteHistoryItemController {
     $onInit(){
       
     }
-    getDishName = (id) =>{
-        return this.menu[id]
+
+    sortItem(item) {
+        return item.vote + item.assure;
     }
 
 }

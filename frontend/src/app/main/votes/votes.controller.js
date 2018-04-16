@@ -22,9 +22,10 @@ class VotesController {
                 this.order_status = this.weekDetails.order_status;
                 this.order_deadline = this.weekDetails.order_deadline;
                 this.vote_deadline = this.weekDetails.voting_deadline;
-                this.myvotes = results[1].totalVotes || [];
-                this.menuList = results[1].menuObj || {};
-                this.usersList = results[1].usersObj || {};
+                this.myvotes = results[1] || [];
+
+                // this.menuList = results[1].menuObj || {};
+                // this.usersList = results[1].usersObj || {};
                 // console.log(results[1]);
                 stoploading;
             })
@@ -41,24 +42,11 @@ class VotesController {
         var date = new Date(item.week);
         return date;
     }
-    openVoteDetails = (week) => {
+    openVoteDetails = (vItem) => {
         if(!this.isAdmin) {
             return;
         }
-        startloading;
-        // console.log(this.VoteService.getAllUsersVotingsWeekly);
-        this.VoteService.getAllUsersVotingsWeekly({week: week})
-            .then((res) => {
-                // console.log('the result is ', res);
-                this.VoteDetailsPopup.open(res);
-                stoploading;
-
-            })
-            .catch(error => {
-                console.error(error);
-                stoploading;
-            })
-
+        this.VoteDetailsPopup.open(vItem);
     }
 
 }

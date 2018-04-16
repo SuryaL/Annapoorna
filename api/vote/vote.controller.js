@@ -129,14 +129,6 @@ const getAllUsersVotes = async function(req){
 }
 
 
-const getAllUsersVotingsWeekly = async function(req){
-    
-    let {week}  = req.query;
-    const votes = await VoteService.getAllVotesWeekly(week);
-    const vote_details = VoteService.formatVotesHistory(votes);
-    return vote_details;
-}
-
 const getWeeksVotes = async function(req){
     let {week}  = req.query;
     const votesResp = await VoteService.getAllVotesWeekly(week);
@@ -169,6 +161,5 @@ module.exports = {
     remove,
     getMajority,
     getAllUsersVotes,
-    getWeeksVotes,
-    getAllUsersVotingsWeekly
+    getWeeksVotes
 }

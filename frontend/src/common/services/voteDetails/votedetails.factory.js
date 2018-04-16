@@ -25,9 +25,8 @@ let votedetailsPopupFactory = function($popup, $q) {
                     header: 'Voting Details',
                     subHeader: ''
                 };
-                $scope.totalVotes = votes.totalVotes[0].dishes;
-                $scope.menuList = votes.menuObj;
-                $scope.usersList = votes.usersObj;
+                $scope.weeklyVotes = votes;
+                console.log('votes are :', $scope.weeklyVotes);
 
                 $scope.close = function() {   
                     mypopup.close('Awww yisss');
@@ -37,12 +36,9 @@ let votedetailsPopupFactory = function($popup, $q) {
                 };        
                 $scope.hide = function() {          
                     mypopup.hide();
-                };     
-                $scope.getDishName = function(id) {
-                    return $scope.menuList[id]
-                }
-                $scope.getUserName = function(id) {
-                    return $scope.usersList[id]
+                };
+                $scope.sortItem = function(item) {
+                    return item.users.length;
                 }
             }
         });
