@@ -50,6 +50,9 @@ const getMajority = async function(req) {
         if(!result.assure) result.assure = {};
         Object.keys(result.assure).forEach(dish_id =>{
             if(result.assure[dish_id]){
+                if(!dishCounts[dish_id]){
+                    dishCounts[dish_id] = 0;
+                }
                 dishCounts[dish_id] += +result.assure[dish_id];
             }
         })
@@ -78,7 +81,7 @@ const getMajority = async function(req) {
     Object.keys(vals_arrange_obj).sort().reverse().forEach((it)=>{
         vals_arrange.push(vals_arrange_obj[it])
     });
-
+    // console.log(dishCounts);
     vals_arrange.forEach((val_item) => {
         val_item.dishes = shuffle(val_item.dishes, rng);
     })
@@ -87,6 +90,7 @@ const getMajority = async function(req) {
         p = p.concat(c.dishes);
         return p;
     }, [])
+
 
     let top = full_sortable.slice(0, 5);
 
