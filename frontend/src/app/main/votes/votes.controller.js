@@ -6,6 +6,7 @@ class VotesController {
         this.headTitle = 'Votes';
         this.subheadTitle = '.';
         this.btnText = "votes";
+        this.majorityItems = [];
         let user = this.$auth.getUser();
         this.init();
     }
@@ -23,7 +24,12 @@ class VotesController {
                 this.order_deadline = this.weekDetails.order_deadline;
                 this.vote_deadline = this.weekDetails.voting_deadline;
                 this.myvotes = results[1] || [];
-
+                this.VoteService.getMajority({week:this.weekDetails.week})
+                .then((resp)=>{
+                    this.majorityItems.length = 0;
+                    this.majorityItems = resp
+                    console.log('majority are :',this.majorityItems );
+                })
                 // this.menuList = results[1].menuObj || {};
                 // this.usersList = results[1].usersObj || {};
                 // console.log(results[1]);
@@ -48,6 +54,7 @@ class VotesController {
         }
         this.VoteDetailsPopup.open(vItem);
     }
+    
 
 }
 

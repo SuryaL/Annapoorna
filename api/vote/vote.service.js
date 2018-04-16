@@ -160,6 +160,7 @@ async function formatVotesHistory(votes) {
             usersObj[user.toString()] && voteDetails[week].dishes[dish].users.push({
                 id:user.toString(),
                 name:usersObj[user.toString()],
+                assure : voteDetails[week].dishes[dish].assure 
             });
         })
     })

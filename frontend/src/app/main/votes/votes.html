@@ -9,7 +9,7 @@
        ng-repeat="vItem in self.myvotes |orderBy:self.sortItem:true"
        ng-class="{'current-order': vItem.week==self.currentWeek, 'disabled':!self.isAdmin}">
       <vote-history-item item="vItem"
-                    ng-click="self.openVoteDetails(vItem)">
+                    ng-click="self.openVoteDetails(vItem)" major-items="self.majorityItems">
                   </vote-history-item>
   </div>
 </div>

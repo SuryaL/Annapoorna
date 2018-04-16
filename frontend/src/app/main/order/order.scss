@@ -3,23 +3,26 @@
 @import '~assets/stylesheets/variables';
 order {
   @extend .sub-main-view;
-      .no-orders{
+  .no-orders {
     @extend .main-lightitalic-font;
-    font-size:1.5em;
-    padding:1em;
+    font-size: 1.5em;
+    padding: 1em;
   }
   .orders-container {
-      .order-items-wrapper{
+    .order-items-wrapper {
+      @media (min-width: 600px) {
+        padding-left:0.3em;
+      }
       position: relative;
       &.major {
-        .order-item-name{
+        .order-item-name {
           position: relative;
         }
         .order-item-name:before {
           content: '';
           position: absolute;
           top: 50%;
-          left: -0.6em;
+          left: -0.7em;
           transform: translate3d(0, -50%, 0);
           -webkit-transform: translate3d(0, -50%, 0);
           width: 0.38em;
@@ -29,12 +32,11 @@ order {
             width:0.5em;
             height: 0.5em;
             left: -0.85em;
-          @include border-radius(0.5em);
+            @include border-radius(0.5em);
           }
           background: $chase-green;
           border:0.1em solid white;
-        }
-        // &:before {
+        } // &:before {
         //   content: '';
         //   position: absolute;
         //   top: 50%;
@@ -54,8 +56,7 @@ order {
         // }
       }
     }
-
-    &.disabled{
+    &.disabled {
       background-color: #DDD;
     }
     .disabled {

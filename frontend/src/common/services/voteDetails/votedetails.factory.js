@@ -26,7 +26,7 @@ let votedetailsPopupFactory = function($popup, $q) {
                     subHeader: ''
                 };
                 $scope.weeklyVotes = votes;
-                console.log('votes are :', $scope.weeklyVotes);
+                // console.log('votes are :', $scope.weeklyVotes);
 
                 $scope.close = function() {   
                     mypopup.close('Awww yisss');
