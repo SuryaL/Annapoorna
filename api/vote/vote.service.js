@@ -156,11 +156,12 @@ async function formatVotesHistory(votes) {
                 voteDetails[week].dishes[dish] = {dish, dish_name:menuObj[dish], users:[], vote:0, assure:0};
             }
             voteDetails[week].dishes[dish].vote += 1;
-            voteDetails[week].dishes[dish].assure += +((assure||{})[dish] || 0);
+            let user_assued = +((assure||{})[dish] || 0);
+            voteDetails[week].dishes[dish].assure += user_assued
             usersObj[user.toString()] && voteDetails[week].dishes[dish].users.push({
                 id:user.toString(),
                 name:usersObj[user.toString()],
-                assure : voteDetails[week].dishes[dish].assure 
+                assure : user_assued
             });
         })
     })
