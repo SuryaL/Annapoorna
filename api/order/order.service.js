@@ -206,6 +206,7 @@ async function formatOrderDetails(orders) {
         orderDetails[user] = orderDetails.hasOwnProperty(user) ? orderDetails[user] : [];
         orderDetails[user].push({
             dishName: order.dish_name,
+            price: order.price,
             quantity: order.quantity
         })
     })

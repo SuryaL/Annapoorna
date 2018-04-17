@@ -33,7 +33,14 @@ let orderdetailsPopupFactory = function($popup, $q) {
                 };        
                 $scope.hide = function() {          
                     mypopup.hide();
-                };      
+                };     
+                
+                $scope.calcTotal = function(dishes){
+                    return dishes.reduce((total,dish)=>{
+                        total += +dish.price * +dish.quantity
+                        return total;
+                    },0)
+                } 
             }
         });
         return mypopup;

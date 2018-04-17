@@ -1,10 +1,11 @@
 <div class="popup-wrap">
     <div class=" title dynamic-text-xl">{{ texts.header }}</div>
     <div class="user-wrapper" ng-repeat="order in orders | orderBy : 'personName'">
-        <div class="name-wraper dynamic-text-l">{{order.personName}}</div>
+        <div class="name-wraper dynamic-text-l">{{order.personName}} <span > {{calcTotal(order.dishes) | currency}}</span></div>
         <div class="dishes-wrapper dynamic-text-s" ng-repeat="dish in order.dishes | orderBy : 'dishName'">
             <div class="dish-name">{{dish.dishName}}</div>
             <div class="dish-quantity">{{dish.quantity}}</div>
+            <div class="dish-quantity">@{{dish.price | currency}}</div>
         </div>
     </div>
 </div>
