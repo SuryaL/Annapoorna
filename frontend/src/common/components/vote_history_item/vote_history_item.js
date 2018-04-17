@@ -1,9 +1,11 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import voteHistoryItemComponent from './vote_history_item.component';
+import VoteService from 'common/services/vote';
 
 let voteHistoryItemModule = angular.module('voteHistoryItem', [
-  uiRouter
+  uiRouter,
+  VoteService
 ])
 .config(($stateProvider) => {
   'ngInject';

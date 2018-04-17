@@ -5,8 +5,7 @@ import './vote_history_item.scss';
 let voteHistoryItemComponent = {
   restrict: 'E',
   bindings: {
-    "item" : "=",
-    "majorItems" : "<"
+    "item" : "="
   },
   template,
   controller,
