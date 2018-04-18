@@ -37,6 +37,9 @@ order-item {
       padding:0 !important;
       margin: 0 !important;
     }
+    &.newquantity{
+      opacity: 1;
+    }
     &.assure {
       opacity: 1;
       &:before,
