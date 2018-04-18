@@ -56,11 +56,12 @@ async function getUserPayments(user_id) {
         total:0
     }
     
-    payments.rows.forEach(({status,week,amount_paid:amount}) => {
+    payments.rows.forEach(({status, admin_added, week,amount_paid:amount}) => {
         resp.payment_history.push({
             week,
             amount,
-            status
+            status,
+            admin_added
         });
 
         if(status == 'approved'){

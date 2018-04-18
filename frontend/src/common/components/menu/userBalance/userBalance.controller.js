@@ -20,7 +20,6 @@ class userBalanceCtrl {
     }
     
     init(){
-        console.log('balance here');
         this.PaymentService.recalculatePaymentUser(this.user);
     }
 

@@ -5,11 +5,7 @@
 <div class="payments-container sub-main-view-container">
   <div class="no-payment"
        ng-if="self.payments && !self.payments.length">No payments yet!</div>
-  <!-- <div class="history-items-wrapper"
-       ng-repeat="vItem in self.myorders |orderBy:self.sortItem:true"
-       ng-class="{'current-order': vItem.week==self.currentWeek}">
-      <history-item item="vItem"></history-item>
-  </div> -->
+ <div></div>
 </div>
 <footer-btn foot-text="{{self.btnText}}"
           callback="self.nocallback"></footer-btn>
