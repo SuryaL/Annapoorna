@@ -267,7 +267,7 @@ async function orderAssured(week) {
          MenuService.getMenu({}), 
          VoteController.getMajority({query:{week}})
     ])
-    
+
     for(let user_item of all_votes) {
         let assure = user_item.assure||{};
         let assured_dishes = Object.keys(assure)
@@ -290,7 +290,6 @@ async function orderAssured(week) {
 }
 
 async function UpdateMyRatings(user, missedRatings, updateRatings) {
-    console.log(user, JSON.stringify(missedRatings, null, 2), JSON.stringify(updateRatings, null, 2));
     const unrated_obj = missedRatings.reduce((unrated_obj, week_obj) => {
         week_obj.dishes.forEach(dish => {
             if(!unrated_obj[week_obj.week]) {
