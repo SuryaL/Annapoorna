@@ -13,7 +13,7 @@ async function addUserPayments(req){
 // body params: pay_amount
 async function addPaymentUser(req){
     let user = req.user;
-    let pay_amount = req.body;
+    let {pay_amount} = req.body;
     if(!pay_amount || !user || !user.id){
         throw new Error('Invalid pay')
     }

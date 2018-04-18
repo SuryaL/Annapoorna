@@ -4,7 +4,8 @@ const UserService = require('../user/user.service');
 const OrderService = require('../order/order.service');
 
 async function addUserPayment(user, amount, status='pending',admin_added=false){
-    if(!user || !amount || isNaN(+amount) ||+amount != 0){
+    if(!user || !amount || isNaN(+amount) ||+amount == 0){
+        console.log('object',amount);
         throw new Error('missing params');
     }
     amount = +((+amount).toFixed(2));

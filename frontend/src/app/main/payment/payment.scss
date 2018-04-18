@@ -8,5 +8,78 @@ payment {
     font-size: 1.5em;
     padding: 1em;
   }
- 
+  .user-item-payment {
+    @include flexbox;
+    @include align-items(center);
+    @include justify-content(space-between);
+    @include flex-direction(column);
+    .user-item-payment-wrap {
+      @include flexbox;
+      @include align-items(center);
+      @include justify-content(space-around);
+      @include flex-direction(row);
+      width: 100%; // width:200px;
+      // margin-left: 1em; // @media(max-width:600px){
+      //     width:36vw;
+      // }
+      &-date {
+        // @include flex(1,0,0);
+        // @extend .main-semibold-font;
+        @extend .main-lightitalic-font;
+      }
+      &-amount {
+        @include flex(1, 0, 0);
+        @extend .main-thin-font; // margin-left: auto;
+      }
+      &-status {
+        @include flex(1, 0, 0);
+      }
+    }
+    &-btns {
+      @include flex(2, 0, 0);
+    }
+  }
+  .payment-input-wrap {
+    @include flexbox;
+    @include align-items(center);
+    @include justify-content(center);
+    .user-item-pay {
+      margin: 1em;
+      @include flex(0, 0, 8em);
+      max-width: 10em;
+      width: 25vw;
+      border: 2px solid $main-grey;
+      @include border-radius(0.3em);
+      @include flexbox;
+      @include align-items(center);
+      @include justify-content(center);
+      @include flex-direction(row);
+      padding: 0.5em 0;
+      text-align: center;
+      color: $chase-green;
+      &.cook {
+        color: $chase-red;
+      }
+      cursor: pointer !important;
+      &.deducting {
+        color: $chase-red !important;
+        border-color: $chase-red !important;
+        &.cook {
+          color: $chase-green !important;
+          border-color: $chase-green !important;
+        }
+      }
+      &:hover {
+        border-color: $chase-blue;
+      }
+      &:active,
+      &:focus {
+        border-color: $chase-green;
+        &.cook {
+          color: $chase-red !important;
+          border-color: $chase-red !important;
+        }
+      }
+    }
+  }
 }
