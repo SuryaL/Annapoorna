@@ -3,13 +3,27 @@ const { execQuery } = require('../../helpers/utils/db_utils');
 const UserService = require('../user/user.service');
 const OrderService = require('../order/order.service');
 
-async function addUserPayment(user, amount){
-    if(!user || (!amount && +amount != 0)){
+async function addUserPayment(user, amount, status='pending',admin_added=false){
+    if(!user || !amount || isNaN(+amount) ||+amount != 0){
         throw new Error('missing params');
     }
+    amount = +((+amount).toFixed(2));
     let week = (new Date()).toISOString();
-    await execQuery('insert into payments (week,created,user,amount_paid) values(?,?,?,?)',[week,week,user,amount.toString()]);
+    await execQuery('insert into payments (week,created,user,amount_paid,status,admin_added) values(?,?,?,?,?,?)',[week,week,user,amount.toString(),status,admin_added]);
 }
+
+async function updateUserPayment(user, week, status){
+    if(!status|| !week|| !user){
+        throw new Error('Invalid update');
+    }
+    if(['approved','deleted','pending','rejected'].indexOf(status) == - 1){
+        throw new Error('Invalid status');
+    }
+
+    await execQuery('update payments set status = ? where user =? and week = ?',[status,user,week]);
+}
+
+
 // addUserPayment('b4f1bbd8-872b-4847-a4c1-3e55ea5d15ea',-10)
 
 async function getUserBalance(user_id) {
@@ -42,13 +56,16 @@ async function getUserPayments(user_id) {
         total:0
     }
     
-    payments.rows.forEach(row => {
+    payments.rows.forEach(({status,week,amount_paid:amount}) => {
         resp.payment_history.push({
-            week: row.week,
-            amount: row.amount_paid
+            week,
+            amount,
+            status
         });
 
-        resp.total += +row.amount_paid;
+        if(status == 'approved'){
+            resp.total += +amount;
+        }
     });
     
     return resp;
@@ -87,6 +104,7 @@ async function getAllUsersBalances() {
 
 module.exports = {
     addUserPayment,
+    updateUserPayment,
     getAllUsersBalances,
     getCookBalance,
     getUserBalance

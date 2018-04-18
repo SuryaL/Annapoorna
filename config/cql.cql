@@ -87,5 +87,6 @@ CREATE TABLE IF NOT EXISTS payments (
   amount_paid     text,
   created         text,
   status          text,
+  admin_added     boolean,
   PRIMARY KEY (week, user)
 );

@@ -34,10 +34,37 @@ let VoteFactory = function($http, $httpParamSerializer) {
       })
   }
 
+  // admin access multiple payments
  self.addPayments = function(obj = {}) {
     return $http({
         method: 'POST',
         url: API + self.PATH+'/addPayments',
+        data:obj
+      })
+      .then(resp => {
+        return resp.data;
+      })
+  }
+
+  //for user access
+  // send {pay_amount}
+  self.addPaymentUser = function(obj = {}) {
+    return $http({
+        method: 'POST',
+        url: API + self.PATH+'/addPaymentUser',
+        data:obj
+      })
+      .then(resp => {
+        return resp.data;
+      })
+  }
+
+  // admin access
+  // {status, week, user}
+  self.updateUserPayment = function(obj = {}) {
+    return $http({
+        method: 'POST',
+        url: API + self.PATH+'/updateUserPayment',
         data:obj
       })
       .then(resp => {
