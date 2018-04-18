@@ -5,6 +5,36 @@ let VoteFactory = function($http, $httpParamSerializer) {
   const API = ENV.API_URL;
   self.PATH = '/payment';
 
+
+  self.payment_user_type = (user_obj={}) =>{
+    if(!user_obj){
+      return '';
+    }
+    return (user_obj.type||[]).indexOf('user') != -1 ? 'user': ((user_obj.type||[]).indexOf('cook') != -1 ? 'cook' : '');
+  }
+
+  self.recalculatePaymentUser = (user) => {
+    let user_type = self.payment_user_type(user);
+    console.log('balance here', user_type);
+    if( user_type == 'user'){
+        self.resetUserBalance();
+    }else if(user_type == 'cook'){
+      self.resetCookBalance();
+    }
+  }
+
+  self.resetCookBalance=()=>{
+      return self.getCookBalance().then(resp => {
+          self.userPayment = resp;
+      })
+  }
+
+  self.resetUserBalance=()=>{
+      return self.getUserBalance().then(resp => {
+          self.userPayment = resp;
+      })
+  }
+
   self.getUserBalance = function(obj = {}) {
     return $http({
         method: 'GET',
