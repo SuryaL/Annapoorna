@@ -16,6 +16,7 @@
     <div class="users-items-wrapper"
          ng-repeat="user in self.usersList">
         <user-item item="user"
+                    init="self.init()"
                    pay-amount="user.pay_amount"></user-item>
     </div>
 </div>

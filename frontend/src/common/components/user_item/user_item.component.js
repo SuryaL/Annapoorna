@@ -6,7 +6,8 @@ let userItemComponent = {
   restrict: 'E',
   bindings: {
     item:'=',
-    payAmount:'=?'
+    payAmount:'=?',
+    init:'&?'
   },
   template,
   controller,

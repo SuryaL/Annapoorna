@@ -2,128 +2,177 @@
 @import '~assets/stylesheets/flex';
 @import '~assets/stylesheets/variables';
 user-item {
-    max-width: 100vw;
-    
-    .user-item-container {
-        @include add-hover();
-        .view-middle-item-content{
-            width:100%;
-            // max-width:10em;
-            // overflow-x:auto;
-            // text-overflow: ellipsis;
-        }
-      
-        .user-item-header {
-            @include flexbox;
-            @include justify-content(flex-start);
-            @include align-items(center);
-            profilepic{
-                margin-right: 0.5em;
-                height:2em;
-                width:2em;
-            }
-            .user-item-name {
-                @media(max-width:600px){
-                    &.emailname{
-                        font-size:0.8em !important;
-                    }
-                }
-                .cook-label{
-                    color: $chase-green;    
-                }
-            }
-            .user-item-status {
-                margin-left: 0.5em;
-                color: $chase-blue;
-            }
-        }
-        .user-item-payments {
-            @include flexbox;
-            @include align-items(flex-start);
-            @include justify-content(flex-start);
-            @include flex-direction(column);
-            margin: 0.7em 0em 0em 1em;
-                .user-item-payment {
-                @include flexbox;
-                @include align-items(center);
-                @include justify-content(space-between);
-                @include flex-direction(row);
-                // width:100%;
-                width:200px;
-                margin-left:1em;
-                @media(max-width:600px){
-                    width:36vw;
-                }
-                &-date {
-                    @include flex(1,0,0);
-                    // @extend .main-semibold-font;
-                    @extend .main-lightitalic-font;
-                }
-                &-amount {
-                // @include flex(1,0,0);
-                    @extend .main-thin-font;
-                    margin-left: auto;
-                }
-            }
-            .user-payment-show-more {
-                color: $chase-blue;
-                cursor: pointer !important;
-                text-decoration: underline;
-                &:hover {
-                    color: $chase-green;
-                    // color: lighten($chase-blue, 10);
-                }
-            }
-        }
-        .user-item-owe-wrap {
-            @include flexbox;
-            @include align-items(center);
-            @include justify-content(center);
-            @include flex-direction(row);
-            height: 3em;
-            @media(max-width: 600px) {
-                height:2em;
-            }
-            .user-item-owes {
-                margin-right: 0.5em;
-                text-align: right;
-            }
-            .user-item-pay {
-                margin: 0;
-                @include flex(0, 0, 8em);
-                max-width: 5em;
-                border: 2px solid $main-grey;
-                @include border-radius(0.3em);
-                @include flexbox;
-                @include align-items(center);
-                @include justify-content(center);
-                @include flex-direction(row);
-                padding: 0.5em 0;
-                text-align: center;
-                color: $chase-green;
-                &.cook{
-                    color: $chase-red;
-                }
-                cursor: pointer !important;
-                &.deducting{
-                    color: $chase-red !important;
-                    border-color: $chase-red !important;
-                    &.cook{
-                        color: $chase-green !important;
-                        border-color: $chase-green !important;
-                    }
-                }
-                &:hover {
-                    border-color: $chase-blue;
-                }
-                &:active, &:focus {
-                    border-color: $chase-green;
-                    &.cook{
-                        color: $chase-red !important;
-                        border-color: $chase-red !important;
-                    }
-                }
-            }
-        }
+  max-width: 100vw;
+  .user-item-container {
+    @include add-hover();
+    .view-middle-item-content {
+      width: 100%; // max-width:10em;
+      // overflow-x:auto;
+      // text-overflow: ellipsis;
     }
+    .user-item-header {
+      @include flexbox;
+      @include justify-content(flex-start);
+      @include align-items(center);
+      profilepic {
+        margin-right: 0.5em;
+        height: 2em;
+        width: 2em;
+      }
+      .user-item-name {
+        @media(max-width: 600px) {
+          &.emailname {
+            font-size:0.8em !important;
+          }
+        }
+        .cook-label {
+          color: $chase-green;
+        }
+      }
+      .user-item-status {
+        margin-left: 0.5em;
+        color: $chase-blue;
+      }
+    }
+    .user-item-payments {
+      @include flexbox;
+      @include align-items(flex-start);
+      @include justify-content(flex-start);
+      @include flex-direction(column);
+      margin: 0.7em 0em 0em 1em;
+      .user-item-payment {
+        @include flexbox;
+        @include align-items(center);
+        @include justify-content(space-between);
+        @include flex-direction(column);
+        .user-item-payment-wrap {
+          @include flexbox;
+          @include align-items(center);
+          @include justify-content(space-between);
+          @include flex-direction(row);
+          width: 100%; // width:200px;
+          margin-left: 1em; // @media(max-width:600px){
+          //     width:36vw;
+          // }
+          &-date {
+            // @include flex(1,0,0);
+            // @extend .main-semibold-font;
+            @extend .main-lightitalic-font;
+          }
+          &-amount {
+            @include flex(1, 0, 0);
+            @extend .main-thin-font; // margin-left: auto;
+          }
+          &-status {
+            @include flex(1, 0, 0);
+          }
+        }
+        &-btns {
+          @include flex(2, 0, 0);
+        }
+      }
+      .user-payment-show-more {
+        color: $chase-blue;
+        cursor: pointer !important;
+        text-decoration: underline;
+        &:hover {
+          color: $chase-green; // color: lighten($chase-blue, 10);
+        }
+      }
+    } // .user-item-payments {
+    //     @include flexbox;
+    //     @include align-items(flex-start);
+    //     @include justify-content(flex-start);
+    //     @include flex-direction(column);
+    //     margin: 0.7em 0em 0em 1em;
+    //         .user-item-payment {
+    //         @include flexbox;
+    //         @include align-items(center);
+    //         @include justify-content(space-between);
+    //         @include flex-direction(row);
+    //         width:100%;
+    //         // width:200px;
+    //         margin-left:1em;
+    //         // @media(max-width:600px){
+    //         //     width:36vw;
+    //         // }
+    //         &-date {
+    //             // @include flex(1,0,0);
+    //             // @extend .main-semibold-font;
+    //             @extend .main-lightitalic-font;
+    //         }
+    //         &-amount {
+    //             @include flex(1,0,0);
+    //             @extend .main-thin-font;
+    //             // margin-left: auto;
+    //         }
+    //         &-status {
+    //             @include flex(1,0,0);
+    //         }
+    //         &-btns {
+    //             @include flex(2,0,0);
+    //         }
+    //     }
+    //     .user-payment-show-more {
+    //         color: $chase-blue;
+    //         cursor: pointer !important;
+    //         text-decoration: underline;
+    //         &:hover {
+    //             color: $chase-green;
+    //             // color: lighten($chase-blue, 10);
+    //         }
+    //     }
+    // }
+    .user-item-owe-wrap {
+      @include flexbox;
+      @include align-items(center);
+      @include justify-content(center);
+      @include flex-direction(row);
+      height: 3em;
+      @media(max-width: 600px) {
+        height:2em;
+      }
+      .user-item-owes {
+        margin-right: 0.5em;
+        text-align: right;
+      }
+      .user-item-pay {
+        margin: 0;
+        @include flex(0, 0, 8em);
+        max-width: 5em;
+        border: 2px solid $main-grey;
+        @include border-radius(0.3em);
+        @include flexbox;
+        @include align-items(center);
+        @include justify-content(center);
+        @include flex-direction(row);
+        padding: 0.5em 0;
+        text-align: center;
+        color: $chase-green;
+        &.cook {
+          color: $chase-red;
+        }
+        cursor: pointer !important;
+        &.deducting {
+          color: $chase-red !important;
+          border-color: $chase-red !important;
+          &.cook {
+            color: $chase-green !important;
+            border-color: $chase-green !important;
+          }
+        }
+        &:hover {
+          border-color: $chase-blue;
+        }
+        &:active,
+        &:focus {
+          border-color: $chase-green;
+          &.cook {
+            color: $chase-red !important;
+            border-color: $chase-red !important;
+          }
+        }
+      }
+    }
+  }
 }

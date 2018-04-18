@@ -16,7 +16,7 @@ async function updateUserPayment(user, week, status){
     if(!status|| !week|| !user){
         throw new Error('Invalid update');
     }
-    if(['approved','deleted','pending','rejected'].indexOf(status) == - 1){
+    if(['accepted','deleted','pending','rejected'].indexOf(status) == - 1){
         throw new Error('Invalid status');
     }
 
@@ -64,7 +64,7 @@ async function getUserPayments(user_id) {
             admin_added
         });
 
-        if(status == 'approved'){
+        if(status == 'accepted'){
             resp.total += +amount;
         }
     });

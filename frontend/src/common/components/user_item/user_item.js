@@ -4,12 +4,16 @@ import userItemComponent from './user_item.component';
 import currencyFormat from 'common/directives/currencyFormat';
 import profilepic from 'common/components/profilepic/profilepic';
 import user from 'common/services/user';
+import payment from 'common/services/payment';
+import toastr from 'common/services/mytoastr';
 
 let userItemModule = angular.module('userItem', [
   uiRouter,
   currencyFormat,
   profilepic,
-  user
+  user,
+  payment,
+  toastr
 ])
 .config(($stateProvider) => {
   'ngInject';
