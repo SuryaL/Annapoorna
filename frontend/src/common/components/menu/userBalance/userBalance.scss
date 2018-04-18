@@ -9,11 +9,22 @@ user-balance {
   color: $chase-grey;
   @extend .main-regular-font;
   margin-right:0.5em;
-  .user-balance-text{
-    font-size:0.8em;
-  }
-  .user-balance-text{
 
+  
+  .active {
+    color: $chase-green !important;
   }
-
+  .user-balance-text {
+    font-size: 0.8em;
+    pointer-events: all;
+    cursor: pointer;
+  }
+  .user-balance-value {
+    pointer-events: all;
+    cursor: pointer;
+    span {
+      pointer-events: all;
+      cursor: pointer;
+    }
+  }
 }

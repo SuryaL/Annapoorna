@@ -16,6 +16,7 @@ import users from './users/users';
 import profile from './profile/profile';
 import orders from './orders/orders';
 import votes from './votes/votes';
+import payment from './payment/payment';
 
 import feedback from 'common/services/feedback';
 import user from 'common/services/user';
@@ -26,6 +27,7 @@ const module = angular.module('main', [
         userBalance,
         uirouter,
         AuthService,
+        payment,
         vote,
         order,
         history,

@@ -1,6 +1,12 @@
-<div ng-if="self.userPayment" class="user-balance-text">
+<div ng-if="self.userPayment"
+     ng-class="{'active': self.isCurrentState('app.main.payment')}"
+     ui-sref="app.main.payment"
+     class="user-balance-text">
     {{self.owesText}}
-    </div>
-<div ng-if="self.userPayment" class="user-balance-value dynamic-text-m">
+</div>
+<div ng-if="self.userPayment"
+     ng-class="{'active': self.isCurrentState('app.main.payment')}"
+     ui-sref="app.main.payment"
+     class="user-balance-value dynamic-text-m">
     <span ng-if="self.owes">{{(self.owes > 0? self.owes : -self.owes | currency)}}</span>
 </div>

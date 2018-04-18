@@ -1,8 +1,9 @@
-class footerBtnCtrl {
+class userBalanceCtrl {
     constructor($state, PaymentService, $scope, $auth) {
         'ngInject';
         this.PaymentService = PaymentService;
         this.$scope         = $scope;
+        this.$state         = $state;
         this.user           = $auth.getUser();
         this.texts          = {
             user:{
@@ -38,6 +39,8 @@ class footerBtnCtrl {
             this.userPayment = resp;
         })
     }
+
+    isCurrentState = (state) => this.$state.current.name == state
     
     get usertype(){
         if(!this.user){
@@ -68,5 +71,5 @@ class footerBtnCtrl {
     }
 }
 
-export default footerBtnCtrl;
+export default userBalanceCtrl;
 
