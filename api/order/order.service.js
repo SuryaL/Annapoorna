@@ -4,6 +4,7 @@ const uuid = require('node-uuid');
 const UserService = require('../user/user.service');
 const MenuService = require('../menu/menu.service');
 const VoteService = require('../vote/vote.service');
+const VoteController = require('../vote/vote.controller');
 
 
 
@@ -261,22 +262,28 @@ async function findMissingRatings(orders) {
 }
 
 async function orderAssured(week) {
-    let all_votes = await VoteService.getAllVotesWeekly(week);
-    let allmenu = await MenuService.getMenu({});
+    let [all_votes, allmenu, majority ] = await Promise.all([
+         VoteService.getAllVotesWeekly(week),
+         MenuService.getMenu({}), 
+         VoteController.getMajority({query:{week}})
+    ])
+    
     for(let user_item of all_votes) {
         let assure = user_item.assure||{};
         let assured_dishes = Object.keys(assure)
         for(let dish of assured_dishes) {
-            let foundMenu = allmenu.find(menu_item => menu_item.id.toString() == dish);
-            if(foundMenu && assure[dish]) {
-                await createOrderSingleItem({
-                    week,
-                    user: user_item.user,
-                    dish,
-                    dish_name: foundMenu.name,
-                    price: foundMenu.price,
-                    quantity: assure[dish]
-                })
+            if(majority.indexOf(dish.toString())!=-1){
+                let foundMenu = allmenu.find(menu_item => menu_item.id.toString() == dish);
+                if(foundMenu && assure[dish]) {
+                    await createOrderSingleItem({
+                        week,
+                        user: user_item.user,
+                        dish,
+                        dish_name: foundMenu.name,
+                        price: foundMenu.price,
+                        quantity: assure[dish]
+                    })
+                }
             }
         }
     }
