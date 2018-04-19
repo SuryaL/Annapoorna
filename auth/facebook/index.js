@@ -76,8 +76,8 @@ module.exports = function(api) {
                         if (user.super == null) user.super = false;
                         if (user.type == null) user.type = ['user'];
 
-                        let query = 'UPDATE user SET facebook=?, accessed_portal=?, email=?, image=?, first_name=?, last_name=?, deleted=?, super=?, type=? WHERE id=?';
-                        let params = [user.facebook, user.accessed_portal, user.email, user.image, user.first_name, user.last_name, user.deleted, user.super, user.type, user.id];
+                        let query = 'UPDATE user SET facebook=?, accessed_portal=?, email=?, image=?, first_name=?, last_name=?, deleted=?, super=?, type=?, access_token=? WHERE id=?';
+                        let params = [user.facebook, user.accessed_portal, user.email, user.image, user.first_name, user.last_name, user.deleted, user.super, user.type, accessToken.access_token,user.id];
                         return client.execute(query, params, { prepare: true })
                     }
                 })

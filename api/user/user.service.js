@@ -125,9 +125,9 @@ function sendMailToUsers(filters = {}) {
 }
 
 async function getprofilepic(user){
-    let query = 'select image from user where id = ? allow filtering';
+    let query = 'select image, access_token from user where id = ? allow filtering';
     let found = (await execQuery(query, [user])).rows[0] || {};
-    return found.image
+    return {image:found.image,access_token:found.access_token}
 }
 
 module.exports = {
