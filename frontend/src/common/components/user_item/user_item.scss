@@ -8,11 +8,10 @@ user-item {
     .view-middle-item {
       @include flexbox;
       @include flex-direction(column);
-      overflow:visible;
+      overflow: visible;
       width: 100%; // max-width:10em;
       // overflow-x:auto;
       // text-overflow: ellipsis;
-      
     }
     .user-item-header {
       @include flexbox;
@@ -50,40 +49,51 @@ user-item {
         @include align-items(center);
         @include justify-content(center);
         @include flex-direction(column);
-          width:50vw;
-          max-width:20em;
-          .user-item-payment-wrap {
-          width:100%;
+        width: 50vw;
+        max-width: 20em;
+        .user-item-payment-wrap {
+          width: 100%;
           @include flexbox();
           @include align-items(center);
           @include justify-content(center);
           @include flex-direction(row);
+          &.deleted {
+            text-decoration: line-through;
+          }
           .user-item-payment-wrap-icon {
-            @include flex(0,0,33%);
-            padding : 0 0.4em;
-            img{
-              width:0.7em;
-              height:0.7em;
-              @media(min-width:600px){
+            @include flex(0, 0, 33%);
+            padding: 0 0.4em;
+            img {
+              width: 0.7em;
+              height: 0.7em;
+              @media(min-width: 600px) {
                 width:0.85em;
-                height:0.85em;
+                height: 0.85em;
               }
             }
           }
           .user-item-payment-wrap-date {
-          @include flex(0,0,33%);
+            @include flex(0, 0, 33%);
             @extend .main-lightitalic-font;
+            &.admin-added{
+              position: relative;
+              overflow: visible;
+              &:before{
+                content:'*';
+                position: absolute;
+                left:-0.6em;
 
+
+              }
+            }
           }
           .user-item-payment-wrap-amount {
-            @include flex(0,0,33%);
+            @include flex(0, 0, 33%);
             @include justify-content(flex-end);
             @include flexbox();
-            padding : 0 0.4em;
-            @extend .main-thin-font; 
-
+            padding: 0 0.4em;
+            @extend .main-thin-font;
           }
-          
         }
       } // .user-item-payment {
       //   @include flexbox;
