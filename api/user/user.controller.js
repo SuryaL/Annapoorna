@@ -1,8 +1,10 @@
 const request  = require('request');
+const rp  = require('request-promise');
 
 const UserService = require('./user.service');
 const _ = require('underscore');
 const email = require('../../helpers/email');
+const config = require('../../config');
 
 const create = async function(req) {
     const body = _.clone(req.body);
@@ -76,14 +78,19 @@ function streamprofilepic (req,res,next){
         return res.send(200,'')
     }
     UserService.getprofilepic(req.query.id)
-    .then((image)=>{
-        if(!image){
-        return res.send(200,'')
+    .then(({image, access_token: user_access_token})=>{
+        // using app access token instead
+        if(!image || !config.FACEBOOK_CLIENT_ID || !config.FACEBOOK_SECRET){
+            return res.send(200,'')
         }
+
+        let access_token = config.FACEBOOK_CLIENT_ID + '|' + config.FACEBOOK_SECRET 
+        let url = image_base_url + '&access_token='+ access_token;
         if(small){
-            image = image + '&type=small';
+            url = url + '&type=small';
         }
-        request(image).pipe(res);
+        request(url).pipe(res);
+    
     }).catch((err)=>{
         return res.send(200,'')
     })

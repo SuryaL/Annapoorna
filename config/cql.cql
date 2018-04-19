@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS user (
   accessed_mobile text, -- date.toISOString();
   deleted         boolean,
   facebook        text,
+  access_token    text,
   PRIMARY KEY (id)
 );
 CREATE INDEX ON user (email);
