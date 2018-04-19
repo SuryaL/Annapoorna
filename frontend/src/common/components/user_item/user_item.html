@@ -22,10 +22,10 @@
                         </div>
     
                         <div class="user-item-payment-btns" ng-if="payment.activated">
-                            <span ng-if="self.shouldShow('accept',payment.status)" ng-click="self.updatePayment('accept', payment)" class="user-item-payment-btn user-item-payment-btn-accept">accept</span>
-                            <span ng-if="self.shouldShow('reject',payment.status)" ng-click="self.updatePayment('reject', payment)" class="user-item-payment-btn user-item-payment-btn-reject">reject</span>
-                            <span ng-if="self.shouldShow('delete',payment.status)" ng-click="self.updatePayment('delete', payment)" class="user-item-payment-btn user-item-payment-btn-delete">delete</span>
-                            <span ng-if="self.shouldShow('undo',payment.status)" ng-click="self.updatePayment('undo', payment)" class="user-item-payment-btn user-item-payment-btn-undo">undo</span>
+                            <span ng-if="self.shouldShow('accept',payment.status)" ng-click="self.updatePayment('accept', payment)" class="user-item-payment-btn user-item-payment-btn-accept"><img ng-src="~assets/images/accept-icon.png" alt=""></span>
+                            <span ng-if="self.shouldShow('reject',payment.status)" ng-click="self.updatePayment('reject', payment)" class="user-item-payment-btn user-item-payment-btn-reject"><img ng-src="~assets/images/delete-icon.png" alt=""></span>
+                            <span ng-if="self.shouldShow('delete',payment.status)" ng-click="self.updatePayment('delete', payment)" class="user-item-payment-btn user-item-payment-btn-delete"><img ng-src="~assets/images/thrash.png" alt=""></span>
+                            <span ng-if="self.shouldShow('undo',payment.status)" ng-click="self.updatePayment('undo', payment)" class="user-item-payment-btn user-item-payment-btn-undo"><img ng-src="~assets/images/redo.png" alt=""></span>
                         </div>
                     </div>
                     <div class="user-payment-show-more" ng-click="self.showMoreClicked()" ng-if="self.shouldShowMore(self.payment_history, self.limit)">show more</div>
