@@ -4,7 +4,7 @@ async function addUserPayments(req){
     let payments = req.body;
     let proms = [];
     for(pay of payments){
-        proms.push(PaymentService.addUserPayment(pay.user, pay.amount,'approved',true));
+        proms.push(PaymentService.addUserPayment(pay.user, pay.amount,'accepted',true));
     }
     await Promise.all(proms);
     return true;

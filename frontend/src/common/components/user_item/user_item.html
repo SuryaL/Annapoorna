@@ -3,54 +3,40 @@
         <div class="view-middle-item-content">
             <div class="user-item-header">
                 <profilepic image="{{self.UserService.getprofileimageurl(self.item.id) + '&small=true'}}"></profilepic>
-                <div class="user-item-name dynamic-text-l"
-                     ng-class="{'emailname':self.item.email == self.username}">{{self.username}}
-                    <span class="cook-label"
-                          ng-if="self.item.has_type=='cook'">(cook)</span>
+                <div class="user-item-name dynamic-text-l" ng-class="{'emailname':self.item.email == self.username}">{{self.username}}
+                    <span class="cook-label" ng-if="self.item.has_type=='cook'">(cook)</span>
                 </div>
-                <div ng-if="self.status(self.item)"
-                     class="user-item-status dynamic-text-xs">{{self.status(self.item)}}</div>
-            </div>
-            <div class="user-item-payments">
-                <div class="user-item-payment"
-                     ng-class="{'active':payment.activated}"
-                     ng-repeat="payment in self.payment_history | orderBy:'-week' | limitTo:self.limit">
-                    <div class="user-item-payment-wrap"
-                         ng-click="payment.activated=!payment.activated">
-                        <div class="user-item-payment-date dynamic-text-xs"
-                             ng-class="payment.admin_added=='user'?'user-added':'admin-added'">{{payment.week | date:'dd MMM yy'}}</div>
-                        <div class="user-item-payment-amount dynamic-text-xs">{{payment.amount | currency}}</div>
-                        <span class=" user-item-payment-status">{{self.getStatus(payment.status)}}</span>
-                    </div>
-                    <div class="user-item-payment-btns"
-                         ng-if="payment.activated">
-                        <span ng-if="self.shouldShow('accept',payment.status)"
-                              ng-click="self.updatePayment('accept', payment)"
-                              class="user-item-payment-btn user-item-payment-btn-accept">accept</span>
-                        <span ng-if="self.shouldShow('reject',payment.status)"
-                        ng-click="self.updatePayment('reject', payment)"
-                              class="user-item-payment-btn user-item-payment-btn-reject">reject</span>
-                        <span ng-if="self.shouldShow('delete',payment.status)"
-                        ng-click="self.updatePayment('delete', payment)"
-                              class="user-item-payment-btn user-item-payment-btn-delete">delete</span>
-                        <span ng-if="self.shouldShow('undo',payment.status)"
-                        ng-click="self.updatePayment('undo', payment)"
-                              class="user-item-payment-btn user-item-payment-btn-undo">undo</span>
-                    </div>
-                </div>
-                <div class="user-payment-show-more"
-                     ng-click="self.showMoreClicked()"
-                     ng-if="self.shouldShowMore(self.payment_history, self.limit)">show more</div>
+                <div ng-if="self.status(self.item)" class="user-item-status dynamic-text-xs">{{self.status(self.item)}}</div>
             </div>
         </div>
+                <div class="user-item-payments">
+                    <div class="user-item-payment" ng-class="{'active':payment.activated}" ng-repeat="payment in self.payment_history | orderBy:'-week' | limitTo:self.limit">
+                        <div class="user-item-payment-wrap" ng-class="self.getStatus(payment.status)" ng-click="payment.activated=!payment.activated">
+                            <div class="user-item-payment-wrap-date dynamic-text-xs" ng-class="payment.admin_added=='user'?'user-added':'admin-added'">{{payment.week | date:'dd MMM yy'}}</div>
+                            <div class="user-item-payment-wrap-amount dynamic-text-xs">{{payment.amount | currency}}</div>
+                            <div class="user-item-payment-wrap-icon">
+                                <img ng-class="status-icon" ng-if="self.getStatus(payment.status) == 'accepted'" ng-src="~assets/images/accept-icon.png" alt="{{self.getStatus(payment.status)}}">
+                                <img ng-class="status-icon" ng-if="self.getStatus(payment.status) == 'deleted'" ng-src="~assets/images/delete-icon.png" alt="{{self.getStatus(payment.status)}}">
+                                <img ng-class="status-icon" ng-if="self.getStatus(payment.status) == 'pending'"  ng-src="~assets/images/pending-icon.png" alt="{{self.getStatus(payment.status)}}">
+                            </div>
+                            <!-- <span class="user-item-payment-wrap-status">{{self.getStatus(payment.status)}}</span> -->
+                        </div>
+    
+                        <div class="user-item-payment-btns" ng-if="payment.activated">
+                            <span ng-if="self.shouldShow('accept',payment.status)" ng-click="self.updatePayment('accept', payment)" class="user-item-payment-btn user-item-payment-btn-accept">accept</span>
+                            <span ng-if="self.shouldShow('reject',payment.status)" ng-click="self.updatePayment('reject', payment)" class="user-item-payment-btn user-item-payment-btn-reject">reject</span>
+                            <span ng-if="self.shouldShow('delete',payment.status)" ng-click="self.updatePayment('delete', payment)" class="user-item-payment-btn user-item-payment-btn-delete">delete</span>
+                            <span ng-if="self.shouldShow('undo',payment.status)" ng-click="self.updatePayment('undo', payment)" class="user-item-payment-btn user-item-payment-btn-undo">undo</span>
+                        </div>
+                    </div>
+                    <div class="user-payment-show-more" ng-click="self.showMoreClicked()" ng-if="self.shouldShowMore(self.payment_history, self.limit)">show more</div>
+                </div>
     </div>
     <div class="view-right-item user-item-owe-wrap">
         <div class="user-item-owes dynamic-text-xs">{{self.owesText(self.item.has_type)}}
             <span ng-if="self.owes">{{(self.owes > 0? self.owes : -self.owes | currency)}}</span>
         </div>
-        <input ng-class="{'deducting':self.payAmount<0 , 'cook':self.item.has_type=='cook' }"
-               class="user-item-pay dynamic-text-xs"
-               currency-format
-               ng-model="self.payAmount" />
+        <input ng-class="{'deducting':self.payAmount<0 , 'cook':self.item.has_type=='cook' }" class="user-item-pay dynamic-text-xs"
+            currency-format ng-model="self.payAmount" />
     </div>
 </div>
