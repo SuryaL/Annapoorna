@@ -8,54 +8,60 @@ payment {
     font-size: 1.5em;
     padding: 1em;
   } 
-  .user-item-payment-wrap {
-    width: 100%;
-    padding : 0.7em;
-    @include flexbox();
-    @include align-items(center);
-    @include justify-content(space-between);
-    @include flex-direction(row);
-    &.deleted {
-      text-decoration: line-through;
-    }
-    .user-item-payment-wrap-icon {
-      @include flex(0, 0, 33%);
-      @include justify-content(flex-end);
+  .user-payment-container{
+    @include flexbox;
+    @include flex-direction(column);
+    // max-height: 70vh;
+    overflow-y: scroll;
+    .user-item-payment-wrap {
+      width: 100%;
+      padding : 0.7em;
       @include flexbox();
-      padding: 0 0.4em;
-      img {
-        width: 0.7em;
-        height: 0.7em;
-        @media(min-width: 600px) {
-          width:0.85em;
-          height: 0.85em;
+      @include align-items(center);
+      @include justify-content(space-between);
+      @include flex-direction(row);
+      &.deleted {
+        text-decoration: line-through;
+      }
+      .user-item-payment-wrap-icon {
+        @include flex(0, 0, 33%);
+        @include justify-content(flex-end);
+        @include flexbox();
+        padding: 0 0.4em;
+        img {
+          width: 0.7em;
+          height: 0.7em;
+          @media(min-width: 600px) {
+            width:0.85em;
+            height: 0.85em;
+          }
         }
       }
-    }
-    .user-item-payment-wrap-date {
-      @include flex(0, 0, 33%);
-      @extend .main-semibold-font;
-      color:$chase-grey;
-      @include justify-content(flex-start);
-      padding-left: 0.3em;
-      @include flexbox();
-      &.admin-added {
-        position: relative;
-        overflow: visible;
-        &:before {
-          content: '*';
-          position: absolute;
-          left: -0.5em;
+      .user-item-payment-wrap-date {
+        @include flex(0, 0, 33%);
+        @extend .main-semibold-font;
+        color:$chase-grey;
+        @include justify-content(flex-start);
+        padding-left: 0.3em;
+        @include flexbox();
+        &.admin-added {
+          position: relative;
+          overflow: visible;
+          &:before {
+            content: '*';
+            position: absolute;
+            left: -0.5em;
+          }
         }
       }
-    }
-    .user-item-payment-wrap-amount {
-      @include flex(0, 0, 33%);
-      @include justify-content(flex-end);
-      @include flexbox();
-      padding: 0 0.4em;
-      @extend .main-regular-font;
-      color:$chase-grey;
+      .user-item-payment-wrap-amount {
+        @include flex(0, 0, 33%);
+        @include justify-content(flex-end);
+        @include flexbox();
+        padding: 0 0.4em;
+        @extend .main-regular-font;
+        color:$chase-grey;
+      }
     }
   }
   .payment-input-wrap {

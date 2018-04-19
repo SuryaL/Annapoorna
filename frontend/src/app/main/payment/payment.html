@@ -1,35 +1,30 @@
 <div class="payment-view-header sub-main-view-header">
-    <simple-header head-title="self.headTitle"
-                   subhead-title="self.subheadTitle"></simple-header>
+    <simple-header head-title="self.headTitle" subhead-title="self.subheadTitle"></simple-header>
     <div class="align-head-right">
-        <header-btn ng-if="self.showSubmit()"
-                    head-text="{{ self.btnText }}"
-                    callback="self.paySubmit"></header-btn>
+        <header-btn ng-if="self.showSubmit()" head-text="{{ self.btnText }}" callback="self.paySubmit"></header-btn>
     </div>
 </div>
 <div class="payments-container sub-main-view-container">
     <div class="payment-input-wrap">
-        <input ng-class="{'deducting':self.payAmount<0 , 'cook':self.item.has_type=='cook' }"
-               class="user-item-pay dynamic-text-xs"
-               currency-format
-               ng-model="self.payAmount" />
+        <input ng-class="{'deducting':self.payAmount<0 , 'cook':self.item.has_type=='cook' }" class="user-item-pay dynamic-text-xs"
+            currency-format ng-model="self.payAmount" />
     </div>
-    <div class="no-payment"
-         ng-if="self.payment_history && !self.payment_history.length">No payments yet!</div>
-    <div class="user-item-payment"
-         ng-repeat="payment in self.payment_history">
-        <div class="user-item-payment-wrap"
-             ng-click="payment.activated=!payment.activated"  ng-class="self.getStatus(payment.status)">
-            <div class="user-item-payment-wrap-date dynamic-text-xs" ng-class="payment.admin_added!=null && !payment.admin_added?'user-added':'admin-added'">{{payment.week | date:'dd MMM yy'}}</div>
-            <div class="user-item-payment-wrap-amount dynamic-text-xs">{{payment.amount | currency}}</div>
-            <div class="user-item-payment-wrap-icon">
-                <img ng-class="status-icon" ng-if="self.getStatus(payment.status) == 'accepted'" ng-src="~assets/images/accept-icon.png" alt="{{self.getStatus(payment.status)}}">
-                <img ng-class="status-icon" ng-if="self.getStatus(payment.status) == 'rejected'" ng-src="~assets/images/delete-icon.png" alt="{{self.getStatus(payment.status)}}">
-                <img ng-class="status-icon" ng-if="self.getStatus(payment.status) == 'pending'"  ng-src="~assets/images/pending-icon.png" alt="{{self.getStatus(payment.status)}}">
+    <div class="no-payment" ng-if="self.payment_history && !self.payment_history.length">No payments yet!</div>
+    <div class="user-payment-container">
+        <div class="user-item-payment" ng-repeat="payment in self.payment_history">
+            <div class="user-item-payment-wrap" ng-click="payment.activated=!payment.activated" ng-class="self.getStatus(payment.status)">
+                <div class="user-item-payment-wrap-date dynamic-text-xs" ng-class="payment.admin_added!=null && !payment.admin_added?'user-added':'admin-added'">{{payment.week | date:'dd MMM yy'}}</div>
+                <div class="user-item-payment-wrap-amount dynamic-text-xs">{{payment.amount | currency}}</div>
+                <div class="user-item-payment-wrap-icon">
+                    <img ng-class="status-icon" ng-if="self.getStatus(payment.status) == 'accepted'" ng-src="~assets/images/accept-icon.png"
+                        alt="{{self.getStatus(payment.status)}}">
+                    <img ng-class="status-icon" ng-if="self.getStatus(payment.status) == 'rejected'" ng-src="~assets/images/delete-icon.png"
+                        alt="{{self.getStatus(payment.status)}}">
+                    <img ng-class="status-icon" ng-if="self.getStatus(payment.status) == 'pending'" ng-src="~assets/images/pending-icon.png"
+                        alt="{{self.getStatus(payment.status)}}">
+                </div>
             </div>
         </div>
     </div>
 </div>
-<footer-btn ng-if="self.showSubmit()"
-            foot-text="{{self.btnText}}"
-            callback="self.paySubmit"></footer-btn>
+<footer-btn ng-if="self.showSubmit()" foot-text="{{self.btnText}}" callback="self.paySubmit"></footer-btn>
