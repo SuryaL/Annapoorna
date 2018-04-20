@@ -67,22 +67,33 @@ async function getAllUserOrders(user) {
     return found.rows
 }
 
-async function getUserOrderPriceTotal(user) {
+async function getUserOrderPriceTotal(user,active_week) {
     const orders = await getAllUserOrders(user);
     let total = 0;
+    let total_no_currentweek = 0;
+    
     for(let oItem of orders) {
+        if(active_week != oItem.week){
+            total_no_currentweek += +(+oItem.price * +oItem.quantity).toFixed(2);
+        }
         total += +(+oItem.price * +oItem.quantity).toFixed(2);
     }
-    return total;
+   
+    return {orderslist:orders, total, total_no_currentweek};
 }
 
-async function getAllOrdersPriceTotal(user) {
-    const orders = await getAllOrders();
+async function getAllOrdersPriceTotal(active_week) {
+    const orders = await getAllOrders(active_week);
     let total = 0;
+    let total_no_currentweek = 0;
     for(let oItem of orders) {
+        if(active_week != oItem.week){
+            total_no_currentweek += +(+oItem.price * +oItem.quantity).toFixed(2);
+        }
         total += +(+oItem.price * +oItem.quantity).toFixed(2);
     }
-    return total;
+   
+    return {orderslist:orders, total, total_no_currentweek};
 }
 
 async function deleteUserOrders(user, week) {

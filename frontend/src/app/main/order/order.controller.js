@@ -1,7 +1,7 @@
 class OrderController {
-    constructor($state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService, $filter, $rootScope) {
+    constructor($state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService, $filter, $rootScope, PaymentService) {
         'ngInject';
-        Object.assign(this, { $state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService, $filter, $rootScope });
+        Object.assign(this, { $state, $auth, MenuService, VoteService, StatusService, $q, MenuVotingLimit, MyToastr, OrderService, $filter, $rootScope, PaymentService });
         this.user = {};
         // this.headTitle = 'Order this week\'s dishes';
 
@@ -114,6 +114,11 @@ class OrderController {
 
     orderSubmit = () => {
         // TODO: check valid data
+
+        if(!this.PaymentService.paymentIsCool()){
+            return this.MyToastr.error('No access! Please settle up.')
+        }
+
         if(this.timePassed) {
             return this.MyToastr.error(`Time Expired!`);
         }

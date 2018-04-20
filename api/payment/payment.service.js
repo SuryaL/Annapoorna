@@ -2,6 +2,7 @@ const { execQuery } = require('../../helpers/utils/db_utils');
 
 const UserService = require('../user/user.service');
 const OrderService = require('../order/order.service');
+const StatusController = require('../status/status.controller');
 
 async function addUserPayment(user, amount, status='pending',admin_added=false){
     if(!user || !amount || isNaN(+amount) ||+amount == 0){
@@ -28,20 +29,23 @@ async function updateUserPayment(user, week, status){
 // addUserPayment('b4f1bbd8-872b-4847-a4c1-3e55ea5d15ea',-10)
 
 async function getUserBalance(user_id) {
-    let orders_bill = await OrderService.getUserOrderPriceTotal(user_id);
+    let active_week = (await StatusController.getCurrentWeek() || {}).week || '';
+    let {total:orders_bill,orderslist,total_no_currentweek} = await OrderService.getUserOrderPriceTotal(user_id, active_week);
     let payments = await getUserPayments(user_id);
     return {
         orders_bill,
-        payments
+        payments,orderslist,total_no_currentweek
     }
 }
 
 async function getCookBalance(user_id) {
-    let orders_bill = await OrderService.getAllOrdersPriceTotal();
+    let active_week = (await StatusController.getCurrentWeek() || {}).week || '';
+    let {total:orders_bill,orderslist,total_no_currentweek} = await OrderService.getAllOrdersPriceTotal(active_week);
     let payments = await getUserPayments(user_id);
     return {
         orders_bill: - +orders_bill,
         payments
+        ,orderslist,total_no_currentweek
     }
 }
 

@@ -1,5 +1,5 @@
 class voteCtrl {
-    constructor($state, $auth, MenuService,VoteService,StatusService,$q, $filter,MenuVotingLimit, MyToastr) {
+    constructor($state, $auth, MenuService,VoteService,StatusService,$q,PaymentService, $filter,MenuVotingLimit, MyToastr) {
         'ngInject';
         Object.assign(this, {
             $state,
@@ -8,6 +8,7 @@ class voteCtrl {
             StatusService,
             $q,
             MenuVotingLimit,
+            PaymentService,
             MyToastr,
             $filter
         });
@@ -106,6 +107,8 @@ class voteCtrl {
         return this.selectedItems.size;
     }
 
+
+
     showSubmit(){
         // return true;
         return this.currentWeek && !this.timePassed && !this.voting_status
@@ -129,6 +132,9 @@ class voteCtrl {
     }
 
     voteSubmit = () => {
+        if(!this.PaymentService.paymentIsCool()){
+            return this.MyToastr.error('No access! Please settle up.')
+        }
         if(this.timePassed){
             return this.MyToastr.error(`Time Expired!`);
         }

@@ -12,6 +12,7 @@ import AuthService from 'common/services/auth';
 import menuService from 'common/services/menu';
 import VoteService from 'common/services/vote';
 import StatusService from 'common/services/status';
+import payment from 'common/services/payment';
 
 const module = angular.module('vote', [
         uirouter,
@@ -24,7 +25,8 @@ const module = angular.module('vote', [
         AuthService,
         menuService,
         VoteService,
-        StatusService
+        StatusService,
+        payment
     ])
 
     .config(function($stateProvider) {

@@ -1,10 +1,10 @@
-let VoteFactory = function($http, $q, $httpParamSerializer) {
+let VoteFactory = function($http, $q, $httpParamSerializer, StatusService) {
     'ngInject';
 
     const self = this;
     const API = ENV.API_URL;
     self.PATH = '/payment';
-
+    self.max_pay_for_access = 60;
 
     self.payment_user_type = (user_obj = {}) => {
         if(!user_obj) {
@@ -25,6 +25,11 @@ let VoteFactory = function($http, $q, $httpParamSerializer) {
             }
         })
 
+    }
+
+    // need to ignore this weeks's order bill
+    self.paymentIsCool = () =>{
+        return self.owes() <= self.max_pay_for_access
     }
 
     self.owes = () => {
@@ -56,6 +61,7 @@ let VoteFactory = function($http, $q, $httpParamSerializer) {
                 return resp.data;
             })
     }
+
     self.getCookBalance = function(obj = {}) {
         return $http({
                 method: 'GET',
