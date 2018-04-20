@@ -34,7 +34,9 @@ async function getUserBalance(user_id) {
     let payments = await getUserPayments(user_id);
     return {
         orders_bill,
-        payments,orderslist,total_no_currentweek
+        payments,
+        orderslist,
+        total_no_currentweek
     }
 }
 
@@ -44,8 +46,9 @@ async function getCookBalance(user_id) {
     let payments = await getUserPayments(user_id);
     return {
         orders_bill: - +orders_bill,
-        payments
-        ,orderslist,total_no_currentweek
+        payments,
+        orderslist,
+        total_no_currentweek: - +total_no_currentweek
     }
 }
 

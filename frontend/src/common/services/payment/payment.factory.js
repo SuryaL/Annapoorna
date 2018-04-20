@@ -29,7 +29,7 @@ let VoteFactory = function($http, $q, $httpParamSerializer, StatusService) {
 
     // need to ignore this weeks's order bill
     self.paymentIsCool = () =>{
-        return self.owes() <= self.max_pay_for_access
+        return self.owesNoCurrentWeek() <= self.max_pay_for_access
     }
 
     self.owes = () => {
@@ -38,6 +38,14 @@ let VoteFactory = function($http, $q, $httpParamSerializer, StatusService) {
         }
         
         return +self.userPayment.orders_bill - +self.userPayment.payments.total
+    }
+
+    self.owesNoCurrentWeek = () => {
+        if(!self.userPayment || !self.userPayment.payments){
+            return 0
+        }
+        
+        return +self.userPayment.total_no_currentweek - +self.userPayment.payments.total
     }
 
     self.resetCookBalance = () => {
