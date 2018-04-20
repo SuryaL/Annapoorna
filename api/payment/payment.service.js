@@ -12,6 +12,7 @@ async function addUserPayment(user, amount, status='pending',admin_added=false){
     amount = +((+amount).toFixed(2));
     let week = (new Date()).toISOString();
     await execQuery('insert into payments (week,created,user,amount_paid,status,admin_added) values(?,?,?,?,?,?)',[week,week,user,amount.toString(),status,admin_added]);
+    return {amount: amount.toString()}
 }
 
 async function updateUserPayment(user, week, status){

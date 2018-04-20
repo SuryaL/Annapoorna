@@ -3,6 +3,7 @@
   "orderending" : "Order deadline",
   "voteending" : "Vote deadline",
   "orderenabled" : "Ordering enabled",
+  "paymentadded" : "User added a payment",
   "ordersdone" : "Orders ready for you to cook",
   "voteenabled" : "Voting enabled",
   "custom" : "Important Information from admin"

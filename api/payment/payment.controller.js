@@ -1,4 +1,5 @@
 const PaymentService = require('./payment.service');
+const UserService = require('../user/user.service');
 
 async function addUserPayments(req){
     let payments = req.body;
@@ -17,7 +18,12 @@ async function addPaymentUser(req){
     if(!pay_amount || !user || !user.id){
         throw new Error('Invalid pay')
     }
-    await PaymentService.addUserPayment(user.id, pay_amount,'pending',false);
+    let {amount} = await PaymentService.addUserPayment(user.id, pay_amount,'pending',false);
+    let found_user = await UserService.getUser({id:user.id});
+    await UserService.sendMailToUsers({user_types:['admin']})('paymentadded', {
+        paidusername : (found_user||{}).first_name || 'unnamed',
+        paidamount: amount
+    })
     return true;
 }
 
