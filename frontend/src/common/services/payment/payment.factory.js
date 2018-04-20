@@ -27,6 +27,14 @@ let VoteFactory = function($http, $q, $httpParamSerializer) {
 
     }
 
+    self.owes = () => {
+        if(!self.userPayment || !self.userPayment.payments){
+            return 0
+        }
+        
+        return +self.userPayment.orders_bill - +self.userPayment.payments.total
+    }
+
     self.resetCookBalance = () => {
         return self.getCookBalance().then(resp => {
             return self.userPayment = resp;

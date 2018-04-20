@@ -11,7 +11,7 @@
     </div>
     <div class="no-payment" ng-if="self.payment_history && !self.payment_history.length">No payments yet!</div>
     <div class="user-payment-container">
-        <div class="user-item-payment" ng-repeat="payment in self.payment_history">
+        <div class="user-item-payment" ng-repeat="payment in self.payment_history | orderBy:'-week' ">
             <div class="user-item-payment-wrap" ng-click="payment.activated=!payment.activated" ng-class="self.getStatus(payment.status)">
                 <div class="user-item-payment-wrap-date dynamic-text-xs" ng-class="payment.admin_added!=null && !payment.admin_added?'user-added':'admin-added'">{{payment.week | date:'dd MMM yy'}}</div>
                 <div class="user-item-payment-wrap-amount dynamic-text-xs">{{payment.amount | currency}}</div>

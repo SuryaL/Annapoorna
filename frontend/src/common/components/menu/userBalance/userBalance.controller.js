@@ -47,11 +47,7 @@ class userBalanceCtrl {
     }
 
     get owes(){
-        if(!this.PaymentService.userPayment || !this.PaymentService.userPayment.payments){
-            return 0
-        }
-        
-        return +this.PaymentService.userPayment.orders_bill - +this.PaymentService.userPayment.payments.total
+        return +this.PaymentService.owes()
     }
 }
 

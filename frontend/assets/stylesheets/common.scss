@@ -272,18 +272,10 @@
     }
 }
 
-.dynamic-text-xs {
-    @media (min-width: 200px) {
-        font-size: 8px !important;
-        line-height: 9px !important;
-    }
-    @media (min-width: 350px) {
-        font-size: 9px !important;
-        line-height: 10px !important;
-    }
-    @media (min-width: 412px) {
-        font-size: 10px !important;
-        line-height: 11px !important;
+.dynamic-text-xxs {
+    @media (max-width: 412px) {
+        font-size: 11px !important;
+        line-height: 12px !important;
     }
     @media (min-width: 600px) {
         font-size: 13px !important;
