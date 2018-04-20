@@ -62,6 +62,15 @@ user-item {
           @include align-items(center);
           @include justify-content(center);
           @include flex-direction(row);
+          &, *{
+            cursor: pointer;
+          }
+          pointer-events: all;
+          &:hover{
+            *{
+              color:$chase-blue !important;
+            }
+          }
           &.deleted {
             text-decoration: line-through;
           }
