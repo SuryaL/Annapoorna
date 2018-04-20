@@ -11,20 +11,30 @@ payment {
   .user-payment-container{
     @include flexbox;
     @include flex-direction(column);
-    // max-height: 70vh;
-    overflow-y: scroll;
-    .user-item-payment-wrap {
-      width: 100%;
-      padding : 0.7em;
-      @include flexbox();
       @include align-items(center);
-      @include justify-content(space-between);
+      // max-height: 70vh;
+    overflow-y: scroll;
+    .user-item-payment{
+      width: 100%;
+      @include flexbox;
+      @include align-items(center);
+      @include justify-content(space-around);
+      @include flex-direction(row);
+      .user-item-payment-wrap {
+      // width: 60%;
+      padding : 0.7em;
+        @include flex(1, 0, 0);
+        margin: 0 3em;
+      
+      @include flexbox;
+      @include align-items(space-around);
+      @include justify-content(space-around);
       @include flex-direction(row);
       &.deleted {
         text-decoration: line-through;
       }
       .user-item-payment-wrap-icon {
-        @include flex(0, 0, 33%);
+        @include flex(0, 0, 10%);
         @include justify-content(flex-end);
         @include flexbox();
         padding: 0 0.4em;
@@ -38,7 +48,7 @@ payment {
         }
       }
       .user-item-payment-wrap-date {
-        @include flex(0, 0, 33%);
+        @include flex(1, 0, 0%);
         @extend .main-semibold-font;
         color:$chase-grey;
         @include justify-content(flex-start);
@@ -55,15 +65,17 @@ payment {
         }
       }
       .user-item-payment-wrap-amount {
-        @include flex(0, 0, 33%);
+        margin-left:auto;
+        @include flex(0, 0, 0%);
         @include justify-content(flex-end);
         @include flexbox();
         padding: 0 0.4em;
-        @extend .main-regular-font;
+        @extend .main-thin-font;
         color:$chase-grey;
       }
     }
   }
+}
   .payment-input-wrap {
     @include flexbox;
     @include align-items(center);

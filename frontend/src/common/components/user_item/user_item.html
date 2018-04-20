@@ -12,8 +12,8 @@
                 <div class="user-item-payments">
                     <div class="user-item-payment" ng-class="{'active':payment.activated}" ng-repeat="payment in self.payment_history | orderBy:'-week' | limitTo:self.limit">
                         <div class="user-item-payment-wrap" ng-class="self.getStatus(payment.status)" ng-click="payment.activated=!payment.activated">
-                            <div class="user-item-payment-wrap-date dynamic-text-xs" ng-class="payment.admin_added!=null && !payment.admin_added ?'user-added':'admin-added'">{{payment.week | date:'dd MMM yy'}}</div>
-                            <div class="user-item-payment-wrap-amount dynamic-text-xs">{{payment.amount | currency}}</div>
+                            <div class="user-item-payment-wrap-date dynamic-text-xxs" ng-class="payment.admin_added!=null && !payment.admin_added ?'user-added':'admin-added'">{{payment.week | date:'dd MMM yy'}}</div>
+                            <div class="user-item-payment-wrap-amount dynamic-text-xxs">{{payment.amount | currency}}</div>
                             <div class="user-item-payment-wrap-icon">
                                 <img ng-class="status-icon" ng-if="self.getStatus(payment.status) == 'accepted'" ng-src="~assets/images/accept-icon.png" alt="{{self.getStatus(payment.status)}}">
                                 <img ng-class="status-icon" ng-if="self.getStatus(payment.status) == 'rejected'" ng-src="~assets/images/delete-icon.png" alt="{{self.getStatus(payment.status)}}">
