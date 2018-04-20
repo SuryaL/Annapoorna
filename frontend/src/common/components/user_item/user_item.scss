@@ -51,9 +51,9 @@ user-item {
         @include flex-direction(column);
         width: 50vw;
         max-width: 20em;
-        &.active{
-          *{
-            color:$chase-green !important;
+        &.active {
+          * {
+            color: $chase-green !important;
           }
         }
         .user-item-payment-wrap {
@@ -80,17 +80,15 @@ user-item {
           .user-item-payment-wrap-date {
             @include flex(0, 0, 33%);
             @extend .main-lightitalic-font;
-            color:$chase-grey;
-            &.admin-added{
+            color: $chase-grey;
+            &.admin-added {
               position: relative;
               overflow: visible;
-              &:before{
-                content:'*';
-                color:$chase-grey;
+              &:before {
+                content: '*';
+                color: $chase-grey;
                 position: absolute;
-                left:-0.6em;
-
-
+                left: -0.6em;
               }
             }
           }
@@ -99,23 +97,33 @@ user-item {
             @include justify-content(flex-end);
             @include flexbox();
             padding: 0 0.4em;
-            color:$chase-grey;
+            color: $chase-grey;
             @extend .main-thin-font;
           }
         }
-
-        .user-item-payment-btns{
+        .user-item-payment-btns {
           background: white;
-          padding:0.3em;
+          padding: 0.3em;
+          margin: 0.7em 0;
+          position: relative;
+          &:before {
+            content: '';
+            position: absolute;
+            top: -0.5em;
+            right: 1em;
+            width: 0;
+            height: 0;
+            border-left: 0.5em solid transparent;
+            border-right: 0.5em solid transparent;
+            border-bottom: 0.5em solid white;
+          }
           @include border-radius(1em);
           @include flexbox();
-          @include align-items(center);
-          // @include align-self(flex-end);
+          @include align-items(center); // @include align-self(flex-end);
           // margin-right:3em;
           @include justify-content(center);
           @include flex-direction(row);
-
-          .user-item-payment-btn{
+          .user-item-payment-btn {
             @include flexbox();
             @include align-items(center);
             @include justify-content(center);
@@ -129,18 +137,10 @@ user-item {
               }
             }
             margin: 0 0.5em;
-            &-accept{
-
-            }
-            &-reject{
-
-            }
-            &-delete{
-
-            }
-            &-undo{
-
-            }
+            &-accept {}
+            &-reject {}
+            &-delete {}
+            &-undo {}
           }
         }
       } // .user-item-payment {
