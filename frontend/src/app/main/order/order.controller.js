@@ -69,7 +69,7 @@ class OrderController {
         if(this.order_deadline) {
             d = this.$filter('date')(this.order_deadline,'EEE MMM d,  h:mm:ss a');
         }
-        return 'Deadline : ' + d
+        return !d? '...' :'Deadline : ' + d
     }
 
     get headTitle(){
@@ -77,7 +77,7 @@ class OrderController {
         if(this.currentWeek){
             d = this.$filter('date')(this.currentWeek,'MMM d');
         }
-        return 'Order '+ d +' week\'s dishes';
+        return !d?  '...' : d +' week\'s dishes';
     }
 
     get orderTotal() {

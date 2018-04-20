@@ -91,7 +91,7 @@ class voteCtrl {
         if(this.currentWeek){
             d = this.$filter('date')(this.currentWeek,'MMM d');
         }
-        return 'Vote for '+ d +' week\'s dishes';
+        return !d? '...' : d +' week\'s dishes';
     }
 
     get subheadTitle() {
@@ -99,7 +99,7 @@ class voteCtrl {
         if(this.vote_deadline){
             d = this.$filter('date')(this.vote_deadline,'EEE MMM d,  h:mm:ss a');
         }
-        return 'Deadline : ' + d
+        return !d? '...' :'Deadline : ' + d
     }
 
     get votedSize() {
