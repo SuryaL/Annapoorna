@@ -4,7 +4,15 @@
             <div class="user-item-header">
                 <profilepic image="{{self.UserService.getprofileimageurl(self.item.id) + '&small=true'}}"></profilepic>
                 <div class="user-item-name dynamic-text-l" ng-class="{'emailname':self.item.email == self.username}">{{self.username}}
-                    <span class="cook-label" ng-if="self.item.has_type=='cook'">(cook)</span>
+                    <span class="icon-label user-label" ng-if="self.item.type.includes('user')">
+                        <img src="~assets/images/user.png" alt="">
+                    </span>
+                    <span class="icon-label cook-label" ng-if="self.item.type.includes('cook')">
+                        <img src="~assets/images/cook.png" alt="">
+                    </span>
+                    <span class="icon-label admin-label" ng-if="self.item.type.includes('admin')">
+                        <img src="~assets/images/admin.png" alt="">
+                    </span>
                 </div>
                 <div ng-if="self.status(self.item)" class="user-item-status dynamic-text-xs">{{self.status(self.item)}}</div>
             </div>

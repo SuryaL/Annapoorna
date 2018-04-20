@@ -28,8 +28,25 @@ user-item {
             font-size:0.8em !important;
           }
         }
+
+        .icon-label{
+          width:0.65em;
+          height:0.65em;
+          position: relative;
+          img{
+            width:0.65em;
+            height:0.65em;
+          }
+        }
+
+        .user-label{
+
+        }
+        .admin-label{
+
+        }
         .cook-label {
-          color: $chase-green;
+          // color: $chase-green;
         }
       }
       .user-item-status {
