@@ -19,6 +19,7 @@ import votes from './votes/votes';
 import payment from './payment/payment';
 
 import feedback from 'common/services/feedback';
+import releasenotes from 'common/services/releasenotes';
 import user from 'common/services/user';
 
 const module = angular.module('main', [
@@ -36,6 +37,7 @@ const module = angular.module('main', [
         TabsService,
         orders,
         feedback,
+        releasenotes,
         profilepic,
         user,
         votes

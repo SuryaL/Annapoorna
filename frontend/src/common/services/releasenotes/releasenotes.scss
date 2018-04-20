@@ -1,0 +1,53 @@
+@import '~assets/stylesheets/common.scss';
+@import '~assets/stylesheets/variables.scss';
+@import '~assets/stylesheets/mixins.scss';
+.releasenotes-popup-dialog {
+    &.stax-popup {
+        position: absolute;
+        .stax-popup-overlay {
+            position: absolute;
+        }
+    }
+    .stax-popup-close {
+        z-index: 999;
+        // display: none;
+    }
+    .stax-popup-content {
+        background-color: $main-dark-color;
+        background-position: center center;
+        background-size: cover;
+        padding: 2vw 1vw !important;
+        border-radius: 10px !important;
+        max-width: 600px;
+        max-height: 90vh;
+        width: 100%;
+        overflow-y: auto;
+        .stax-popup-data {
+            .title{
+                @include flexbox;
+                @include justify-content(center);
+                color: $chase-grey;
+                @extend .main-medium-font;
+            }
+            .popup-wrap{
+                .img-img{
+                    margin: 0.3em;
+                    @include flexbox;
+                    @include justify-content(center);
+                    @include align-items(center);
+                    img{
+                
+                // display: inline-block;
+                max-width: 100%;
+                max-height: 100%;
+                }
+            }
+                .notes{
+                @extend .main-medium-font;
+                color: white;
+                margin:1em;
+                }
+            }
+        }
+    }
+}

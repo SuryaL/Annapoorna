@@ -1,10 +1,21 @@
 class mainController {
-    constructor($state, $auth, TabsService, UserService, $scope, $timeout, FeedbackPopup, OrderService, MyToastr) {
+    constructor($state, $auth, TabsService, UserService, $scope, $timeout, FeedbackPopup, $window, OrderService, MyToastr, ReleasenotesPopup) {
         'ngInject';
-        Object.assign(this, { UserService, $state, $auth, FeedbackPopup, OrderService, MyToastr });
+        Object.assign(this, { UserService, $state, $auth, FeedbackPopup, $window, OrderService, MyToastr, ReleasenotesPopup });
         this.user = this.$auth.getUser();
         this.TabsService = TabsService;
         this.tabs = this.TabsService.fetchTabsForType(this.user.type)
+        
+        /**
+         * Release notes
+         */
+        let releaseToSee = 1;
+        let releaseSeen = $window.localStorage.getItem('releasenotes');
+        if(+releaseSeen < 1){
+            $window.localStorage.setItem('releasenotes',releaseToSee);
+            this.ReleasenotesPopup.open({releaseToSee});
+        }
+        //////////////////////////////////////////
 
         startloading;
         this.OrderService
