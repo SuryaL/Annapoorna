@@ -1,12 +1,13 @@
 class ProfileController {
-    constructor($auth,UserService) {
+    constructor($auth,UserService, ReleasenotesPopup) {
         'ngInject';
         this.name = 'Profile';
         this.headTitle = "Profile";
         this.subheadTitle = ".";
         Object.assign(this,{
             $auth,
-            UserService
+            UserService,
+            ReleasenotesPopup
         });
         this.getProfileInfo();
     }

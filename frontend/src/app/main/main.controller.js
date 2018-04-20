@@ -13,7 +13,7 @@ class mainController {
         let releaseSeen = $window.localStorage.getItem('releasenotes');
         if(+releaseSeen < 1){
             $window.localStorage.setItem('releasenotes',releaseToSee);
-            this.ReleasenotesPopup.open({releaseToSee});
+            this.ReleasenotesPopup.open({});
         }
         //////////////////////////////////////////
 

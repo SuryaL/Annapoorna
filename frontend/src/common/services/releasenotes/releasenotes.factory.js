@@ -6,7 +6,7 @@ let ReleasenotesPopupFactory = function($popup, $q) {
     'ngInject';
     var self = this;
 
-    self.open = function({releaseToSee}) {  
+    self.open = function({}) {  
 
         let mypopup = $popup.open({      
             template: PopupHtml,

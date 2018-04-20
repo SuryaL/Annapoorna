@@ -3,6 +3,13 @@
 @import '~assets/stylesheets/variables';
 profile {
   @extend .sub-main-view;
+  .release{
+    text-decoration: underline !important;
+    text-align: right;
+    margin-right:1em;
+    margin-bottom:1em;
+    color:$chase-grey;
+  }
   .profile-wrapper {
     margin: 2em;
     @include flexbox();
@@ -28,7 +35,9 @@ profile {
       padding: 1em;
       cursor: pointer !important;
       color: $chase-red;
-      @include add-hover();
+    text-decoration: underline !important;
+    @include add-hover();
     }
+   
   }
 }
