@@ -85,13 +85,14 @@ function streamprofilepic (req,res,next){
         }
 
         let access_token = config.FACEBOOK_CLIENT_ID + '|' + config.FACEBOOK_SECRET 
-        let url = image_base_url + '&access_token='+ access_token;
+        let url = image + '&access_token='+ access_token;
         if(small){
             url = url + '&type=small';
         }
         request(url).pipe(res);
     
     }).catch((err)=>{
+        console.error(err);
         return res.send(200,'')
     })
 }
