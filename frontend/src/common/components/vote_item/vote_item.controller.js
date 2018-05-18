@@ -30,9 +30,6 @@ class voteCtrl {
 
     selectItem = () => {
         this.itemToggled(this.item.id);
-        if(!this.isSelected){
-            this.item.quantity = 0;
-        }
     }
 }
 
