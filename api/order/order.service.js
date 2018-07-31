@@ -79,7 +79,7 @@ async function getUserOrderPriceTotal(user,active_week) {
         total += +(+oItem.price * +oItem.quantity).toFixed(2);
     }
    
-    return {orderslist:orders, total, total_no_currentweek};
+    return {orderslist:orders, total:+(total.toFixed(2)), total_no_currentweek:+(total_no_currentweek.toFixed(2))};
 }
 
 async function getAllOrdersPriceTotal(active_week) {
@@ -93,7 +93,7 @@ async function getAllOrdersPriceTotal(active_week) {
         total += +(+oItem.price * +oItem.quantity).toFixed(2);
     }
    
-    return {orderslist:orders, total, total_no_currentweek};
+    return {orderslist:orders, total:+(total.toFixed(2)), total_no_currentweek:+(total_no_currentweek.toFixed(2))};
 }
 
 async function deleteUserOrders(user, week) {
