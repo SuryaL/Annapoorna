@@ -4,7 +4,7 @@ let VoteFactory = function($http, $q, $httpParamSerializer, StatusService) {
     const self = this;
     const API = ENV.API_URL;
     self.PATH = '/payment';
-    self.max_pay_for_access = 60;
+    self.max_pay_for_access = 10;
 
     self.payment_user_type = (user_obj = {}) => {
         if(!user_obj) {

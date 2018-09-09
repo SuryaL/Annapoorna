@@ -157,6 +157,17 @@ class voteCtrl {
     }
 
     isSelectedItem = (id) => this.selectedItems.has(id);
+
+    voteToggleZero = (id) => {
+        this.voteToggle(id)
+        if(!this.isSelectedItem(id)){
+            let found = this.menuItems.find(item => item.id == id);
+            if(found){
+                found.quantity = 0;
+            }
+        }
+    }
+
     voteToggle = (id) => {
         if(this.timePassed){
             return this.MyToastr.error(`Voting closed`);

@@ -24,13 +24,13 @@
              ng-repeat="vItem in self.menuItems |orderBy:'name'">
             <vote-item item="vItem"
                        is-selected-item="self.isSelectedItem"
-                       item-toggled="self.voteToggle"></vote-item>
+                       item-toggled="self.voteToggleZero"></vote-item>
     </div>
     </div>
 </div>
 <div class="vote-pills-container "
      ng-class="{'disabled':!self.showSubmit()}">
-    <pill callback="self.voteToggle(vItemid)"
+    <pill callback="self.voteToggleZero(vItemid)"
           vtext="{{self.menuItemsObj[vItemid].name}}"
           vassure="self.menuItemsObj[vItemid].quantity"
           vprice="{{self.menuItemsObj[vItemid].price | currency}}"

@@ -9,9 +9,9 @@ class mainController {
         /**
          * Release notes
          */
-        let releaseToSee = 1;
+        let releaseToSee = 3;
         let releaseSeen = $window.localStorage.getItem('releasenotes');
-        if(+releaseSeen < 1){
+        if(+releaseSeen < 3){
             $window.localStorage.setItem('releasenotes',releaseToSee);
             this.ReleasenotesPopup.open({});
         }

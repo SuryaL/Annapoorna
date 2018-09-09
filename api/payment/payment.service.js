@@ -77,7 +77,7 @@ async function getUserPayments(user_id) {
             resp.total += +amount;
         }
     });
-    
+    resp.total = +(resp.total.toFixed(2));
     return resp;
 }
 

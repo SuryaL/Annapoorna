@@ -3,7 +3,7 @@ class QuantityPickerController {
         'ngInject';
         this.name = 'QuantityPicker';
         this.quantity = !!(+this.quantity)? +this.quantity : 0;
-        this.limit_max = 2;
+        this.limit_max = 4;
         this.limit_min = !!(+this.min)? +this.min :0;
         if(this.quantity<this.limit_min){
             this.quantity= this.limit_min
